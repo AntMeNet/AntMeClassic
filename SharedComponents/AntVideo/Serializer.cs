@@ -4,22 +4,29 @@ using System.Text;
 using AntMe.SharedComponents.AntVideo.Block;
 using System.Globalization;
 
-namespace AntMe.SharedComponents.AntVideo {
+namespace AntMe.SharedComponents.AntVideo
+{
     /// <summary>
     /// Class, to manage all serialize-tasks.
     /// </summary>
-    internal sealed class Serializer : IDisposable {
+    internal sealed class Serializer : IDisposable
+    {
         private const string HELLOMESSAGE = "AntVI-VideoStream";
 
         private readonly Stream stream;
         private readonly BinaryWriter writer;
         private readonly BinaryReader reader;
-        private readonly byte[] version = new byte[] {1, 0, 0, 0};
+        private readonly byte[] version = new byte[] { 1, 0, 0, 0 };
 
-        public Serializer(Stream stream) {
+        public Serializer(Stream stream, bool input, bool output)
+        {
             this.stream = stream;
-            reader = new BinaryReader(stream, Encoding.ASCII);
-            writer = new BinaryWriter(stream, Encoding.ASCII);
+
+            if (input)
+                reader = new BinaryReader(stream, Encoding.ASCII);
+
+            if (output)
+                writer = new BinaryWriter(stream, Encoding.ASCII);
         }
 
         /// <summary>
@@ -27,11 +34,13 @@ namespace AntMe.SharedComponents.AntVideo {
         /// </summary>
         /// <param name="block">the found block</param>
         /// <returns>type of found block</returns>
-        public BlockType Read(out ISerializable block) {
-            BlockType blockType = (BlockType) stream.ReadByte();
+        public BlockType Read(out ISerializable block)
+        {
+            BlockType blockType = (BlockType)stream.ReadByte();
             block = null;
 
-            switch (blockType) {
+            switch (blockType)
+            {
                 case BlockType.Ant:
                     block = new Ant(this);
                     break;
@@ -130,7 +139,8 @@ namespace AntMe.SharedComponents.AntVideo {
         /// <summary>
         /// Writes the hello-header to stream.
         /// </summary>
-        public void WriteHello() {
+        public void WriteHello()
+        {
             byte[] output = ASCIIEncoding.ASCII.GetBytes(HELLOMESSAGE);
             stream.Write(output, 0, output.Length);
             stream.WriteByte(version[0]);
@@ -142,12 +152,14 @@ namespace AntMe.SharedComponents.AntVideo {
         /// <summary>
         /// Reads hello-header out of stream.
         /// </summary>
-        public void ReadHello() {
+        public void ReadHello()
+        {
 
             // Compare hello-message
             byte[] compare = ASCIIEncoding.ASCII.GetBytes(HELLOMESSAGE);
             stream.Read(compare, 0, compare.Length);
-            if (ASCIIEncoding.ASCII.GetString(compare) != HELLOMESSAGE) {
+            if (ASCIIEncoding.ASCII.GetString(compare) != HELLOMESSAGE)
+            {
                 throw new NotSupportedException(Resource.AntvideoSerializerWrongHeader);
             }
 
@@ -157,14 +169,16 @@ namespace AntMe.SharedComponents.AntVideo {
             if (vers[0] != version[0] ||
                 vers[1] != version[1] ||
                 vers[2] != version[2] ||
-                vers[3] != version[3]) {
+                vers[3] != version[3])
+            {
                 throw new NotSupportedException(
                     string.Format(
-                    CultureInfo.CurrentCulture, 
+                    CultureInfo.CurrentCulture,
                     Resource.AntvideoSerializerWrongProtocolVersion, vers[0], vers[1], vers[2], vers[3]));
             }
 
-            if ((BlockType) stream.ReadByte() != BlockType.StreamStart) {
+            if ((BlockType)stream.ReadByte() != BlockType.StreamStart)
+            {
                 throw new NotSupportedException(Resource.AntvideoSerializerWrongHeader);
             }
         }
@@ -174,9 +188,11 @@ namespace AntMe.SharedComponents.AntVideo {
         /// </summary>
         /// <param name="blocktype">type of given block</param>
         /// <param name="block">block, to write</param>
-        public void Write(BlockType blocktype, ISerializable block) {
-            stream.WriteByte((byte) blocktype);
-            if (block != null) {
+        public void Write(BlockType blocktype, ISerializable block)
+        {
+            stream.WriteByte((byte)blocktype);
+            if (block != null)
+            {
                 block.Serialize(this);
             }
         }
@@ -185,7 +201,8 @@ namespace AntMe.SharedComponents.AntVideo {
         /// Writes a given block to stream.
         /// </summary>
         /// <param name="blocktype">type of block</param>
-        public void Write(BlockType blocktype) {
+        public void Write(BlockType blocktype)
+        {
             Write(blocktype, null);
         }
 
@@ -193,19 +210,16 @@ namespace AntMe.SharedComponents.AntVideo {
         /// Reads the following byte without affect the streamposition.
         /// </summary>
         /// <returns>next byte</returns>
-        public int Peek() {
+        public int Peek()
+        {
             int output = stream.ReadByte();
-            stream.Position--;
+            stream.Seek(-1, SeekOrigin.Current);
             return output;
         }
 
-        /// <summary>
-        /// Close stream.
-        /// </summary>
-        public void Close() {
-            stream.Close();
-            reader.Close();
-            writer.Close();
+        internal void Flush()
+        {
+            stream.Flush();
         }
 
         #region Sendemethoden
@@ -214,7 +228,8 @@ namespace AntMe.SharedComponents.AntVideo {
         /// Sendet einen ushort über den Stream
         /// </summary>
         /// <param name="item">ushort</param>
-        public void SendUshort(ushort item) {
+        public void SendUshort(ushort item)
+        {
             writer.Write(item);
         }
 
@@ -222,7 +237,8 @@ namespace AntMe.SharedComponents.AntVideo {
         /// Sends a short
         /// </summary>
         /// <param name="item">short</param>
-        public void SendShort(short item) {
+        public void SendShort(short item)
+        {
             writer.Write(item);
         }
 
@@ -230,7 +246,8 @@ namespace AntMe.SharedComponents.AntVideo {
         /// Sendet einen sbyte über den angegebenen stream
         /// </summary>
         /// <param name="item">sbyte</param>
-        public void SendSByte(sbyte item) {
+        public void SendSByte(sbyte item)
+        {
             writer.Write(item);
         }
 
@@ -238,11 +255,13 @@ namespace AntMe.SharedComponents.AntVideo {
         /// Sendet einen integer über den Stream
         /// </summary>
         /// <param name="item">integer</param>
-        public void SendInt(int item) {
+        public void SendInt(int item)
+        {
             writer.Write(item);
         }
 
-        public void SendLong(long item) {
+        public void SendLong(long item)
+        {
             writer.Write(item);
         }
 
@@ -250,20 +269,24 @@ namespace AntMe.SharedComponents.AntVideo {
         /// Sendet einen string über den Stream
         /// </summary>
         /// <param name="item">string</param>
-        public void SendString(string item) {
+        public void SendString(string item)
+        {
             writer.Write(item);
         }
 
-        public void SendDateTime(DateTime item) {
+        public void SendDateTime(DateTime item)
+        {
             SendLong(item.Ticks);
         }
 
-        public void SendGuid(Guid guid) {
+        public void SendGuid(Guid guid)
+        {
             byte[] output = guid.ToByteArray();
             stream.Write(output, 0, output.Length);
         }
 
-        public void SendByte(byte item) {
+        public void SendByte(byte item)
+        {
             writer.Write(item);
         }
 
@@ -275,11 +298,13 @@ namespace AntMe.SharedComponents.AntVideo {
         /// Liest den nächsten ushort aus dem angegebenen Stream
         /// </summary>
         /// <returns>ausgelesener ushort</returns>
-        public ushort ReadUShort() {
+        public ushort ReadUShort()
+        {
             return reader.ReadUInt16();
         }
 
-        public short ReadShort() {
+        public short ReadShort()
+        {
             return reader.ReadInt16();
         }
 
@@ -287,7 +312,8 @@ namespace AntMe.SharedComponents.AntVideo {
         /// Liest das nächste sbyte aus dem angegebenen Stream
         /// </summary>
         /// <returns>ausgelesener sbyte</returns>
-        public sbyte ReadSByte() {
+        public sbyte ReadSByte()
+        {
             return reader.ReadSByte();
         }
 
@@ -295,11 +321,13 @@ namespace AntMe.SharedComponents.AntVideo {
         /// Liest einen Integer aus dem Stream
         /// </summary>
         /// <returns>gelesener int</returns>
-        public int ReadInt() {
+        public int ReadInt()
+        {
             return reader.ReadInt32();
         }
 
-        public long ReadLong() {
+        public long ReadLong()
+        {
             return reader.ReadInt64();
         }
 
@@ -307,7 +335,8 @@ namespace AntMe.SharedComponents.AntVideo {
         /// Liest einen String aus dem stream
         /// </summary>
         /// <returns>string</returns>
-        public string ReadString() {
+        public string ReadString()
+        {
             return reader.ReadString();
         }
 
@@ -315,17 +344,20 @@ namespace AntMe.SharedComponents.AntVideo {
         /// Liest einen DateTime aus dem Stream aus
         /// </summary>
         /// <returns>DateTime</returns>
-        public DateTime ReadDateTime() {
+        public DateTime ReadDateTime()
+        {
             return new DateTime(ReadLong());
         }
 
-        public Guid ReadGuid() {
+        public Guid ReadGuid()
+        {
             byte[] input = new byte[16];
             stream.Read(input, 0, 16);
             return new Guid(input);
         }
 
-        public byte ReadByte() {
+        public byte ReadByte()
+        {
             return reader.ReadByte();
         }
 
@@ -335,8 +367,15 @@ namespace AntMe.SharedComponents.AntVideo {
 
         public void Dispose()
         {
-            ((IDisposable)writer).Dispose();
-            ((IDisposable)reader).Dispose();
+            if (writer != null)
+            {
+                ((IDisposable)writer).Dispose();
+            }
+
+            if (reader != null)
+            {
+                ((IDisposable)reader).Dispose();
+            }
         }
 
         #endregion

@@ -2,12 +2,14 @@
 
 using AntMe.SharedComponents.Properties;
 
-namespace AntMe.SharedComponents.Tools {
+namespace AntMe.SharedComponents.Tools
+{
     /// <summary>
     /// A static helper class that returns female and male first names.
     /// </summary>
     /// <author>Wolfgang Gallo (wolfgang@antme.net)</author>
-    public static class NameHelper {
+    public static class NameHelper
+    {
         private static readonly int randomNumber;
 
         /// <summary>
@@ -21,8 +23,9 @@ namespace AntMe.SharedComponents.Tools {
         private static readonly string[] MaleNames;
 
         // Static constructor.
-        static NameHelper() {
-            string[] separators = new string[] {"\n", "\r"};
+        static NameHelper()
+        {
+            string[] separators = new string[] { "\n", "\r" };
             FemaleNames = Resources.FemaleNames.Split(separators, StringSplitOptions.RemoveEmptyEntries);
             MaleNames = Resources.MaleNames.Split(separators, StringSplitOptions.RemoveEmptyEntries);
             randomNumber = new Random().Next(1024);
@@ -36,8 +39,9 @@ namespace AntMe.SharedComponents.Tools {
         /// </remarks>
         /// <param name="hashValue">A value to use for hashing, for example an id.</param>
         /// <returns>A female first name.</returns>
-        public static string GetFemaleName(int hashValue) {
-            return FemaleNames[(hashValue*randomNumber)%FemaleNames.Length];
+        public static string GetFemaleName(int hashValue)
+        {
+            return FemaleNames[(hashValue * randomNumber) % FemaleNames.Length];
         }
 
         /// <summary>
@@ -48,8 +52,9 @@ namespace AntMe.SharedComponents.Tools {
         /// </remarks>
         /// <param name="hashValue">A value to use for hashing, for example an id.</param>
         /// <returns>A male first name.</returns>
-        public static string GetMaleName(int hashValue) {
-            return MaleNames[(hashValue*randomNumber)%MaleNames.Length];
+        public static string GetMaleName(int hashValue)
+        {
+            return MaleNames[(hashValue * randomNumber) % MaleNames.Length];
         }
     }
 }

@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
-using AntMe.English;
-
 namespace AntMe.Simulation
 {
     /// <summary>
@@ -242,6 +240,8 @@ namespace AntMe.Simulation
             get { return reached; }
         }
 
+        internal Random RandomBase { get; private set; }
+
         #region IKoordinate Members
 
         /// <summary>
@@ -260,23 +260,24 @@ namespace AntMe.Simulation
         /// </summary>
         /// <param name="colony">Das Volk zu dem das neue Insekt gehört.</param>
         /// <param name="vorhandeneInsekten">Hier unbenutzt!</param>
-        internal virtual void Init(CoreColony colony, Dictionary<string, int> vorhandeneInsekten)
+        internal virtual void Init(CoreColony colony, Random random, Dictionary<string, int> vorhandeneInsekten)
         {
             id = neueId;
             neueId++;
 
             this.colony = colony;
+            this.RandomBase = random;
 
-            koordinate.Richtung = RandomNumber.Number(0, 359);
+            koordinate.Richtung = RandomBase.Next(0, 359);
 
             // Zufällig auf dem Spielfeldrand platzieren.
             if (colony.AntHills.Count == 0) // Am oberen oder unteren Rand platzieren.
             {
-                if (RandomNumber.Number(2) == 0)
+                if (RandomBase.Next(2) == 0)
                 {
-                    koordinate.X = RandomNumber.Number(0, colony.Playground.Width);
+                    koordinate.X = RandomBase.Next(0, colony.Playground.Width);
                     koordinate.X *= SimulationEnvironment.PLAYGROUND_UNIT;
-                    if (RandomNumber.Number(2) == 0)
+                    if (RandomBase.Next(2) == 0)
                     {
                         koordinate.Y = 0;
                     }
@@ -289,7 +290,7 @@ namespace AntMe.Simulation
                     // Am linken oder rechten Rand platzieren.
                 else
                 {
-                    if (RandomNumber.Number(2) == 0)
+                    if (RandomBase.Next(2) == 0)
                     {
                         koordinate.X = 0;
                     }
@@ -297,7 +298,7 @@ namespace AntMe.Simulation
                     {
                         koordinate.X = colony.Playground.Width * SimulationEnvironment.PLAYGROUND_UNIT;
                     }
-                    koordinate.Y = RandomNumber.Number(0, colony.Playground.Height);
+                    koordinate.Y = RandomBase.Next(0, colony.Playground.Height);
                     koordinate.Y *= SimulationEnvironment.PLAYGROUND_UNIT;
                 }
             }
@@ -305,7 +306,7 @@ namespace AntMe.Simulation
                 // In einem zufälligen Bau platzieren.
             else
             {
-                int i = RandomNumber.Number(colony.AntHills.Count);
+                int i = RandomBase.Next(colony.AntHills.Count);
                 koordinate.X = colony.AntHills[i].CoordinateBase.X +
                                SimulationEnvironment.Cosinus(
                                    colony.AntHills[i].CoordinateBase.Radius, koordinate.Richtung);
@@ -592,7 +593,8 @@ namespace AntMe.Simulation
             // Check for unsupported markersize
             if (ausbreitung < 0)
             {
-                throw new AiException(Resource.SimulationCoreNegativeMarkerSize);
+                throw new AiException(string.Format("{0}: {1}", colony.Player.Guid,
+                    Resource.SimulationCoreNegativeMarkerSize));
             }
 
             CoreMarker markierung = new CoreMarker(koordinate, ausbreitung, colony.Id);
@@ -690,7 +692,7 @@ namespace AntMe.Simulation
                         // Ansonsten Richtung verfälschen.
                     else
                     {
-                        richtung += RandomNumber.Number(-18, 18);
+                        richtung += RandomBase.Next(-18, 18);
                         restStreckeI = colony.SichtweiteI[CasteIndexBase];
                     }
 

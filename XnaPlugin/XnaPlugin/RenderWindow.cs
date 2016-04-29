@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using AntMe.SharedComponents.States;
 using System.Threading;
+using AntMe.SharedComponents.Tools;
 
 namespace AntMe.Plugin.Xna
 {
@@ -385,18 +386,8 @@ namespace AntMe.Plugin.Xna
                     case SelectionType.Ant:
 
                         AntState ameise = (AntState)selectedItem.Item;
-                        string name = "Ant";
-                        //if (!antNames.ContainsKey(ameise.Id))
-                        //{
-                        //    name = names[random.Next(names.Length)];
-                        //    antNames.Add(ameise.Id, name);
-                        //}
-                        //else
-                        //{
-                        //    name = antNames[ameise.Id];
-                        //}
-
-                        line1 = string.Format(Strings.HovertextAntLine1, name, selectedItem.AdditionalInfo);
+                        string antName = NameHelper.GetFemaleName(ameise.Id);
+                        line1 = string.Format(Strings.HovertextAntLine1, antName, selectedItem.AdditionalInfo);
                         line2 = string.Format(Strings.HovertextAntLine2, ameise.Vitality);
                         break;
                     case SelectionType.Anthill:
@@ -405,7 +396,8 @@ namespace AntMe.Plugin.Xna
                         break;
                     case SelectionType.Bug:
                         BugState bugState = (BugState)selectedItem.Item;
-                        line1 = Strings.HovertextBugLine1;
+                        string bugName = NameHelper.GetMaleName(bugState.Id);
+                        line1 = string.Format(Strings.HovertextBugLine1, bugName);
                         line2 = string.Format(Strings.HovertextBugLine2, bugState.Vitality);
                         break;
                     case SelectionType.Fruit:

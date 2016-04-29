@@ -3,12 +3,14 @@ using System.Configuration;
 using System.IO;
 using System.Xml.Serialization;
 
-namespace AntMe.Simulation {
+namespace AntMe.Simulation
+{
     /// <summary>
     /// Simulation-Settings from application-configuration.
     /// </summary>
     [Serializable]
-    public struct SimulationSettings {
+    public struct SimulationSettings
+    {
         #region internal Varialbes
 
         /// <summary>
@@ -42,6 +44,36 @@ namespace AntMe.Simulation {
         /// Minimum Battle-Distance in steps between two insects.
         /// </summary>
         public int BattleRange;
+
+        /// <summary>
+        /// Displacement of the anthill form the circle point.
+        /// </summary>
+        public float AntHillRandomDisplacement;
+
+        /// <summary>
+        /// Size of the spwancells.
+        /// </summary>
+        public int SpawnCellSize;
+
+        /// <summary>
+        /// Radius of the restrictedzone around the anthill.
+        /// </summary>
+        public int RestrictedZoneRadius;
+
+        /// <summary>
+        /// Max. distance from the farthest anthill.
+        /// </summary>
+        public int FarZoneRadius;
+
+        /// <summary>
+        /// Decrease value for the neighbor cells if food spawns.
+        /// </summary>
+        public float DecreaseValue;
+
+        /// <summary>
+        /// Value to regenerate all cells at a food spawn.
+        /// </summary>
+        public float RegenerationValue;
 
         #endregion
 
@@ -230,7 +262,7 @@ namespace AntMe.Simulation {
         public int MarkerSizeMinimum;
 
         /// <summary>
-        /// Gets the minimal allowed distance between to marker.
+        /// Gets the minimal allowed distance between two marker.
         /// </summary>
         public int MarkerDistance;
 
@@ -298,13 +330,17 @@ namespace AntMe.Simulation {
         private static bool initDefault;
         private static bool initCustom;
 
+
+
         /// <summary>
         /// Gets the default settings.
         /// </summary>
         public static SimulationSettings Default
         {
-            get {
-                if (!initDefault) {
+            get
+            {
+                if (!initDefault)
+                {
                     defaultSettings.SetDefaults();
                     initDefault = true;
                 }
@@ -315,9 +351,12 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Gives the current simulation-settings
         /// </summary>
-        public static SimulationSettings Custom {
-            get {
-                if (!initCustom) {
+        public static SimulationSettings Custom
+        {
+            get
+            {
+                if (!initCustom)
+                {
                     return Default;
                 }
                 return customSettings;
@@ -328,7 +367,8 @@ namespace AntMe.Simulation {
         /// Sets a custom set of settings.
         /// </summary>
         /// <param name="settings">custom settings</param>
-        public static void SetCustomSettings(SimulationSettings settings) {
+        public static void SetCustomSettings(SimulationSettings settings)
+        {
             settings.RuleCheck();
             customSettings = settings;
             initCustom = true;
@@ -341,7 +381,8 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Resets the values to the default settings.
         /// </summary>
-        public void SetDefaults() {
+        public void SetDefaults()
+        {
             SettingsName = Resource.SettingsDefaultName;
 
             // Guid
@@ -352,6 +393,13 @@ namespace AntMe.Simulation {
             PlayGroundSizePlayerMultiplier = 1;
             AntHillRadius = 32;
             BattleRange = 5;
+
+            AntHillRandomDisplacement = 0.5f;
+            SpawnCellSize = 100;
+            RestrictedZoneRadius = 300;
+            FarZoneRadius = 1500;
+            DecreaseValue = 2f;
+            RegenerationValue = 0.1f;
 
             // Livetime and Respawn
             AntSimultaneousCount = 100;
@@ -397,7 +445,7 @@ namespace AntMe.Simulation {
             FruitRadiusMultiplier = 1;
 
             // Marker
-            MarkerSizeMinimum = 20;           
+            MarkerSizeMinimum = 20;
             MarkerDistance = 13;
             MarkerMaximumAge = 150;
 
@@ -451,178 +499,258 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Checks the value-ranges of all properties.
         /// </summary>
-        public void RuleCheck() {
+        public void RuleCheck()
+        {
 
             // TODO: Strings into res-files
 
             // Playground
-            if (PlayGroundBaseSize < 100000) {
+            if (PlayGroundBaseSize < 100000)
+            {
                 throw new ConfigurationErrorsException("Grundgröße des Spielfeldes muss größer 100.000 sein");
             }
 
-            if (PlayGroundSizePlayerMultiplier < 0) {
+            if (PlayGroundSizePlayerMultiplier < 0)
+            {
                 throw new ConfigurationErrorsException("Playground Playermultiplikator darf nicht kleiner 0 sein");
             }
 
-            if (AntHillRadius < 0) {
+            if (AntHillRadius < 0)
+            {
                 throw new ConfigurationErrorsException("Ameisenbau braucht einen Radius >= 0");
             }
-            
-            if (BattleRange < 0) {
+
+            if (BattleRange < 0)
+            {
                 throw new ConfigurationErrorsException("Angriffsradius der Wanze darf nicht kleiner 0 sein");
             }
 
+            if (AntHillRandomDisplacement < 0f || AntHillRandomDisplacement > 1f)
+            {
+                throw new ConfigurationErrorsException("Der Wert der Zufälligen verschiebung vom Kreispunkt muss zwischen 0.0 (0%) und 1.0 (100%) liegen.");
+            }
+
+            if (SpawnCellSize < 1 && SpawnCellSize != 0)
+            {
+                throw new ConfigurationErrorsException("Die Größe der Spawnzelle darf nicht kleiner 1 sein.");
+            }
+
+            //überprüfen ob genug Spawnzellen da sind
+            int cellsX = (int)Math.Ceiling((PlayGroundBaseSize * (4f / 3f)) / SpawnCellSize) - 2;
+            int cellsY = (int)Math.Ceiling((PlayGroundBaseSize * (3f / 4f)) / SpawnCellSize) - 2;
+
+            if (cellsX * cellsY < SugarSimultaneousCount + FruitSimultaneousCount)
+            {
+                throw new ConfigurationErrorsException("Die Größe der Spawnzellen ist zu groß, so das es nicht gewährleistet ist, dass genug Spawnzellen für alle Nahrung vorhanden sind.");
+            }
+
+            if (RestrictedZoneRadius < 0)
+            {
+                throw new ConfigurationErrorsException("Der Radius der gesperrten Zone um den Ameisenbau darf nicht kleiner 0 sein.");
+            }
+
+            if (FarZoneRadius < 0)
+            {
+                throw new ConfigurationErrorsException("Der Radius der zu weit entfernten Zone darf nicht kleiner 0 sein.");
+            }
+
+            if (DecreaseValue < 0)
+            {
+                throw new ConfigurationErrorsException("Der verringerungs Wert für Nachbarzellen darf nicht kleiner 0 sein");
+            }
+
+            if (RegenerationValue < 0)
+            {
+                throw new ConfigurationErrorsException("Der regenerirungs Wert aller Zellen darf nicht kleiner 0 sein");
+            }
+
             // Livetime and Respawn
-            if (AntSimultaneousCount < 0) {
+            if (AntSimultaneousCount < 0)
+            {
                 throw new ConfigurationErrorsException("Weniger als 0 simultane Ameisen sind nicht möglich");
             }
 
-            if (BugSimultaneousCount < 0) {
+            if (BugSimultaneousCount < 0)
+            {
                 throw new ConfigurationErrorsException("Weniger als 0 simultane Wanzen sind nicht möglich");
             }
 
-            if (SugarSimultaneousCount < 0) {
+            if (SugarSimultaneousCount < 0)
+            {
                 throw new ConfigurationErrorsException("Weniger als 0 simultane Zuckerberge sind nicht möglich");
             }
 
-            if (FruitSimultaneousCount < 0) {
+            if (FruitSimultaneousCount < 0)
+            {
                 throw new ConfigurationErrorsException("Weniger als 0 simultanes Obst sind nicht möglich");
             }
 
-            if (BugCountPlayerMultiplier < 0) {
+            if (BugCountPlayerMultiplier < 0)
+            {
                 throw new ConfigurationErrorsException("Negative Spielermuliplikatoren bei Wanzen ist nicht zulässig");
             }
-            
-            if (SugarCountPlayerMultiplier < 0) {
+
+            if (SugarCountPlayerMultiplier < 0)
+            {
                 throw new ConfigurationErrorsException("Negative Spielermuliplikatoren bei Zucker ist nicht zulässig");
             }
 
-            if (FruitCountPlayerMultiplier < 0) {
+            if (FruitCountPlayerMultiplier < 0)
+            {
                 throw new ConfigurationErrorsException("Negative Spielermuliplikatoren bei Obst ist nicht zulässig");
             }
 
-            if (AntCountPlayerMultiplier < 0) {
+            if (AntCountPlayerMultiplier < 0)
+            {
                 throw new ConfigurationErrorsException("Negative Spielermuliplikatoren bei Ameisen ist nicht zulässig");
             }
 
-            if (AntTotalCount < 0) {
+            if (AntTotalCount < 0)
+            {
                 throw new ConfigurationErrorsException("Negative Gesamtmenge bei Ameisen ist nicht zulässig");
             }
 
-            if (BugTotalCount < 0) {
+            if (BugTotalCount < 0)
+            {
                 throw new ConfigurationErrorsException("Negative Gesamtmenge bei Wanzen ist nicht zulässig");
             }
 
-            if (SugarTotalCount < 0) {
+            if (SugarTotalCount < 0)
+            {
                 throw new ConfigurationErrorsException("Negative Gesamtmenge bei Zucker ist nicht zulässig");
             }
 
-            if (FruitTotalCount < 0) {
+            if (FruitTotalCount < 0)
+            {
                 throw new ConfigurationErrorsException("Negative Gesamtmenge bei Obst ist nicht zulässig");
             }
 
-            if (AntTotalCountPlayerMultiplier < 0) {
+            if (AntTotalCountPlayerMultiplier < 0)
+            {
                 throw new ConfigurationErrorsException("Negative Spielermuliplikatoren bei Ameisen ist nicht zulässig");
             }
 
-            if (BugTotalCountPlayerMultiplier < 0) {
+            if (BugTotalCountPlayerMultiplier < 0)
+            {
                 throw new ConfigurationErrorsException("Negative Spielermuliplikatoren bei Wanzen ist nicht zulässig");
             }
 
-            if (SugarTotalCountPlayerMultiplier < 0) {
+            if (SugarTotalCountPlayerMultiplier < 0)
+            {
                 throw new ConfigurationErrorsException("Negative Spielermuliplikatoren bei Zucker ist nicht zulässig");
             }
 
-            if (FruitTotalCountPlayerMultiplier < 0) {
+            if (FruitTotalCountPlayerMultiplier < 0)
+            {
                 throw new ConfigurationErrorsException("Negative Spielermuliplikatoren bei Obst ist nicht zulässig");
             }
 
-            if (AntRespawnDelay < 0) {
+            if (AntRespawnDelay < 0)
+            {
                 throw new ConfigurationErrorsException("Negative Respawnzeit bei Ameisen ist nicht zulässig");
             }
 
-            if (BugRespawnDelay < 0) {
+            if (BugRespawnDelay < 0)
+            {
                 throw new ConfigurationErrorsException("Negative Respawnzeit bei Wanzen ist nicht zulässig");
             }
 
-            if (SugarRespawnDelay < 0) {
+            if (SugarRespawnDelay < 0)
+            {
                 throw new ConfigurationErrorsException("Negative Respawnzeit bei Zucker ist nicht zulässig");
             }
 
-            if (FruitRespawnDelay < 0) {
+            if (FruitRespawnDelay < 0)
+            {
                 throw new ConfigurationErrorsException("Negative Respawnzeit bei Obst ist nicht zulässig");
             }
 
             // Bugsettings
-            if (BugAttack < 0) {
+            if (BugAttack < 0)
+            {
                 throw new ConfigurationErrorsException("Negativer Angriffswert für Wanzen ist nicht zulässig");
             }
 
-            if (BugRotationSpeed < 0) {
+            if (BugRotationSpeed < 0)
+            {
                 throw new ConfigurationErrorsException("Negative Rotationsgeschwindigkeit für Wanzen ist nicht zulässig");
             }
 
-            if (BugEnergy < 0) {
+            if (BugEnergy < 0)
+            {
                 throw new ConfigurationErrorsException("Negativer Energiewert für Wanzen ist nicht zulässig");
             }
 
-            if (BugSpeed < 0) {
+            if (BugSpeed < 0)
+            {
                 throw new ConfigurationErrorsException("Negativer Geschwindigkeitswert für Wanzen ist nicht zulässig");
             }
 
-            if (BugRadius < 0) {
+            if (BugRadius < 0)
+            {
                 throw new ConfigurationErrorsException("Negativer Radius für Wanzen ist nicht zulässig");
             }
 
-            if (BugRegenerationValue < 0) {
+            if (BugRegenerationValue < 0)
+            {
                 throw new ConfigurationErrorsException("Negativer Regenerationswert für Wanzen ist nicht zulässig");
             }
 
-            if (BugRegenerationDelay < 0) {
+            if (BugRegenerationDelay < 0)
+            {
                 throw new ConfigurationErrorsException("Negativer Regenerationsdelay für Wanzen ist nicht zulässig");
             }
 
             // Foodstuff
-            if (SugarAmountMinimum < 0) {
+            if (SugarAmountMinimum < 0)
+            {
                 throw new ConfigurationErrorsException("Negativer Nahrungswert bei Zucker ist nicht zulässig");
             }
 
-            if (SugarAmountMaximum < 0) {
+            if (SugarAmountMaximum < 0)
+            {
                 throw new ConfigurationErrorsException("Negativer Nahrungswert bei Zucker ist nicht zulässig");
             }
 
-            if (FruitAmountMinimum < 0) {
+            if (FruitAmountMinimum < 0)
+            {
                 throw new ConfigurationErrorsException("Negativer Nahrungswert bei Obst ist nicht zulässig");
             }
 
-            if (FruitAmountMaximum < 0) {
+            if (FruitAmountMaximum < 0)
+            {
                 throw new ConfigurationErrorsException("Negativer Nahrungswert bei Obst ist nicht zulässig");
             }
 
-            if (FruitLoadMultiplier < 0) {
+            if (FruitLoadMultiplier < 0)
+            {
                 throw new ConfigurationErrorsException("Negativer Loadmultiplikator bei Obst ist nicht zulässig");
             }
 
-            if (FruitRadiusMultiplier < 0) {
+            if (FruitRadiusMultiplier < 0)
+            {
                 throw new ConfigurationErrorsException("Negativer Radiusmultiplikator bei Obst ist nicht zulässig");
             }
 
             // Marker
 
-            if (MarkerSizeMinimum < 0) {
+            if (MarkerSizeMinimum < 0)
+            {
                 throw new ConfigurationErrorsException("Negative Minimalgröße bei Markierung ist nicht zulässig");
             }
 
-            if (MarkerDistance < 0) {
+            if (MarkerDistance < 0)
+            {
                 throw new ConfigurationErrorsException("Negative Mindestdistanz bei Markierung ist nicht zulässig");
             }
 
-            if (MarkerMaximumAge < 0) {
+            if (MarkerMaximumAge < 0)
+            {
                 throw new ConfigurationErrorsException("Negative maximallebensdauer bei Markierungen ist nicht zulässig");
             }
 
             // Castes
-            CasteSettings.RuleCheck();           
+            CasteSettings.RuleCheck();
         }
 
         #endregion
@@ -632,10 +760,13 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Gets the maximal Speed of an insect.
         /// </summary>
-        public int MaximumSpeed {
-            get {
+        public int MaximumSpeed
+        {
+            get
+            {
                 int maxValue = BugSpeed;
-                for (int i = 0; i < CasteSettings.Columns.Length; i++) {
+                for (int i = 0; i < CasteSettings.Columns.Length; i++)
+                {
                     maxValue = Math.Max(maxValue, CasteSettings.Columns[i].Speed);
                 }
                 return maxValue;
@@ -643,20 +774,18 @@ namespace AntMe.Simulation {
         }
 
         /// <summary>
-        /// Gets the maximal size of a marker.
+        /// Gets the maximum size of a Marker.
         /// </summary>
-        public int MarkerSizeMaximum {
-            get {
-                return MarkerSizeMinimum * MarkerMaximumAge;
-            }
-        }
+        public int MaximumMarkerSize
+        {
+            get
+            {
+                // Maximalgröße für Marker ermitteln
+                double baseMarkerVolume = Math.Pow(SimulationSettings.Custom.MarkerSizeMinimum, 3) * (Math.PI / 2);
+                baseMarkerVolume *= 10f; // Größenkorrektur, weil die Basisparameter zu kleine maximalgröße Liefern
 
-        /// <summary>
-        /// Gets the maximal size of a marker (without radius)
-        /// </summary>
-        public int MarkerRangeMaximum {
-            get {
-                return MarkerSizeMaximum - MarkerSizeMinimum;
+                double totalMarkerVolume = baseMarkerVolume * SimulationSettings.Custom.MarkerMaximumAge;
+                return (int)Math.Pow(4 * ((totalMarkerVolume - baseMarkerVolume) / Math.PI), 1f / 3f);
             }
         }
 
@@ -669,16 +798,20 @@ namespace AntMe.Simulation {
         /// </summary>
         /// <param name="settings">settings to save</param>
         /// <param name="filename">filename of target file</param>
-        public static void SaveSettings(SimulationSettings settings, string filename) {
+        public static void SaveSettings(SimulationSettings settings, string filename)
+        {
             // Open Filestream
             FileStream target = new FileStream(filename, FileMode.Create, FileAccess.Write);
 
             // Serialize
-            try {
-                XmlSerializer serializer = new XmlSerializer(typeof (SimulationSettings));
+            try
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(SimulationSettings));
                 serializer.Serialize(target, settings);
+
             }
-            finally {
+            finally
+            {
                 target.Close();
             }
         }
@@ -688,8 +821,9 @@ namespace AntMe.Simulation {
         /// </summary>
         /// <param name="filename">filename of target file</param>
         /// <returns>Loaded settings</returns>
-        public static SimulationSettings LoadSettings(string filename) {
-            
+        public static SimulationSettings LoadSettings(string filename)
+        {
+
             // Open File
             using (FileStream source = new FileStream(filename, FileMode.Open, FileAccess.Read))
             {
@@ -700,6 +834,7 @@ namespace AntMe.Simulation {
         public static SimulationSettings LoadSettings(Stream stream)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(SimulationSettings));
+
             return (SimulationSettings)serializer.Deserialize(stream);
         }
 
@@ -721,7 +856,8 @@ namespace AntMe.Simulation {
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            if (!(obj is SimulationSettings)) {
+            if (!(obj is SimulationSettings))
+            {
                 return false;
             }
 

@@ -138,8 +138,9 @@
 0: Energy of ant</comment>
   </data>
   <data name="HovertextBugLine1" xml:space="preserve">
-    <value>Wanze</value>
-    <comment>Text for bug-hover-tag - Line 1 (RenderForm.cs)</comment>
+    <value>{0} (Wanzen)</value>
+    <comment>Text for bug-hover-tag - Line 1 (RenderForm.cs)
+0: Name der Wanze</comment>
   </data>
   <data name="HovertextBugLine2" xml:space="preserve">
     <value>Energie: {0}</value>

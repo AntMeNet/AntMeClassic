@@ -3,26 +3,32 @@ using System.Collections.Generic;
 
 using AntMe.SharedComponents.States;
 
-namespace AntMe.Simulation {
+namespace AntMe.Simulation
+{
 
 
     /// <summary>
     /// Abstrakte Basisklasse für alle Ameisen.
     /// </summary>
     /// <author>Wolfgang Gallo (wolfgang@antme.net)</author>
-    public abstract class CoreAnt : CoreInsect {
-        internal override void Init(CoreColony colony, Dictionary<string, int> availableInsects) {
-            base.Init(colony, availableInsects);
+    public abstract class CoreAnt : CoreInsect
+    {
+        internal override void Init(CoreColony colony, Random random, Dictionary<string, int> availableInsects)
+        {
+            base.Init(colony, random, availableInsects);
 
             koordinate.Radius = 2;
 
             // Bestimme die Kaste der neuen Ameise.
             int casteIndex = -1;
             string casteName = string.Empty;
-            if (availableInsects != null) {
+            if (availableInsects != null)
+            {
                 casteName = BestimmeKasteBase(availableInsects);
-                for (int i = 0; i < colony.Player.Castes.Count; i++) {
-                    if (colony.Player.Castes[i].Name == casteName) {
+                for (int i = 0; i < colony.Player.Castes.Count; i++)
+                {
+                    if (colony.Player.Castes[i].Name == casteName)
+                    {
                         casteIndex = i;
                         break;
                     }
@@ -30,7 +36,8 @@ namespace AntMe.Simulation {
             }
 
             // Check, if caste is available
-            if (casteIndex == -1) {
+            if (casteIndex == -1)
+            {
                 throw new InvalidOperationException(string.Format(Resource.SimulationCoreChooseWrongCaste, casteName));
             }
 
@@ -46,28 +53,32 @@ namespace AntMe.Simulation {
         /// </summary>
         /// <param name="anzahl">Die Anzahl der von jeder Klaste bereits vorhandenen Ameisen.</param>
         /// <returns>Der Name der Kaste der Ameise.</returns>
-        internal virtual string BestimmeKasteBase(Dictionary<string, int> anzahl) {
+        internal virtual string BestimmeKasteBase(Dictionary<string, int> anzahl)
+        {
             return "";
         }
 
         /// <summary>
         /// Erzeugt ein AmeiseZustand-Objekt mit den aktuellen Daten der Ameise.
         /// </summary>
-        internal AntState ErzeugeInfo() {
+        internal AntState ErzeugeInfo()
+        {
             AntState zustand = new AntState(colony.Id, id);
 
             zustand.CasteId = CasteIndexBase;
-            zustand.PositionX = CoordinateBase.X/SimulationEnvironment.PLAYGROUND_UNIT;
-            zustand.PositionY = CoordinateBase.Y/SimulationEnvironment.PLAYGROUND_UNIT;
+            zustand.PositionX = CoordinateBase.X / SimulationEnvironment.PLAYGROUND_UNIT;
+            zustand.PositionY = CoordinateBase.Y / SimulationEnvironment.PLAYGROUND_UNIT;
             zustand.ViewRange = SichtweiteBase;
             zustand.DebugMessage = debugMessage;
             debugMessage = string.Empty;
             zustand.Direction = CoordinateBase.Richtung;
-            if (ZielBase != null) {
-                zustand.TargetPositionX = ZielBase.CoordinateBase.X/SimulationEnvironment.PLAYGROUND_UNIT;
-                zustand.TargetPositionY = ZielBase.CoordinateBase.Y/SimulationEnvironment.PLAYGROUND_UNIT;
+            if (ZielBase != null)
+            {
+                zustand.TargetPositionX = ZielBase.CoordinateBase.X / SimulationEnvironment.PLAYGROUND_UNIT;
+                zustand.TargetPositionY = ZielBase.CoordinateBase.Y / SimulationEnvironment.PLAYGROUND_UNIT;
             }
-            else {
+            else
+            {
                 zustand.TargetPositionX = 0;
                 zustand.TargetPositionY = 0;
             }
@@ -104,7 +115,8 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Gibt an, ob die Ameise müde ist.
         /// </summary>
-        internal bool IstMüdeBase {
+        internal bool IstMüdeBase
+        {
             get { return istMüde; }
             set { istMüde = value; }
         }
@@ -113,13 +125,13 @@ namespace AntMe.Simulation {
         /// Wird wiederholt aufgerufen, wenn der die Ameise nicht weiss wo sie
         /// hingehen soll.
         /// </summary>
-        internal virtual void WartetBase() {}
+        internal virtual void WartetBase() { }
 
         /// <summary>
         /// Wird einmal aufgerufen, wenn die Ameise ein Drittel ihrer maximalen 
         /// Reichweite überschritten hat.
         /// </summary>
-        internal virtual void WirdMüdeBase() {}
+        internal virtual void WirdMüdeBase() { }
 
         #endregion
 
@@ -130,28 +142,28 @@ namespace AntMe.Simulation {
         /// Zuckerhaufen sieht.
         /// </summary>
         /// <param name="zucker">Der nächstgelegene Zuckerhaufen.</param>
-        internal virtual void SiehtBase(CoreSugar zucker) {}
+        internal virtual void SiehtBase(CoreSugar zucker) { }
 
         /// <summary>
         /// Wird wiederholt aufgerufen, wenn die Ameise mindstens ein
         /// Obststück sieht.
         /// </summary>
         /// <param name="obst">Das nächstgelegene Obststück.</param>
-        internal virtual void SiehtBase(CoreFruit obst) {}
+        internal virtual void SiehtBase(CoreFruit obst) { }
 
         /// <summary>
         /// Wird einmal aufgerufen, wenn die Ameise einen Zuckerhaufen als Ziel
         /// hat und bei diesem ankommt.
         /// </summary>
         /// <param name="zucker">Der Zuckerhaufen.</param>
-        internal virtual void ZielErreichtBase(CoreSugar zucker) {}
+        internal virtual void ZielErreichtBase(CoreSugar zucker) { }
 
         /// <summary>
         /// Wird einmal aufgerufen, wenn die Ameise ein Obststück als Ziel hat und
         /// bei diesem ankommt.
         /// </summary>
         /// <param name="obst">Das Obstück.</param>
-        internal virtual void ZielErreichtBase(CoreFruit obst) {}
+        internal virtual void ZielErreichtBase(CoreFruit obst) { }
 
         #endregion
 
@@ -163,21 +175,21 @@ namespace AntMe.Simulation {
         /// gerochen.
         /// </summary>
         /// <param name="markierung">Die nächste neue Markierung.</param>
-        internal virtual void RiechtFreundBase(CoreMarker markierung) {}
+        internal virtual void RiechtFreundBase(CoreMarker markierung) { }
 
         /// <summary>
         /// Wird wiederholt aufgerufen, wenn die Ameise mindstens eine Ameise des
         /// selben Volkes sieht.
         /// </summary>
         /// <param name="ameise">Die nächstgelegene befreundete Ameise.</param>
-        internal virtual void SiehtFreundBase(CoreAnt ameise) {}
+        internal virtual void SiehtFreundBase(CoreAnt ameise) { }
 
         /// <summary>
         /// Wird wiederholt aufgerufen, wenn die Ameise mindestens eine Ameise verbündeter
         /// Völker sieht.
         /// </summary>
         /// <param name="ameise"></param>
-        internal virtual void SiehtVerbündetenBase(CoreAnt ameise) {}
+        internal virtual void SiehtVerbündetenBase(CoreAnt ameise) { }
 
         #endregion
 
@@ -188,28 +200,28 @@ namespace AntMe.Simulation {
         /// sieht.
         /// </summary>
         /// <param name="wanze">Die nächstgelegene Wanze.</param>
-        internal virtual void SiehtFeindBase(CoreBug wanze) {}
+        internal virtual void SiehtFeindBase(CoreBug wanze) { }
 
         /// <summary>
         /// Wird wiederholt aufgerufen, wenn die Ameise mindestens eine Ameise eines
         /// anderen Volkes sieht.
         /// </summary>
         /// <param name="ameise">Die nächstgelegen feindliche Ameise.</param>
-        internal virtual void SiehtFeindBase(CoreAnt ameise) {}
+        internal virtual void SiehtFeindBase(CoreAnt ameise) { }
 
         /// <summary>
         /// Wird wiederholt aufgerufen, wenn die Ameise von einer Wanze angegriffen
         /// wird.
         /// </summary>
         /// <param name="wanze">Die angreifende Wanze.</param>
-        internal virtual void WirdAngegriffenBase(CoreBug wanze) {}
+        internal virtual void WirdAngegriffenBase(CoreBug wanze) { }
 
         /// <summary>
         /// Wird wiederholt aufgerufen in der die Ameise von einer Ameise eines
         /// anderen Volkes Ameise angegriffen wird.
         /// </summary>
         /// <param name="ameise">Die angreifende feindliche Ameise.</param>
-        internal virtual void WirdAngegriffenBase(CoreAnt ameise) {}
+        internal virtual void WirdAngegriffenBase(CoreAnt ameise) { }
 
         #endregion
 
@@ -219,12 +231,12 @@ namespace AntMe.Simulation {
         /// Wird einmal aufgerufen, wenn die Ameise gestorben ist.
         /// </summary>
         /// <param name="todesArt">Die Todesart der Ameise</param>
-        internal virtual void IstGestorbenBase(CoreKindOfDeath todesArt) {}
+        internal virtual void IstGestorbenBase(CoreKindOfDeath todesArt) { }
 
         /// <summary>
         /// Wird unabhängig von äußeren Umständen in jeder Runde aufgerufen.
         /// </summary>
-        internal virtual void TickBase() {}
+        internal virtual void TickBase() { }
 
         #endregion
     }

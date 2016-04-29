@@ -733,6 +733,25 @@ namespace AntMe.English
             get { return ZurückgelegteStreckeBase; }
         }
 
+        private RandomNumber randomNumber;
+
+        /// <summary>
+        /// Generates a random number within the specified limits. If only one parameter 
+        /// is specified, a random number will be generated between 0 and the specified 
+        /// limit -1. If two parameters are specified, a number between will be generated 
+        /// between the lower limit and the upper limit -1.
+        /// <see href="http://wiki.antme.net/en/API1:RandomNumber.Number"></see>
+        /// </summary>
+        public RandomNumber RandomNumber
+        {
+            get
+            {
+                if (randomNumber == null)
+                    randomNumber = new RandomNumber(RandomBase);
+                return randomNumber;
+            }
+        }
+
         #endregion
 
         #region Supporting Methodes

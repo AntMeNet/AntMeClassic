@@ -91,7 +91,12 @@ namespace AntMe.Simulation
         {
             // setup appdomain
             AppDomainSetup setup = new AppDomainSetup();
-            setup.ApplicationBase = new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName;
+
+            // Base Path for references
+            string applicationBase = AppDomain.CurrentDomain.RelativeSearchPath;
+            if (string.IsNullOrEmpty(applicationBase))
+                applicationBase = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
+            setup.ApplicationBase = applicationBase;
 
             // setup accessrights for the appdomain
             PermissionSet rechte = new PermissionSet(PermissionState.None);

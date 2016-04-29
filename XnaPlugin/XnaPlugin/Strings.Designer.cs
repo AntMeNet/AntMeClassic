@@ -97,7 +97,7 @@ namespace AntMe.Plugin.Xna {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bug.
+        ///   Looks up a localized string similar to {0} (Bugs).
         /// </summary>
         internal static string HovertextBugLine1 {
             get {

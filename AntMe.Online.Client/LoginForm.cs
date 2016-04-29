@@ -34,8 +34,15 @@ namespace AntMe.Online.Client
             InitializeComponent();
             DialogResult = System.Windows.Forms.DialogResult.Cancel;
 
-            webBrowser.Navigate(baseUrl + "/connect/authorize?client_id=" + clientId + 
-                "&scope=openid email roles api&nonce=nonce&response_type=id_token token&redirect_uri=" + redirectUrl);
+            // Thinktecture.IdentityModel.Clients.OAuth2Client x = new Thinktecture.IdentityModel.Clients.OAuth2Client(new Uri(baseUrl));
+
+            webBrowser.Navigate(baseUrl + "/connect/authorize?" +
+                "client_id=" + clientId +
+                "&response_type=id_token token" +
+                "&scope=openid email roles profile api" +
+                "&nonce=random_nonce" +
+                "&state=random_state" +
+                "&redirect_uri=" + redirectUrl);
         }
 
         public LoginForm(string baseUrl, string clientId, string redirectUrl)
@@ -76,6 +83,7 @@ namespace AntMe.Online.Client
 
                     Response.Email = (string)jwt["email"];
                     Response.UserId = Guid.Parse((string)jwt["sub"]);
+                    Response.Name = (string)jwt["name"];
                     if (jwt["role"] is JArray)
                     {
                         foreach (var item in jwt["role"])

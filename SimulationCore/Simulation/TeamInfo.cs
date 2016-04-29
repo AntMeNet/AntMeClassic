@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AntMe.Simulation {
+namespace AntMe.Simulation
+{
     /// <summary>
     /// Repräsentiert ein Team innerhalb der Simulationskonfiguration
     /// </summary>
     [Serializable]
-    public sealed class TeamInfo : ICloneable {
-        
+    public sealed class TeamInfo : ICloneable
+    {
+
         /// <summary>
         /// Guid des Teams
         /// </summary>
@@ -28,7 +30,8 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Konstruktor des Teams
         /// </summary>
-        public TeamInfo() {
+        public TeamInfo()
+        {
             Guid = System.Guid.NewGuid();
             player = new List<PlayerInfo>();
         }
@@ -37,7 +40,9 @@ namespace AntMe.Simulation {
         /// Konstruktor des Teams
         /// </summary>
         /// <param name="player">Liste der Spieler</param>
-        public TeamInfo(List<PlayerInfo> player) : this() {
+        public TeamInfo(List<PlayerInfo> player)
+            : this()
+        {
             this.player = player;
         }
 
@@ -46,7 +51,9 @@ namespace AntMe.Simulation {
         /// </summary>
         /// <param name="guid">Guid des Teams</param>
         /// <param name="player">Liste der Spieler</param>
-        public TeamInfo(Guid guid, List<PlayerInfo> player) : this(player) {
+        public TeamInfo(Guid guid, List<PlayerInfo> player)
+            : this(player)
+        {
             Guid = guid;
         }
 
@@ -55,7 +62,9 @@ namespace AntMe.Simulation {
         /// </summary>
         /// <param name="name">Name des Teams</param>
         /// <param name="player">Liste der Spieler</param>
-        public TeamInfo(string name, List<PlayerInfo> player) : this(player) {
+        public TeamInfo(string name, List<PlayerInfo> player)
+            : this(player)
+        {
             Name = name;
         }
 
@@ -66,7 +75,8 @@ namespace AntMe.Simulation {
         /// <param name="name">Name des Teams</param>
         /// <param name="player">Liste der Spieler</param>
         public TeamInfo(Guid guid, string name, List<PlayerInfo> player)
-            : this(player) {
+            : this(player)
+        {
             Guid = guid;
             Name = name;
         }
@@ -78,7 +88,8 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Liste der spieler dieses Teams
         /// </summary>
-        public List<PlayerInfo> Player {
+        public List<PlayerInfo> Player
+        {
             get { return player; }
         }
 
@@ -89,15 +100,18 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Prüft, ob das Team regelkonform aufgebaut ist
         /// </summary>
-        public void Rulecheck() {
+        public void Rulecheck()
+        {
             // Menge der Spieler prüfen
-            if (player == null || player.Count < 1) {
+            if (player == null || player.Count < 1)
+            {
                 // TODO: Name der Resource ist Mist
                 throw new InvalidOperationException(Resource.SimulationCoreTeamInfoNoName);
             }
 
             // Regelcheck bei den enthaltenen Spielern
-            foreach (PlayerInfo info in player) {
+            foreach (PlayerInfo info in player)
+            {
                 info.RuleCheck();
             }
         }
@@ -110,11 +124,13 @@ namespace AntMe.Simulation {
         /// Erstellt eine Kopie des Teams
         /// </summary>
         /// <returns>Kopie des Teams</returns>
-        public object Clone() {
-            TeamInfo output = (TeamInfo) MemberwiseClone();
+        public object Clone()
+        {
+            TeamInfo output = (TeamInfo)MemberwiseClone();
             output.player = new List<PlayerInfo>(player.Count);
-            foreach (PlayerInfo info in player) {
-                output.player.Add((PlayerInfo) info.Clone());
+            foreach (PlayerInfo info in player)
+            {
+                output.player.Add((PlayerInfo)info.Clone());
             }
             return output;
         }

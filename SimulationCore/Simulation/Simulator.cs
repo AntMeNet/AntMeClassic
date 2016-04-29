@@ -20,7 +20,7 @@ namespace AntMe.Simulation
         private long loopTime;
         private long totalTime;
         private SimulatorHostState lastHostState;
-        private readonly Dictionary<PlayerInfo, long> totalPlayerTime;
+        private readonly Dictionary<Guid, long> totalPlayerTime;
         private SimulatorProxy proxy;
         private long roundTime;
 
@@ -44,26 +44,32 @@ namespace AntMe.Simulation
             }
 
             // Copy config
-            this.configuration = (SimulatorConfiguration) configuration.Clone();
+            this.configuration = (SimulatorConfiguration)configuration.Clone();
 
             // Reload PlayerInfo
-            if (this.configuration.Teams != null) {
-                foreach (TeamInfo team in this.configuration.Teams) {
+            if (this.configuration.Teams != null)
+            {
+                foreach (TeamInfo team in this.configuration.Teams)
+                {
                     if (team.Player != null)
                     {
-                        for (int i = 0; i < team.Player.Count; i++) {
+                        for (int i = 0; i < team.Player.Count; i++)
+                        {
                             PlayerInfo player = team.Player[i];
-                            if (player is PlayerInfoFiledump) {
+                            if (player is PlayerInfoFiledump)
+                            {
                                 team.Player[i] =
                                     AiAnalysis.FindPlayerInformation(
-                                        ((PlayerInfoFiledump) player).File, player.ClassName);
+                                        ((PlayerInfoFiledump)player).File, player.ClassName);
                             }
-                            else if (player is PlayerInfoFilename) {
+                            else if (player is PlayerInfoFilename)
+                            {
                                 team.Player[i] =
                                     AiAnalysis.FindPlayerInformation(
-                                        ((PlayerInfoFilename)player).File, player.ClassName);                                
+                                        ((PlayerInfoFilename)player).File, player.ClassName);
                             }
-                            else {
+                            else
+                            {
                                 // TODO: Throw unknown type...
                             }
                             team.Player[i].Guid = player.Guid;
@@ -83,15 +89,17 @@ namespace AntMe.Simulation
             loopTime = 0;
             totalTime = 0;
 
-            // TODO: Need another key to manage times
-            totalPlayerTime = new Dictionary<PlayerInfo, long>();
-            //for (int i = 0; i < configuration.Teams.Count; i++)
-            //{
-            //    for (int j = 0; j < configuration.Teams[i].Player.Count; j++)
-            //    {
-            //        totalPlayerTime.Add(configuration.Teams[i].Player[j], 0);
-            //    }
-            //}
+            // Reset
+            totalPlayerTime = new Dictionary<Guid, long>();
+            for (int i = 0; i < configuration.Teams.Count; i++)
+            {
+                for (int j = 0; j < configuration.Teams[i].Player.Count; j++)
+                {
+                    Guid guid = configuration.Teams[i].Player[j].Guid;
+                    if (!totalPlayerTime.ContainsKey(guid))
+                        totalPlayerTime.Add(guid, 0);
+                }
+            }
 
             // Set initial state
             state = SimulatorState.Ready;
@@ -125,7 +133,7 @@ namespace AntMe.Simulation
                         {
                             for (int j = 0; j < configuration.Teams[i].Player.Count; j++)
                             {
-                                totalPlayerTime[configuration.Teams[i].Player[j]] = 0;
+                                totalPlayerTime[configuration.Teams[i].Player[j].Guid] = 0;
                             }
                         }
                         state = SimulatorState.Simulating;
@@ -145,8 +153,8 @@ namespace AntMe.Simulation
                         for (int j = 0; j < configuration.Teams[i].Player.Count; j++)
                         {
                             // TODO: Fix Dictionary-Problem with time-list
-                            PlayerInfo info = configuration.Teams[i].Player[j];
-                            //totalPlayerTime[info] += lastHostState.ElapsedPlayerTimes[info];
+                            Guid guid = configuration.Teams[i].Player[j].Guid;
+                            totalPlayerTime[guid] += lastHostState.ElapsedPlayerTimes[guid];
                         }
                     }
 
@@ -238,7 +246,8 @@ namespace AntMe.Simulation
         /// </summary>
         public long RoundTime
         {
-            get {
+            get
+            {
                 // TODO: Deliver a bether timeformat.
                 return roundTime;
             }
@@ -247,36 +256,23 @@ namespace AntMe.Simulation
         /// <summary>
         /// Gets the total number of ticks the current Loop is running.
         /// </summary>
-        public TimeSpan LoopTime
-        {
-            get {
-                // TODO: Deliver a bether timeformat.
-                return new TimeSpan(loopTime);
-            }
-        }
+        public long LoopTime { get { return loopTime; } }
 
         /// <summary>
         /// Gets the total number of ticks the current simulator is working.
         /// </summary>
-        public TimeSpan TotalTime
-        {
-            get {
-                // TODO: Deliver a bether timeformat.
-                return new TimeSpan(totalTime);
-            }
-        }
+        public long TotalTime { get { return totalTime; } }
 
         /// <summary>
         /// Gets a the total time of ticks a player needed in the last round.
         /// </summary>
-        public Dictionary<PlayerInfo, long> PlayerRoundTimes
+        public Dictionary<Guid, long> PlayerRoundTimes
         {
-            // TODO: Deliver a bether timeformat.
             get
             {
                 if (lastHostState != null)
                 {
-                  return null;// lastHostState.ElapsedPlayerTimes;
+                    return lastHostState.ElapsedPlayerTimes;
                 }
                 else
                 {
@@ -288,7 +284,7 @@ namespace AntMe.Simulation
         /// <summary>
         /// Gets the total number of ticks a player needed in the whole loop till now.
         /// </summary>
-        public Dictionary<PlayerInfo, long> PlayerLoopTimes
+        public Dictionary<Guid, long> PlayerLoopTimes
         {
             // TODO: Deliver a bether format.
             get { return totalPlayerTime; }

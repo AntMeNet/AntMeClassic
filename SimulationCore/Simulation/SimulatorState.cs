@@ -1,8 +1,10 @@
-namespace AntMe.Simulation {
+namespace AntMe.Simulation
+{
     /// <summary>
     /// Liste der möglichen Stati eines Simulators
     /// </summary>
-    public enum SimulatorState {
+    public enum SimulatorState
+    {
         /// <summary>
         /// Der Simulator ist initialisiert, aber noch nicht gestartet worden
         /// </summary>

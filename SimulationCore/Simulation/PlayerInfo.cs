@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Text;
 
 namespace AntMe.Simulation {
     /// <summary>
@@ -255,5 +256,35 @@ namespace AntMe.Simulation {
         }
 
         #endregion
+
+        public override string ToString()
+        {
+            
+            if (!string.IsNullOrEmpty(ColonyName))
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append(ColonyName);
+                if (!string.IsNullOrEmpty(FirstName) || !string.IsNullOrEmpty(LastName))
+                {
+                    sb.Append(" (");
+                    if (!string.IsNullOrEmpty(FirstName))
+                    {
+                        sb.Append(FirstName);
+                        if (!string.IsNullOrEmpty(LastName))
+                        {
+                            sb.Append(" ");
+                            sb.Append(LastName);
+                        }
+                    }
+                    else sb.Append(LastName);
+                    sb.Append(")");
+                }
+                return sb.ToString();
+            }
+            else
+            {
+                return ClassName;
+            }
+        }
     }
 }

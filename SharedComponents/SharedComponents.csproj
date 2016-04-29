@@ -70,6 +70,17 @@
     <CodeAnalysisRuleSet>Migrated rules for SharedComponents.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Azure|x86'">
+    <OutputPath>bin\Azure\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>Migrated rules for SharedComponents.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -106,6 +117,12 @@
     <Compile Include="AntVideo\Block\UpdateBase.cs" />
     <Compile Include="AntVideo\NamespaceDoc.cs" />
     <Compile Include="AntVideo\Serializer.cs" />
+    <Compile Include="Controls\ShutterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ShutterControl.Designer.cs">
+      <DependentUpon>ShutterControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="NamespaceDoc.cs" />
     <Compile Include="Plugin\NamespaceDoc.cs" />
     <Compile Include="Plugin\ReadCustomStateAttribute.cs" />
@@ -132,7 +149,6 @@
     </Compile>
     <Compile Include="States\NamespaceDoc.cs" />
     <Compile Include="States\TeamState.cs" />
-    <Compile Include="Tools\ColorFinder.cs" />
     <Compile Include="Plugin\IConsumerPlugin.cs" />
     <Compile Include="Plugin\IProducerPlugin.cs" />
     <Compile Include="Plugin\IPlugin.cs" />
@@ -184,6 +200,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\ShutterControl.resx">
+      <DependentUpon>ShutterControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

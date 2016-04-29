@@ -3,11 +3,13 @@ using System.Collections.Generic;
 
 using AntMe.SharedComponents.States;
 
-namespace AntMe.Simulation {
+namespace AntMe.Simulation
+{
     /// <summary>
     /// Die abstrakte Basisklasse für Nahrung.
     /// </summary>
-    internal abstract class CoreFood : ICoordinate {
+    internal abstract class CoreFood : ICoordinate
+    {
         // Die Id der nächsten erzeugten Nahrung.
         private static int neueId = 0;
 
@@ -32,7 +34,8 @@ namespace AntMe.Simulation {
         /// <param name="x">Die X-Position der Koordinate auf dem Spielfeld.</param>
         /// <param name="y">Die Y-Position der Koordinate auf dem Spielfeld.</param>
         /// <param name="menge">Die Anzahl der Nahrungspunkte.</param>
-        internal CoreFood(int x, int y, int menge) {
+        internal CoreFood(int x, int y, int menge)
+        {
             Id = neueId++;
             koordinate = new CoreCoordinate(x, y);
             Menge = menge;
@@ -41,12 +44,14 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Die verbleibende Menge an Nahrungspunkten.
         /// </summary>
-        public virtual int Menge {
+        public virtual int Menge
+        {
             get { return menge; }
-            internal set {
+            internal set
+            {
                 menge = value;
                 koordinate.Radius = (int)
-                                    (Math.Round(Math.Sqrt(menge/Math.PI)*SimulationEnvironment.PLAYGROUND_UNIT));
+                                    (Math.Round(Math.Sqrt(menge / Math.PI) * SimulationEnvironment.PLAYGROUND_UNIT));
             }
         }
 
@@ -55,7 +60,8 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Die Position der Nahrung auf dem Spielfeld.
         /// </summary>
-        public CoreCoordinate CoordinateBase {
+        public CoreCoordinate CoordinateBase
+        {
             get { return koordinate; }
             internal set { koordinate = value; }
         }

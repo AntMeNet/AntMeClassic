@@ -2,13 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 
-namespace AntMe.Simulation {
+namespace AntMe.Simulation
+{
     /// <summary>
     /// Klasse zur Haltung aller relevanten Konfigurationsdaten einer Simulation.
     /// </summary>
     [Serializable]
-    public sealed class SimulatorConfiguration : ICloneable {
-        
+    public sealed class SimulatorConfiguration : ICloneable
+    {
+
         /// <summary>
         /// Maximum count of players per Simulation.
         /// </summary>
@@ -78,7 +80,8 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Initialisiert eine leere Spielerliste
         /// </summary>
-        public SimulatorConfiguration() {
+        public SimulatorConfiguration()
+        {
             roundCount = 5000;
             loopCount = 1;
             teams = new List<TeamInfo>();
@@ -105,8 +108,11 @@ namespace AntMe.Simulation {
         /// <param name="loops">Anzahl Durchläufe</param>
         /// <param name="rounds">Anzahl Runden</param>
         /// <param name="teams">Teamliste</param>
-        public SimulatorConfiguration(int loops, int rounds, List<TeamInfo> teams) : this() {
-            if (teams != null) {
+        public SimulatorConfiguration(int loops, int rounds, List<TeamInfo> teams)
+            : this()
+        {
+            if (teams != null)
+            {
                 this.teams = teams;
             }
             roundCount = rounds;
@@ -122,51 +128,62 @@ namespace AntMe.Simulation {
         /// Ermittelt, ob die Angaben der Konfiguration simulationsfähig sind
         /// </summary>
         /// <returns>Regelkonformer Konfigurationsinhalt</returns>
-        public void Rulecheck() {
+        public void Rulecheck()
+        {
             // Rundenanzahl prüfen
-            if (roundCount < ROUNDSMIN) {
+            if (roundCount < ROUNDSMIN)
+            {
                 throw new ConfigurationErrorsException(Resource.SimulationCoreConfigurationRoundCountTooSmall);
             }
-            if (roundCount > ROUNDSMAX) {
+            if (roundCount > ROUNDSMAX)
+            {
                 throw new ConfigurationErrorsException(
                     string.Format(Resource.SimulationCoreConfigurationRoundCountTooBig, ROUNDSMAX));
             }
 
             // Durchlaufmenge prüfen
-            if (loopCount < LOOPSMIN) {
+            if (loopCount < LOOPSMIN)
+            {
                 throw new ConfigurationErrorsException(Resource.SimulationCoreConfigurationLoopCountTooSmall);
             }
-            if (loopCount > LOOPSMAX) {
+            if (loopCount > LOOPSMAX)
+            {
                 throw new ConfigurationErrorsException(
                     string.Format(Resource.SimulationCoreConfigurationLoopCountTooBig, LOOPSMAX));
             }
 
             // Timeoutwerte
-            if (!ignoreTimeouts) {
-                if (loopTimeout < LOOPTIMEOUTMIN) {
+            if (!ignoreTimeouts)
+            {
+                if (loopTimeout < LOOPTIMEOUTMIN)
+                {
                     throw new ConfigurationErrorsException(
                         Resource.SimulationCoreConfigurationLoopTimeoutTooSmall);
                 }
-                if (roundTimeout < ROUNDTIMEOUTMIN) {
+                if (roundTimeout < ROUNDTIMEOUTMIN)
+                {
                     throw new ConfigurationErrorsException(
                         Resource.SimulationCoreConfigurationRoundTimeoutTooSmall);
                 }
             }
 
             // Teams checken
-            if (teams == null || teams.Count < 0) {
+            if (teams == null || teams.Count < 0)
+            {
                 throw new ConfigurationErrorsException(
                     Resource.SimulationCoreConfigurationNoTeams);
             }
 
             // Regelcheck der Teams
             int playerCount = 0;
-            foreach (TeamInfo team in teams) {
+            foreach (TeamInfo team in teams)
+            {
                 team.Rulecheck();
                 playerCount += team.Player.Count;
             }
 
-            if (playerCount > PLAYERLIMIT) {
+            if (playerCount > PLAYERLIMIT)
+            {
                 // TODO: Put string into res-file
                 throw new ConfigurationErrorsException("Too many players");
             }
@@ -182,7 +199,8 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Gibt die Anzahl der Runden insgesamt an, die in der Simulation durchlaufen werden sollen oder legt diese fest.
         /// </summary>
-        public int RoundCount {
+        public int RoundCount
+        {
             get { return roundCount; }
             set { roundCount = value; }
         }
@@ -190,7 +208,8 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Gibt die Anzahl Durchläufe insgesamt an, die in der Simulation durchlaufen werden sollen oder legt diese fest.
         /// </summary>
-        public int LoopCount {
+        public int LoopCount
+        {
             get { return loopCount; }
             set { loopCount = value; }
         }
@@ -198,7 +217,8 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Legt fest, ob die Simulation zu debugzwecken Timeouts ignorieren soll.
         /// </summary>
-        public bool IgnoreTimeouts {
+        public bool IgnoreTimeouts
+        {
             get { return ignoreTimeouts; }
             set { ignoreTimeouts = value; }
         }
@@ -206,7 +226,8 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Legt die Timeout-Zeit von Runden in ms fest
         /// </summary>
-        public int RoundTimeout {
+        public int RoundTimeout
+        {
             get { return roundTimeout; }
             set { roundTimeout = value; }
         }
@@ -214,7 +235,8 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Legt die Timeout-Zeit von Durchläufen in ms fest
         /// </summary>
-        public int LoopTimeout {
+        public int LoopTimeout
+        {
             get { return loopTimeout; }
             set { loopTimeout = value; }
         }
@@ -222,14 +244,16 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Liefert die Liste der Mitspieler in dieser Simulation.
         /// </summary>
-        public List<TeamInfo> Teams {
+        public List<TeamInfo> Teams
+        {
             get { return teams; }
         }
 
         /// <summary>
         /// Legt fest, ob es den Spielern erlaubt ist auf das Userinterface zuzugreifen
         /// </summary>
-        public bool AllowUserinterfaceAccess {
+        public bool AllowUserinterfaceAccess
+        {
             set { allowUserinterfaceAccess = value; }
             get { return allowUserinterfaceAccess; }
         }
@@ -237,7 +261,8 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Legt fest, ob es den Spielern erlaubt ist auf das Dateisystem zuzugreifen
         /// </summary>
-        public bool AllowFileAccess {
+        public bool AllowFileAccess
+        {
             set { allowFileAccess = value; }
             get { return allowFileAccess; }
         }
@@ -245,7 +270,8 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Legt fest, ob es den Spielern erlaubt ist auf fremde Bibliotheken zuzugreifen
         /// </summary>
-        public bool AllowReferences {
+        public bool AllowReferences
+        {
             set { allowReferences = value; }
             get { return allowReferences; }
         }
@@ -253,7 +279,8 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Legt fest, ob es den Spielern erlaubt ist Datenbankverbindungen zu öffnen
         /// </summary>
-        public bool AllowDatabaseAccess {
+        public bool AllowDatabaseAccess
+        {
             set { allowDatabaseAccess = value; }
             get { return allowDatabaseAccess; }
         }
@@ -261,7 +288,8 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Legt fest, ob es den Spielern erlaubt ist eine Netzwerkverbindung zu öffnen
         /// </summary>
-        public bool AllowNetworkAccess {
+        public bool AllowNetworkAccess
+        {
             set { allowNetworkAccess = value; }
             get { return allowNetworkAccess; }
         }
@@ -269,7 +297,8 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Gibt an, ob die Simulation Debuginformationen ausgeben soll
         /// </summary>
-        public bool AllowDebuginformation {
+        public bool AllowDebuginformation
+        {
             set { allowDebuginformation = value; }
             get { return allowDebuginformation; }
         }
@@ -278,7 +307,8 @@ namespace AntMe.Simulation {
         /// Gibt einen Startwert für die Initialisierung des Zufallsgenerators an. Durch einen gleichen
         /// Startwert werden gleiche Startbedingungen garantiert.
         /// </summary>
-        public int MapInitialValue {
+        public int MapInitialValue
+        {
             set { mapInitialValue = value; }
             get { return mapInitialValue; }
         }
@@ -286,7 +316,8 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Gets or sets the simulation-settings for this simulation.
         /// </summary>
-        public SimulationSettings Settings {
+        public SimulationSettings Settings
+        {
             set { settings = value; }
             get { return settings; }
         }
@@ -299,12 +330,14 @@ namespace AntMe.Simulation {
         /// Erstellt eine Kopie der Konfiguration
         /// </summary>
         /// <returns>Kopie der aktuellen Konfiguration</returns>
-        public object Clone() {
+        public object Clone()
+        {
             // Kopie erstellen und Spielerliste kopieren
-            SimulatorConfiguration output = (SimulatorConfiguration) MemberwiseClone();
+            SimulatorConfiguration output = (SimulatorConfiguration)MemberwiseClone();
             output.teams = new List<TeamInfo>(teams.Count);
-            foreach (TeamInfo team in teams) {
-                output.teams.Add((TeamInfo) team.Clone());
+            foreach (TeamInfo team in teams)
+            {
+                output.teams.Add((TeamInfo)team.Clone());
             }
             return output;
         }

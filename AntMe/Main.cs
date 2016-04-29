@@ -215,7 +215,11 @@ namespace AntMe.Gui
                     if (manager.ActiveProducerPlugin.Producer.Control != null)
                     {
                         TabPage page = new TabPage(manager.ActiveProducerPlugin.Name);
+                        page.Padding = new Padding(0);
+                        page.Margin = new Padding(0);
                         page.Controls.Add(manager.ActiveProducerPlugin.Producer.Control);
+                        manager.ActiveProducerPlugin.Producer.Control.Padding = new Padding(0);
+                        manager.ActiveProducerPlugin.Producer.Control.Margin = new Padding(0);
                         tabControl.TabPages.Insert(1, page);
                         manager.ActiveProducerPlugin.Producer.Control.Dock = DockStyle.Fill;
                         if (isSelected) tabControl.SelectedIndex = 1;
@@ -313,15 +317,15 @@ namespace AntMe.Gui
                 switch (Connection.Instance.State)
                 {
                     case ConnectionState.NoConnection:
-                        onlineButton .Image = Properties.Resources.connection;
+                        onlineButton .Image = Resources.connection;
                         onlineButton.ToolTipText = Resource.UpdateNoConnection;
                         break;
                     case ConnectionState.TokenInvalid:
-                        onlineButton.Image = Properties.Resources.warning;
+                        onlineButton.Image = Resources.warning;
                         onlineButton.ToolTipText = Resource.UpdateTokenInvalid;
                         break;
                     default:
-                        onlineButton.Image = Properties.Resources.online;
+                        onlineButton.Image = Resources.online;
                         onlineButton.ToolTipText = string.Empty;
                         break;
                 }
@@ -660,7 +664,7 @@ namespace AntMe.Gui
 
         private void profileButton_Click(object sender, EventArgs e)
         {
-            Process.Start("http://service.antme.net");
+            Process.Start("https://service.antme.net/Account");
         }
 
         private void loginButton_Click(object sender, EventArgs e)
@@ -672,7 +676,7 @@ namespace AntMe.Gui
         private void BackgroundUpdateCheck()
         {
             // Check every day
-            if (Properties.Settings.Default.lastUpdateCheck < DateTime.Now.Date)
+            if (Settings.Default.lastUpdateCheck < DateTime.Now.Date)
             {
                 try
                 {
@@ -680,14 +684,14 @@ namespace AntMe.Gui
                         Assembly.GetExecutingAssembly().GetName().Version);
 
                     if (download != null)
-                        Properties.Settings.Default.updateLink = download.ToString();
+                        Settings.Default.updateLink = download.ToString();
                     else
-                        Properties.Settings.Default.updateLink = string.Empty;
+                        Settings.Default.updateLink = string.Empty;
                 }
                 catch (Exception) {}
 
-                Properties.Settings.Default.lastUpdateCheck = DateTime.Now.Date;
-                Properties.Settings.Default.Save();
+                Settings.Default.lastUpdateCheck = DateTime.Now.Date;
+                Settings.Default.Save();
             }
         }
 
@@ -702,13 +706,12 @@ namespace AntMe.Gui
                 MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.Yes)
             {
                 // Open Link
-                Process.Start(Properties.Settings.Default.updateLink);
+                Process.Start(Settings.Default.updateLink);
 
                 // Clear Update Link
-                Properties.Settings.Default.updateLink = string.Empty;
-                Properties.Settings.Default.Save();
+                Settings.Default.updateLink = string.Empty;
+                Settings.Default.Save();
             }
         }
-
     }
 }

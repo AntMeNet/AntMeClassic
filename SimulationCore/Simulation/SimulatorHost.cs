@@ -18,7 +18,7 @@ namespace AntMe.Simulation
         private PlayerInfo currentPlayer;
         private Exception exception;
         private SimulatorConfiguration configuration;
-        private Dictionary<PlayerInfo, long> playerTimes;
+        private Dictionary<Guid, long> playerTimes;
         private SimulatorHostState lastHostState;
         private SimulationState lastSimulationState;
 
@@ -42,7 +42,7 @@ namespace AntMe.Simulation
             environment = null;
 
             // Prepare time-counting
-            playerTimes = new Dictionary<PlayerInfo, long>();
+            playerTimes = new Dictionary<Guid, long>();
             currentPlayer = null;
             currentArea = Area.Unknown;
 
@@ -56,7 +56,7 @@ namespace AntMe.Simulation
                         // Try, to load filedump
                         try
                         {
-                            spieler.assembly = Assembly.Load(((PlayerInfoFiledump) spieler).File);
+                            spieler.assembly = Assembly.Load(((PlayerInfoFiledump)spieler).File);
                         }
                         catch (Exception ex)
                         {
@@ -69,7 +69,7 @@ namespace AntMe.Simulation
                         // Try, to load filename
                         try
                         {
-                            spieler.assembly = Assembly.LoadFile(((PlayerInfoFilename) spieler).File);
+                            spieler.assembly = Assembly.LoadFile(((PlayerInfoFilename)spieler).File);
                         }
                         catch (Exception ex)
                         {
@@ -126,13 +126,8 @@ namespace AntMe.Simulation
             // Reset of times
             stepWatch.Reset();
             foreach (TeamInfo team in configuration.Teams)
-            {
                 foreach (PlayerInfo spieler in team.Player)
-                {
-                    // TODO: need another key
-                    // playerTimes[spieler] = 0;
-                }
-            }
+                    playerTimes[spieler.Guid] = 0;
 
             // Init Step-Thread
             exception = null;
@@ -167,9 +162,9 @@ namespace AntMe.Simulation
             {
                 for (int j = 0; j < configuration.Teams[i].Player.Count; j++)
                 {
-                    // TODO: Fix Dictionary-Problem
-                    PlayerInfo player = configuration.Teams[i].Player[j];
-                    //lastHostState.ElapsedPlayerTimes.Add(player, playerTimes[player]);
+                    Guid guid = configuration.Teams[i].Player[j].Guid;
+                    if (!lastHostState.ElapsedPlayerTimes.ContainsKey(guid))
+                        lastHostState.ElapsedPlayerTimes.Add(guid, playerTimes[guid]);
                 }
             }
 
@@ -202,7 +197,7 @@ namespace AntMe.Simulation
             try
             {
                 environment.Step(lastSimulationState);
-                lastSimulationState.TotalRounds = (ushort) configuration.RoundCount;
+                lastSimulationState.TotalRounds = (ushort)configuration.RoundCount;
             }
             catch (Exception ex)
             {
@@ -221,7 +216,9 @@ namespace AntMe.Simulation
             {
                 playerWatch.Stop();
                 // TODO: need another key
-                // playerTimes[currentPlayer] += playerWatch.ElapsedTicks;
+                if (!playerTimes.ContainsKey(currentPlayer.Guid))
+                    playerTimes.Add(currentPlayer.Guid, 0);
+                playerTimes[currentPlayer.Guid] += playerWatch.ElapsedTicks;
                 currentPlayer = null;
                 currentArea = Area.Unknown;
             }

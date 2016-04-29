@@ -5,12 +5,14 @@ using System.IO;
 using AntMe.SharedComponents.AntVideo.Block;
 using AntMe.SharedComponents.States;
 using System.Globalization;
+using System.IO.Compression;
 
 namespace AntMe.SharedComponents.AntVideo {
     /// <summary>
     /// Class, to read and decode ant-video-Streams.
     /// </summary>
-    public sealed class AntVideoReader {
+    public sealed class AntVideoReader : IDisposable
+    {
         #region local variables
 
         private readonly Dictionary<int, Anthill> anthillList;
@@ -33,13 +35,13 @@ namespace AntMe.SharedComponents.AntVideo {
         /// </summary>
         /// <param name="inputStream">input-stream</param>
         public AntVideoReader(Stream inputStream) {
+            
             // check for stream
-            if (inputStream == null) {
+            if (inputStream == null)
                 throw new ArgumentNullException("inputStream", Resource.AntvideoReaderNoStreamException);
-            }
 
             // check for readable stream
-            if (!inputStream.CanRead) {
+            if (!inputStream.CanRead || !inputStream.CanSeek) {
                 throw new InvalidOperationException(Resource.AntvideoReaderNoReadAccessException);
             }
 
@@ -55,7 +57,7 @@ namespace AntMe.SharedComponents.AntVideo {
             fruitList = new Dictionary<int, Fruit>();
 
             // create serializer
-            serializer = new Serializer(inputStream);
+            serializer = new Serializer(inputStream, true, false);
 
             // read hello-message
             serializer.ReadHello();
@@ -260,8 +262,16 @@ namespace AntMe.SharedComponents.AntVideo {
             get { return frame != null ? frame.TotalRounds : 0; }
         }
 
+        /// <summary>
+        /// Gibt an, ob der Stream zu Ende gelesen wurde.
+        /// </summary>
         public bool Complete {
             get { return complete; }
+        }
+
+        public void Dispose()
+        {
+            serializer.Dispose();
         }
     }
 }

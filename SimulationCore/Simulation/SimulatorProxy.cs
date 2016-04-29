@@ -6,12 +6,14 @@ using System.Security.Permissions;
 
 using AntMe.SharedComponents.States;
 
-namespace AntMe.Simulation {
+namespace AntMe.Simulation
+{
     /// <summary>
     /// Proxy-Class to host an AppDomain für the encapsulated simulation.
     /// </summary>
     /// <author>Tom Wendel (tom@antme.net)</author>
-    internal sealed class SimulatorProxy {
+    internal sealed class SimulatorProxy
+    {
         #region internal Variables
 
         /// <summary>
@@ -32,32 +34,38 @@ namespace AntMe.Simulation {
         /// Initialisierung der Simulation
         /// </summary>
         /// <param name="configuration">Simulationskonfiguration</param>
-        public void Init(SimulatorConfiguration configuration) {
+        public void Init(SimulatorConfiguration configuration)
+        {
             // unload possible appdomains.
             Unload();
 
             // load involved ai's
-            for (int team = 0; team < configuration.Teams.Count; team++) {
-                for (int i = 0; i < configuration.Teams[team].Player.Count; i++) {
+            for (int team = 0; team < configuration.Teams.Count; team++)
+            {
+                for (int i = 0; i < configuration.Teams[team].Player.Count; i++)
+                {
 
                     // externe Guid-Info speichern
                     Guid guid = configuration.Teams[team].Player[i].Guid;
 
-                    if (configuration.Teams[team].Player[i] is PlayerInfoFiledump) {
+                    if (configuration.Teams[team].Player[i] is PlayerInfoFiledump)
+                    {
                         // use filedump
                         configuration.Teams[team].Player[i] =
                             AiAnalysis.FindPlayerInformation(
-                                ((PlayerInfoFiledump) configuration.Teams[team].Player[i]).File,
+                                ((PlayerInfoFiledump)configuration.Teams[team].Player[i]).File,
                                 configuration.Teams[team].Player[i].ClassName);
                     }
-                    else if (configuration.Teams[team].Player[i] is PlayerInfoFilename) {
+                    else if (configuration.Teams[team].Player[i] is PlayerInfoFilename)
+                    {
                         // use filename
                         configuration.Teams[team].Player[i] =
                             AiAnalysis.FindPlayerInformation(
-                                ((PlayerInfoFilename) configuration.Teams[team].Player[i]).File,
+                                ((PlayerInfoFilename)configuration.Teams[team].Player[i]).File,
                                 configuration.Teams[team].Player[i].ClassName);
                     }
-                    else {
+                    else
+                    {
                         // not supported PlayerInfo-type
                         throw new InvalidOperationException(
                             Resource.SimulationCoreProxyWrongPlayerInfo);
@@ -70,7 +78,12 @@ namespace AntMe.Simulation {
 
             // setup appDomain
             AppDomainSetup setup = new AppDomainSetup();
-            setup.ApplicationBase = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
+
+            // Base Path for references
+            string applicationBase = AppDomain.CurrentDomain.RelativeSearchPath;
+            if (string.IsNullOrEmpty(applicationBase))
+                applicationBase = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
+            setup.ApplicationBase = applicationBase;
             setup.ShadowCopyDirectories = AppDomain.CurrentDomain.SetupInformation.ShadowCopyDirectories;
             setup.ShadowCopyFiles = "false";
             setup.PrivateBinPath = "";
@@ -86,14 +99,17 @@ namespace AntMe.Simulation {
             bool NetAccess = false;
 
             // allow access to the needed ai-files
-            foreach (TeamInfo team in configuration.Teams) {
-                foreach (PlayerInfo info in team.Player) {
-                    if (info is PlayerInfoFilename) {
+            foreach (TeamInfo team in configuration.Teams)
+            {
+                foreach (PlayerInfo info in team.Player)
+                {
+                    if (info is PlayerInfoFilename)
+                    {
                         rechte.AddPermission(
                             new FileIOPermission(
                                 FileIOPermissionAccess.Read |
                                 FileIOPermissionAccess.PathDiscovery,
-                                ((PlayerInfoFilename) info).File));
+                                ((PlayerInfoFilename)info).File));
                     }
                     if (info.RequestDatabaseAccess) DbAccess = true;
                     if (info.RequestFileAccess) IoAccess = true;
@@ -103,40 +119,52 @@ namespace AntMe.Simulation {
             }
 
             // Grand special rights
-            if (IoAccess) {
-                if (configuration.AllowFileAccess) {
+            if (IoAccess)
+            {
+                if (configuration.AllowFileAccess)
+                {
                     rechte.AddPermission(new FileIOPermission(PermissionState.Unrestricted));
                 }
-                else {
+                else
+                {
                     throw new ConfigurationErrorsException(Resource.SimulationCoreRightsConflictIo);
                 }
             }
 
-            if (UiAccess) {
-                if (configuration.AllowUserinterfaceAccess) {
+            if (UiAccess)
+            {
+                if (configuration.AllowUserinterfaceAccess)
+                {
                     rechte.AddPermission(new UIPermission(PermissionState.Unrestricted));
                 }
-                else {
+                else
+                {
                     throw new ConfigurationErrorsException(Resource.SimulationCoreRightsConflictUi);
                 }
             }
 
-            if (DbAccess) {
-                if (configuration.AllowDatabaseAccess) {
+            if (DbAccess)
+            {
+                if (configuration.AllowDatabaseAccess)
+                {
                     // TODO: Grand rights
                 }
-                else {
+                else
+                {
                     throw new ConfigurationErrorsException(Resource.SimulationCoreRightsConflictDb);
                 }
             }
 
-            if (NetAccess) {
-                if (configuration.AllowNetworkAccess) {
+            if (NetAccess)
+            {
+                if (configuration.AllowNetworkAccess)
+                {
                     rechte.AddPermission(new System.Net.WebPermission(PermissionState.Unrestricted));
                     rechte.AddPermission(new System.Net.SocketPermission(PermissionState.Unrestricted));
                     rechte.AddPermission(new System.Net.DnsPermission(PermissionState.Unrestricted));
                 }
-                else {
+                else
+                {
                     throw new ConfigurationErrorsException(Resource.SimulationCoreRightsConflictNet);
                 }
             }
@@ -150,7 +178,8 @@ namespace AntMe.Simulation {
                     Assembly.GetExecutingAssembly().FullName, "AntMe.Simulation.SimulatorHost");
 
             // initialize host
-            if (!host.Init(configuration)) {
+            if (!host.Init(configuration))
+            {
                 // got some exceptions - unload appdomain und throw exception
                 Exception ex = host.Exception;
                 Unload();
@@ -163,9 +192,11 @@ namespace AntMe.Simulation {
         /// </summary>
         /// <param name="simulationState">The prefilled simulationState to put the currrent simulation-Snapshot in.</param>
         /// <returns>Summery of the executed simulationStep.</returns>
-        public SimulatorHostState Step(ref SimulationState simulationState) {
+        public SimulatorHostState Step(ref SimulationState simulationState)
+        {
             // check, of proxy is still usable
-            if (host == null) {
+            if (host == null)
+            {
                 throw new InvalidOperationException(Resource.SimulationCoreProxyUnloaded);
             }
 
@@ -173,7 +204,8 @@ namespace AntMe.Simulation {
             SimulatorHostState state = host.Step(ref simulationState);
 
             // in case of an exception
-            if (state == null) {
+            if (state == null)
+            {
                 throw host.Exception;
             }
 
@@ -184,8 +216,10 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Unloads the appdomain, if needed and reset the proxy.
         /// </summary>
-        public void Unload() {
-            if (appDomain != null) {
+        public void Unload()
+        {
+            if (appDomain != null)
+            {
                 AppDomain.Unload(appDomain);
                 appDomain = null;
                 host = null;

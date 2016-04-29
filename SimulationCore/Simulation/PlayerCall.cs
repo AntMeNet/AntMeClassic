@@ -2,17 +2,20 @@ using System;
 using System.Security;
 using System.Security.Permissions;
 
-namespace AntMe.Simulation {
+namespace AntMe.Simulation
+{
     /// <summary>
     /// Static Class to encapsulate player-calls to his ant.
     /// </summary>
-    internal static class PlayerCall {
+    internal static class PlayerCall
+    {
         private static readonly PermissionSet playerRights;
 
         /// <summary>
         /// Creates a static instance of PlayerCall
         /// </summary>
-        static PlayerCall() {
+        static PlayerCall()
+        {
             // set the rights for players
             playerRights = new PermissionSet(PermissionState.None);
             playerRights.AddPermission(new SecurityPermission(SecurityPermissionFlag.Execution));
@@ -26,16 +29,19 @@ namespace AntMe.Simulation {
         /// Perform call to "Waits()" on given ant.
         /// </summary>
         /// <param name="ant">ant</param>
-        public static void Waits(CoreAnt ant) {
+        public static void Waits(CoreAnt ant)
+        {
             AreaChanged(
                 null, new AreaChangeEventArgs(ant.colony.Player, Area.Waits));
             playerRights.PermitOnly();
             ant.NimmBefehleEntgegen = true;
-            try {
+            try
+            {
                 ant.WartetBase();
             }
-            catch (Exception ex) {
-                throw new AiException("KI-Fehler in der Wartet()-Methode", ex);
+            catch (Exception ex)
+            {
+                throw new AiException(string.Format("{0}: KI-Fehler in der Wartet()-Methode", ant.colony.Player.Guid), ex);
             }
             ant.NimmBefehleEntgegen = false;
             AreaChanged(
@@ -46,16 +52,19 @@ namespace AntMe.Simulation {
         /// Perform call to "BecomesTired()" on given ant.
         /// </summary>
         /// <param name="ant">ant</param>
-        public static void BecomesTired(CoreAnt ant) {
+        public static void BecomesTired(CoreAnt ant)
+        {
             AreaChanged(
                 null, new AreaChangeEventArgs(ant.colony.Player, Area.BecomesTired));
             playerRights.PermitOnly();
             ant.NimmBefehleEntgegen = true;
-            try {
+            try
+            {
                 ant.WirdMüdeBase();
             }
-            catch (Exception ex) {
-                throw new AiException("KI-Fehler in der WirdMüde()-Methode", ex);
+            catch (Exception ex)
+            {
+                throw new AiException(string.Format("{0}: KI-Fehler in der WirdMüde()-Methode", ant.colony.Player.Guid), ex);
             }
             ant.NimmBefehleEntgegen = false;
             AreaChanged(
@@ -71,16 +80,19 @@ namespace AntMe.Simulation {
         /// </summary>
         /// <param name="ant">ant</param>
         /// <param name="sugar">sugar</param>
-        public static void Spots(CoreAnt ant, CoreSugar sugar) {
+        public static void Spots(CoreAnt ant, CoreSugar sugar)
+        {
             AreaChanged(
                 null, new AreaChangeEventArgs(ant.colony.Player, Area.SpotsSugar));
             playerRights.PermitOnly();
             ant.NimmBefehleEntgegen = true;
-            try {
+            try
+            {
                 ant.SiehtBase(sugar);
             }
-            catch (Exception ex) {
-                throw new AiException("KI-Fehler in der Sieht(Zucker)-Methode", ex);
+            catch (Exception ex)
+            {
+                throw new AiException(string.Format("{0}: KI-Fehler in der Sieht(Zucker)-Methode", ant.colony.Player.Guid), ex);
             }
 
             ant.NimmBefehleEntgegen = false;
@@ -93,16 +105,19 @@ namespace AntMe.Simulation {
         /// </summary>
         /// <param name="ant">ant</param>
         /// <param name="fruit">fruit</param>
-        public static void Spots(CoreAnt ant, CoreFruit fruit) {
+        public static void Spots(CoreAnt ant, CoreFruit fruit)
+        {
             AreaChanged(
                 null, new AreaChangeEventArgs(ant.colony.Player, Area.SpotsFruit));
             playerRights.PermitOnly();
             ant.NimmBefehleEntgegen = true;
-            try {
+            try
+            {
                 ant.SiehtBase(fruit);
             }
-            catch (Exception ex) {
-                throw new AiException("KI-Fehler in der Sieht(Obst)-Methode", ex);
+            catch (Exception ex)
+            {
+                throw new AiException(string.Format("{0}: KI-Fehler in der Sieht(Obst)-Methode", ant.colony.Player.Guid), ex);
             }
 
             ant.NimmBefehleEntgegen = false;
@@ -115,17 +130,20 @@ namespace AntMe.Simulation {
         /// </summary>
         /// <param name="ant">ant</param>
         /// <param name="sugar">sugar</param>
-        public static void TargetReached(CoreAnt ant, CoreSugar sugar) {
+        public static void TargetReached(CoreAnt ant, CoreSugar sugar)
+        {
             AreaChanged(
                 null,
                 new AreaChangeEventArgs(ant.colony.Player, Area.ReachedSugar));
             playerRights.PermitOnly();
             ant.NimmBefehleEntgegen = true;
-            try {
+            try
+            {
                 ant.ZielErreichtBase(sugar);
             }
-            catch (Exception ex) {
-                throw new AiException("KI-Fehler in der ZielErreicht(Zucker)-Methode", ex);
+            catch (Exception ex)
+            {
+                throw new AiException(string.Format("{0}: KI-Fehler in der ZielErreicht(Zucker)-Methode", ant.colony.Player.Guid), ex);
             }
 
             ant.NimmBefehleEntgegen = false;
@@ -138,17 +156,20 @@ namespace AntMe.Simulation {
         /// </summary>
         /// <param name="ant">ant</param>
         /// <param name="fruit">fruit</param>
-        public static void TargetReached(CoreAnt ant, CoreFruit fruit) {
+        public static void TargetReached(CoreAnt ant, CoreFruit fruit)
+        {
             AreaChanged(
                 null,
                 new AreaChangeEventArgs(ant.colony.Player, Area.ReachedFruit));
             playerRights.PermitOnly();
             ant.NimmBefehleEntgegen = true;
-            try {
+            try
+            {
                 ant.ZielErreichtBase(fruit);
             }
-            catch (Exception ex) {
-                throw new AiException("KI-Fehler in der ZielErreicht(Obst)-Methode", ex);
+            catch (Exception ex)
+            {
+                throw new AiException(string.Format("{0}: KI-Fehler in der ZielErreicht(Obst)-Methode", ant.colony.Player.Guid), ex);
             }
             ant.NimmBefehleEntgegen = false;
             AreaChanged(
@@ -164,16 +185,19 @@ namespace AntMe.Simulation {
         /// </summary>
         /// <param name="ant">ant</param>
         /// <param name="marker">marker</param>
-        public static void SmellsFriend(CoreAnt ant, CoreMarker marker) {
+        public static void SmellsFriend(CoreAnt ant, CoreMarker marker)
+        {
             AreaChanged(
                 null, new AreaChangeEventArgs(ant.colony.Player, Area.SmellsFriend));
             playerRights.PermitOnly();
             ant.NimmBefehleEntgegen = true;
-            try {
+            try
+            {
                 ant.RiechtFreundBase(marker);
             }
-            catch (Exception ex) {
-                throw new AiException("KI-Fehler in der RiechtFreund(Markierung)-Methode", ex);
+            catch (Exception ex)
+            {
+                throw new AiException(string.Format("{0}: KI-Fehler in der RiechtFreund(Markierung)-Methode", ant.colony.Player.Guid), ex);
             }
 
             ant.NimmBefehleEntgegen = false;
@@ -186,16 +210,19 @@ namespace AntMe.Simulation {
         /// </summary>
         /// <param name="ant">ant</param>
         /// <param name="friend">friendly ant</param>
-        public static void SpotsFriend(CoreAnt ant, CoreAnt friend) {
+        public static void SpotsFriend(CoreAnt ant, CoreAnt friend)
+        {
             AreaChanged(
                 null, new AreaChangeEventArgs(ant.colony.Player, Area.SpotsFriend));
             playerRights.PermitOnly();
             ant.NimmBefehleEntgegen = true;
-            try {
+            try
+            {
                 ant.SiehtFreundBase(friend);
             }
-            catch (Exception ex) {
-                throw new AiException("KI-Fehler in der SiehtFreund(Ameise)-Methode", ex);
+            catch (Exception ex)
+            {
+                throw new AiException(string.Format("{0}: KI-Fehler in der SiehtFreund(Ameise)-Methode", ant.colony.Player.Guid), ex);
             }
 
             ant.NimmBefehleEntgegen = false;
@@ -208,16 +235,19 @@ namespace AntMe.Simulation {
         /// </summary>
         /// <param name="ant">ant</param>
         /// <param name="friend">friendly ant</param>
-        public static void SpotsTeamMember(CoreAnt ant, CoreAnt friend) {
+        public static void SpotsTeamMember(CoreAnt ant, CoreAnt friend)
+        {
             AreaChanged(
                 null, new AreaChangeEventArgs(ant.colony.Player, Area.SpotsTeamMember));
             playerRights.PermitOnly();
             ant.NimmBefehleEntgegen = true;
-            try {
+            try
+            {
                 ant.SiehtVerbündetenBase(friend);
             }
-            catch (Exception ex) {
-                throw new AiException("KI-Fehler in der SiehtVerbündeten(Ameise)-Methode", ex);
+            catch (Exception ex)
+            {
+                throw new AiException(string.Format("{0}: KI-Fehler in der SiehtVerbündeten(Ameise)-Methode", ant.colony.Player.Guid), ex);
             }
 
             ant.NimmBefehleEntgegen = false;
@@ -234,16 +264,19 @@ namespace AntMe.Simulation {
         /// </summary>
         /// <param name="ant">ant</param>
         /// <param name="bug">bug</param>
-        public static void SpotsEnemy(CoreAnt ant, CoreBug bug) {
+        public static void SpotsEnemy(CoreAnt ant, CoreBug bug)
+        {
             AreaChanged(
                 null, new AreaChangeEventArgs(ant.colony.Player, Area.SpotsBug));
             playerRights.PermitOnly();
             ant.NimmBefehleEntgegen = true;
-            try {
+            try
+            {
                 ant.SiehtFeindBase(bug);
             }
-            catch (Exception ex) {
-                throw new AiException("KI-Fehler in der SiehtFeind(Wanze)-Methode", ex);
+            catch (Exception ex)
+            {
+                throw new AiException(string.Format("{0}: KI-Fehler in der SiehtFeind(Wanze)-Methode", ant.colony.Player.Guid), ex);
             }
 
             ant.NimmBefehleEntgegen = false;
@@ -256,16 +289,19 @@ namespace AntMe.Simulation {
         /// </summary>
         /// <param name="ant">ant</param>
         /// <param name="enemy">foreign ant</param>
-        public static void SpotsEnemy(CoreAnt ant, CoreAnt enemy) {
+        public static void SpotsEnemy(CoreAnt ant, CoreAnt enemy)
+        {
             AreaChanged(
                 null, new AreaChangeEventArgs(ant.colony.Player, Area.SpotsEnemy));
             playerRights.PermitOnly();
             ant.NimmBefehleEntgegen = true;
-            try {
+            try
+            {
                 ant.SiehtFeindBase(enemy);
             }
-            catch (Exception ex) {
-                throw new AiException("KI-Fehler in der SiehtFeind(Ameise)-Methode", ex);
+            catch (Exception ex)
+            {
+                throw new AiException(string.Format("{0}: KI-Fehler in der SiehtFeind(Ameise)-Methode", ant.colony.Player.Guid), ex);
             }
 
             ant.NimmBefehleEntgegen = false;
@@ -278,17 +314,20 @@ namespace AntMe.Simulation {
         /// </summary>
         /// <param name="ant">ant</param>
         /// <param name="enemy">enemy</param>
-        public static void UnderAttack(CoreAnt ant, CoreAnt enemy) {
+        public static void UnderAttack(CoreAnt ant, CoreAnt enemy)
+        {
             AreaChanged(
                 null,
                 new AreaChangeEventArgs(ant.colony.Player, Area.UnderAttackByAnt));
             playerRights.PermitOnly();
             ant.NimmBefehleEntgegen = true;
-            try {
+            try
+            {
                 ant.WirdAngegriffenBase(enemy);
             }
-            catch (Exception ex) {
-                throw new AiException("KI-Fehler in der WirdAngegriffen(Ameise)-Methode", ex);
+            catch (Exception ex)
+            {
+                throw new AiException(string.Format("{0}: KI-Fehler in der WirdAngegriffen(Ameise)-Methode", ant.colony.Player.Guid), ex);
             }
 
             ant.NimmBefehleEntgegen = false;
@@ -301,18 +340,21 @@ namespace AntMe.Simulation {
         /// </summary>
         /// <param name="ant">ant</param>
         /// <param name="bug">bug</param>
-        public static void UnderAttack(CoreAnt ant, CoreBug bug) {
+        public static void UnderAttack(CoreAnt ant, CoreBug bug)
+        {
             AreaChanged(
                 null,
                 new AreaChangeEventArgs(
                     ant.colony.Player, Area.UnderAttackByBug));
             playerRights.PermitOnly();
             ant.NimmBefehleEntgegen = true;
-            try {
+            try
+            {
                 ant.WirdAngegriffenBase(bug);
             }
-            catch (Exception ex) {
-                throw new AiException("KI-Fehler in der WirdAngegriffen(Wanze)-Methode", ex);
+            catch (Exception ex)
+            {
+                throw new AiException(string.Format("{0}: KI-Fehler in der WirdAngegriffen(Wanze)-Methode", ant.colony.Player.Guid), ex);
             }
 
             ant.NimmBefehleEntgegen = false;
@@ -329,15 +371,18 @@ namespace AntMe.Simulation {
         /// </summary>
         /// <param name="ant">ant</param>
         /// <param name="kindOfDeath">kind of death</param>
-        public static void HasDied(CoreAnt ant, CoreKindOfDeath kindOfDeath) {
+        public static void HasDied(CoreAnt ant, CoreKindOfDeath kindOfDeath)
+        {
             AreaChanged(
                 null, new AreaChangeEventArgs(ant.colony.Player, Area.HasDied));
             playerRights.PermitOnly();
-            try {
+            try
+            {
                 ant.IstGestorbenBase(kindOfDeath);
             }
-            catch (Exception ex) {
-                throw new AiException("KI-Fehler in der IstGestorben()-Methode", ex);
+            catch (Exception ex)
+            {
+                throw new AiException(string.Format("{0}: KI-Fehler in der IstGestorben()-Methode", ant.colony.Player.Guid), ex);
             }
 
             AreaChanged(
@@ -348,16 +393,19 @@ namespace AntMe.Simulation {
         /// Perform call to "Tick()" on given ant.
         /// </summary>
         /// <param name="ant">ant</param>
-        public static void Tick(CoreAnt ant) {
+        public static void Tick(CoreAnt ant)
+        {
             AreaChanged(
                 null, new AreaChangeEventArgs(ant.colony.Player, Area.Tick));
             playerRights.PermitOnly();
             ant.NimmBefehleEntgegen = true;
-            try {
+            try
+            {
                 ant.TickBase();
             }
-            catch (Exception ex) {
-                throw new AiException("KI-Fehler in der Tick()-Methode", ex);
+            catch (Exception ex)
+            {
+                throw new AiException(string.Format("{0}: KI-Fehler in der Tick()-Methode", ant.colony.Player.Guid), ex);
             }
 
             ant.NimmBefehleEntgegen = false;

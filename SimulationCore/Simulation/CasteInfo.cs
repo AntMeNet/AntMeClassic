@@ -2,12 +2,14 @@ using System;
 
 using AntMe.SharedComponents.States;
 
-namespace AntMe.Simulation {
+namespace AntMe.Simulation
+{
     /// <summary>
     /// Holds the caste-information.
     /// </summary>
     [Serializable]
-    public sealed class CasteInfo {
+    public sealed class CasteInfo
+    {
         /// <summary>
         /// Der Angriffmodifikator der Kaste.
         /// </summary>
@@ -52,16 +54,19 @@ namespace AntMe.Simulation {
         /// Prüft, ob diese Ameisenkaste den Regeln entspricht
         /// </summary>
         /// <throws>RuleViolationException</throws>
-        public void Rulecheck(string aiName) {
+        public void Rulecheck(string aiName)
+        {
             // Ignoriere die Kaste, wenn er keinen Namen hat.
-            if (string.IsNullOrEmpty(Name)) {
+            if (string.IsNullOrEmpty(Name))
+            {
                 throw new RuleViolationException(
                     string.Format(Resource.SimulationCoreCasteRuleNoName, aiName));
             }
 
             // Prüfen, ob der Geschindwigkeitsmodifikator im Rahmen ist
             if (Speed < SimulationSettings.Custom.CasteSettings.MinIndex ||
-                Speed > SimulationSettings.Custom.CasteSettings.MaxIndex) {
+                Speed > SimulationSettings.Custom.CasteSettings.MaxIndex)
+            {
                 throw new RuleViolationException(
                     string.Format(
                         Resource.SimulationCoreCasteRuleSpeedFailed, Name, aiName));
@@ -69,7 +74,8 @@ namespace AntMe.Simulation {
 
             // Prüfen, ob der Drehgeschwindigkeitsmodifikator im Rahmen ist
             if (RotationSpeed < SimulationSettings.Custom.CasteSettings.MinIndex ||
-                RotationSpeed > SimulationSettings.Custom.CasteSettings.MaxIndex) {
+                RotationSpeed > SimulationSettings.Custom.CasteSettings.MaxIndex)
+            {
                 throw new RuleViolationException(
                     string.Format(
                         Resource.SimulationCoreCasteRuleRotationSpeedFailed,
@@ -79,14 +85,16 @@ namespace AntMe.Simulation {
 
             // Prüfen, ob der Lastmodifikator im Rahmen ist
             if (Load < SimulationSettings.Custom.CasteSettings.MinIndex ||
-                Load > SimulationSettings.Custom.CasteSettings.MaxIndex) {
+                Load > SimulationSettings.Custom.CasteSettings.MaxIndex)
+            {
                 throw new RuleViolationException(
                     string.Format(Resource.SimulationCoreCasteRuleLoadFailed, Name, aiName));
             }
 
             // Prüfen, ob der Sichtweitemodifikator im Rahmen ist
             if (ViewRange < SimulationSettings.Custom.CasteSettings.MinIndex ||
-                ViewRange > SimulationSettings.Custom.CasteSettings.MaxIndex) {
+                ViewRange > SimulationSettings.Custom.CasteSettings.MaxIndex)
+            {
                 throw new RuleViolationException(
                     string.Format(
                         Resource.SimulationCoreCasteRuleViewRangeFailed, Name, aiName));
@@ -94,7 +102,8 @@ namespace AntMe.Simulation {
 
             // Prüfen, ob der Riechweitemodifikator im Rahmen ist
             if (Range < SimulationSettings.Custom.CasteSettings.MinIndex ||
-                Range > SimulationSettings.Custom.CasteSettings.MaxIndex) {
+                Range > SimulationSettings.Custom.CasteSettings.MaxIndex)
+            {
                 throw new RuleViolationException(
                     string.Format(
                         Resource.SimulationCoreCasteRuleRangeFailed, Name, aiName));
@@ -102,14 +111,16 @@ namespace AntMe.Simulation {
 
             // Prüfen, ob der Energiemodifikator im Rahmen ist
             if (Energy < SimulationSettings.Custom.CasteSettings.MinIndex ||
-                Energy > SimulationSettings.Custom.CasteSettings.MaxIndex) {
+                Energy > SimulationSettings.Custom.CasteSettings.MaxIndex)
+            {
                 throw new RuleViolationException(
                     string.Format(Resource.SimulationCoreCasteRuleEnergyFailed, Name, aiName));
             }
 
             // Prüfen, ob der Angriffsmodifikator im Rahmen ist
             if (Attack < SimulationSettings.Custom.CasteSettings.MinIndex ||
-                Attack > SimulationSettings.Custom.CasteSettings.MaxIndex) {
+                Attack > SimulationSettings.Custom.CasteSettings.MaxIndex)
+            {
                 throw new RuleViolationException(
                     string.Format(Resource.SimulationCoreCasteRuleAttackFailed, Name, aiName));
             }
@@ -121,7 +132,8 @@ namespace AntMe.Simulation {
                 ViewRange +
                 Range +
                 Energy +
-                Attack > SimulationSettings.Custom.CasteSettings.Sum) {
+                Attack > SimulationSettings.Custom.CasteSettings.Sum)
+            {
                 throw new RuleViolationException(
                     string.Format(Resource.SimulationCoreCasteRuleSumFailed, Name, aiName));
             }
@@ -131,7 +143,8 @@ namespace AntMe.Simulation {
         /// Gibt an, ob es sich bei dieser Ameisenkaste um die Standard-Kaste handelt
         /// </summary>
         /// <returns>Standardwert</returns>
-        public bool IsEmpty() {
+        public bool IsEmpty()
+        {
             return Name == String.Empty &&
                    Attack == 0 &&
                    RotationSpeed == 0 &&
@@ -146,16 +159,17 @@ namespace AntMe.Simulation {
         /// Erzeugt ein CasteState-Objekt.
         /// </summary>
         /// <returns></returns>
-        public CasteState CreateState(int colonyId, int id) {
+        public CasteState CreateState(int colonyId, int id)
+        {
             CasteState state = new CasteState(colonyId, id);
             state.Name = Name;
-            state.SpeedModificator = (byte) Speed;
-            state.RotationSpeedModificator = (byte) RotationSpeed;
-            state.LoadModificator = (byte) Load;
-            state.ViewRangeModificator = (byte) ViewRange;
-            state.RangeModificator = (byte) Range;
-            state.VitalityModificator = (byte) Energy;
-            state.AttackModificator = (byte) Attack;
+            state.SpeedModificator = (byte)Speed;
+            state.RotationSpeedModificator = (byte)RotationSpeed;
+            state.LoadModificator = (byte)Load;
+            state.ViewRangeModificator = (byte)ViewRange;
+            state.RangeModificator = (byte)Range;
+            state.VitalityModificator = (byte)Energy;
+            state.AttackModificator = (byte)Attack;
             return state;
         }
     }

@@ -595,7 +595,7 @@
     <value>Magenta</value>
   </data>
   <data name="versionButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 22</value>
+    <value>92, 22</value>
   </data>
   <data name="versionButton.Text" xml:space="preserve">
     <value>New Version</value>
@@ -634,13 +634,13 @@
     <value>Fill</value>
   </data>
   <data name="infoWebBrowser.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
+    <value>0, 0</value>
   </data>
   <data name="infoWebBrowser.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>20, 20</value>
   </data>
   <data name="infoWebBrowser.Size" type="System.Drawing.Size, System.Drawing">
-    <value>910, 593</value>
+    <value>916, 599</value>
   </data>
   <data name="infoWebBrowser.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -649,7 +649,7 @@
     <value>infoWebBrowser</value>
   </data>
   <data name="&gt;&gt;infoWebBrowser.Type" xml:space="preserve">
-    <value>AntMe.Gui.WebBrowserEx, AntMe, Version=1.7.2.337, Culture=neutral, PublicKeyToken=a423eba442ea5664</value>
+    <value>AntMe.Gui.WebBrowserEx, AntMe, Version=1.7.3.369, Culture=neutral, PublicKeyToken=a423eba442ea5664</value>
   </data>
   <data name="&gt;&gt;infoWebBrowser.Parent" xml:space="preserve">
     <value>welcomeTab</value>
@@ -660,8 +660,8 @@
   <data name="welcomeTab.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
   </data>
-  <data name="welcomeTab.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
+  <data name="welcomeTab.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
   </data>
   <data name="welcomeTab.Size" type="System.Drawing.Size, System.Drawing">
     <value>916, 599</value>

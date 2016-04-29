@@ -3,12 +3,15 @@ using System.IO;
 
 using AntMe.SharedComponents.AntVideo.Block;
 using AntMe.SharedComponents.States;
+using System.IO.Compression;
+using System;
 
-namespace AntMe.SharedComponents.AntVideo {
+namespace AntMe.SharedComponents.AntVideo
+{
     /// <summary>
     /// Class, to stream some simulation state as ant-video-stream.
     /// </summary>
-    public sealed class AntVideoWriter
+    public sealed class AntVideoWriter : IDisposable
     {
 
         #region local variables
@@ -19,10 +22,11 @@ namespace AntMe.SharedComponents.AntVideo {
         private readonly Dictionary<int, Fruit> fruitList;
         private readonly Dictionary<int, Marker> markerList;
         private readonly Dictionary<int, Dictionary<int, Caste>> casteList;
-        private readonly Serializer serializer;
         private readonly Dictionary<int, Sugar> sugarList;
         private readonly Dictionary<int, Team> teamList;
         private readonly Dictionary<int, Colony> colonyList;
+
+        private readonly Serializer serializer;
         private Frame frame;
 
         #endregion
@@ -31,7 +35,16 @@ namespace AntMe.SharedComponents.AntVideo {
         /// Creates a new instance of ant-video-writer.
         /// </summary>
         /// <param name="outputStream">output-stream</param>
-        public AntVideoWriter(Stream outputStream) {
+        public AntVideoWriter(Stream outputStream)
+        {
+
+            // check for stream
+            if (outputStream == null)
+                throw new ArgumentNullException("outputStream");
+
+            // check for readable stream
+            if (!outputStream.CanWrite || !outputStream.CanSeek)
+                throw new InvalidOperationException("Stream is not writeable");
 
             teamList = new Dictionary<int, Team>();
             colonyList = new Dictionary<int, Colony>();
@@ -43,7 +56,7 @@ namespace AntMe.SharedComponents.AntVideo {
             sugarList = new Dictionary<int, Sugar>();
             fruitList = new Dictionary<int, Fruit>();
 
-            serializer = new Serializer(outputStream);
+            serializer = new Serializer(outputStream, false, true);
             serializer.WriteHello();
             serializer.Write(BlockType.StreamStart);
         }
@@ -52,22 +65,26 @@ namespace AntMe.SharedComponents.AntVideo {
         /// Writes a new state to the stream.
         /// </summary>
         /// <param name="state">New state</param>
-        public void Write(SimulationState state) {
+        public void Write(SimulationState state)
+        {
             serializer.Write(BlockType.FrameStart);
             int[] keys;
 
             #region Framestart
 
             // The first call creates the frame
-            if (frame == null) {
+            if (frame == null)
+            {
                 // Create new frame
                 frame = new Frame(state);
                 serializer.Write(BlockType.Frame, frame);
             }
-            else {
+            else
+            {
                 // Send frame-update
                 FrameUpdate update = frame.GenerateUpdate(state);
-                if (update != null) {
+                if (update != null)
+                {
                     serializer.Write(BlockType.FrameUpdate, update);
                 }
             }
@@ -273,25 +290,30 @@ namespace AntMe.SharedComponents.AntVideo {
             #region Fruit
 
             // reset alive-flag
-            foreach (Fruit fruit in fruitList.Values) {
+            foreach (Fruit fruit in fruitList.Values)
+            {
                 fruit.IsAlive = false;
             }
 
             // enumerate fruit
-            foreach (FruitState fruitState in state.FruitStates) {
-                
+            foreach (FruitState fruitState in state.FruitStates)
+            {
+
                 // Check, if fruit is known
-                if (fruitList.ContainsKey(fruitState.Id)) {
-                    
+                if (fruitList.ContainsKey(fruitState.Id))
+                {
+
                     // fruit-update
                     FruitUpdate update = fruitList[fruitState.Id].GenerateUpdate(fruitState);
-                    if (update != null) {
+                    if (update != null)
+                    {
                         serializer.Write(BlockType.FruitUpdate, update);
                     }
                     fruitList[fruitState.Id].Interpolate();
                 }
-                else {
-                    
+                else
+                {
+
                     // create fruit
                     Fruit fruit = new Fruit(fruitState);
                     serializer.Write(BlockType.Fruit, fruit);
@@ -304,8 +326,10 @@ namespace AntMe.SharedComponents.AntVideo {
             // remove dead fruits
             keys = new int[fruitList.Keys.Count];
             fruitList.Keys.CopyTo(keys, 0);
-            for (int i = 0; i < keys.Length; i++) {
-                if (!fruitList[keys[i]].IsAlive) {
+            for (int i = 0; i < keys.Length; i++)
+            {
+                if (!fruitList[keys[i]].IsAlive)
+                {
                     serializer.Write(BlockType.FruitLost, new Lost(keys[i]));
                     fruitList.Remove(keys[i]);
                 }
@@ -316,24 +340,29 @@ namespace AntMe.SharedComponents.AntVideo {
             #region Sugar
 
             // reset alive-flag
-            foreach (Sugar sugar in sugarList.Values) {
+            foreach (Sugar sugar in sugarList.Values)
+            {
                 sugar.IsAlive = false;
             }
 
             // enumerate sugar
-            foreach (SugarState sugarState in state.SugarStates) {
-                
+            foreach (SugarState sugarState in state.SugarStates)
+            {
+
                 // Check, if sugar is known
-                if (sugarList.ContainsKey(sugarState.Id)) {
-                    
+                if (sugarList.ContainsKey(sugarState.Id))
+                {
+
                     // sugar-update
                     SugarUpdate update = sugarList[sugarState.Id].GenerateUpdate(sugarState);
-                    if (update != null) {
+                    if (update != null)
+                    {
                         serializer.Write(BlockType.SugarUpdate, update);
                     }
                     sugarList[sugarState.Id].Interpolate();
                 }
-                else {
+                else
+                {
 
                     // create sugar
                     Sugar sugar = new Sugar(sugarState);
@@ -347,8 +376,10 @@ namespace AntMe.SharedComponents.AntVideo {
             // remove dead sugar
             keys = new int[sugarList.Keys.Count];
             sugarList.Keys.CopyTo(keys, 0);
-            for (int i = 0; i < keys.Length; i++) {
-                if (!sugarList[keys[i]].IsAlive) {
+            for (int i = 0; i < keys.Length; i++)
+            {
+                if (!sugarList[keys[i]].IsAlive)
+                {
                     serializer.Write(BlockType.SugarLost, new Lost(keys[i]));
                     sugarList.Remove(keys[i]);
                 }
@@ -359,24 +390,29 @@ namespace AntMe.SharedComponents.AntVideo {
             #region Bugs
 
             // reset alive-flag
-            foreach (Bug bug in bugList.Values) {
+            foreach (Bug bug in bugList.Values)
+            {
                 bug.IsAlive = false;
             }
 
             // enumerate bugs
-            foreach (BugState bugState in state.BugStates) {
-                
+            foreach (BugState bugState in state.BugStates)
+            {
+
                 // Check, if bug is known
-                if (bugList.ContainsKey(bugState.Id)) {
+                if (bugList.ContainsKey(bugState.Id))
+                {
 
                     // bug-update
                     BugUpdate update = bugList[bugState.Id].GenerateUpdate(bugState);
-                    if (update != null) {
+                    if (update != null)
+                    {
                         serializer.Write(BlockType.BugUpdate, update);
                     }
                     bugList[bugState.Id].Interpolate();
                 }
-                else {
+                else
+                {
                     // create bug
                     Bug bug = new Bug(bugState);
                     serializer.Write(BlockType.Bug, bug);
@@ -389,8 +425,10 @@ namespace AntMe.SharedComponents.AntVideo {
             // remove dead bugs
             keys = new int[bugList.Keys.Count];
             bugList.Keys.CopyTo(keys, 0);
-            for (int i = 0; i < keys.Length; i++) {
-                if (!bugList[keys[i]].IsAlive) {
+            for (int i = 0; i < keys.Length; i++)
+            {
+                if (!bugList[keys[i]].IsAlive)
+                {
                     serializer.Write(BlockType.BugLost, new Lost(keys[i]));
                     bugList.Remove(keys[i]);
                 }
@@ -404,8 +442,15 @@ namespace AntMe.SharedComponents.AntVideo {
         /// <summary>
         /// Close the writer.
         /// </summary>
-        public void Close() {
+        public void Close()
+        {
             serializer.Write(BlockType.StreamEnd);
+            serializer.Flush();
+        }
+
+        public void Dispose()
+        {
+            serializer.Dispose();
         }
     }
 }

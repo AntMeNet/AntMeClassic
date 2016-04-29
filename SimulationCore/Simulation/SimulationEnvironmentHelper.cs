@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 
-namespace AntMe.Simulation {
+namespace AntMe.Simulation
+{
     internal partial class SimulationEnvironment
     {
         #region common stuff
@@ -100,7 +101,7 @@ namespace AntMe.Simulation {
                     {
                         //gemerkterZucker.Add(zucker);
                         //Löschen
-                        Playground.SugarHills.Remove(zucker);
+                        Playground.EntferneZucker(zucker);
                         i--;
                     }
                 }
@@ -188,6 +189,7 @@ namespace AntMe.Simulation {
 
                             // Löschen
                             colony.Statistik.CollectedFood += obst.Menge;
+                            colony.Statistik.CollectedFruits++;
                             obst.Menge = 0;
                             for (int z = 0; z < obst.TragendeInsekten.Count; z++)
                             {
@@ -202,7 +204,7 @@ namespace AntMe.Simulation {
                                 }
                             }
                             obst.TragendeInsekten.Clear();
-                            Playground.Fruits.Remove(obst);
+                            Playground.EntferneObst(obst);
                             j--;
                         }
                     }
@@ -395,7 +397,7 @@ namespace AntMe.Simulation {
                colony.insectDelay < 0 &&
                colony.insectCountDown > 0)
             {
-                colony.NeuesInsekt();
+                colony.NeuesInsekt(random);
                 colony.insectDelay = SimulationSettings.Custom.AntRespawnDelay;
                 colony.insectCountDown--;
             }
@@ -496,15 +498,6 @@ namespace AntMe.Simulation {
                     }
                 });
             });
-            //for(int i = 0; i < gemerkteMarkierungen.Count; i++) {
-            //  CoreMarker markierung = gemerkteMarkierungen[i];
-            //  for(int j = 0; j < volk.Insects.Count; j++) {
-            //    CoreAnt ameise = volk.Insects[j] as CoreAnt;
-            //    if(ameise != null) {
-            //      ameise.GerocheneMarkierungen.Remove(markierung);
-            //    }
-            //  }
-            //}
             colony.Marker.Remove(gemerkteMarkierungen);
 
             // Neue Markierungen überprüfen und hinzufügen.
@@ -512,19 +505,6 @@ namespace AntMe.Simulation {
             colony.NewMarker.ForEach(delegate(CoreMarker newMarker)
             {
                 bool zuNah = false;
-                //for(int i = 0; i < volk.Marker.Count; i++) {
-                //  CoreMarker marker = volk.Marker[i];
-                //  if(marker != null) {
-                //    int distance =
-                //    CoreCoordinate.BestimmeEntfernungDerMittelpunkteI
-                //      (marker.Coordinate, newMarker.Coordinate);
-                //    if(distance < SimulationSettings.Settings.MarkerDistance * SPIELFELD_EINHEIT) {
-                //      zuNah = true;
-                //      break;
-                //    }
-                //  }
-
-                //}
                 foreach (CoreMarker markierung in colony.Marker)
                 {
                     int entfernung =
@@ -541,21 +521,6 @@ namespace AntMe.Simulation {
                     colony.Marker.Add(newMarker);
                 }
             });
-            //foreach (CoreMarker neueMarkierung in volk.NewMarker) {
-            //    bool zuNah = false;
-            //    foreach (CoreMarker markierung in volk.Marker) {
-            //        int entfernung =
-            //            CoreCoordinate.BestimmeEntfernungDerMittelpunkteI
-            //                (markierung.Coordinate, neueMarkierung.Coordinate);
-            //        if (entfernung < SimulationSettings.Settings.MarkerDistance * SPIELFELD_EINHEIT) {
-            //            zuNah = true;
-            //            break;
-            //        }
-            //    }
-            //    if (!zuNah) {
-            //        volk.Marker.Add(neueMarkierung);
-            //    }
-            //}
             colony.NewMarker.Clear();
         }
 
@@ -615,7 +580,7 @@ namespace AntMe.Simulation {
                Bugs.insectDelay < 0 &&
                Bugs.insectCountDown > 0)
             {
-                Bugs.NeuesInsekt();
+                Bugs.NeuesInsekt(random);
                 Bugs.insectDelay = SimulationSettings.Custom.BugRespawnDelay;
                 Bugs.insectCountDown--;
             }

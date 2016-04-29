@@ -1,10 +1,12 @@
 using System;
 
-namespace AntMe.Simulation {
+namespace AntMe.Simulation
+{
     /// <summary>
     /// List of possible areas
     /// </summary>
-    internal enum Area {
+    internal enum Area
+    {
         Unknown,
         Constructor,
         ChooseType,
@@ -28,14 +30,16 @@ namespace AntMe.Simulation {
     /// <summary>
     /// Event-Arguments for a AreaChange-Event
     /// </summary>
-    internal class AreaChangeEventArgs : EventArgs {
+    internal class AreaChangeEventArgs : EventArgs
+    {
         private readonly Area area;
         private readonly PlayerInfo player;
 
         /// <summary>
         /// Creates a new AreaChangeEventArgs to unknown area.
         /// </summary>
-        public AreaChangeEventArgs() {
+        public AreaChangeEventArgs()
+        {
             area = Area.Unknown;
             player = null;
         }
@@ -45,7 +49,8 @@ namespace AntMe.Simulation {
         /// </summary>
         /// <param name="player">player</param>
         /// <param name="area">area</param>
-        public AreaChangeEventArgs(PlayerInfo player, Area area) {
+        public AreaChangeEventArgs(PlayerInfo player, Area area)
+        {
             this.player = player;
             this.area = area;
         }
@@ -53,14 +58,16 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Gets the player.
         /// </summary>
-        public PlayerInfo Player {
+        public PlayerInfo Player
+        {
             get { return player; }
         }
 
         /// <summary>
         /// Gets the area.
         /// </summary>
-        public Area Area {
+        public Area Area
+        {
             get { return area; }
         }
     }

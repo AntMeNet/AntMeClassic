@@ -36,7 +36,8 @@ namespace AntMe.Plugin.Xna
 
         public bool Interrupt
         {
-            get { return (state != PluginState.Ready && window == null); }
+            // get { return (state != PluginState.Ready && window == null); }
+            get { return false; }
         }
 
         public PluginState State { get { return state; } }

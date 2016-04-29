@@ -29,9 +29,14 @@ namespace AntMe.Online.Client
         public Guid UserId { get; set; }
 
         /// <summary>
-        /// Die Email-Adresse / Username des aktuellen Users.
+        /// Die Email-Adresse des aktuellen Users.
         /// </summary>
         public string Email { get; set; }
+
+        /// <summary>
+        /// Der Usernamen des aktuellen Users.
+        /// </summary>
+        public string Username { get; set; }
 
         /// <summary>
         /// Liste der verfügbaren Rollen für den aktuellen User.

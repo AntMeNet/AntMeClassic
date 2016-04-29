@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -19,12 +20,14 @@ namespace AntMe.Online.Client
 #if DEBUG
         private readonly Uri identityUri = new Uri("https://localhost:44303/");
         private readonly Uri apiUri = new Uri("http://localhost:13733/");
+        private readonly int timeout = int.MaxValue;
 #else
         private readonly Uri identityUri = new Uri("https://service.antme.net/");
         private readonly Uri apiUri = new Uri("http://api.antme.net/");
+        private readonly int timeout = 5000;
 #endif
         private readonly string clientVersion = "1.7";
-        private readonly int timeout = 5000;
+        
 
         #region Singleton
 
@@ -48,7 +51,22 @@ namespace AntMe.Online.Client
         private Configuration configuration = null;
 
         /// <summary>
-        /// Der aktuelle Status des Connectors.
+        /// Kapselt den Zugriff auf Replay-Informationen.
+        /// </summary>
+        public IReplayManager Replays { get; private set; }
+
+        /// <summary>
+        /// Kapselt den Zugriff auf Highscore-Informationen.
+        /// </summary>
+        public IHighscore1Manager Highscores1 { get; private set; }
+
+        /// <summary>
+        /// Kapselt den Zugriff auf Achievements
+        /// </summary>
+        public IAchievementManager Achievements { get; private set; }
+
+        /// <summary>
+        /// Der aktuelle Status des Connectors. 
         /// </summary>
         public ConnectionState State { get; private set; }
 
@@ -88,14 +106,27 @@ namespace AntMe.Online.Client
         }
 
         /// <summary>
+        /// Gibt die Email Adresse des aktuellen Users zurück.
+        /// </summary>
+        public string Email
+        {
+            get
+            {
+                if (configuration != null && !string.IsNullOrEmpty(configuration.Email))
+                    return configuration.Email;
+                return string.Empty;
+            }
+        }
+
+        /// <summary>
         /// Gibt den Usernamen des aktuellen Users zurück.
         /// </summary>
         public string Username
         {
             get
             {
-                if (configuration != null && !string.IsNullOrEmpty(configuration.Email))
-                    return configuration.Email;
+                if (configuration != null && !string.IsNullOrEmpty(configuration.Username))
+                    return configuration.Username;
                 return string.Empty;
             }
         }
@@ -119,6 +150,10 @@ namespace AntMe.Online.Client
             LoadSettings();
             if (!string.IsNullOrEmpty(configuration.AccessToken))
                 State = ConnectionState.Connected;
+
+            Replays = new ReplayManager(this);
+            Highscores1 = new Highscore1Manager(this);
+            Achievements = new AchievementManager(this);
         }
 
         /// <summary>
@@ -199,6 +234,36 @@ namespace AntMe.Online.Client
             using (var client = CreateClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(request));
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                
+                Task<HttpResponseMessage> t = client.PostAsync(path, content);
+                return Handle<T>(t);
+            }
+        }
+
+        /// <summary>
+        /// Führt einen Post-Call zum API Server durch.
+        /// </summary>
+        /// <typeparam name="R">Request-Datentyp</typeparam>
+        /// <param name="path">Relativer Pfad </param>
+        /// <param name="request">Request Inhalt</param>
+        internal void Post<R>(string path, R request)
+        {
+            using (var client = CreateClient())
+            {
+                StringContent content = new StringContent(JsonConvert.SerializeObject(request));
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                Task<HttpResponseMessage> t = client.PostAsync(path, content);
+                Handle(t);
+            }
+        }
+
+        internal T Upload<T>(string path, Stream stream)
+        {
+            using (var client = CreateClient())
+            {
+                StreamContent content = new StreamContent(stream);
                 Task<HttpResponseMessage> t = client.PostAsync(path, content);
                 return Handle<T>(t);
             }
@@ -255,8 +320,8 @@ namespace AntMe.Online.Client
                         throw new TimeoutException();
                     }
                     else if (
-                        result.StatusCode == System.Net.HttpStatusCode.Forbidden ||
-                        result.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                        result.StatusCode == HttpStatusCode.Forbidden ||
+                        result.StatusCode == HttpStatusCode.Unauthorized)
                     {
                         State = ConnectionState.TokenInvalid;
                         throw new UnauthorizedAccessException();
@@ -268,7 +333,7 @@ namespace AntMe.Online.Client
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 State = ConnectionState.NoConnection;
                 throw;
@@ -276,6 +341,58 @@ namespace AntMe.Online.Client
 
             State = ConnectionState.NoConnection;
             throw new TimeoutException();
+        }
+
+        /// <summary>
+        /// Behandelt den erstellten Request-Task und wirft eventuelle Exceptions, setzt aber gleichzeitig den richtigen Connection-Status
+        /// </summary>
+        /// <param name="call">Request-Task</param>
+        private void Handle(Task<HttpResponseMessage> call)
+        {
+            try
+            {
+                // Call abwarten - evtl. Timeout
+                if (!call.Wait(timeout))
+                {
+                    State = ConnectionState.NoConnection;
+                    throw new TimeoutException();
+                }
+
+                if (call.IsCompleted)
+                {
+                    var result = call.Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        // Erfolg
+                        var t2 = result.Content.ReadAsStringAsync();
+
+                        if (!t2.Wait(timeout))
+                        {
+                            State = ConnectionState.NoConnection;
+                            throw new TimeoutException();
+                        }
+                        
+                        return;
+                    }
+                    else if (
+                        result.StatusCode == HttpStatusCode.Forbidden ||
+                        result.StatusCode == HttpStatusCode.Unauthorized)
+                    {
+                        State = ConnectionState.TokenInvalid;
+                        throw new UnauthorizedAccessException();
+                    }
+                    else
+                    {
+                        State = ConnectionState.NoConnection;
+                        throw new HttpRequestException();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                State = ConnectionState.NoConnection;
+                throw;
+            }
         }
 
         /// <summary>
@@ -292,6 +409,7 @@ namespace AntMe.Online.Client
                     case DialogResult.OK:
                         configuration.AccessToken = form.Response.AccessToken;
                         configuration.UserId = form.Response.UserId;
+                        configuration.Username = form.Response.Name;
                         configuration.Email = form.Response.Email;
                         configuration.Roles.Clear();
                         configuration.Roles.AddRange(form.Response.Roles);

@@ -746,6 +746,25 @@ namespace AntMe.Deutsch
             get { return ZurückgelegteStreckeBase; }
         }
 
+        private Zufall zufall;
+
+        /// <summary>
+        /// Erzeugt eine zufüllige Zahl zwischen den angegebenen Grenzen. Wenn nur ein 
+        /// Parameter angegeben wird, wird eine Zahl zwischen 0 und der angegebenen Grenze - 1 
+        /// bestimmt, wenn zwei Parameter angegeben werden, wird eine Zahl zwischen der unteren 
+        /// Grenze und der oberen Grenze - 1 bestimmt.
+        /// <see href="http://wiki.antme.net/de/API1:Zufall.Zahl">Weitere Infos</see>
+        /// </summary>
+        public Zufall Zufall
+        {
+            get
+            {
+                if (zufall == null)
+                    zufall = new Zufall(RandomBase);
+                return zufall;
+            }
+        }
+
         #endregion
 
         #region Hilfemethoden

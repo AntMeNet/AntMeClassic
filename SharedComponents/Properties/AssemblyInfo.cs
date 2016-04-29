@@ -39,5 +39,5 @@ using System;
 //
 // Sie können alle Werte angeben oder die standardmäßigen Revisions- und Buildnummern 
 // übernehmen, indem Sie "*" eingeben:
-[assembly: AssemblyVersion("1.7.3.70")]
-[assembly: AssemblyFileVersion("1.7.3.70")]
+[assembly: AssemblyVersion("1.7.4.98")]
+[assembly: AssemblyFileVersion("1.7.4.98")]

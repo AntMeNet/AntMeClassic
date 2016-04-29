@@ -1,11 +1,13 @@
 using AntMe.SharedComponents.States;
 
-namespace AntMe.Simulation {
+namespace AntMe.Simulation
+{
     /// <summary>
     /// Ein Bau eines Ameisenvolkes.
     /// </summary>
     /// <author>Wolfgang Gallo (wolfgang@antme.net)</author>
-    internal sealed class CoreAnthill : ICoordinate {
+    internal sealed class CoreAnthill : ICoordinate
+    {
         // Die Id des nächsten erzeugten Bau.
         private static int neueId = 0;
 
@@ -25,7 +27,8 @@ namespace AntMe.Simulation {
         /// <param name="radius">Radius</param>
         /// <param name="colonyId">Volk ID</param>
         /// </summary>
-        internal CoreAnthill(int x, int y, int radius, int colonyId) {
+        internal CoreAnthill(int x, int y, int radius, int colonyId)
+        {
             this.colonyId = colonyId;
             Id = neueId++;
             koordinate = new CoreCoordinate(x, y, radius);
@@ -36,7 +39,8 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Die Position des Bau auf dem Spielfeld.
         /// </summary>
-        public CoreCoordinate CoordinateBase {
+        public CoreCoordinate CoordinateBase
+        {
             get { return koordinate; }
             internal set { koordinate = value; }
         }
@@ -46,11 +50,12 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Erzeugt ein BauZustand-Objekt mit den aktuellen Daten des Bau.
         /// </summary>
-        internal AnthillState ErzeugeInfo() {
+        internal AnthillState ErzeugeInfo()
+        {
             AnthillState zustand = new AnthillState(colonyId, Id);
-            zustand.PositionX = koordinate.X/SimulationEnvironment.PLAYGROUND_UNIT;
-            zustand.PositionY = koordinate.Y/SimulationEnvironment.PLAYGROUND_UNIT;
-            zustand.Radius = koordinate.Radius/SimulationEnvironment.PLAYGROUND_UNIT;
+            zustand.PositionX = koordinate.X / SimulationEnvironment.PLAYGROUND_UNIT;
+            zustand.PositionY = koordinate.Y / SimulationEnvironment.PLAYGROUND_UNIT;
+            zustand.Radius = koordinate.Radius / SimulationEnvironment.PLAYGROUND_UNIT;
             return zustand;
         }
     }

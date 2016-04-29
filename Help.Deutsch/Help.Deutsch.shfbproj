@@ -84,6 +84,9 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Win32' ">
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Azure' ">
+    <OutputPath>bin\Azure\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Folder Include="Content" />
     <Folder Include="icons" />
