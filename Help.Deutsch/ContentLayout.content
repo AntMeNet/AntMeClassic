@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Topics>
+  <Topic id="815e231f-a478-4c48-9901-692ec492a0c5" visible="True" isDefault="true" title="Willkommen">
+    <HelpKeywords>
+      <HelpKeyword index="K" term="Welcome" />
+    </HelpKeywords>
+  </Topic>
+  <Topic id="c84dbd31-911a-4cea-8c20-2b67e1dbc92c" visible="True" title="Befehlsliste" />
+  <Topic id="201f8fa9-c923-4a83-8d20-e8d5b985334c" visible="True" isSelected="true" title="Lektionen" />
+</Topics>

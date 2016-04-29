@@ -19,11 +19,11 @@ namespace AntMe.PlayerManagement
 
         public string Generate(string name, string path)
         {
-            return GenerateVB(name, path,
+            return GenerateVB(name, "Klasse", path,
                 GeneratorFiles.solution_vb,
                 GeneratorFiles.project_vb,
                 GeneratorFiles.user_vb,
-                GeneratorFiles.class_vb_de,
+                GeneratorFiles.class_vb_de_docu,
                 GeneratorFiles.properties_vb);
         }
     }

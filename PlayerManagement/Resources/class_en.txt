@@ -13,19 +13,19 @@ namespace AntMe.Player.{2}
     )]
     [Caste(
         Name = "Default",
-        AttackModificator = 0,
-        EnergyModificator = 0,
-        LoadModificator = 0,
-        RangeModificator = 0,
-        RotationSpeedModificator = 0,
-        SpeedModificator = 0,
-        ViewRangeModificator = 0
+        AttackModifier = 0,
+        EnergyModifier = 0,
+        LoadModifier = 0,
+        RangeModifier = 0,
+        RotationSpeedModifier = 0,
+        SpeedModifier = 0,
+        ViewRangeModifier = 0
     )]
     public class {0} : BaseAnt
     {
         #region Caste
         
-        public override string ChooseType(Dictionary<string, int> typeCount)
+        public override string ChooseCaste(Dictionary<string, int> typeCount)
         {
             return "Default";
         }
@@ -34,11 +34,11 @@ namespace AntMe.Player.{2}
 
         #region Movement
 
-        public override void Waits()
+        public override void Waiting()
         {
         }
 
-        public override void BecomesTired()
+        public override void GettingTired()
         {
         }
 
@@ -62,11 +62,11 @@ namespace AntMe.Player.{2}
         {
         }
 
-        public override void TargetReached(Fruit fruit)
+        public override void DestinationReached(Fruit fruit)
         {
         }
 
-        public override void TargetReached(Sugar sugar)
+        public override void DestinationReached(Sugar sugar)
         {
         }
 
@@ -74,7 +74,7 @@ namespace AntMe.Player.{2}
 
         #region Communication
 
-        public override void SmellsFriend(Marker marker)
+        public override void DetectedScentFriend(Marker marker)
         {
         }
 
@@ -82,7 +82,7 @@ namespace AntMe.Player.{2}
         {
         }
 
-        public override void SpotsPartner(Ant ant)
+        public override void SpotsTeammate(Ant ant)
         {
         }
 

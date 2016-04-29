@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<topic id="815e231f-a478-4c48-9901-692ec492a0c5" revisionNumber="1">
+	<developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+		<introduction>
+			<para>Sei dabei im coolsten und spannendsten Programmierlernspiel, das die Welt jemals gesehen hat. In AntMe! übernimmst du die Rolle eines Ameisenvolkes, das in einer virtuellen Welt auf Nahrungssuche geht oder gegen gegnerische Völker und Wanzen kämpft. Gespielt wird dabei aber nicht mit Maus und Tastatur, sondern mit Hilfe von Sourcecode, der das eigenständige Verhalten jeder einzelnen Ameise kontrolliert.</para>
+      <list class="bullet">
+        <listItem>
+          <para>
+            <externalLink>
+              <linkText>AntMe! Wiki</linkText>
+              <linkAlternateText>AntMe! Wiki</linkAlternateText>
+              <linkUri>http://wiki.antme.net/de</linkUri>
+            </externalLink>
+          </para>
+        </listItem>
+        <listItem>
+          <para>
+            <externalLink>
+              <linkText>Spielelemente</linkText>
+              <linkAlternateText>Spielelemente</linkAlternateText>
+              <linkUri>http://wiki.antme.net/de/Spielelemente</linkUri>
+            </externalLink>
+          </para>
+        </listItem>
+        <listItem>
+          <para>
+            <externalLink>
+              <linkText>Lektionen</linkText>
+              <linkAlternateText>Lektionen</linkAlternateText>
+              <linkUri>http://wiki.antme.net/de/Lektionen</linkUri>
+            </externalLink>
+          </para>
+        </listItem>
+        <listItem>
+          <para>
+            <externalLink>
+              <linkText>Ereignisse</linkText>
+              <linkAlternateText>Ereignisse</linkAlternateText>
+              <linkUri>http://wiki.antme.net/de/API1:Ereignisse</linkUri>
+            </externalLink>
+          </para>
+        </listItem>
+        <listItem>
+          <para>
+            <externalLink>
+              <linkText>Befehlsliste</linkText>
+              <linkAlternateText>Befehlsliste</linkAlternateText>
+              <linkUri>http://wiki.antme.net/de/API1:Befehlsliste</linkUri>
+            </externalLink>
+          </para>
+        </listItem>
+        <listItem>
+          <para>
+            <externalLink>
+              <linkText>Ameisenentwicklung</linkText>
+              <linkAlternateText>Ameisenentwicklung</linkAlternateText>
+              <linkUri>http://wiki.antme.net/de/Ameisenentwicklung</linkUri>
+            </externalLink>
+          </para>
+        </listItem>
+      </list>
+		</introduction>
+		<relatedTopics />
+	</developerConceptualDocument>
+</topic>

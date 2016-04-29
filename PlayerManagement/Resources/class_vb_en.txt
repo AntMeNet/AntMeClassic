@@ -9,20 +9,20 @@ Imports AntMe.English
 )> _
 <Caste( _
     Name:="Default", _
-    SpeedModificator:=0, _
-    RotationSpeedModificator:=0, _
-    LoadModificator:=0, _
-    RangeModificator:=0, _
-    ViewRangeModificator:=0, _
-    EnergyModificator:=0, _
-    AttackModificator:=0 _
+    SpeedModifier:=0, _
+    RotationSpeedModifier:=0, _
+    LoadModifier:=0, _
+    RangeModifier:=0, _
+    ViewRangeModifier:=0, _
+    EnergyModifier:=0, _
+    AttackModifier:=0 _
 )> _
 Public Class {0}
     Inherits BaseAnt
 
 #Region "Casts"
 
-    Public Overrides Function ChooseType(typeCount As Dictionary(Of String, Integer)) As String
+    Public Overrides Function ChooseCaste(typeCount As Dictionary(Of String, Integer)) As String
         Return "Default"
     End Function
 
@@ -30,10 +30,10 @@ Public Class {0}
 
 #Region "Movement"
 
-    Public Overrides Sub Waits()
+    Public Overrides Sub Waiting()
     End Sub
 
-    Public Overrides Sub BecomesTired()
+    Public Overrides Sub GettingTired()
     End Sub
 
     Public Overrides Sub HasDied(kindOfDeath As KindOfDeath)
@@ -52,23 +52,23 @@ Public Class {0}
     Public Overrides Sub Spots(sugar As Sugar)
     End Sub
 
-    Public Overrides Sub TargetReached(fruit As Fruit)
+    Public Overrides Sub DestinationReached(fruit As Fruit)
     End Sub
 
-    Public Overrides Sub TargetReached(sugar As Sugar)
+    Public Overrides Sub DestinationReached(sugar As Sugar)
     End Sub
 
 #End Region
 
 #Region "Communication"
 
-    Public Overrides Sub SmellsFriend(marker As Marker)
+    Public Overrides Sub DetectedScentFriend(marker As Marker)
     End Sub
 
     Public Overrides Sub SpotsFriend(ant As Ant)
     End Sub
 
-    Public Overrides Sub SpotsPartner(ant As Ant)
+    Public Overrides Sub SpotsTeammate(ant As Ant)
     End Sub
 
 #End Region

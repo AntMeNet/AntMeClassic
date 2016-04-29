@@ -9,17 +9,17 @@ namespace AntMe.English {
         /// <summary>
         /// The Attackstrength
         /// </summary>
-        public int AttackModificator = 0;
+        public int AttackModifier = 0;
 
         /// <summary>
         /// Hitpoints
         /// </summary>
-        public int EnergyModificator = 0;
+        public int EnergyModifier = 0;
 
         /// <summary>
         /// Load
         /// </summary>
-        public int LoadModificator = 0;
+        public int LoadModifier = 0;
 
         /// <summary>
         /// name
@@ -29,21 +29,21 @@ namespace AntMe.English {
         /// <summary>
         /// range
         /// </summary>
-        public int RangeModificator = 0;
+        public int RangeModifier = 0;
 
         /// <summary>
         /// Rotationspeed
         /// </summary>
-        public int RotationSpeedModificator = 0;
+        public int RotationSpeedModifier = 0;
 
         /// <summary>
         /// Spped
         /// </summary>
-        public int SpeedModificator = 0;
+        public int SpeedModifier = 0;
 
         /// <summary>
         /// viewrange
         /// </summary>
-        public int ViewRangeModificator = 0;
+        public int ViewRangeModifier = 0;
     }
 }

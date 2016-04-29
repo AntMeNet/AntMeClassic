@@ -209,6 +209,11 @@
     <None Include="Resources\security_32x32.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\class_vb_en_docu.txt" />
+    <None Include="Resources\class_cs_en_docu.txt" />
+    <None Include="Resources\class_vb_de_docu.txt" />
+    <None Include="Resources\class_cs_de_docu.txt" />
+    <None Include="Resources\close.png" />
     <None Include="Resources\properties_vb.txt" />
     <None Include="Resources\class_vb_en.txt" />
     <None Include="Resources\class_vb_de.txt" />

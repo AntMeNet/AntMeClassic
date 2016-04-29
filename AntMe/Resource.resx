@@ -117,37 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MainAntspielLink" xml:space="preserve">
-    <value>http://www.antme.net</value>
-    <comment>Link to the Antspiel-Website (go-link, please)</comment>
-  </data>
-  <data name="MainClassDescriptionPath" xml:space="preserve">
-    <value>.\\english\\Classes.chm</value>
-    <comment>Path to the Class-Description-File</comment>
-  </data>
-  <data name="MainForumLink" xml:space="preserve">
-    <value>http://antme.net/de/hilfe</value>
-    <comment>Link to the AntMe-Forum (go-link, please)</comment>
-  </data>
   <data name="MainFramesPerSecond" xml:space="preserve">
     <value>{0} fps</value>
     <comment>Short string for frames per second (Main.cs)
 0: Number of frames</comment>
   </data>
-  <data name="MainMessageBoxNoClassdescriptionMessage" xml:space="preserve">
-    <value>No Class-Description available.</value>
-    <comment>Message of messagebox to inform about missing class-description (Main.cs)</comment>
-  </data>
-  <data name="MainMessageBoxNoClassdescriptionTitle" xml:space="preserve">
-    <value>Class description</value>
-    <comment>Title of messagebox to inform about missing class-description (Main.cs)</comment>
-  </data>
-  <data name="MainMessageBoxNoTutorialMessage" xml:space="preserve">
+  <data name="MainMessageBoxNoHelpMessage" xml:space="preserve">
     <value>No help available.</value>
     <comment>Message of messagebox to inform about missing tutorials (Main.cs)</comment>
   </data>
-  <data name="MainMessageBoxNoTutorialTitle" xml:space="preserve">
-    <value>Tutorials</value>
+  <data name="MainMessageBoxNoHelpTitle" xml:space="preserve">
+    <value>Help</value>
     <comment>Title of messagebox to inform about missing tutorials (Main.cs)</comment>
   </data>
   <data name="MainNoModeSelected" xml:space="preserve">
@@ -184,16 +164,23 @@
     <comment>State-string for running in status-bar (Main.cs)</comment>
   </data>
   <data name="MainTutorialPath" xml:space="preserve">
-    <value>.\\english\\Tutorials.chm</value>
+    <value>.\\english\\Help.chm</value>
     <comment>Path to Tutorial-file</comment>
   </data>
   <data name="MainWebsiteLink" xml:space="preserve">
-    <value>http://www.antme.net</value>
+    <value>http://www.antme.net/en</value>
     <comment>Link to the AntMe-Website (go-link, please)</comment>
   </data>
   <data name="MainWelcomePagePath" xml:space="preserve">
     <value>/english/Welcome.htm</value>
     <comment>Path to the Welcome-Page</comment>
+  </data>
+  <data name="MainWelcomePageUrl" xml:space="preserve">
+    <value>https://service.antme.net/Application/StartPage?culture=en</value>
+    <comment>Url zur Website, die im Welcome Tab angezeigt werden soll</comment>
+  </data>
+  <data name="MainWikiLink" xml:space="preserve">
+    <value>http://wiki.antme.net/en</value>
   </data>
   <data name="PluginItemConstructorPluginHasNoName" xml:space="preserve">
     <value>The name of the plugin is empty.</value>

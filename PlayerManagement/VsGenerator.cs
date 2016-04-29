@@ -34,6 +34,7 @@ namespace AntMe.PlayerManagement
         /// {7}: Project Root
         /// </summary>
         /// <param name="name"></param>
+        /// <param name="classPostfix"></param>
         /// <param name="path"></param>
         /// <param name="solutionFile"></param>
         /// <param name="projectFile"></param>
@@ -41,7 +42,7 @@ namespace AntMe.PlayerManagement
         /// <param name="classFile"></param>
         /// <param name="propertiesFile"></param>
         /// <returns>Path to Solution File</returns>
-        protected string GenerateCS(string name, string path, string solutionFile, string projectFile, string projectUserFile, string classFile, string propertiesFile)
+        protected string GenerateCS(string name, string classPostfix, string path, string solutionFile, string projectFile, string projectUserFile, string classFile, string propertiesFile)
         {
             // Check KI Name
             if (!Regex.IsMatch(name, @"^[a-zA-Z][a-zA-Z0-9]{1,19}$"))
@@ -59,7 +60,7 @@ namespace AntMe.PlayerManagement
             // Identify AntMe! Root
             _antmeroot = new FileInfo(Assembly.GetEntryAssembly().Location).DirectoryName;
 
-            _classname = name + "Class";
+            _classname = name + classPostfix;
             _solutionname = name;
             _projectname = name;
             _solutionguid = Guid.NewGuid();
@@ -87,6 +88,7 @@ namespace AntMe.PlayerManagement
         /// {7}: Project Root
         /// </summary>
         /// <param name="name"></param>
+        /// <param name="classPostfix"></param>
         /// <param name="path"></param>
         /// <param name="solutionFile"></param>
         /// <param name="projectFile"></param>
@@ -94,7 +96,7 @@ namespace AntMe.PlayerManagement
         /// <param name="classFile"></param>
         /// <param name="propertiesFile"></param>
         /// <returns>Path to Solution File</returns>
-        protected string GenerateVB(string name, string path, string solutionFile, string projectFile, string projectUserFile, string classFile, string propertiesFile)
+        protected string GenerateVB(string name, string classPostfix, string path, string solutionFile, string projectFile, string projectUserFile, string classFile, string propertiesFile)
         {
             // Check KI Name
             if (!Regex.IsMatch(name, @"^[a-zA-Z][a-zA-Z0-9]{1,19}$"))
@@ -112,7 +114,7 @@ namespace AntMe.PlayerManagement
             // Identify AntMe! Root
             _antmeroot = new FileInfo(Assembly.GetEntryAssembly().Location).DirectoryName;
 
-            _classname = name + "Class";
+            _classname = name + classPostfix;
             _solutionname = name;
             _projectname = name;
             _solutionguid = Guid.NewGuid();

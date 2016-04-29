@@ -19,12 +19,35 @@ namespace AntMe.PlayerManagement
 
         public string Generate(string name, string path)
         {
-            return GenerateCS(name, path,
+            return GenerateCS(name, "Klasse", path,
                 GeneratorFiles.solution,
                 GeneratorFiles.project,
                 GeneratorFiles.user,
-                GeneratorFiles.class_de,
+                GeneratorFiles.class_cs_de_docu,
                 GeneratorFiles.properties);
         }
     }
+
+    //internal sealed class GermanCSharpDocumentGenerator : VsGenerator, IGenerator
+    //{
+    //    public string Language
+    //    {
+    //        get { return "Deutsch"; }
+    //    }
+
+    //    public string ProgrammingLanguage
+    //    {
+    //        get { return "C# (Dokumentiert)"; }
+    //    }
+
+    //    public string Generate(string name, string path)
+    //    {
+    //        return GenerateCS(name, path,
+    //            GeneratorFiles.solution,
+    //            GeneratorFiles.project,
+    //            GeneratorFiles.user,
+    //            GeneratorFiles.class_cs_de_docu,
+    //            GeneratorFiles.properties);
+    //    }
+    //}
 }

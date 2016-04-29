@@ -69,6 +69,59 @@ namespace AntMe.PlayerManagement {
         ///
         ///namespace AntMe.Player.{2}
         ///{
+        ///    /// &lt;summary&gt;
+        ///    /// Diese Datei enthält die Beschreibung für deine Ameise. Die einzelnen Code-Blöcke 
+        ///    /// (Beginnend mit &quot;public override void&quot;) fassen zusammen, wie deine Ameise in den 
+        ///    /// entsprechenden Situationen reagieren soll. Welche Befehle du hier verwenden kannst, 
+        ///    /// findest du auf der Befehlsübersicht im Wiki (http://wiki.antme.ne [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string class_cs_de_docu {
+            get {
+                return ResourceManager.GetString("class_cs_de_docu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using AntMe.English;
+        ///using System;
+        ///using System.Collections.Generic;
+        ///using System.Linq;
+        ///using System.Text;
+        ///
+        ///namespace AntMe.Player //.{2}
+        ///{
+        ///    [Player(
+        ///        ColonyName = &quot;{2}&quot;,
+        ///        FirstName = &quot;&quot;,
+        ///        LastName = &quot;&quot;
+        ///    )]
+        ///    [Caste(
+        ///        Name = &quot;Default&quot;,
+        ///        AttackModifier = 0,
+        ///        EnergyModifier = 0,
+        ///        LoadModifier = 0,
+        ///        RangeModifier = 0,
+        ///        RotationSpeedModifier = 0,
+        ///        SpeedModifier = 0,
+        ///        ViewRangeModifier = 0
+        ///    )]
+        ///    publi [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string class_cs_en_docu {
+            get {
+                return ResourceManager.GetString("class_cs_en_docu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using AntMe.Deutsch;
+        ///using System;
+        ///using System.Collections.Generic;
+        ///using System.Linq;
+        ///using System.Text;
+        ///
+        ///namespace AntMe.Player.{2}
+        ///{
         ///    [Spieler(
         ///        Volkname = &quot;{2}&quot;,
         ///        Vorname = &quot;&quot;,
@@ -106,13 +159,15 @@ namespace AntMe.PlayerManagement {
         ///    )]
         ///    [Caste(
         ///        Name = &quot;Default&quot;,
-        ///        AttackModificator = 0,
-        ///        EnergyModificator = 0,
-        ///        LoadModificator = 0,
-        ///        RangeModificator = 0,
-        ///        RotationSpeedModificator = 0,
-        ///        SpeedModificator = 0,
-        ///        ViewRangeModificator = 0        /// [rest of string was truncated]&quot;;.
+        ///        AttackModifier = 0,
+        ///        EnergyModifier = 0,
+        ///        LoadModifier = 0,
+        ///        RangeModifier = 0,
+        ///        RotationSpeedModifier = 0,
+        ///        SpeedModifier = 0,
+        ///        ViewRangeModifier = 0
+        ///    )]
+        ///    public c [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string class_en {
             get {
@@ -121,7 +176,31 @@ namespace AntMe.PlayerManagement {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Imports System.Collections.Generic
+        ///
+        ///Imports AntMe.Deutsch
+        ///
+        ///&lt;Spieler( _
+        ///    Volkname:=&quot;{2}&quot;, _
+        ///    Vorname:=&quot;&quot;, _
+        ///    Nachname:=&quot;&quot; _
+        ///)&gt; _
+        ///&lt;Kaste( _
+        ///    Name:=&quot;Standard&quot;, _
+        ///    GeschwindigkeitModifikator:=0, _
+        ///    DrehgeschwindigkeitModifikator:=0, _
+        ///    LastModifikator:=0, _
+        ///    ReichweiteModifikator:=0, _
+        ///    SichtweiteModifikator:=0, _
+        ///    EnergieModifikator:=0, _
+        ///    AngriffModifikator:=0 _
+        ///)&gt; _
+        ///Public Class {0}
+        ///    Inherits Basisameise
+        ///
+        ///#Region &quot;Kasten&quot;
+        ///
+        ///    Public Overrides Funct [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string class_vb_de {
             get {
@@ -130,11 +209,88 @@ namespace AntMe.PlayerManagement {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Imports System.Collections.Generic
+        ///
+        ///Imports AntMe.Deutsch
+        ///
+        ///&apos;&apos;&apos; &lt;summary&gt;
+        ///&apos;&apos;&apos; Diese Datei enthält die Beschreibung für deine Ameise. Die einzelnen Code-Blöcke 
+        ///&apos;&apos;&apos; (Beginnend mit &quot;public override void&quot;) fassen zusammen, wie deine Ameise in den 
+        ///&apos;&apos;&apos; entsprechenden Situationen reagieren soll. Welche Befehle du hier verwenden kannst, 
+        ///&apos;&apos;&apos; findest du auf der Befehlsübersicht im Wiki (http://wiki.antme.net/de/API1:Befehlsliste).
+        ///&apos;&apos;&apos; 
+        ///&apos;&apos;&apos; Wenn du etwas Unterstützung bei der Erstellung einer Ameise brauch [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string class_vb_de_docu {
+            get {
+                return ResourceManager.GetString("class_vb_de_docu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Imports System.Collections.Generic
+        ///
+        ///Imports AntMe.English
+        ///
+        ///&lt;Player( _
+        ///    ColonyName:=&quot;{2}&quot;, _
+        ///    FirstName:=&quot;&quot;, _
+        ///    LastName:=&quot;&quot; _
+        ///)&gt; _
+        ///&lt;Caste( _
+        ///    Name:=&quot;Default&quot;, _
+        ///    SpeedModifier:=0, _
+        ///    RotationSpeedModifier:=0, _
+        ///    LoadModifier:=0, _
+        ///    RangeModifier:=0, _
+        ///    ViewRangeModifier:=0, _
+        ///    EnergyModifier:=0, _
+        ///    AttackModifier:=0 _
+        ///)&gt; _
+        ///Public Class {0}
+        ///    Inherits BaseAnt
+        ///
+        ///#Region &quot;Casts&quot;
+        ///
+        ///    Public Overrides Function ChooseCaste(typeCount As Dictionary(Of Strin [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string class_vb_en {
             get {
                 return ResourceManager.GetString("class_vb_en", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Imports System.Collections.Generic
+        ///
+        ///Imports AntMe.English
+        ///
+        ///&lt;Player( _
+        ///    ColonyName:=&quot;{2}&quot;, _
+        ///    FirstName:=&quot;&quot;, _
+        ///    LastName:=&quot;&quot; _
+        ///)&gt; _
+        ///&lt;Caste( _
+        ///    Name:=&quot;Default&quot;, _
+        ///    SpeedModifier:=0, _
+        ///    RotationSpeedModifier:=0, _
+        ///    LoadModifier:=0, _
+        ///    RangeModifier:=0, _
+        ///    ViewRangeModifier:=0, _
+        ///    EnergyModifier:=0, _
+        ///    AttackModifier:=0 _
+        ///)&gt; _
+        ///Public Class {0}
+        ///    Inherits BaseAnt
+        ///
+        ///#Region &quot;Casts&quot;
+        ///
+        ///    &apos;&apos;&apos; &lt;summary&gt;
+        ///    &apos;&apos;&apos; Every time that a new ant is born, its job grou [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string class_vb_en_docu {
+            get {
+                return ResourceManager.GetString("class_vb_en_docu", resourceCulture);
             }
         }
         
@@ -154,7 +310,13 @@ namespace AntMe.PlayerManagement {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+        ///&lt;Project ToolsVersion=&quot;12.0&quot; DefaultTargets=&quot;Build&quot; xmlns=&quot;http://schemas.microsoft.com/developer/msbuild/2003&quot;&gt;
+        ///  &lt;Import Project=&quot;$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props&quot; Condition=&quot;Exists(&apos;$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props&apos;)&quot; /&gt;
+        ///  &lt;PropertyGroup&gt;
+        ///    &lt;Configuration Condition=&quot; &apos;$(Configuration)&apos; == &apos;&apos; &quot;&gt;Debug&lt;/Configuration&gt;
+        ///    &lt;Platform Condition=&quot; &apos;$(Platform)&apos; == &apos;&apos; &quot;&gt;AnyCPU&lt;/Platform&gt;
+        ///    [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string project_vb {
             get {
@@ -255,12 +417,13 @@ namespace AntMe.PlayerManagement {
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
         ///&lt;Project ToolsVersion=&quot;12.0&quot; xmlns=&quot;http://schemas.microsoft.com/developer/msbuild/2003&quot;&gt;
-        ///  &lt;PropertyGroup Condition=&quot;&apos;$(Configuration)|$(Platform)&apos; == &apos;Debug|AnyCPU&apos;&quot;&gt;
+        ///  &lt;PropertyGroup Condition=&quot;&apos;$(Configuration)|$(Platform)&apos; == &apos;Release|AnyCPU&apos;&quot;&gt;
         ///    &lt;StartAction&gt;Program&lt;/StartAction&gt;
         ///    &lt;StartProgram&gt;{6}\AntMe.exe&lt;/StartProgram&gt;
         ///    &lt;StartArguments&gt;/file=&quot;{7}\bin\AntMe.Player.{2}.dll&quot;&lt;/StartArguments&gt;
         ///  &lt;/PropertyGroup&gt;
-        ///&lt;/Project&gt;.
+        ///  &lt;PropertyGroup Condition=&quot;&apos;$(Configuration)|$(Platform)&apos; == &apos;Debug|AnyCPU&apos;&quot;&gt;
+        ///    &lt;StartAction&gt;Program&lt;/StartActio [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string user {
             get {
@@ -269,7 +432,15 @@ namespace AntMe.PlayerManagement {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+        ///&lt;Project ToolsVersion=&quot;12.0&quot; xmlns=&quot;http://schemas.microsoft.com/developer/msbuild/2003&quot;&gt;
+        ///  &lt;PropertyGroup Condition=&quot;&apos;$(Configuration)|$(Platform)&apos; == &apos;Release|AnyCPU&apos;&quot;&gt;
+        ///    &lt;StartAction&gt;Program&lt;/StartAction&gt;
+        ///    &lt;StartProgram&gt;{6}\AntMe.exe&lt;/StartProgram&gt;
+        ///    &lt;StartArguments&gt;/file=&quot;{7}\bin\AntMe.Player.{2}.dll&quot;&lt;/StartArguments&gt;
+        ///  &lt;/PropertyGroup&gt;
+        ///  &lt;PropertyGroup Condition=&quot;&apos;$(Configuration)|$(Platform)&apos; == &apos;Debug|AnyCPU&apos;&quot;&gt;
+        ///    &lt;StartAction&gt;Program&lt;/StartActio [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string user_vb {
             get {

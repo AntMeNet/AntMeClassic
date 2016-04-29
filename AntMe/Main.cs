@@ -64,9 +64,7 @@ namespace AntMe.Gui
             // Load welcomepage
             try
             {
-                // Localize
-                string lan = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
-                infoWebBrowser.Navigate("http://antmeservice.azurewebsites.net/Application/StartPage?culture=" + lan);
+                infoWebBrowser.Navigate(Resource.MainWelcomePageUrl);
             }
             catch { }
 
@@ -426,11 +424,6 @@ namespace AntMe.Gui
             Close();
         }
 
-        private void button_website(object sender, EventArgs e)
-        {
-            Help.ShowHelp(this, Resource.MainWebsiteLink);
-        }
-
         private void button_plugins(object sender, EventArgs e)
         {
             ignoreTimerEvents = true;
@@ -441,7 +434,7 @@ namespace AntMe.Gui
             updatePanel();
         }
 
-        private void button_tutorials(object sender, EventArgs e)
+        private void button_offlineHelp(object sender, EventArgs e)
         {
             // Es wurde Hilfe angefordert. Hier wird geprüft ob eine Hilfe verfügbar ist
             if (File.Exists(Resource.MainTutorialPath))
@@ -452,42 +445,28 @@ namespace AntMe.Gui
             {
                 MessageBox.Show(
                     this,
-                    Resource.MainMessageBoxNoTutorialMessage,
-                    Resource.MainMessageBoxNoTutorialTitle,
+                    Resource.MainMessageBoxNoHelpMessage,
+                    Resource.MainMessageBoxNoHelpTitle,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error,
                     MessageBoxDefaultButton.Button1);
             }
         }
 
-        private void button_classDescription(object sender, EventArgs e)
+        private void button_website(object sender, EventArgs e)
         {
-            // Klassen-Browser soll angezeigt werden
-            if (File.Exists(Resource.MainClassDescriptionPath))
-            {
-                Help.ShowHelp(this, Resource.MainClassDescriptionPath);
-            }
-            else
-            {
-                MessageBox.Show(
-                    this,
-                    Resource.MainMessageBoxNoClassdescriptionMessage,
-                    Resource.MainMessageBoxNoClassdescriptionTitle,
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error,
-                    MessageBoxDefaultButton.Button1);
-            }
+            Help.ShowHelp(this, Resource.MainWebsiteLink);
+        }
+
+        private void button_wiki(object sender, EventArgs e)
+        {
+            Help.ShowHelp(this, Resource.MainWikiLink);
         }
 
         private void button_info(object sender, EventArgs e)
         {
             InfoBox infoBox = new InfoBox();
             infoBox.ShowDialog(this);
-        }
-
-        private void button_forum(object sender, EventArgs e)
-        {
-            Help.ShowHelp(this, Resource.MainForumLink);
         }
 
         private void button_limitSetTo2(object sender, EventArgs e)
@@ -730,5 +709,6 @@ namespace AntMe.Gui
                 Properties.Settings.Default.Save();
             }
         }
+
     }
 }

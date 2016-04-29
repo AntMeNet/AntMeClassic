@@ -61,33 +61,6 @@ namespace AntMe.Gui {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://www.antme.net.
-        /// </summary>
-        internal static string MainAntspielLink {
-            get {
-                return ResourceManager.GetString("MainAntspielLink", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .\\english\\Classes.chm.
-        /// </summary>
-        internal static string MainClassDescriptionPath {
-            get {
-                return ResourceManager.GetString("MainClassDescriptionPath", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to http://antme.net/de/hilfe.
-        /// </summary>
-        internal static string MainForumLink {
-            get {
-                return ResourceManager.GetString("MainForumLink", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to {0} fps.
         /// </summary>
         internal static string MainFramesPerSecond {
@@ -97,38 +70,20 @@ namespace AntMe.Gui {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No Class-Description available..
-        /// </summary>
-        internal static string MainMessageBoxNoClassdescriptionMessage {
-            get {
-                return ResourceManager.GetString("MainMessageBoxNoClassdescriptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Class description.
-        /// </summary>
-        internal static string MainMessageBoxNoClassdescriptionTitle {
-            get {
-                return ResourceManager.GetString("MainMessageBoxNoClassdescriptionTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to No help available..
         /// </summary>
-        internal static string MainMessageBoxNoTutorialMessage {
+        internal static string MainMessageBoxNoHelpMessage {
             get {
-                return ResourceManager.GetString("MainMessageBoxNoTutorialMessage", resourceCulture);
+                return ResourceManager.GetString("MainMessageBoxNoHelpMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tutorials.
+        ///   Looks up a localized string similar to Help.
         /// </summary>
-        internal static string MainMessageBoxNoTutorialTitle {
+        internal static string MainMessageBoxNoHelpTitle {
             get {
-                return ResourceManager.GetString("MainMessageBoxNoTutorialTitle", resourceCulture);
+                return ResourceManager.GetString("MainMessageBoxNoHelpTitle", resourceCulture);
             }
         }
         
@@ -205,7 +160,7 @@ namespace AntMe.Gui {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .\\english\\Tutorials.chm.
+        ///   Looks up a localized string similar to .\\english\\Help.chm.
         /// </summary>
         internal static string MainTutorialPath {
             get {
@@ -214,7 +169,7 @@ namespace AntMe.Gui {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://www.antme.net.
+        ///   Looks up a localized string similar to http://www.antme.net/en.
         /// </summary>
         internal static string MainWebsiteLink {
             get {
@@ -228,6 +183,24 @@ namespace AntMe.Gui {
         internal static string MainWelcomePagePath {
             get {
                 return ResourceManager.GetString("MainWelcomePagePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://service.antme.net/Application/StartPage?culture=en.
+        /// </summary>
+        internal static string MainWelcomePageUrl {
+            get {
+                return ResourceManager.GetString("MainWelcomePageUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://wiki.antme.net/en.
+        /// </summary>
+        internal static string MainWikiLink {
+            get {
+                return ResourceManager.GetString("MainWikiLink", resourceCulture);
             }
         }
         

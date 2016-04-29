@@ -81,6 +81,7 @@
     <Compile Include="Deutsch\Koordinate.cs" />
     <Compile Include="Deutsch\Markierung.cs" />
     <Compile Include="Deutsch\Nahrung.cs" />
+    <Compile Include="Deutsch\NamespaceDoc.cs" />
     <Compile Include="Deutsch\NetzwerkzugriffAttribute.cs" />
     <Compile Include="Deutsch\Obst.cs" />
     <Compile Include="Deutsch\SpielerAttribute.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="English\Item.cs" />
     <Compile Include="English\KindOfDeath.cs" />
     <Compile Include="English\Marker.cs" />
+    <Compile Include="English\NamespaceDoc.cs" />
     <Compile Include="English\NetworkAccessAttribute.cs" />
     <Compile Include="English\PlayerAttribute.cs" />
     <Compile Include="English\RandomNumber.cs" />
@@ -135,6 +137,7 @@
     <Compile Include="Simulation\CoreTeam.cs" />
     <Compile Include="Simulation\DebugMessage.cs" />
     <Compile Include="Simulation\AreaChange.cs" />
+    <Compile Include="Simulation\NamespaceDoc.cs" />
     <Compile Include="Simulation\RuleViolationException.cs" />
     <Compile Include="Simulation\CoreInsect.cs" />
     <Compile Include="Simulation\AiAnalysis.cs" />

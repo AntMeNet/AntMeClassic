@@ -64,7 +64,6 @@
             // 
             // groupBox1
             // 
-            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.codeComboBox);
             this.groupBox1.Controls.Add(this.languageComboBox);
@@ -74,6 +73,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.folderTextBox);
             this.groupBox1.Controls.Add(this.nameTextBox);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
@@ -84,16 +84,16 @@
             // 
             // codeComboBox
             // 
-            resources.ApplyResources(this.codeComboBox, "codeComboBox");
             this.codeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.codeComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.codeComboBox, "codeComboBox");
             this.codeComboBox.Name = "codeComboBox";
             // 
             // languageComboBox
             // 
-            resources.ApplyResources(this.languageComboBox, "languageComboBox");
             this.languageComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.languageComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.languageComboBox, "languageComboBox");
             this.languageComboBox.Name = "languageComboBox";
             // 
             // browseButton
@@ -129,10 +129,6 @@
             resources.ApplyResources(this.nameTextBox, "nameTextBox");
             this.nameTextBox.Name = "nameTextBox";
             // 
-            // folderBrowserDialog
-            // 
-            resources.ApplyResources(this.folderBrowserDialog, "folderBrowserDialog");
-            // 
             // label5
             // 
             resources.ApplyResources(this.label5, "label5");
@@ -140,8 +136,8 @@
             // 
             // pictureBox1
             // 
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.Image = global::AntMe.PlayerManagement.Properties.Resources.toddler;
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
             // 

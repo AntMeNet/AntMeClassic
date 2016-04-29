@@ -31,9 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayerSelector));
             this.toolStrip = new System.Windows.Forms.ToolStrip();
-            this.createButton = new System.Windows.Forms.ToolStripButton();
-            this.loadButton = new System.Windows.Forms.ToolStripButton();
-            this.propertiesButton = new System.Windows.Forms.ToolStripButton();
             this.playerListView = new System.Windows.Forms.ListView();
             this.nameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.authorColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -47,51 +44,39 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.cancelButton = new System.Windows.Forms.Button();
             this.OkButton = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.helpPanel = new System.Windows.Forms.Panel();
+            this.createButton = new System.Windows.Forms.ToolStripButton();
+            this.loadButton = new System.Windows.Forms.ToolStripButton();
+            this.propertiesButton = new System.Windows.Forms.ToolStripButton();
+            this.closePicture = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.toolStrip.SuspendLayout();
             this.playerContextMenu.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.helpPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.closePicture)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip
             // 
-            resources.ApplyResources(this.toolStrip, "toolStrip");
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createButton,
             this.loadButton,
             this.propertiesButton});
+            resources.ApplyResources(this.toolStrip, "toolStrip");
             this.toolStrip.Name = "toolStrip";
-            // 
-            // createButton
-            // 
-            resources.ApplyResources(this.createButton, "createButton");
-            this.createButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.createButton.Image = global::AntMe.PlayerManagement.Properties.Resources.add;
-            this.createButton.Name = "createButton";
-            this.createButton.Click += new System.EventHandler(this.createButton_Click);
-            // 
-            // loadButton
-            // 
-            resources.ApplyResources(this.loadButton, "loadButton");
-            this.loadButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.loadButton.Image = global::AntMe.PlayerManagement.Properties.Resources.load_16x16;
-            this.loadButton.Name = "loadButton";
-            this.loadButton.Click += new System.EventHandler(this.loadButton_Click);
-            // 
-            // propertiesButton
-            // 
-            resources.ApplyResources(this.propertiesButton, "propertiesButton");
-            this.propertiesButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.propertiesButton.Image = global::AntMe.PlayerManagement.Properties.Resources.properties_16x16;
-            this.propertiesButton.Name = "propertiesButton";
-            this.propertiesButton.Click += new System.EventHandler(this.propertiesButton_Click);
             // 
             // playerListView
             // 
-            resources.ApplyResources(this.playerListView, "playerListView");
             this.playerListView.AllowDrop = true;
             this.playerListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.nameColumn,
             this.authorColumn});
             this.playerListView.ContextMenuStrip = this.playerContextMenu;
+            resources.ApplyResources(this.playerListView, "playerListView");
             this.playerListView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
             ((System.Windows.Forms.ListViewGroup)(resources.GetObject("playerListView.Groups"))),
             ((System.Windows.Forms.ListViewGroup)(resources.GetObject("playerListView.Groups1")))});
@@ -116,30 +101,30 @@
             // 
             // playerContextMenu
             // 
-            resources.ApplyResources(this.playerContextMenu, "playerContextMenu");
             this.playerContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createMenuItem,
             this.loadMenuItem,
             this.toolStripMenuItem1,
             this.propertiesMenuItem});
             this.playerContextMenu.Name = "contextMenuStrip1";
+            resources.ApplyResources(this.playerContextMenu, "playerContextMenu");
             // 
             // createMenuItem
             // 
-            resources.ApplyResources(this.createMenuItem, "createMenuItem");
             this.createMenuItem.Name = "createMenuItem";
+            resources.ApplyResources(this.createMenuItem, "createMenuItem");
             this.createMenuItem.Click += new System.EventHandler(this.createButton_Click);
             // 
             // loadMenuItem
             // 
-            resources.ApplyResources(this.loadMenuItem, "loadMenuItem");
             this.loadMenuItem.Name = "loadMenuItem";
+            resources.ApplyResources(this.loadMenuItem, "loadMenuItem");
             this.loadMenuItem.Click += new System.EventHandler(this.loadButton_Click);
             // 
             // toolStripMenuItem1
             // 
-            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
             // 
             // propertiesMenuItem
             // 
@@ -180,15 +165,78 @@
             this.OkButton.Name = "OkButton";
             this.OkButton.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.OkButton);
+            this.panel1.Controls.Add(this.cancelButton);
+            resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.Name = "panel1";
+            // 
+            // helpPanel
+            // 
+            this.helpPanel.BackColor = System.Drawing.Color.DarkOrange;
+            this.helpPanel.Controls.Add(this.label2);
+            this.helpPanel.Controls.Add(this.label1);
+            this.helpPanel.Controls.Add(this.label4);
+            this.helpPanel.Controls.Add(this.closePicture);
+            resources.ApplyResources(this.helpPanel, "helpPanel");
+            this.helpPanel.Name = "helpPanel";
+            // 
+            // createButton
+            // 
+            this.createButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.createButton.Image = global::AntMe.PlayerManagement.Properties.Resources.add;
+            resources.ApplyResources(this.createButton, "createButton");
+            this.createButton.Name = "createButton";
+            this.createButton.Click += new System.EventHandler(this.createButton_Click);
+            // 
+            // loadButton
+            // 
+            this.loadButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.loadButton.Image = global::AntMe.PlayerManagement.Properties.Resources.load_16x16;
+            resources.ApplyResources(this.loadButton, "loadButton");
+            this.loadButton.Name = "loadButton";
+            this.loadButton.Click += new System.EventHandler(this.loadButton_Click);
+            // 
+            // propertiesButton
+            // 
+            this.propertiesButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.propertiesButton, "propertiesButton");
+            this.propertiesButton.Image = global::AntMe.PlayerManagement.Properties.Resources.properties_16x16;
+            this.propertiesButton.Name = "propertiesButton";
+            this.propertiesButton.Click += new System.EventHandler(this.propertiesButton_Click);
+            // 
+            // closePicture
+            // 
+            resources.ApplyResources(this.closePicture, "closePicture");
+            this.closePicture.Image = global::AntMe.PlayerManagement.Properties.Resources.close;
+            this.closePicture.Name = "closePicture";
+            this.closePicture.TabStop = false;
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
             // PlayerSelector
             // 
             this.AcceptButton = this.OkButton;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.Controls.Add(this.OkButton);
-            this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.playerListView);
+            this.Controls.Add(this.helpPanel);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -198,6 +246,10 @@
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
             this.playerContextMenu.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.helpPanel.ResumeLayout(false);
+            this.helpPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.closePicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -222,5 +274,11 @@
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button OkButton;
         private System.Windows.Forms.ImageList imageList;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel helpPanel;
+        private System.Windows.Forms.PictureBox closePicture;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
     }
 }

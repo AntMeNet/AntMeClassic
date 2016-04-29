@@ -50,12 +50,32 @@ namespace AntMe.Plugin.Simulation
                     if (setup.Slot6.PlayerInfo != null) count++;
                     if (setup.Slot7.PlayerInfo != null) count++;
                     if (setup.Slot8.PlayerInfo != null) count++;
-                    control.Enabled = true;
+                    if (control.InvokeRequired)
+                    {
+                        control.BeginInvoke((MethodInvoker)delegate
+                        {
+                            control.Enabled = true;
+                        });
+                    }
+                    else
+                    {
+                        control.Enabled = true;
+                    }
                     return count > 0 ? PluginState.Ready : PluginState.NotReady;
                 }
                 else
                 {
-                    control.Enabled = false;
+                    if (control.InvokeRequired)
+                    {
+                        control.BeginInvoke((MethodInvoker)delegate
+                        {
+                            control.Enabled = false;
+                        });
+                    }
+                    else
+                    {
+                        control.Enabled = false;
+                    }
                     return paused ? PluginState.Paused : PluginState.Running;
                 }
             }
@@ -101,8 +121,8 @@ namespace AntMe.Plugin.Simulation
 
         private void DiscoverPlayerInfo(FreeGameSlot slot)
         {
-            if (slot != null && 
-                !string.IsNullOrEmpty(slot.Filename) && 
+            if (slot != null &&
+                !string.IsNullOrEmpty(slot.Filename) &&
                 !string.IsNullOrEmpty(slot.Typename))
             {
                 try
@@ -111,7 +131,7 @@ namespace AntMe.Plugin.Simulation
                     slot.PlayerInfo = PlayerStore.Instance.KnownPlayer.FirstOrDefault(p =>
                         p.File.ToLower().Equals(slot.Filename.ToLower()) && p.ClassName.Equals(slot.Typename));
                 }
-                catch (Exception) 
+                catch (Exception)
                 {
                     // Kick slot, falls es probleme gab
                     slot.Filename = string.Empty;

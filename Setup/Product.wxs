@@ -9,7 +9,7 @@
     Id="*"
     Name="AntMe! 1.7"
     Language="1033"
-    Version="1.7.2"
+    Version="1.7.3"
     Manufacturer="$(var.Manufactor)"
     UpgradeCode="$(var.UpgradeGuid)">
 
@@ -64,6 +64,7 @@
       <ComponentRef Id="GermanDocumentationImages" />
       <ComponentRef Id="EnglishDocumentation" />
       <ComponentRef Id="EnglishDocumentationImages" />
+      <ComponentRef Id="SDKDocumentation" />
       <ComponentRef Id="Loca" />
     </Feature>
 
@@ -148,6 +149,11 @@
         <File Source="$(var.AntMe.TargetDir)/AntMe.exe.config" />
         <RegistryValue Root='HKCU' Key='Software\AntMe\AntMe1exe' Type='string' Value='' KeyPath='yes' />
       </Component>
+
+      <!-- SDK Docu -->
+      <Component Id="SDKDocumentation" Guid="{96451A4C-1E42-4776-BA7D-D6EA4B2C6889}" >
+        <File Source="$(var.AntMe.TargetDir)/SDK.chm" KeyPath="yes" Checksum="yes" />
+      </Component>
     </DirectoryRef>
 
     <!-- Uninstall -->
@@ -168,6 +174,7 @@
       <File Source="$(var.XnaPlugin.TargetDir)/de/AntMe.Plugin.Xna.resources.dll" />
     </Component>
 
+    <!-- XNA Content Files -->
     <Component Id="XnaContent" Guid="{8FB366A1-E1D8-4822-8E9B-0C11D3293305}" Directory="ContentFolder">
       <File Source="$(var.XnaPlugin.TargetDir)/Content/ant.xnb" />
       <File Source="$(var.XnaPlugin.TargetDir)/Content/anthill.xnb" />
@@ -184,18 +191,15 @@
       <File Source="$(var.XnaPlugin.TargetDir)/Content/sugar.xnb" />
       <File Source="$(var.XnaPlugin.TargetDir)/Content/textbox.xnb" />
     </Component>
-    
+
+    <!-- Deutsche Doku -->
     <Component Id="GermanDocumentation" Guid="223CC377-14F5-4500-A37C-01BFB71B5AB6" Directory="GermanDocumentationPath">
-      <File Source="$(var.AntMe.TargetDir)/deutsch/Befehlsliste.pdf">
-        <Shortcut Id="BefehlslisteShortcut" Directory="ProgramMenuDir" Name="AntMe! Befehlsliste" WorkingDirectory="INSTALLDIR" Advertise="no" />
-      </File>
-      <File Source="$(var.AntMe.TargetDir)/deutsch/Tutorial.chm">
-        <Shortcut Id="TutorialShortcut" Directory="ProgramMenuDir" Name="AntMe! Tutorials" WorkingDirectory="INSTALLDIR" Advertise="no" />
-      </File>
+      <File Source="$(var.AntMe.TargetDir)/deutsch/Hilfe.chm" />
       <File Source="$(var.AntMe.TargetDir)/deutsch/Willkommen.htm" />
       <RegistryValue Root='HKCU' Key='Software\AntMe\AntMe1doku' Type='string' Value='' KeyPath='yes' />
     </Component>
 
+    <!-- Bilder für die deutsche Startseite -->
     <Component Id="GermanDocumentationImages" Guid="F8C6BBD8-FA04-4238-9C54-1FE8217A2E56" Directory="GermanDocumentationImagePath">
       <File Source="$(var.AntMe.TargetDir)/deutsch/images/antme_im_web.png" />
       <File Source="$(var.AntMe.TargetDir)/deutsch/images/header.png" />
@@ -205,12 +209,13 @@
       <File Source="$(var.AntMe.TargetDir)/deutsch/images/schnellstart.png" />
     </Component>
 
+    <!-- Engische Doku -->
     <Component Id="EnglishDocumentation" Guid="7163589B-B444-48D2-8D7C-3C877BE4F6AE" Directory="EnglishDocumentationPath">
-      <File Source="$(var.AntMe.TargetDir)/english/Commandlist.pdf" />
-      <File Source="$(var.AntMe.TargetDir)/english/Tutorials.chm" />
+      <File Source="$(var.AntMe.TargetDir)/english/Help.chm" />
       <File Source="$(var.AntMe.TargetDir)/english/Welcome.htm" KeyPath="yes" />
     </Component>
 
+    <!-- Bilder für die englische Startseite -->
     <Component Id="EnglishDocumentationImages" Guid="5ECBE000-D8D9-4D07-8592-D88BBA4A68CF" Directory="EnglishDocumentationImagePath">
       <File Source="$(var.AntMe.TargetDir)/english/images/antme_im_web_en.png" />
       <File Source="$(var.AntMe.TargetDir)/english/images/header_en.png" />

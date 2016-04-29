@@ -19,11 +19,11 @@ namespace AntMe.PlayerManagement
 
         public string Generate(string name, string path)
         {
-            return GenerateCS(name, path, 
+            return GenerateCS(name, "Class", path, 
                 GeneratorFiles.solution, 
                 GeneratorFiles.project, 
                 GeneratorFiles.user, 
-                GeneratorFiles.class_en, 
+                GeneratorFiles.class_cs_en_docu, 
                 GeneratorFiles.properties);
         }
     }

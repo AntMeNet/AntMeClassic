@@ -191,18 +191,6 @@
   <ItemGroup>
     <None Include="AntMe.snk" />
     <None Include="App.config" />
-    <None Include="deutsch\Befehlsliste.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="deutsch\Tutorial.chm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="english\Commandlist.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="english\Tutorials.chm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -253,6 +241,7 @@
     <Content Include="english\Welcome.htm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\close.png" />
     <None Include="Resources\online.png" />
     <None Include="Resources\offline.png" />
     <None Include="Resources\connection.png" />

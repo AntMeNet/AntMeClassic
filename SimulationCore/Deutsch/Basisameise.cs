@@ -4,7 +4,9 @@ using AntMe.Simulation;
 namespace AntMe.Deutsch
 {
     /// <summary>
-    /// Basisklasse für die Implementierung einer neuen Ameise
+    /// Basisklasse für die Implementierung einer deutschen Ameise. Hier befinden sich 
+    /// alle notwendigen Methoden, Eigenschaften und Events zur Interaktion mit der Umgebung.
+    /// <see href="http://wiki.antme.net/de/Ameisenentwicklung">Weitere Infos</see>
     /// </summary>
     public abstract class Basisameise : CoreAnt
     {
@@ -16,10 +18,13 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Legt die Kaste der Ameise fest die als nächstes geboren wird
+        /// Jedes mal, wenn eine neue Ameise geboren wird, muss ihre Berufsgruppe
+        /// bestimmt werden. Das kannst du mit Hilfe dieses Rückgabewertes dieser 
+        /// Methode steuern.
+        /// <see href="http://wiki.antme.net/de/API1:BestimmeKaste">Weitere Infos</see>
         /// </summary>
-        /// <param name="anzahl">Liste von Ameisenkasten und deren aktuell lebende Anzahl</param>
-        /// <returns>Zeichenkette des neuen Ameisenkaste</returns>
+        /// <param name="anzahl">Anzahl Ameisen pro Kaste</param>
+        /// <returns>Name der Kaste zu der die geborene Ameise gehören soll</returns>
         public virtual string BestimmeKaste(Dictionary<string, int> anzahl)
         {
             return "";
@@ -27,11 +32,14 @@ namespace AntMe.Deutsch
 
         internal override void IstGestorbenBase(CoreKindOfDeath todesArt)
         {
-            IstGestorben((Todesart) (int) todesArt);
+            IstGestorben((Todesart)(int)todesArt);
         }
 
         /// <summary>
-        /// Wird aufgerufen, wenn eine Ameise stirbt
+        /// Wenn eine Ameise stirbt, wird diese Methode aufgerufen. Man erfährt dadurch, wie 
+        /// die Ameise gestorben ist. Die Ameise kann zu diesem Zeitpunkt aber keinerlei Aktion 
+        /// mehr ausführen.
+        /// <see href="http://wiki.antme.net/de/API1:IstGestorben">Weitere Infos</see>
         /// </summary>
         /// <param name="todesart">Art des Todes</param>
         public virtual void IstGestorben(Todesart todesart)
@@ -44,12 +52,13 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Wird aufgerufen, wenn die Ameise eine Markierung riecht
+        /// Markierungen, die von anderen Ameisen platziert werden, können von befreundeten Ameisen 
+        /// gewittert werden. Diese Methode wird aufgerufen, wenn eine Ameise zum ersten Mal eine 
+        /// befreundete Markierung riecht.
+        /// <see href="http://wiki.antme.net/de/API1:RiechtFreund(Markierung)">Weitere Infos</see>
         /// </summary>
-        /// <param name="markierung">gerochene Markierung</param>
-        public virtual void RiechtFreund(Markierung markierung)
-        {
-        }
+        /// <param name="markierung">Die gerochene Markierung</param>
+        public virtual void RiechtFreund(Markierung markierung) { }
 
         internal override void SiehtBase(CoreFruit obst)
         {
@@ -57,12 +66,12 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Wird aufgerufen, wenn die Ameise Obst sieht
+        /// Sobald eine Ameise innerhalb ihres Sichtradius einen Apfel erspäht wird 
+        /// diese Methode aufgerufen. Als Parameter kommt das betroffene Stück Obst.
+        /// <see href="http://wiki.antme.net/de/API1:Sieht(Obst)">Weitere Infos</see>
         /// </summary>
-        /// <param name="obst">obst</param>
-        public virtual void Sieht(Obst obst)
-        {
-        }
+        /// <param name="obst">Das gesichtete Stück Obst</param>
+        public virtual void Sieht(Obst obst) { }
 
         internal override void SiehtBase(CoreSugar zucker)
         {
@@ -70,12 +79,12 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Wird aufgerufen, wenn die Ameise Zucker sieht
+        /// Sobald eine Ameise innerhalb ihres Sichtradius einen Zuckerhügel erspäht wird 
+        /// diese Methode aufgerufen. Als Parameter kommt der betroffene Zuckerghügel.
+        /// <see href="http://wiki.antme.net/de/API1:Sieht(Zucker)">Weitere Infos</see>
         /// </summary>
-        /// <param name="zucker">Verweis auf den Zucker</param>
-        public virtual void Sieht(Zucker zucker)
-        {
-        }
+        /// <param name="zucker">Der gesichtete Zuckerhügel</param>
+        public virtual void Sieht(Zucker zucker) { }
 
         internal override void SiehtFeindBase(CoreAnt ameise)
         {
@@ -83,12 +92,13 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Wird aufgerufen, wenn die Ameise eine feindliche Ameise sieht
+        /// So wie Ameisen unterschiedliche Nahrungsmittel erspähen können, entdecken Sie auch 
+        /// andere Spielelemente. Entdeckt die Ameise eine Ameise aus einem feindlichen Volk, 
+        /// so wird diese Methode aufgerufen.
+        /// <see href="http://wiki.antme.net/de/API1:SiehtFeind(Ameise)">Weitere Infos</see>
         /// </summary>
-        /// <param name="ameise">feindliche Ameise</param>
-        public virtual void SiehtFeind(Ameise ameise)
-        {
-        }
+        /// <param name="ameise">Erspähte feindliche Ameise</param>
+        public virtual void SiehtFeind(Ameise ameise) { }
 
         internal override void SiehtFeindBase(CoreBug wanze)
         {
@@ -96,12 +106,12 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Wird aufgerufen, wenn die Ameise eine Wanze trifft
+        /// So wie Ameisen unterschiedliche Nahrungsmittel erspähen können, entdecken Sie auch 
+        /// andere Spielelemente. Entdeckt die Ameise eine Wanze, so wird diese Methode aufgerufen.
+        /// <see href="http://wiki.antme.net/de/API1:SiehtFeind(Wanze)">Weitere Infos</see>
         /// </summary>
-        /// <param name="wanze">Wanze</param>
-        public virtual void SiehtFeind(Wanze wanze)
-        {
-        }
+        /// <param name="wanze">Erspähte Wanze</param>
+        public virtual void SiehtFeind(Wanze wanze) { }
 
         internal override void SiehtFreundBase(CoreAnt ameise)
         {
@@ -109,12 +119,13 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Wird aufgerufen, wenn die Ameise eine befreundete Ameise trifft
+        /// So wie Ameisen unterschiedliche Nahrungsmittel erspähen können, entdecken Sie auch 
+        /// andere Spielelemente. Entdeckt die Ameise eine Ameise aus dem eigenen Volk, so 
+        /// wird diese Methode aufgerufen.
+        /// <see href="http://wiki.antme.net/de/API1:SiehtFreund(Ameise)">Weitere Infos</see>
         /// </summary>
-        /// <param name="ameise">befreundete Ameise</param>
-        public virtual void SiehtFreund(Ameise ameise)
-        {
-        }
+        /// <param name="ameise">Erspähte befreundete Ameise</param>
+        public virtual void SiehtFreund(Ameise ameise) { }
 
         internal override void SiehtVerbündetenBase(CoreAnt ameise)
         {
@@ -122,10 +133,13 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Wird aufgerufen, wenn die Ameise eine befreundete Ameise eines anderen Teams trifft.
+        /// So wie Ameisen unterschiedliche Nahrungsmittel erspähen können, entdecken Sie auch 
+        /// andere Spielelemente. Entdeckt die Ameise eine Ameise aus einem befreundeten Volk 
+        /// (Völker im selben Team), so wird diese Methode aufgerufen.
+        /// <see href="http://wiki.antme.net/de/API1:SiehtVerb%C3%BCndeten(Ameise)">Weitere Infos</see>
         /// </summary>
-        /// <param name="ameise"></param>
-        public virtual void SiehtVerbündeten(Ameise ameise) {}
+        /// <param name="ameise">Erspähte verbündete Ameise</param>
+        public virtual void SiehtVerbündeten(Ameise ameise) { }
 
         internal override void TickBase()
         {
@@ -133,11 +147,12 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Wird in jeder Runde aufgerufen
+        /// Diese Methode wird in jeder Simulationsrunde aufgerufen - ungeachtet von zusätzlichen 
+        /// Bedingungen. Dies eignet sich für Aktionen, die unter Bedingungen ausgeführt werden 
+        /// sollen, die von den anderen Methoden nicht behandelt werden.
+        /// <see href="http://wiki.antme.net/de/API1:Tick">Weitere Infos</see>
         /// </summary>
-        public virtual void Tick()
-        {
-        }
+        public virtual void Tick() { }
 
         internal override void WartetBase()
         {
@@ -145,24 +160,25 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Wird aufgerufen, wenn die Ameise keinen Arbeitsauftrag mehr hat
+        /// Wenn die Ameise keinerlei Aufträge hat, wartet sie auf neue Aufgaben. Um dir das 
+        /// mitzuteilen, wird diese Methode hier aufgerufen.
+        /// <see href="http://wiki.antme.net/de/API1:Wartet">Weitere Infos</see>
         /// </summary>
-        public virtual void Wartet()
-        {
-        }
+        public virtual void Wartet() { }
 
         internal override void WirdAngegriffenBase(CoreAnt ameise)
         {
             WirdAngegriffen(new Ameise(ameise));
         }
 
-        /// <summary>
-        /// Wird aufgerufen, wenn die Ameise von einer feindlichen Ameise attackiert wird
+        // <summary>
+        /// Es kann vorkommen, dass feindliche Lebewesen eine Ameise aktiv angreifen. Sollte 
+        /// eine feindliche Ameise angreifen, wird diese Methode hier aufgerufen und die 
+        /// Ameise kann entscheiden, wie sie darauf reagieren möchte.
+        /// <see href="http://wiki.antme.net/de/API1:WirdAngegriffen(Ameise)">Weitere Infos</see>
         /// </summary>
-        /// <param name="ameise">feindliche Ameise</param>
-        public virtual void WirdAngegriffen(Ameise ameise)
-        {
-        }
+        /// <param name="ameise">Angreifende Ameise</param>
+        public virtual void WirdAngegriffen(Ameise ameise) { }
 
         internal override void WirdAngegriffenBase(CoreBug wanze)
         {
@@ -170,12 +186,13 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Wird aufgerufen, wenn die Ameise von einer Wanze attackiert wird
+        /// Es kann vorkommen, dass feindliche Lebewesen eine Ameise aktiv angreifen. Sollte 
+        /// eine Wanze angreifen, wird diese Methode hier aufgerufen und die Ameise kann 
+        /// entscheiden, wie sie darauf reagieren möchte.
+        /// <see href="http://wiki.antme.net/de/API1:WirdAngegriffen(Wanze)">Weitere Infos</see>
         /// </summary>
-        /// <param name="wanze">Wanze</param>
-        public virtual void WirdAngegriffen(Wanze wanze)
-        {
-        }
+        /// <param name="wanze">Angreifende Wanze</param>
+        public virtual void WirdAngegriffen(Wanze wanze) { }
 
         internal override void WirdMüdeBase()
         {
@@ -183,11 +200,10 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Wird aufgerufen, sobald die Ameise ein Drittel ihrer Reichweite zurückgelegt hat
+        /// Erreicht eine Ameise ein drittel ihrer Laufreichweite, wird diese Methode aufgerufen.
+        /// <see href="http://wiki.antme.net/de/API1:WirdM%C3%BCde">Weitere Infos</see>
         /// </summary>
-        public virtual void WirdMüde()
-        {
-        }
+        public virtual void WirdMüde() { }
 
         internal override void ZielErreichtBase(CoreFruit obst)
         {
@@ -195,12 +211,13 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Wird aufgerufen, wenn die Ameise am anvisierten Obst angekommen ist
+        /// Hat die Ameise ein Stück Obst als Ziel festgelegt, wird diese Methode aufgerufen, 
+        /// sobald die Ameise ihr Ziel erreicht hat. Ab jetzt ist die Ameise nahe genug um mit 
+        /// dem Ziel zu interagieren.
+        /// <see href="http://wiki.antme.net/de/API1:ZielErreicht(Obst)">Weitere Infos</see>
         /// </summary>
-        /// <param name="obst">anvisiertes Obst</param>
-        public virtual void ZielErreicht(Obst obst)
-        {
-        }
+        /// <param name="obst">Das erreichte Stück Obst</param>
+        public virtual void ZielErreicht(Obst obst) { }
 
         internal override void ZielErreichtBase(CoreSugar zucker)
         {
@@ -208,19 +225,22 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Wird aufgerufen, wenn die Ameise am anvisierten Zuckerberg angekommen ist
+        /// Hat die Ameise eine Zuckerhügel als Ziel festgelegt, wird diese Methode aufgerufen, 
+        /// sobald die Ameise ihr Ziel erreicht hat. Ab jetzt ist die Ameise nahe genug um mit 
+        /// dem Ziel zu interagieren.
+        /// <see href="http://wiki.antme.net/de/API1:ZielErreicht(Zucker)">Weitere Infos</see>
         /// </summary>
-        /// <param name="zucker">anvisierter Zuckerberg</param>
-        public virtual void ZielErreicht(Zucker zucker)
-        {
-        }
+        /// <param name="zucker">Der erreichte Zuckerhügel</param>
+        public virtual void ZielErreicht(Zucker zucker) { }
 
         #endregion
 
         #region Befehlswrapper
 
         /// <summary>
-        /// Dreht die Ameise in die angegebene Richtung
+        /// Die Ameise dreht sich in die angegebene Richtung. Die Drehrichtung wird 
+        /// dabei automatisch bestimmt.
+        /// <see href="http://wiki.antme.net/de/API1:DreheInRichtung">Weitere Infos</see>
         /// </summary>
         /// <param name="richtung">Zielrichtung</param>
         public void DreheInRichtung(int richtung)
@@ -229,16 +249,20 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Dreht die Ameise um den angegebenen Winkel
+        /// Die Ameise dreht sich um den angegebenen Winkel. Positive Werte drehen 
+        /// die Ameise nach rechts, negative nach links.
+        /// <see href="http://wiki.antme.net/de/API1:DreheUmWinkel">Weitere Infos</see>
         /// </summary>
-        /// <param name="winkel">winkel</param>
+        /// <param name="winkel">Winkel</param>
         public void DreheUmWinkel(int winkel)
         {
             DreheUmWinkelBase(winkel);
         }
 
         /// <summary>
-        /// Dreht die Ameise in die entgegengesetzt Richtung
+        /// Die Ameise dreht sich um 180 Grad in die entgegengesetzte Richtung. Hat 
+        /// die selbe Wirkung wie DreheUmWinkel(180).
+        /// <see href="http://wiki.antme.net/de/API1:DreheUm">Weitere Infos</see>
         /// </summary>
         public void DreheUm()
         {
@@ -246,16 +270,19 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Dreht die Ameise in Richtung des Ziels
+        /// Die Ameise dreht sich in die Richtung des angegebenen Ziels.
+        /// <see href="http://wiki.antme.net/de/API1:DreheZuZiel">Weitere Infos</see>
         /// </summary>
-        /// <param name="ziel">anvisiertes Ziel</param>
+        /// <param name="ziel">Anvisiertes Ziel</param>
         public void DreheZuZiel(Spielobjekt ziel)
         {
             DreheZuZielBase(ziel.Element);
         }
 
         /// <summary>
-        /// Lässt die Ameise sofort anhalten
+        /// Die Ameise bleibt stehen und vergisst ihr aktuelles Ziel. In der nächsten 
+        /// Runde wird das Ereignis Wartet() aufgerufen werden.
+        /// <see href="http://wiki.antme.net/de/API1:BleibStehen">Weitere Infos</see>
         /// </summary>
         public void BleibStehen()
         {
@@ -263,7 +290,10 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Lässt die Ameise geradeaus gehen
+        /// Die Ameise geht geradeaus. Das Ziel der Ameise bleibt unangetastet. Wenn 
+        /// ein Wert angegeben wird, wird die Ameise wieder ihr Ziel anvisieren, 
+        /// nachdem sie die angegebene Entfernung zurückgelegt hat.
+        /// <see href="http://wiki.antme.net/de/API1:GeheGeradeaus">Weitere Infos</see>
         /// </summary>
         public void GeheGeradeaus()
         {
@@ -271,34 +301,45 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Lässt die Ameise die angegebenen Schritte geradeaus laufen
+        /// Die Ameise geht geradeaus. Das Ziel der Ameise bleibt unangetastet. Wenn 
+        /// ein Wert angegeben wird, wird die Ameise wieder ihr Ziel anvisieren, 
+        /// nachdem sie die angegebene Entfernung zurückgelegt hat.
+        /// <see href="http://wiki.antme.net/de/API1:GeheGeradeaus">Weitere Infos</see>
         /// </summary>
-        /// <param name="entfernung">zu laufende Strecke</param>
+        /// <param name="entfernung">Zu laufende Strecke in Ameisenschritten</param>
         public void GeheGeradeaus(int entfernung)
         {
             GeheGeradeausBase(entfernung);
         }
 
         /// <summary>
-        /// Lässt die Ameise in entgegengesetzte Richtung davon laufen
+        /// Die Ameise dreht sich in die Richtung die vom angegebenen Ziel weg zeigt 
+        /// und geht dann geradeaus. Das Ziel der Ameise bleibt unangetastet und es 
+        /// kann eine Entfernung angegeben werden.
+        /// <see href="http://wiki.antme.net/de/API1:GeheWegVon">Weitere Infos</see>
         /// </summary>
-        /// <param name="ziel">Objekt, vor dem weggerannt werden soll</param>
+        /// <param name="ziel">Objekt, vor dem weggegangen werden soll</param>
         public void GeheWegVon(Spielobjekt ziel)
         {
             GeheWegVonBase(ziel.Element);
         }
 
         /// <summary>
-        /// Lässt die Ameise in entgegengesetzte Richtung davon laufen
+        /// Die Ameise dreht sich in die Richtung die vom angegebenen Ziel weg zeigt 
+        /// und geht dann geradeaus. Das Ziel der Ameise bleibt unangetastet und es 
+        /// kann eine Entfernung angegeben werden.
+        /// <see href="http://wiki.antme.net/de/API1:GeheWegVon">Weitere Infos</see>
         /// </summary>
-        /// <param name="ziel">Objekt, vor dem weggerannt werden soll</param>
+        /// <param name="ziel">Objekt, vor dem weggegangen werden soll</param>
         /// <param name="entfernung">Entfernung, die zurückgelegt werden soll</param>
-        public void GeheWegVon(Spielobjekt ziel, int entfernung) {
+        public void GeheWegVon(Spielobjekt ziel, int entfernung)
+        {
             GeheWegVonBase(ziel.Element, entfernung);
         }
 
         /// <summary>
-        /// Lässt die Ameise zum angegebenen Ziel laufen
+        /// Die Ameise speichert das angegebene Ziel und geht dort hin.
+        /// <see href="http://wiki.antme.net/de/API1:GeheZuZiel">Weitere Infos</see>
         /// </summary>
         /// <param name="ziel">Ziel</param>
         public void GeheZuZiel(Spielobjekt ziel)
@@ -307,7 +348,8 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Lässt die Ameise zurück zum Bau laufen
+        /// Die Ameise speichert den nächstgelegenen Bau als Ziel und geht dort hin.
+        /// <see href="http://wiki.antme.net/de/API1:GeheZuBau">Weitere Infos</see>
         /// </summary>
         public void GeheZuBau()
         {
@@ -315,32 +357,44 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Lässt die Ameise das angegebene Insekt angreifen
+        /// Die Ameise speichert die angegebene Wanze oder die angegebene feindliche 
+        /// Ameise als Ziel und geht dort hin. Wenn die Ameise angekommen ist, 
+        /// beginnt der Kampf.
+        /// <see href="http://wiki.antme.net/de/API1:GreifeAn">Weitere Infos</see>
         /// </summary>
         /// <param name="ziel">Angriffsziel</param>
         public void GreifeAn(Insekt ziel)
         {
-            GreifeAnBase((CoreInsect) ziel.Element);
+            GreifeAnBase((CoreInsect)ziel.Element);
         }
 
         /// <summary>
-        /// Nimmt die angegebene Nahrung auf
+        /// Die Ameise nimmt die angegebene Nahrung auf. Bei einem Zuckerhaufen nimmt 
+        /// sie so viel wie möglich weg, bis sie ihre maximale Last erreicht hat 
+        /// (siehe <see cref="AktuelleLast" /> und <see cref="MaximaleLast" />).
+        /// Im Falle eines Obststückes beginnt die Ameise das Obst zu tragen 
+        /// (siehe <see cref="GetragenesObst" />).
+        /// <see href="http://wiki.antme.net/de/API1:Nimm">Weitere Infos</see>
         /// </summary>
         /// <param name="nahrung">Nahrung</param>
         public void Nimm(Nahrung nahrung)
         {
             if (nahrung is Zucker)
             {
-                NimmBase((CoreSugar) nahrung.Element);
+                NimmBase((CoreSugar)nahrung.Element);
             }
             else if (nahrung is Obst)
             {
-                NimmBase((CoreFruit) nahrung.Element);
+                NimmBase((CoreFruit)nahrung.Element);
             }
         }
 
         /// <summary>
-        /// Lässt die gerade getragene Nahrung fallen
+        /// Die Ameise lässt die gerade getragene Nahrung fallen. Zucker geht dabei 
+        /// verloren, Äpfel bleiben liegen und können wieder aufgenommen werden. Der 
+        /// Befehl muss nicht ausgeführt werden um Nahrung im Bau abzuliefern. Das 
+        /// passiert dort automatisch.
+        /// <see href="http://wiki.antme.net/de/API1:LasseNahrungFallen">Weitere Infos</see>
         /// </summary>
         public void LasseNahrungFallen()
         {
@@ -348,7 +402,12 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Sprüht eine Markierung mit minimaler Größe
+        /// Die Ameise sprüht an der aktuellen Stelle eine Duftmarkierung. Mögliche 
+        /// Parameter sind eine in der Markierung hinterlegte Information (diese kann im 
+        /// Ereignis Sieht(Markierung) über "markierung.Information" ausgelesen werden) und 
+        /// die Ausbreitung der Markierung. Je größer die Ausbreitung, desto schneller 
+        /// verschwindet die Markierung wieder.
+        /// <see href="http://wiki.antme.net/de/API1:Spr%C3%BCheMarkierung">Weitere Infos</see>
         /// </summary>
         /// <param name="information">Information</param>
         public void SprüheMarkierung(int information)
@@ -357,18 +416,24 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Sprüht eine Markierung mit angegebener Größe
+        /// Die Ameise sprüht an der aktuellen Stelle eine Duftmarkierung. Mögliche Parameter 
+        /// sind eine in der Markierung hinterlegte Information (diese kann im Ereignis 
+        /// Sieht(Markierung) über markierung.Information ausgelesen werden) und die Ausbreitung 
+        /// der Markierung. Je größer die Ausbreitung, desto schneller verschwindet die 
+        /// Markierung wieder.
+        /// <see href="http://wiki.antme.net/de/API1:Spr%C3%BCheMarkierung">Weitere Infos</see>
         /// </summary>
         /// <param name="information">Information</param>
-        /// <param name="größe">Größe der Markierung</param>
+        /// <param name="größe">Größe der Markierung in Ameisenschritten</param>
         public void SprüheMarkierung(int information, int größe)
         {
             SprüheMarkierungBase(information, größe);
         }
 
         /// <summary>
-        /// Lässt die Ameise über diese Nachricht nachdenken. 
-        /// Im Debug-Modus wird das als Denkblase über der Ameise angezeigt.
+        /// Mit Hilfe dieses Befehls gibt die Ameise Denkblasen aus, die zur Fehlersuche 
+        /// eingesetzt werden können.
+        /// <see href="http://wiki.antme.net/de/API1:Denke">Weitere Infos</see>
         /// </summary>
         /// <param name="nachricht">Nachricht</param>
         public void Denke(string nachricht)
@@ -381,7 +446,8 @@ namespace AntMe.Deutsch
         #region Eigenschaften
 
         /// <summary>
-        /// Liefert die maximale Energie
+        /// Gibt die maximale Energie der Ameise an. Die Einheit ist Lebenspunkte.
+        /// <see href="http://wiki.antme.net/de/API1:MaximaleEnergie">Weitere Infos</see>
         /// </summary>
         public int MaximaleEnergie
         {
@@ -389,7 +455,8 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Liefert die maximale Geschwindigkeit
+        /// Gibt die maximale Geschwindigkeit der Ameise an. Die Einheit ist Schritte pro Runde.
+        /// <see href="http://wiki.antme.net/de/API1:MaximaleGeschwindigkeit">Weitere Infos</see>
         /// </summary>
         public int MaximaleGeschwindigkeit
         {
@@ -397,7 +464,10 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Liefert die maximale Last
+        /// Gibt die maximal tragbare Last der Ameise an. Die Einheit ist Nahrungspunkte. 
+        /// Dieser Wert bestimmt, wie viel Zucker die Ameise auf einmal tragen kann und 
+        /// wie schnell sie ohne die Hilfe anderer Ameisen einen Apfel tragen kann.
+        /// <see href="http://wiki.antme.net/de/API1:MaximaleLast">Weitere Infos</see>
         /// </summary>
         public int MaximaleLast
         {
@@ -405,7 +475,11 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Gibt die Reichweite an
+        /// Gibt die Reichweite in Schritten an die die Ameise zurücklegen kann, bevor sie 
+        /// vor Hunger stirbt. Nachdem die Ameise ein Drittel dieser Strecke zurückgelegt hat, 
+        /// wird das Ereignis WirdMüde() aufgerufen und der Wert von IstMüde auf wahr gesetzt. 
+        /// Siehe ZurückgelegteStrecke.
+        /// <see href="http://wiki.antme.net/de/API1:Reichweite">Weitere Infos</see>
         /// </summary>
         public int Reichweite
         {
@@ -413,7 +487,10 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Angriffswert
+        /// Gibt den Angriffswert der Ameise an. Der Angriffswert bestimmt wie viele 
+        /// Lebenspunkte die Ameise einem Gegner in jeder Runde abzieht. Die Einheit 
+        /// ist Lebenspunkte.
+        /// <see href="http://wiki.antme.net/de/API1:Angriff">Weitere Infos</see>
         /// </summary>
         public int Angriff
         {
@@ -421,7 +498,10 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Sichtweite der Ameise
+        /// Gibt den Wahrnehmungsradius der Ameise in Schritten an. Dieser Radius bestimmt 
+        /// wie weit die Ameise von Spielelementen wie z.B. Zucker entfernt sein muss damit 
+        /// die Ameise sie sieht. Die Blickrichtung der Ameise spielt dabei keine Rolle.
+        /// <see href="http://wiki.antme.net/de/API1:Sichtweite">Weitere Infos</see>
         /// </summary>
         public int Sichtweite
         {
@@ -429,7 +509,9 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Drehgeschwindigkeit
+        /// Gibt die Geschwindigkeit an mit der sich eine Ameise drehen kann. Die Einheit 
+        /// ist Grad pro Runde.
+        /// <see href="http://wiki.antme.net/de/API1:Drehgeschwindigkeit">Weitere Infos</see>
         /// </summary>
         public int Drehgeschwindigkeit
         {
@@ -437,7 +519,10 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Aktuelle Energie
+        /// Gibt die aktuelle Energie der Ameise an. Die Einheit ist Lebenspunkte. Hat die 
+        /// Ameise 0 Lebenspunkte oder weniger, dann stirbt sie. Dieser Wert ist immer 
+        /// kleiner oder gleich MaximaleEnergie.
+        /// <see href="http://wiki.antme.net/de/API1:AktuelleEnergie">Weitere Infos</see>
         /// </summary>
         public int AktuelleEnergie
         {
@@ -445,7 +530,13 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Aktuelle Geschwindigkeit
+        /// Gibt die aktuell mögliche Geschwindigkeit der Ameise an. Die Einheit ist Schritte 
+        /// pro Runde. Der Wert wird von der aktuellen Last der Ameise beeinflusst. Ameisen 
+        /// die unter voller Last bewegt werden, können nur die Hälfte ihrer 
+        /// Maximalgeschwindigkeit erreichen. Diese Eigenschaft liefert immer einen Wert 
+        /// größer 0 zurück, auch wenn die Ameise still steht. Dieser Wert ist immer kleiner 
+        /// oder gleich MaximaleGeschwindigkeit.
+        /// <see href="http://wiki.antme.net/de/API1:AktuelleGeschwindigkeit">Weitere Infos</see>
         /// </summary>
         public int AktuelleGeschwindigkeit
         {
@@ -453,7 +544,9 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Aktuelle Last
+        /// Gibt die aktuelle Last an, die die Ameise gerade trägt. Die Einheit ist Nahrungspunkte. 
+        /// Dieser Wert ist immer kleiner oder gleich MaximaleLast.
+        /// <see href="http://wiki.antme.net/de/API1:AktuelleLast">Weitere Infos</see>
         /// </summary>
         public int AktuelleLast
         {
@@ -461,7 +554,9 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Anzahl befreundeter Ameisen in Sichtweite
+        /// Gibt die Anzahl der Ameisen desselben Volkes des im Wahrnehmungsradius der Ameise zurück. 
+        /// Das Ergebnis dieser Berechnung ist von der Sichtweite der Ameise abhängig.
+        /// <see href="http://wiki.antme.net/de/API1:AnzahlAmeisenInSichtweite">Weitere Infos</see>
         /// </summary>
         public int AnzahlAmeisenInSichtweite
         {
@@ -469,35 +564,49 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Anzahl befreundeter Ameisen aus der selben Kaste in Sichtweite
+        /// Gibt die Anzahl der befreundeten Ameisen desselben Volkes und derselben Kaste im 
+        /// Wahrnehmungsradius der Ameise zurück. Das Ergebnis dieser Berechnung ist von der 
+        /// Sichtweite der Ameise abhängig.
+        /// <see href="http://wiki.antme.net/de/API1:AnzahlAmeisenDerSelbenKasteInSichtweite">Weitere Infos</see>
         /// </summary>
-        public int AnzahlAmeisenDerSelbenKasteInSichtweite {
+        public int AnzahlAmeisenDerSelbenKasteInSichtweite
+        {
             get { return FriendlyAntsFromSameCasteInViewrange; }
         }
 
         /// <summary>
-        /// Anzahl Ameisen aus Völkern des eigenen Teams in Sichtweite.
+        /// Gibt die Anzahl der befreundeten Ameisen desselben Teams im Wahrnehmungsradius der Ameise zurück. 
+        /// Das Ergebnis dieser Berechnung ist von der Sichtweite der Ameise abhängig.
+        /// <see href="http://wiki.antme.net/de/API1:AnzahlAmeisenDesTeamsInSichtweite">Weitere Infos</see>
         /// </summary>
-        public int AnzahlAmeisenDesTeamsInSichtweite {
+        public int AnzahlAmeisenDesTeamsInSichtweite
+        {
             get { return TeamAntsInViewrange; }
         }
 
         /// <summary>
-        /// Anzahl fremder Ameisen aus anderen Teams in Sichtweite.
+        /// Gibt die Anzahl der feindlichen Ameisen im Wahrnehmungsradius der Ameise zurück. 
+        /// Das Ergebnis dieser Berechnung ist von der Sichtweite der Ameise abhängig.
+        /// <see href="http://wiki.antme.net/de/API1:AnzahlFremderAmeisenInSichtweite">Weitere Infos</see>
         /// </summary>
-        public int AnzahlFremderAmeisenInSichtweite {
+        public int AnzahlFremderAmeisenInSichtweite
+        {
             get { return ForeignAntsInViewrange; }
         }
 
         /// <summary>
-        /// Anzahl Wanzen in Sichtweite.
+        /// Gibt die Anzahl der Wanzen im Wahrnehmungsradius der Ameise zurück. Das Ergebnis 
+        /// dieser Berechnung ist von der Sichtweite der Ameise abhängig.
+        /// <see href="http://wiki.antme.net/de/API1:WanzenInSichtweite">Weitere Infos</see>
         /// </summary>
-        public int WanzenInSichtweite {
+        public int WanzenInSichtweite
+        {
             get { return BugsInViewrange; }
         }
 
         /// <summary>
-        /// Gibt die Entfernung zum nächsten Bau an
+        /// Gibt die Entfernung in Schritten zum nächstgelegenen befreundeten Ameisenbau an.
+        /// <see href="http://wiki.antme.net/de/API1:EntfernungZuBau">Weitere Infos</see>
         /// </summary>
         public int EntfernungZuBau
         {
@@ -505,7 +614,9 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Liefert das aktuell getragene Obst
+        /// Gibt das aktuell getragene Obststück zurück. Wenn die Ameise gerade kein Obst 
+        /// trägt, zeigt dieser Verweis ins Leere.
+        /// <see href="http://wiki.antme.net/de/API1:GetragenesObst">Weitere Infos</see>
         /// </summary>
         public Obst GetragenesObst
         {
@@ -523,7 +634,8 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Liefert die Ameisenkaste
+        /// Gibt des Namen der Kaste der Ameise zurück.
+        /// <see href="http://wiki.antme.net/de/API1:Kaste">Weitere Infos</see>
         /// </summary>
         public string Kaste
         {
@@ -531,15 +643,9 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Index der Ameisenkaste
-        /// </summary>
-        public int CasteIndex
-        {
-            get { return CasteIndexBase; }
-        }
-
-        /// <summary>
-        /// Liefert das Ziel der Ameise
+        /// Gibt das aktuelle Ziel der Ameise zurück. Wenn die Ameise gerade 
+        /// kein Ziel hat, zeigt dieser Verweis ins Leere.
+        /// <see href="http://wiki.antme.net/de/API1:Ziel">Weitere Infos</see>
         /// </summary>
         public Spielobjekt Ziel
         {
@@ -547,27 +653,27 @@ namespace AntMe.Deutsch
             {
                 if (ZielBase is CoreSugar)
                 {
-                    return new Zucker((CoreSugar) ZielBase);
+                    return new Zucker((CoreSugar)ZielBase);
                 }
                 else if (ZielBase is CoreFruit)
                 {
-                    return new Obst((CoreFruit) ZielBase);
+                    return new Obst((CoreFruit)ZielBase);
                 }
                 else if (ZielBase is CoreAnt)
                 {
-                    return new Ameise((CoreAnt) ZielBase);
+                    return new Ameise((CoreAnt)ZielBase);
                 }
                 else if (ZielBase is CoreBug)
                 {
-                    return new Wanze((CoreBug) ZielBase);
+                    return new Wanze((CoreBug)ZielBase);
                 }
                 else if (ZielBase is CoreMarker)
                 {
-                    return new Markierung((CoreMarker) ZielBase);
+                    return new Markierung((CoreMarker)ZielBase);
                 }
                 else if (ZielBase is CoreAnthill)
                 {
-                    return new Bau((CoreAnthill) ZielBase);
+                    return new Bau((CoreAnthill)ZielBase);
                 }
                 else
                 {
@@ -577,7 +683,11 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Ist die Ameise müde
+        /// Gibt an ob die Ameise müde ist. Die Ameise wird müde, sobald sie ein 
+        /// Drittel ihrer maximalen Reichweite zurückgelegt hat. Nach dem Übergang 
+        /// des Wertes dieser Eigenschaft von falsch auf wahr wird das Ereignis 
+        /// WirdMüde() aufgerufen.
+        /// <see href="http://wiki.antme.net/de/API1:IstM%C3%BCde">Weitere Infos</see>
         /// </summary>
         public bool IstMüde
         {
@@ -585,7 +695,10 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Verbleibende Reststrecke bis zum erreichen des Ziels
+        /// Gibt an wie viele Schritte die Ameise noch geradeaus gehen wird, bevor 
+        /// sie wieder ihr Ziel anvisiert. Dieser Wert wird in jeder Runde um 
+        /// AktuelleGeschwindigkeit verringert.
+        /// <see href="http://wiki.antme.net/de/API1:RestStrecke">Weitere Infos</see>
         /// </summary>
         public int RestStrecke
         {
@@ -593,7 +706,10 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Verbleibende Drehung bis zur Ausrichtung zum Ziel
+        /// Gibt an wie viele Grad die Ameise sich noch drehen wird, bevor sie wieder 
+        /// geradeaus gehen wird. Dieser Wert wird in jeder Runde um DrehGeschwindigkeit 
+        /// verringert.
+        /// <see href="http://wiki.antme.net/de/API1:RestWinkel">Weitere Infos</see>
         /// </summary>
         public int RestWinkel
         {
@@ -601,7 +717,10 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Ausrichtung der Ameise
+        /// Gibt die Blickrichtung der Ameise in Grad auf dem Spielfeld an. 0 ist dabei 
+        /// rechts (Osten) und der Winkel öffnet sich im Uhrzeigersinn. 90 ist daher 
+        /// unten (Süden), 180 rechts (Westen) und 270 oben.
+        /// <see href="http://wiki.antme.net/de/API1:Richtung">Weitere Infos</see>
         /// </summary>
         public int Richtung
         {
@@ -609,7 +728,8 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Informiert darüber, ob die Ameise ihr Ziel erreicht hat
+        /// Gibt an ob die Ameise an ihrem Ziel angekommen ist.
+        /// <see href="http://wiki.antme.net/de/API1:Angekommen">Weitere Infos</see>
         /// </summary>
         public bool Angekommen
         {
@@ -617,7 +737,9 @@ namespace AntMe.Deutsch
         }
 
         /// <summary>
-        /// Die, von der Ameise zurückgelgte Strecke
+        /// Diese Eigenschaft gibt die Gesamtanzahl an Schritten zurück die die Ameise 
+        /// seit ihrem letzten Besuch in einem Ameisenbau zurückgelegt hat. Siehe Reichweite
+        /// <see href="http://wiki.antme.net/de/API1:Zur%C3%BCckgelegteStrecke">Weitere Infos</see>
         /// </summary>
         public int ZurückgelegteStrecke
         {
@@ -629,13 +751,14 @@ namespace AntMe.Deutsch
         #region Hilfemethoden
 
         /// <summary>
-        /// Ermittelt, ob das übergebene Stück Obst noch weitere Träger braucht
+        /// Ermittelt ob das angegebene Obst noch mehr Ameisen zum Tragen benötigt.
+        /// <see href="http://wiki.antme.net/de/API1:BrauchtNochTr%C3%A4ger">Weitere Infos</see>
         /// </summary>
         /// <param name="obst">zu prüfendes Obst</param>
         /// <returns>Braucht noch Träger</returns>
         public bool BrauchtNochTräger(Obst obst)
         {
-            return ((CoreFruit) obst.Element).BrauchtNochTräger(colony);
+            return ((CoreFruit)obst.Element).BrauchtNochTräger(colony);
         }
 
         #endregion

@@ -285,25 +285,25 @@ namespace AntMe.Simulation
                                         case "Name":
                                             caste.Name = (string)argument.TypedValue.Value;
                                             break;
-                                        case "SpeedModificator":
+                                        case "SpeedModifier":
                                             caste.Speed = (int)argument.TypedValue.Value;
                                             break;
-                                        case "RotationSpeedModificator":
+                                        case "RotationSpeedModifier":
                                             caste.RotationSpeed = (int)argument.TypedValue.Value;
                                             break;
-                                        case "LoadModificator":
+                                        case "LoadModifier":
                                             caste.Load = (int)argument.TypedValue.Value;
                                             break;
-                                        case "RangeModificator":
+                                        case "RangeModifier":
                                             caste.Range = (int)argument.TypedValue.Value;
                                             break;
-                                        case "ViewRangeModificator":
+                                        case "ViewRangeModifier":
                                             caste.ViewRange = (int)argument.TypedValue.Value;
                                             break;
-                                        case "EnergyModificator":
+                                        case "EnergyModifier":
                                             caste.Energy = (int)argument.TypedValue.Value;
                                             break;
-                                        case "AttackModificator":
+                                        case "AttackModifier":
                                             caste.Attack = (int)argument.TypedValue.Value;
                                             break;
                                     }

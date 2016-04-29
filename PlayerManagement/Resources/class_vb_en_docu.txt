@@ -1,0 +1,192 @@
+﻿Imports System.Collections.Generic
+
+Imports AntMe.English
+
+<Player( _
+    ColonyName:="{2}", _
+    FirstName:="", _
+    LastName:="" _
+)> _
+<Caste( _
+    Name:="Default", _
+    SpeedModifier:=0, _
+    RotationSpeedModifier:=0, _
+    LoadModifier:=0, _
+    RangeModifier:=0, _
+    ViewRangeModifier:=0, _
+    EnergyModifier:=0, _
+    AttackModifier:=0 _
+)> _
+Public Class {0}
+    Inherits BaseAnt
+
+#Region "Casts"
+
+    ''' <summary>
+    ''' Every time that a new ant is born, its job group must be set. You can 
+    ''' do so with the help of the value returned by this method.
+    ''' Read more: "http://wiki.antme.net/en/API1:ChooseCaste"
+    ''' </summary>
+    ''' <param name="typeCount">Number of ants for every caste</param>
+    ''' <returns>Caste-Name for the next ant</returns>
+    Public Overrides Function ChooseCaste(typeCount As Dictionary(Of String, Integer)) As String
+        Return "Default"
+    End Function
+
+#End Region
+
+#Region "Movement"
+
+    ''' <summary>
+    ''' If the ant has no assigned tasks, it waits for new tasks. This method 
+    ''' is called to inform you that it is waiting.
+    ''' Read more: "http://wiki.antme.net/en/API1:Waiting"
+    ''' </summary>
+    Public Overrides Sub Waiting()
+    End Sub
+
+    ''' <summary>
+    ''' This method is called when an ant has travelled one third of its 
+    ''' movement range.
+    ''' Read more: "http://wiki.antme.net/en/API1:GettingTired"
+    ''' </summary>
+    Public Overrides Sub GettingTired()
+    End Sub
+
+    ''' <summary>
+    ''' This method is called if an ant dies. It informs you that the ant has 
+    ''' died. The ant cannot undertake any more actions from that point forward.
+    ''' Read more: "http://wiki.antme.net/en/API1:HasDied"
+    ''' </summary>
+    ''' <param name="kindOfDeath">Kind of Death</param>
+    Public Overrides Sub HasDied(kindOfDeath As KindOfDeath)
+    End Sub
+
+    ''' <summary>
+    ''' This method is called in every simulation round, regardless of additional 
+    ''' conditions. It is ideal for actions that must be executed but that are not 
+    ''' addressed by other methods.
+    ''' Read more: "http://wiki.antme.net/en/API1:Tick"
+    ''' </summary>
+    Public Overrides Sub Tick()
+    End Sub
+
+#End Region
+
+#Region "Food"
+
+    ''' <summary>
+    ''' This method is called as soon as an ant sees an apple within its 360° 
+    ''' visual range. The parameter is the piece of fruit that the ant has spotted.
+    ''' Read more: "http://wiki.antme.net/en/API1:Spots(Fruit)"
+    ''' </summary>
+    ''' <param name="fruit">spotted fruit</param>
+    Public Overrides Sub Spots(fruit As Fruit)
+    End Sub
+
+    ''' <summary>
+    ''' This method is called as soon as an ant sees a mound of sugar in its 360° 
+    ''' visual range. The parameter is the mound of sugar that the ant has spotted.
+    ''' Read more: "http://wiki.antme.net/en/API1:Spots(Sugar)"
+    ''' </summary>
+    ''' <param name="sugar">spotted sugar</param>
+    Public Overrides Sub Spots(sugar As Sugar)
+    End Sub
+
+    ''' <summary>
+    ''' If the ant’s destination is a piece of fruit, this method is called as soon 
+    ''' as the ant reaches its destination. It means that the ant is now near enough 
+    ''' to its destination/target to interact with it.
+    ''' Read more: "http://wiki.antme.net/en/API1:DestinationReached(Fruit)"
+    ''' </summary>
+    ''' <param name="fruit">reached fruit</param>
+    Public Overrides Sub DestinationReached(fruit As Fruit)
+    End Sub
+
+    ''' <summary>
+    ''' If the ant’s destination is a mound of sugar, this method is called as soon 
+    ''' as the ant has reached its destination. It means that the ant is now near 
+    ''' enough to its destination/target to interact with it.
+    ''' Read more: "http://wiki.antme.net/en/API1:DestinationReached(Sugar)"
+    ''' </summary>
+    ''' <param name="sugar">reached sugar</param>
+    Public Overrides Sub DestinationReached(sugar As Sugar)
+    End Sub
+
+#End Region
+
+#Region "Communication"
+
+    ''' <summary>
+    ''' Friendly ants can detect markers left by other ants. This method is called 
+    ''' when an ant smells a friendly marker for the first time.
+    ''' Read more: "http://wiki.antme.net/en/API1:DetectedScentFriend(Marker)"
+    ''' </summary>
+    ''' <param name="marker">marker</param>
+    Public Overrides Sub DetectedScentFriend(marker As Marker)
+    End Sub
+
+    ''' <summary>
+    ''' Just as ants can see various types of food, they can also visually detect 
+    ''' other game elements. This method is called if the ant sees an ant from the 
+    ''' same colony.
+    ''' Read more: "http://wiki.antme.net/en/API1:SpotsFriend(Ant)"
+    ''' </summary>
+    ''' <param name="ant">spotted ant</param>
+    Public Overrides Sub SpotsFriend(ant As Ant)
+    End Sub
+
+    ''' <summary>
+    ''' Just as ants can see various types of food, they can also visually detect 
+    ''' other game elements. This method is called if the ant detects an ant from a 
+    ''' friendly colony (an ant on the same team).
+    ''' Read more: "http://wiki.antme.net/en/API1:SpotsTeammate(Ant)"
+    ''' </summary>
+    ''' <param name="ant">spotted ant</param>
+    Public Overrides Sub SpotsTeammate(ant As Ant)
+    End Sub
+
+#End Region
+
+#Region "Fight"
+
+    ''' <summary>
+    ''' Just as ants can see various types of food, they can also visually detect 
+    ''' other game elements. This method is called if the ant detects an ant from an 
+    ''' enemy colony.
+    ''' Read more: "http://wiki.antme.net/en/API1:SpotsEnemy(Ant)"
+    ''' </summary>
+    ''' <param name="ant">spotted ant</param>
+    Public Overrides Sub SpotsEnemy(ant As Ant)
+    End Sub
+
+    ''' <summary>
+    ''' Just as ants can see various types of food, they can also visually detect 
+    ''' other game elements. This method is called if the ant sees a bug.
+    ''' Read more: "http://wiki.antme.net/en/API1:SpotsEnemy(Bug)"
+    ''' </summary>
+    ''' <param name="bug">spotted bug</param>
+    Public Overrides Sub SpotsEnemy(bug As Bug)
+    End Sub
+
+    ''' <summary>
+    ''' Enemy creatures may actively attack the ant. This method is called if an 
+    ''' enemy ant attacks; the ant can then decide how to react.
+    ''' Read more: "http://wiki.antme.net/en/API1:UnderAttack(Ant)"
+    ''' </summary>
+    ''' <param name="ant">attacking ant</param>
+    Public Overrides Sub UnderAttack(ant As Ant)
+    End Sub
+
+    ''' <summary>
+    ''' Enemy creatures may actively attack the ant. This method is called if a 
+    ''' bug attacks; the ant can decide how to react.
+    ''' Read more: "http://wiki.antme.net/en/API1:UnderAttack(Bug)"
+    ''' </summary>
+    ''' <param name="bug">attacking bug</param>
+    Public Overrides Sub UnderAttack(bug As Bug)
+    End Sub
+
+#End Region
+
+End Class

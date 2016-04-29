@@ -118,6 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="programMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 20</value>
+  </data>
+  <data name="programMenuItem.Text" xml:space="preserve">
+    <value>Programm</value>
+  </data>
+  <data name="settingsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 20</value>
+  </data>
+  <data name="settingsMenuItem.Text" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="helpMenuItem.Text" xml:space="preserve">
+    <value>Hilfe</value>
+  </data>
   <data name="startMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 22</value>
   </data>
@@ -139,12 +154,6 @@
   <data name="closeMenuItem.Text" xml:space="preserve">
     <value>Schließen</value>
   </data>
-  <data name="programMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 20</value>
-  </data>
-  <data name="programMenuItem.Text" xml:space="preserve">
-    <value>Programm</value>
-  </data>
   <data name="pluginSettingsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 22</value>
   </data>
@@ -153,6 +162,12 @@
   </data>
   <data name="speedMenuItem.Text" xml:space="preserve">
     <value>Geschwindigkeit</value>
+  </data>
+  <data name="languageMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 22</value>
+  </data>
+  <data name="languageMenuItem.Text" xml:space="preserve">
+    <value>Sprache</value>
   </data>
   <data name="germanMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>118, 22</value>
@@ -166,50 +181,23 @@
   <data name="englishMenuItem.Text" xml:space="preserve">
     <value>Englisch</value>
   </data>
-  <data name="languageMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
-  </data>
-  <data name="languageMenuItem.Text" xml:space="preserve">
-    <value>Sprache</value>
-  </data>
   <data name="updateMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 22</value>
   </data>
   <data name="updateMenuItem.Text" xml:space="preserve">
     <value>Updates suchen</value>
   </data>
-  <data name="settingsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 20</value>
+  <data name="offlineHelpMenuItem.Text" xml:space="preserve">
+    <value>Hilfe</value>
   </data>
-  <data name="settingsMenuItem.Text" xml:space="preserve">
-    <value>Einstellungen</value>
+  <data name="websiteMenuItem.Text" xml:space="preserve">
+    <value>AntMe! Webseite</value>
   </data>
-  <data name="tutorialsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
-  </data>
-  <data name="forumMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
-  </data>
-  <data name="websiteMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
-  </data>
-  <data name="classDescriptionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
-  </data>
-  <data name="classDescriptionMenuItem.Text" xml:space="preserve">
-    <value>Klassenbeschreibung</value>
-  </data>
-  <data name="group2MenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 6</value>
-  </data>
-  <data name="infoBoxMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
+  <data name="wikiMenuItem.Text" xml:space="preserve">
+    <value>Online Dokumentation</value>
   </data>
   <data name="infoBoxMenuItem.Text" xml:space="preserve">
     <value>Über AntMe!...</value>
-  </data>
-  <data name="helpMenuItem.Text" xml:space="preserve">
-    <value>Hilfe</value>
   </data>
   <data name="stopToolItem.Text" xml:space="preserve">
     <value>Stopp</value>
@@ -276,6 +264,30 @@
   </data>
   <data name="welcomeTab.Text" xml:space="preserve">
     <value>Willkommen</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 13</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Steuere hier die Geschwindigkeit.</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>301, 13</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Hierüber kannst du dich mit deinem Online-Account anmelden.</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>173, 13</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Wähle hier deinen Spielmodus aus.</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>455, 13</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Hier lässt sich das Spiel starten und steuern, sobald alle wichtigen Einstellungen getroffen  sind.</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -4267,6 +4279,10 @@
         AAD+XwAA4k8AAMEfAADAHwAA4A8AAGBPAAAADwAAgAQAAIAAAACAAQAA/AAAAP+AAAD/jAAA/wMAAP8j
         AAA=
 </value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>AntMe! - Bändige deine Ameisen!</value>
