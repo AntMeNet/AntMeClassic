@@ -1,0 +1,33 @@
+﻿using System;
+using AntMe.SharedComponents.States;
+
+namespace AntMe.Simulation
+{
+    internal sealed class CoreTeam
+    {
+        internal readonly int Id;
+        internal readonly Guid Guid;
+        internal readonly string Name;
+        internal CoreColony[] Colonies;
+
+        public CoreTeam(int id, Guid guid, string name)
+        {
+            Id = id;
+            Guid = guid;
+            Name = name;
+        }
+
+        public TeamState CreateState()
+        {
+            TeamState state = new TeamState(Id, Guid, Name);
+
+            for (int i = 0; i < Colonies.Length; i++)
+            {
+                Colonies[i].Statistik.CurrentAntCount = Colonies[i].Insects.Count;
+                state.ColonyStates.Add(Colonies[i].ErzeugeInfo());
+            }
+
+            return state;
+        }
+    }
+}

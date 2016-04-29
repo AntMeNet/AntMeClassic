@@ -1,0 +1,30 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AntMe.SharedComponents.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ColonyColor1" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="ColonyColor2" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">Red</Value>
+    </Setting>
+    <Setting Name="ColonyColor3" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">Orange</Value>
+    </Setting>
+    <Setting Name="ColonyColor4" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">Blue</Value>
+    </Setting>
+    <Setting Name="ColonyColor5" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">Yellow</Value>
+    </Setting>
+    <Setting Name="ColonyColor6" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">White</Value>
+    </Setting>
+    <Setting Name="ColonyColor7" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">Fuchsia</Value>
+    </Setting>
+    <Setting Name="ColonyColor8" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">Lime</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

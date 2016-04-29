@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="cancelButton.Text" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="mapTab.Text" xml:space="preserve">
+    <value>Spieleinstellungen</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Kartengenerierung</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="mapInitCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>257, 17</value>
+  </data>
+  <data name="mapInitCheckBox.Text" xml:space="preserve">
+    <value>Verwende einen Initialwert zur Kartengenerierung</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Normalerweise werden die Karten einer Simulation auf Basis eines Zufallsgenerators erstellt. Es gibts aber Situationen, da macht es Sinn vergleichbare Karten in verschiedenen Simulationen zu haben - für Debug- und Vergleichszwecke zum Beipsiel.</value>
+  </data>
+  <data name="label25.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 13</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>Initialwert:</value>
+  </data>
+  <data name="mapGeneratorButton.Text" xml:space="preserve">
+    <value>Generieren</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Simulationsdauer</value>
+  </data>
+  <data name="label24.Location" type="System.Drawing.Point, System.Drawing">
+    <value>48, 131</value>
+  </data>
+  <data name="label24.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 13</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Durchläufe:</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Hier kannst du einstellen wie viele Runden eine Simulation dauern soll. Zudem lässt sich hier auch festlegen, wie oft eine Simulation wiederholt werden soll.</value>
+  </data>
+  <data name="label23.Location" type="System.Drawing.Point, System.Drawing">
+    <value>62, 105</value>
+  </data>
+  <data name="label23.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 13</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>Runden:</value>
+  </data>
+  <data name="debugTab.Text" xml:space="preserve">
+    <value>Debug und Zeitlimits</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Debugnachrichten</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Um Fehler im Verhalten der Ameisen zu finden kann es manchmal nützlich sein, nachvollziehen zu können was in der Simulation so alles passiert ist. Ist der folgende Haken gesetzt, werden diese Informationen für Auswertungen gesammelt.</value>
+  </data>
+  <data name="debugInfoCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>251, 17</value>
+  </data>
+  <data name="debugInfoCheckBox.Text" xml:space="preserve">
+    <value>Sammle Debuginformationen der Ameisenvölker</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Zeitlimits</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Lege hier die maximale Wartezeit für Runden und Simulationsdurchläufe fest, bevor eine Simulation automatisch abgebrochen wird.</value>
+  </data>
+  <data name="label27.Location" type="System.Drawing.Point, System.Drawing">
+    <value>52, 183</value>
+  </data>
+  <data name="label27.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 13</value>
+  </data>
+  <data name="label27.Text" xml:space="preserve">
+    <value>Durchlauf-Limit:</value>
+  </data>
+  <data name="label26.Location" type="System.Drawing.Point, System.Drawing">
+    <value>67, 157</value>
+  </data>
+  <data name="label26.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 13</value>
+  </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>Rundenlimit:</value>
+  </data>
+  <data name="ignoreTimeoutsCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 17</value>
+  </data>
+  <data name="ignoreTimeoutsCheckBox.Text" xml:space="preserve">
+    <value>Ignoriere Zeitlimits</value>
+  </data>
+  <data name="securityTab.Text" xml:space="preserve">
+    <value>Sicherheit</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Unter normalen Umständen werden alle Ameisenvölker unter strengen Sicherheitseinschränkungen simuliert, um größte Sicherheit zu gewährleisten. Manche Ameisen benötigen aber eventuell Zugriff auf bestimme Ressourcen um richtig zu funktionieren. Sie benötigen vielleicht Zugriff auf das Dateisystem oder zu Datenbanken. Sollte ein Ameisenvolk solche speziellen Zugriffsrechte benötigen, wird das in der Volkübersicht mit einem Vorhängeschloss gekennzeichnet.
+
+Solltest du in deiner Simulation Ameisen verwenden, die besondere Zugriffsrechte bekommen sollen, so kannst das mit den folgenden Optionen aktivieren.</value>
+  </data>
+  <data name="allowRefCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>175, 17</value>
+  </data>
+  <data name="allowRefCheckBox.Text" xml:space="preserve">
+    <value>Erlaube zusätzliche Referenzen</value>
+  </data>
+  <data name="allowUiCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>246, 17</value>
+  </data>
+  <data name="allowUiCheckBox.Text" xml:space="preserve">
+    <value>Erlaube den Zugriff auf die Benutzeroberfläche</value>
+  </data>
+  <data name="allowIoCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>174, 17</value>
+  </data>
+  <data name="allowIoCheckBox.Text" xml:space="preserve">
+    <value>Erlaube den Zugriff auf Dateien</value>
+  </data>
+  <data name="allowDbCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>202, 17</value>
+  </data>
+  <data name="allowDbCheckBox.Text" xml:space="preserve">
+    <value>Erlaube den Zugriff auf Datenbanken</value>
+  </data>
+  <data name="settingsTab.Text" xml:space="preserve">
+    <value>Kern-Einstellungen</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Kern-Einstellungen</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Um eine neue Einstellungsdatei zu erzeugen verwende den Knopf "Einstellungsdatei erzeugen". Die daraufhin erstellte Datei kann mit einem XML-Editor oder Notepad bearbeitet werden.</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 13</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Einstellungsdatei:</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Die Kern-Einstellungen enthalten Grundeinstellungen der Simulation. Darin enthalten sind Rahmenparameter der Physik bis hin zur Angabe der maximalen Anzahl der Ameisen pro Simulation.</value>
+  </data>
+  <data name="settingCreateButton.Text" xml:space="preserve">
+    <value>Einstellungsdatei erzeugen</value>
+  </data>
+  <data name="settingLoadButton.Text" xml:space="preserve">
+    <value>Laden</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Simulationseinstellungen</value>
+  </data>
+</root>

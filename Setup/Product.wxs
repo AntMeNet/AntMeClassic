@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+
+  <?define Manufactor = "AntMe! GmbH"?>
+  <?define UpgradeGuid = "F1EBB9AF-29FD-41BF-A1A8-6C91B0B8847A"?>
+
+  <Product
+    Id="*"
+    Name="AntMe! 1.7"
+    Language="1033"
+    Version="1.7.1"
+    Manufacturer="$(var.Manufactor)"
+    UpgradeCode="$(var.UpgradeGuid)">
+
+    <Package
+      Id="*"
+      Manufacturer="$(var.Manufactor)"
+      Description="AntMe! 1.7 - Use Ants to learn Programming Skills"
+      Comments="AntMe! is a registrered trademark of Tom Wendel"
+      InstallerVersion="300"
+      Compressed="yes"
+      InstallScope="perMachine" />
+
+    <!--<Property Id="ARPHELPLINK" Value="http://www.antme.net/" />-->
+    <!--<Property Id="ARPCOMMENTS" Value="Here comes some helpful text" />-->
+    <!--<Property Id="ARPCONTACT" Value="Here comes the contact information" />-->
+    <!--<Property Id="ARPURLUPDATEINFO" Value="http://www.antme.net/download" />-->
+    <Property Id="ARPURLINFOABOUT" Value="http://www.antme.net" />
+    <Icon Id="antme.ico" SourceFile="antme.ico" />
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
+    <Property Id="ARPPRODUCTICON" Value="antme.ico" />
+    <WixVariable Id="WixUILicenseRtf" Value="assets\AntMe.rtf" />
+    <WixVariable Id="WixUIBannerBmp" Value="assets\UiBanner.bmp" />
+    <WixVariable Id="WixUIDialogBmp" Value="assets\UiDialog.bmp" />
+
+    <MajorUpgrade AllowDowngrades="no" DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    
+    <Media Id="1" Cabinet="AntMe.cab" EmbedCab="yes" DiskPrompt="File #1" />
+    <Property Id="DiskPrompt" Value="[1]" />
+
+    <Property Id="Check_Xna_4.0">1</Property>
+    <Property Id="Check_DirectX_Xna_4.0">1</Property>
+    <Property Id="Check_DotNet_4.0_Full">1</Property>
+
+    <PropertyRef Id="NETFRAMEWORK40FULL"/>
+    <Condition Message="AntMe! 1.7 requires .NET Framework 4.0. Please install the .NET Framework then run this installer again.">
+      <![CDATA[Installed OR NETFRAMEWORK40FULL]]>
+    </Condition>
+
+    <Feature Id="MainComponents" Title="AntMe! 1.7" Level="1">
+      <ComponentRef Id="SharedComponents" />
+      <ComponentRef Id="AntMeSimulation" />
+      <ComponentRef Id="AntMeOnlineClient" />
+      <ComponentRef Id="SimulationPlugin" />
+      <ComponentRef Id="DemoAmeisen" />
+      <ComponentRef Id="GdiPlusPlugin" />
+      <ComponentRef Id="XnaPlugin" />
+      <ComponentRef Id="AntMe" />
+      <ComponentRef Id="Uninstall" />
+      <ComponentRef Id="XnaContent" />
+      <ComponentRef Id="GermanDocumentation" />
+      <ComponentRef Id="GermanDocumentationImages" />
+      <ComponentRef Id="EnglishDocumentation" />
+      <ComponentRef Id="EnglishDocumentationImages" />
+      <ComponentRef Id="Loca" />
+    </Feature>
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+
+      <!-- Install Path -->
+      <Directory Id="ProgramFilesFolder" Name="Program Files">
+        <Directory Id="INSTALLDIR" Name="AntMe 1.7">
+          <Directory Id="ContentFolder" Name="Content" />
+          <Directory Id="LocalizeFolder" Name="de" />
+          <Directory Id="GermanDocumentationPath" Name="deutsch">
+            <Directory Id="GermanDocumentationImagePath" Name="images" />
+          </Directory>
+          <Directory Id="EnglishDocumentationPath" Name="english">
+            <Directory Id="EnglishDocumentationImagePath" Name="images" />
+          </Directory>
+        </Directory>
+      </Directory>
+
+      <!-- Startmenu -->
+      <Directory Id="ProgramMenuFolder" Name="Program Menu">
+        <Directory Id="ProgramMenuDir" Name="AntMe 1.7" />
+      </Directory>
+
+      <!-- Desktop Icon -->
+      <Directory Id="DesktopFolder" Name="Desktop" />
+    </Directory>
+
+    <DirectoryRef Id="INSTALLDIR">
+
+      <!-- Shared Components -->
+      <Component Id="SharedComponents" Guid="{5BB01468-0E09-4006-8DA8-A8CC01BD2051}">
+        <File Source="$(var.SharedComponents.TargetPath)" KeyPath="yes" Checksum="yes" />
+        <File Source="$(var.SharedComponents.TargetDir)/AntMe.SharedComponents.XML" />
+      </Component>
+
+      <!-- AntMe.Simulation -->
+      <Component Id="AntMeSimulation" Guid="{D2F2E32D-7A23-4C31-BC5A-9CC1562F701F}">
+        <File Source="$(var.SimulationCore.TargetPath)" KeyPath="yes" Checksum="yes" />
+        <File Source="$(var.SimulationCore.TargetDir)/AntMe.Simulation.XML" />
+      </Component>
+
+      <!-- Simulation Plugin -->
+      <Component Id="SimulationPlugin" Guid="{CE0666BC-024C-4E68-A74B-B97C9E356401}">
+        <File Source="$(var.SimulationPlugin.TargetPath)" KeyPath="yes" Checksum="yes" />
+      </Component>
+
+      <!-- Demo Ameisen -->
+      <Component Id="DemoAmeisen" Guid="{572A74EF-ED55-48A8-8076-8CB113E1BC64}">
+        <File Source="$(var.DemoAmeisen.TargetPath)" KeyPath="yes" Checksum="yes" />
+      </Component>
+
+      <!-- 2D Visualizer -->
+      <Component Id="GdiPlusPlugin" Guid="{99FD2E1B-387E-4C91-BBCD-BFC3879C9FB5}">
+        <File Source="$(var.GdiPlusPlugin.TargetPath)" KeyPath="yes" Checksum="yes" />
+      </Component>
+
+      <!-- XNA Visualizer -->
+      <Component Id="XnaPlugin" Guid="{989586A0-925D-4512-B22B-7205288CF929}">
+        <File Source="$(var.XnaPlugin.TargetPath)" KeyPath="yes" Checksum="yes" />
+      </Component>
+
+      <!-- AntMe.Online.Client -->
+      <Component Id="AntMeOnlineClient" Guid="{6FFB45B8-FDBD-4590-B26E-16070C347C88}">
+        <File Source="$(var.AntMe.Online.Client.TargetPath)" KeyPath="yes" Checksum="yes" />
+        <File Source="$(var.AntMe.Online.Client.TargetDir)/AntMe.Online.Client.XML" />
+        <File Source="$(var.AntMe.Online.Client.TargetDir)/Newtonsoft.Json.dll" Checksum="yes" />
+      </Component>
+
+      <!-- AntMe.exe -->
+      <Component Id="AntMe" Guid="DECBC6BD-E889-4079-9465-BC0B70439C4A">
+        <File Source="$(var.AntMe.TargetPath)" Checksum="yes">
+          <Shortcut Id="StartmenuShortcut" Directory="ProgramMenuDir" Name="AntMe! 1.7" Icon="antme.ico" IconIndex="0" WorkingDirectory="INSTALLDIR" Advertise="no" />
+          <Shortcut Id="DesktopShortcut" Directory="DesktopFolder" Name="AntMe! 1.7" Icon="antme.ico" IconIndex="0" WorkingDirectory="INSTALLDIR" Advertise="no" />
+        </File>
+        <File Source="$(var.AntMe.TargetDir)/AntMe.exe.config" />
+        <RegistryValue Root='HKCU' Key='Software\AntMe\AntMe1exe' Type='string' Value='' KeyPath='yes' />
+      </Component>
+    </DirectoryRef>
+
+    <!-- Uninstall -->
+    <Component Id="Uninstall" Guid="{3EF8BFC4-28AB-4396-AC30-C1C94AE766A4}" Directory="ProgramMenuDir">
+      <RemoveFolder Id="ProgramMenuDir" On="uninstall" />
+      <RegistryValue Root='HKCU' Key='Software\AntMe\AntMe1shortcut' Type='string' Value='' KeyPath='yes' />
+    </Component>
+
+    <!-- Localization Files -->
+    <Component Id="Loca" Guid="A4064295-8588-416F-A93C-4B64591667D0" Directory="LocalizeFolder">
+      <File Source="$(var.AntMe.TargetDir)/de/AntMe.resources.dll" KeyPath="yes" />
+      <File Source="$(var.SharedComponents.TargetDir)/de/AntMe.SharedComponents.resources.dll" />
+      <File Source="$(var.SimulationCore.TargetDir)/de/AntMe.Simulation.resources.dll" />
+      <File Source="$(var.AntMe.Online.Client.TargetDir)/de/AntMe.Online.Client.resources.dll" />
+      <File Source="$(var.SimulationPlugin.TargetDir)/de/AntMe.Plugin.Simulation.resources.dll" />
+      <File Source="$(var.GdiPlusPlugin.TargetDir)/de/AntMe.Plugin.GdiPlusPlugin.resources.dll" />
+      <File Source="$(var.XnaPlugin.TargetDir)/de/AntMe.Plugin.Xna.resources.dll" />
+    </Component>
+
+    <Component Id="XnaContent" Guid="{8FB366A1-E1D8-4822-8E9B-0C11D3293305}" Directory="ContentFolder">
+      <File Source="$(var.XnaPlugin.TargetDir)/Content/ant.xnb" />
+      <File Source="$(var.XnaPlugin.TargetDir)/Content/anthill.xnb" />
+      <File Source="$(var.XnaPlugin.TargetDir)/Content/apple.xnb" />
+      <File Source="$(var.XnaPlugin.TargetDir)/Content/borderTex.xnb" />
+      <File Source="$(var.XnaPlugin.TargetDir)/Content/box.xnb" />
+      <File Source="$(var.XnaPlugin.TargetDir)/Content/bug.xnb" />
+      <File Source="$(var.XnaPlugin.TargetDir)/Content/dirt.xnb" />
+      <File Source="$(var.XnaPlugin.TargetDir)/Content/HudFont.xnb" />
+      <File Source="$(var.XnaPlugin.TargetDir)/Content/pix.xnb" />
+      <File Source="$(var.XnaPlugin.TargetDir)/Content/sky.xnb" />
+      <File Source="$(var.XnaPlugin.TargetDir)/Content/SkyEffect.xnb" />
+      <File Source="$(var.XnaPlugin.TargetDir)/Content/sphere.xnb" />
+      <File Source="$(var.XnaPlugin.TargetDir)/Content/sugar.xnb" />
+      <File Source="$(var.XnaPlugin.TargetDir)/Content/textbox.xnb" />
+    </Component>
+    
+    <Component Id="GermanDocumentation" Guid="223CC377-14F5-4500-A37C-01BFB71B5AB6" Directory="GermanDocumentationPath">
+      <File Source="$(var.AntMe.TargetDir)/deutsch/Befehlsliste.pdf">
+        <Shortcut Id="BefehlslisteShortcut" Directory="ProgramMenuDir" Name="AntMe! Befehlsliste" WorkingDirectory="INSTALLDIR" Advertise="no" />
+      </File>
+      <File Source="$(var.AntMe.TargetDir)/deutsch/Tutorial.chm">
+        <Shortcut Id="TutorialShortcut" Directory="ProgramMenuDir" Name="AntMe! Tutorials" WorkingDirectory="INSTALLDIR" Advertise="no" />
+      </File>
+      <File Source="$(var.AntMe.TargetDir)/deutsch/Willkommen.htm" />
+      <RegistryValue Root='HKCU' Key='Software\AntMe\AntMe1doku' Type='string' Value='' KeyPath='yes' />
+    </Component>
+
+    <Component Id="GermanDocumentationImages" Guid="F8C6BBD8-FA04-4238-9C54-1FE8217A2E56" Directory="GermanDocumentationImagePath">
+      <File Source="$(var.AntMe.TargetDir)/deutsch/images/antme_im_web.png" />
+      <File Source="$(var.AntMe.TargetDir)/deutsch/images/header.png" />
+      <File Source="$(var.AntMe.TargetDir)/deutsch/images/hiphop.png" />
+      <File Source="$(var.AntMe.TargetDir)/deutsch/images/mehr_ueber_antme.png" />
+      <File Source="$(var.AntMe.TargetDir)/deutsch/images/samurai.png" KeyPath="yes" />
+      <File Source="$(var.AntMe.TargetDir)/deutsch/images/schnellstart.png" />
+    </Component>
+
+    <Component Id="EnglishDocumentation" Guid="7163589B-B444-48D2-8D7C-3C877BE4F6AE" Directory="EnglishDocumentationPath">
+      <File Source="$(var.AntMe.TargetDir)/english/Commandlist.pdf" />
+      <File Source="$(var.AntMe.TargetDir)/english/Tutorials.chm" />
+      <File Source="$(var.AntMe.TargetDir)/english/Welcome.htm" KeyPath="yes" />
+    </Component>
+
+    <Component Id="EnglishDocumentationImages" Guid="5ECBE000-D8D9-4D07-8592-D88BBA4A68CF" Directory="EnglishDocumentationImagePath">
+      <File Source="$(var.AntMe.TargetDir)/english/images/antme_im_web_en.png" />
+      <File Source="$(var.AntMe.TargetDir)/english/images/header_en.png" />
+      <File Id="hiphop_en" Source="$(var.AntMe.TargetDir)/english/images/hiphop.png" />
+      <File Source="$(var.AntMe.TargetDir)/english/images/mehr_ueber_antme_en.png" />
+      <File Id="Samurai_en" Source="$(var.AntMe.TargetDir)/english/images/samurai.png" KeyPath="yes" />
+      <File Source="$(var.AntMe.TargetDir)/english/images/schnellstart_en.png" />
+    </Component>
+
+    <UIRef Id="WixUI_InstallDir" />
+    <UIRef Id="WixUI_ErrorProgressText" />
+  </Product>
+</Wix>

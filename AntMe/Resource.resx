@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="MainAntspielLink" xml:space="preserve">
+    <value>http://www.antme.net</value>
+    <comment>Link to the Antspiel-Website (go-link, please)</comment>
+  </data>
+  <data name="MainClassDescriptionPath" xml:space="preserve">
+    <value>.\\english\\Classes.chm</value>
+    <comment>Path to the Class-Description-File</comment>
+  </data>
+  <data name="MainForumLink" xml:space="preserve">
+    <value>http://antme.net/de/hilfe</value>
+    <comment>Link to the AntMe-Forum (go-link, please)</comment>
+  </data>
+  <data name="MainFramesPerSecond" xml:space="preserve">
+    <value>{0} fps</value>
+    <comment>Short string for frames per second (Main.cs)
+0: Number of frames</comment>
+  </data>
+  <data name="MainMessageBoxNoClassdescriptionMessage" xml:space="preserve">
+    <value>No Class-Description available.</value>
+    <comment>Message of messagebox to inform about missing class-description (Main.cs)</comment>
+  </data>
+  <data name="MainMessageBoxNoClassdescriptionTitle" xml:space="preserve">
+    <value>Class description</value>
+    <comment>Title of messagebox to inform about missing class-description (Main.cs)</comment>
+  </data>
+  <data name="MainMessageBoxNoTutorialMessage" xml:space="preserve">
+    <value>No help available.</value>
+    <comment>Message of messagebox to inform about missing tutorials (Main.cs)</comment>
+  </data>
+  <data name="MainMessageBoxNoTutorialTitle" xml:space="preserve">
+    <value>Tutorials</value>
+    <comment>Title of messagebox to inform about missing tutorials (Main.cs)</comment>
+  </data>
+  <data name="MainSpeedMaximal" xml:space="preserve">
+    <value>Maximum</value>
+    <comment>string for maximal speed without limit (Main.cs)</comment>
+  </data>
+  <data name="MainStateFramesPerSecond" xml:space="preserve">
+    <value>0.0 fps</value>
+    <comment>format-string for framerate-float in status-bar (Main.cs)</comment>
+  </data>
+  <data name="MainStateNotReady" xml:space="preserve">
+    <value>Not ready</value>
+    <comment>State-string for not ready in status-bar (Main.cs)</comment>
+  </data>
+  <data name="MainStatePaused" xml:space="preserve">
+    <value>Paused</value>
+    <comment>State-string for paused in status-bar (Main.cs)</comment>
+  </data>
+  <data name="MainStateReady" xml:space="preserve">
+    <value>Ready</value>
+    <comment>State-string for ready in status-bar (Main.cs)</comment>
+  </data>
+  <data name="MainStateRoundIndicator" xml:space="preserve">
+    <value>{0} of {1}</value>
+    <comment>String to count rounds in status-bar (Main.cs)
+0: current round
+1: total rounds</comment>
+  </data>
+  <data name="MainStateRunning" xml:space="preserve">
+    <value>Simulating</value>
+    <comment>State-string for running in status-bar (Main.cs)</comment>
+  </data>
+  <data name="MainTutorialPath" xml:space="preserve">
+    <value>.\\english\\Tutorials.chm</value>
+    <comment>Path to Tutorial-file</comment>
+  </data>
+  <data name="MainWebsiteLink" xml:space="preserve">
+    <value>http://www.antme.net</value>
+    <comment>Link to the AntMe-Website (go-link, please)</comment>
+  </data>
+  <data name="MainWelcomePagePath" xml:space="preserve">
+    <value>/english/Welcome.htm</value>
+    <comment>Path to the Welcome-Page</comment>
+  </data>
+  <data name="PluginItemConstructorPluginHasNoName" xml:space="preserve">
+    <value>The name of the plugin is empty.</value>
+    <comment>if the given plugin has no name. (PluginItem.cs)</comment>
+  </data>
+  <data name="PluginItemConstructorPluginIsNull" xml:space="preserve">
+    <value>No plugin was passed to the contructor.</value>
+    <comment>if the plugin-parameter for constructor is null (PluginItem.cs, 21 &amp; 31)</comment>
+  </data>
+  <data name="PluginManagerActivateConsumerNotInList" xml:space="preserve">
+    <value>The plugin is not in the list of loaded plugins.</value>
+    <comment>if the plugin, that should be activated, is not in List (PluginManager.cs)</comment>
+  </data>
+  <data name="PluginManagerActivateProducerNotInList" xml:space="preserve">
+    <value>The plugin is not in the list of loaded plugins.</value>
+    <comment>if the plugin, that should be activated, is not in List (PluginManager.cs)</comment>
+  </data>
+  <data name="PluginManagerConsumerPluginCommonProblems" xml:space="preserve">
+    <value>There were problems loading plugin {0} ({1}).</value>
+    <comment>if there are common problems to load the consumer-plugin (PluginManager.cs)
+0: Typename (full classname)
+1: Filename</comment>
+  </data>
+  <data name="PluginManagerConsumerPluginNewerVersion" xml:space="preserve">
+    <value>Two different versions are available for plugin {0} ({1}). The one with the higher version number will be loaded.</value>
+    <comment>if a newer version of consumer-plugin was found. (PluginManager.cs)
+0: Pluginname
+1: Version</comment>
+  </data>
+  <data name="PluginManagerConsumerPluginNewerVersionLoaded" xml:space="preserve">
+    <value>A higher version of plugin {0} ({1}) is already loaded.</value>
+    <comment>if a newer version of consumer-plugin is still loaded. (PluginManager.cs)
+0: Pluginname
+1: Version</comment>
+  </data>
+  <data name="PluginManagerConsumerPluginSettingsLoadFailed" xml:space="preserve">
+    <value>The settings for plugin {0} ({1}) could not be loaded.</value>
+    <comment>if loading of consumer-plugin-settings failed. (PluginManager.cs)
+0: Pluginname
+1: Version</comment>
+  </data>
+  <data name="PluginManagerConsumerPluginSettingsSaveFailed" xml:space="preserve">
+    <value>There was a problem when saving settings of plugin {0} ({1}).</value>
+    <comment>Exception at saveing plugin-settings. (PluginManager.cs)
+0: Pluginname
+1: Version</comment>
+  </data>
+  <data name="PluginManagerConsumerVisibilitySetFailed" xml:space="preserve">
+    <value>A problem occured in Plugin {0} ({1}).</value>
+    <comment>Exeption at setting the visibility of a plugin (PluginManager.cs)
+0: Pluginname
+1: Version</comment>
+  </data>
+  <data name="PluginManagerDeactivateConsumerNotInList" xml:space="preserve">
+    <value>The plugin is not in the list of currently loaded plugins.</value>
+    <comment>if the plugin, that should be deactivated, is not in List (PluginManager.cs)</comment>
+  </data>
+  <data name="PluginManagerFrameRateTooLow" xml:space="preserve">
+    <value>The value has to be greater than 0.</value>
+    <comment>if new framerate is to low (PluginManager.cs)</comment>
+  </data>
+  <data name="PluginManagerLoopConsumer1Failed" xml:space="preserve">
+    <value>There was a problem in plugin {0} ({1}).</value>
+    <comment>call of first consumer-loop-method throws Exception (PluginManager.cs)
+0: Pluginname
+1: Version</comment>
+  </data>
+  <data name="PluginManagerLoopConsumer2Failed" xml:space="preserve">
+    <value>There was a problem in plugin {0} ({1}).</value>
+    <comment>call of second consumer-loop-method throws Exception (PluginManager.cs)
+0: Pluginname
+1: Version</comment>
+  </data>
+  <data name="PluginManagerLoopConsumer3Failed" xml:space="preserve">
+    <value>There was a problem in plugin {0} ({1}).</value>
+    <comment>call of third consumer-loop-method throws Exception (PluginManager.cs)
+0: Pluginname
+1: Version</comment>
+  </data>
+  <data name="PluginManagerLoopConsumerUIFailed" xml:space="preserve">
+    <value>Problems occured when refreshing the display in plugin {0} ({1}).</value>
+    <comment>If there was an Exception during UpdateUI()-Method (PluginManager.cs)
+0: Plugin-Name
+1: Plugin-Version</comment>
+  </data>
+  <data name="PluginManagerLoopInterruptFailed" xml:space="preserve">
+    <value>There was a problem in plugin {0} ({1}).</value>
+    <comment>Exception, during interrupt (PluginManager.cs)
+0: Pluginname
+1: Version</comment>
+  </data>
+  <data name="PluginManagerLoopProducerFailed" xml:space="preserve">
+    <value>There was a problem in plugin {0} ({1}).</value>
+    <comment>call of producer-loop-method throws Exception (PluginManager.cs)
+0: Pluginname
+1: Version</comment>
+  </data>
+  <data name="PluginManagerLoopProducerUIFailed" xml:space="preserve">
+    <value>Problems occured when refreshing the display in plugin {0} ({1}).</value>
+    <comment>If there was an Exception during UpdateUI()-Method (PluginManager.cs)
+0: Plugin-Name
+1: Plugin-Version</comment>
+  </data>
+  <data name="PluginManagerMissingReferences" xml:space="preserve">
+    <value>The plugin could not be loaded. Missing references of plugin {0}.</value>
+    <comment>if the ant-assembly references lost files. (PluginManager.cs, 143, 150)
+0: Pluginname</comment>
+  </data>
+  <data name="PluginManagerProducerPluginCommonProblems" xml:space="preserve">
+    <value>There were problems loading plugin {0} ({1}).</value>
+    <comment>if there are common problems to load the producer- plugin (PluginManager.cs)
+0: Typename (full classname)
+1: Filename</comment>
+  </data>
+  <data name="PluginManagerProducerPluginNewerVersion" xml:space="preserve">
+    <value>Two versions of plugin {0} ({1}) were found. The one with the higher version number will be loaded.</value>
+    <comment>if a newer version of producer-plugin was found. (PluginManager.cs)
+0: Pluginname
+1: Version</comment>
+  </data>
+  <data name="PluginManagerProducerPluginNewerVersionLoaded" xml:space="preserve">
+    <value>A higher version of plugin {0} ({1}) has already been loaded.</value>
+    <comment>if a newer version of producer-plugin is still loaded. (PluginManager.cs)
+0: Pluginname
+1: Version</comment>
+  </data>
+  <data name="PluginManagerProducerPluginSettingsLoadFailed" xml:space="preserve">
+    <value>The settings of plugin {0} ({1}) could not be loaded.</value>
+    <comment>if loading of producer-plugin-settings failed. (PluginManager.cs)
+0: Pluginname
+1: Version</comment>
+  </data>
+  <data name="PluginManagerProducerPluginSettingsSaveFailed" xml:space="preserve">
+    <value>Problems occurred when attempting to save the settings of plugin {0} ({1}).</value>
+    <comment>Exception while saving plugin-settings. (PluginManager.cs)
+0: Pluginname
+1: Version</comment>
+  </data>
+  <data name="PluginManagerProducerVisibilitySetFailed" xml:space="preserve">
+    <value>There was a problem in plugin {0} ({1}).</value>
+    <comment>Exeption at setting the visibility of a plugin (PluginManager.cs)
+0: Pluginname
+1: Version</comment>
+  </data>
+  <data name="PluginManagerSettingsLoadFailed" xml:space="preserve">
+    <value>The configuration could not be loaded. This is likely due to an old version.</value>
+    <comment>global settings-file couldn't been deserialized (PluginManager.cs)</comment>
+  </data>
+  <data name="UpdateErrorMessage" xml:space="preserve">
+    <value>There are problems to reach the AntMe! Update Service. Please check your internet connection</value>
+  </data>
+  <data name="UpdateNewerMessage" xml:space="preserve">
+    <value>There is a newer Version of AntMe! available. Do you want to download it?</value>
+  </data>
+  <data name="UpdateNewestMessage" xml:space="preserve">
+    <value>You are using the newest Version of AntMe!</value>
+  </data>
+  <data name="UpdateNoConnection" xml:space="preserve">
+    <value>No internet connection</value>
+  </data>
+  <data name="UpdateTitle" xml:space="preserve">
+    <value>AntMe! Update</value>
+  </data>
+  <data name="UpdateTokenInvalid" xml:space="preserve">
+    <value>Need to Login again</value>
+  </data>
+</root>

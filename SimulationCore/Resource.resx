@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="SettingsDefaultName" xml:space="preserve">
+    <value>Standard</value>
+    <comment>default name of default-SimulationSettings (SimulationSettings.cs)</comment>
+  </data>
+  <data name="SimulationCoreAnalysisCheatWithFxFake" xml:space="preserve">
+    <value>Attempt to cheat with a fake Framework assembly.</value>
+    <comment>If the analyzer detects a fake of framework-assemblies with wrong public key (AnalysisHost.cs, 100)</comment>
+  </data>
+  <data name="SimulationCoreAnalysisForeignRefInfotext" xml:space="preserve">
+    <value>External reference:</value>
+    <comment>would be used to list foreign libs in a clear readable text (AnalysisHost.cs, 150)</comment>
+  </data>
+  <data name="SimulationCoreAnalysisNewerVersion" xml:space="preserve">
+    <value>This ant was likely created with a newer version of AntMe!.</value>
+    <comment>If the analyser detects an ant with references to newer core-versions (AnalysisHost.cs, 129)</comment>
+  </data>
+  <data name="SimulationCoreAnalysisNoClassFound" xml:space="preserve">
+    <value>The file does not contain a class with this name.</value>
+    <comment>If the method to find specific player-class in assembly could not find the right class (AiAnalysis.cs, 102 &amp; 123)</comment>
+  </data>
+  <data name="SimulationCoreAnalysisNoPlayerAttribute" xml:space="preserve">
+    <value>The ant class that was found ({0}) is not decorated with a PlayerAttribute.</value>
+    <comment>if there is a playerclass without a needed playerattribute (AnalysisHost.cs, 324 &amp; 422)</comment>
+  </data>
+  <data name="SimulationCoreAnalysisNotSupportedAntVersion" xml:space="preserve">
+    <value>Ants of version 1.1 or lower are not supported in this version anymore.</value>
+    <comment>if the analizer detects an ant with version 1.1 or lower (AnalysisHost.cs, 108)</comment>
+  </data>
+  <data name="SimulationCoreAnalysisOldAssemblyLoadFailed" xml:space="preserve">
+    <value>Attempting to load an earlier ant simulation core (version: {0}) failed.</value>
+    <comment>If the analyser couldn't find the needed simulationcore for older ant-versions. (AnalysisHost.cs, 119)</comment>
+  </data>
+  <data name="SimulationCoreAnalysisTooManyPlayerAttributes" xml:space="preserve">
+    <value>The ant class {0} containas more than one PlayerAttribute.</value>
+    <comment>if there is a playerclass with too many playerattributes (AnalysisHost.cs, 333 &amp; 431)</comment>
+  </data>
+  <data name="SimulationCoreAnalysisUnknownReferenceLoadFailed" xml:space="preserve">
+    <value>The external reference '{0}' could not be loaded.</value>
+    <comment>if the foreign reference is not loadable (AnalysisHost.cs, 147)</comment>
+  </data>
+  <data name="SimulationCoreAnalysisUnknownVersion" xml:space="preserve">
+    <value>The ant could not be assigned a version. {0}</value>
+    <comment>if the analyser couldn't find out the ant-version. (AnalysisHost.cs, 132 &amp; 137)</comment>
+  </data>
+  <data name="SimulationCoreCasteRuleAttackFailed" xml:space="preserve">
+    <value>The attack-modificator of caste {0} of ant {1} is invalid.</value>
+    <comment>if a checked caste has wrong attackmodificator (CasteInfo.cs, 122)</comment>
+  </data>
+  <data name="SimulationCoreCasteRuleEnergyFailed" xml:space="preserve">
+    <value>The energy-modificator of caste {0} of ant {1} is invalid.</value>
+    <comment>if a checked caste has wrong energymodificator (CasteInfo.cs, 115)</comment>
+  </data>
+  <data name="SimulationCoreCasteRuleLoadFailed" xml:space="preserve">
+    <value>The load-modificator of caste {0} of ant {1} is invalid.</value>
+    <comment>if a checked caste has wrong loadmodificator (CasteInfo.cs, 92)</comment>
+  </data>
+  <data name="SimulationCoreCasteRuleNoName" xml:space="preserve">
+    <value>The caste-attribute of ant {0} does not contain a name.</value>
+    <comment>if a checked caste has no name (CasteInfo.cs, 67)</comment>
+  </data>
+  <data name="SimulationCoreCasteRuleRangeFailed" xml:space="preserve">
+    <value>The reach-modificator of caste {0} of ant {1} is invalid.</value>
+    <comment>if a checked caste has wrong rangemodificator (CasteInfo.cs, 108)</comment>
+  </data>
+  <data name="SimulationCoreCasteRuleRotationSpeedFailed" xml:space="preserve">
+    <value>The rotationspeed-modificator of caste {0} of ant {1}is invalid.</value>
+    <comment>if a checked caste has wrong rotationspeedmodificator (CasteInfo.cs, 83)</comment>
+  </data>
+  <data name="SimulationCoreCasteRuleSpeedFailed" xml:space="preserve">
+    <value>The speed-modificator of caste {0} of ant {1} is invalid.</value>
+    <comment>if a checked caste has wrong speedmodificator (CasteInfo.cs, 75)</comment>
+  </data>
+  <data name="SimulationCoreCasteRuleSumFailed" xml:space="preserve">
+    <value>The sum of modificators of caste {0} of player {1} are invalid.</value>
+    <comment>if a checked caste has wrong sum (CasteInfo.cs, 134)</comment>
+  </data>
+  <data name="SimulationCoreCasteRuleViewRangeFailed" xml:space="preserve">
+    <value>The viewrange-modificator of caste {0} of ant {1} is invalid.</value>
+    <comment>if a checked caste has wrong viewrangemodificator (CasteInfo.cs, 100)</comment>
+  </data>
+  <data name="SimulationCoreChooseWrongCaste" xml:space="preserve">
+    <value>The desired caste for the new ant '{0}' doesn't exist.</value>
+    <comment>m not existing caste (CoreAnt.cs)
+0: Wrong Castename</comment>
+  </data>
+  <data name="SimulationCoreConfigurationLoopCountTooBig" xml:space="preserve">
+    <value>The loop count cannot be greater than {0}.</value>
+    <comment>if the simulatorConfig has a too big loopcount(SimulatorConfiguration.cs, 100)</comment>
+  </data>
+  <data name="SimulationCoreConfigurationLoopCountTooSmall" xml:space="preserve">
+    <value>The minimum loop count is 1.</value>
+    <comment>if the simulatorConfig has a too small loopcount(SimulatorConfiguration.cs, 97)</comment>
+  </data>
+  <data name="SimulationCoreConfigurationLoopTimeoutTooSmall" xml:space="preserve">
+    <value>The timeout value for a loop cannot be less than 1.</value>
+    <comment>if the simulatorConfig has a too small looptimeout(SimulatorConfiguration.cs, 109)</comment>
+  </data>
+  <data name="SimulationCoreConfigurationNoTeams" xml:space="preserve">
+    <value>At least one team must be selected for the simulation.</value>
+    <comment>if the simulatorConfig has no teams (SimulatorConfiguration.cs, 120)</comment>
+  </data>
+  <data name="SimulationCoreConfigurationRoundCountTooBig" xml:space="preserve">
+    <value>The round count must not exceed {0}.</value>
+    <comment>if the simulatorConfig has a too big roundcount(SimulatorConfiguration.cs, 92)</comment>
+  </data>
+  <data name="SimulationCoreConfigurationRoundCountTooSmall" xml:space="preserve">
+    <value>The minimum round count is 1.</value>
+    <comment>if the simulatorConfig has a too small roundcount (SimulatorConfiguration.cs, 89)</comment>
+  </data>
+  <data name="SimulationCoreConfigurationRoundTimeoutTooSmall" xml:space="preserve">
+    <value>The timeout value for a round cannot be less than 1.</value>
+    <comment>if the simulatorConfig has a too small roundtimeout(SimulatorConfiguration.cs, 113)</comment>
+  </data>
+  <data name="SimulationCoreFactoryConfigIsNull" xml:space="preserve">
+    <value>The parameter configuration must not be null.</value>
+    <comment>if the config-parameter of factory is null (SimulatorFactory.cs, 13)</comment>
+  </data>
+  <data name="SimulationCoreHostEnvironmentNotInit" xml:space="preserve">
+    <value>The environment has not yet been initialized.</value>
+    <comment>if the environment was not initialized before called step (SimulatorHost.cs, 122)</comment>
+  </data>
+  <data name="SimulationCoreHostRoundTimeout" xml:space="preserve">
+    <value>The timeout for a round has been exceeded.</value>
+    <comment>if there was a round-timeout in simulation (SimulatorHost.cs, 149)</comment>
+  </data>
+  <data name="SimulationCoreHostWrongPlayerInfo" xml:space="preserve">
+    <value>The configuration may only contain PlayerInfoFileName or PlayerInfoFileDump.</value>
+    <comment>if there is a wrong type of playerinfo in playerlist (SimulatorHost.cs, 84)</comment>
+  </data>
+  <data name="SimulationCoreNegativeMarkerSize" xml:space="preserve">
+    <value>It's not possible to create marker with size smaller than 0</value>
+    <comment>Exceptionmessage for negative markersize (CoreInsect.cs)</comment>
+  </data>
+  <data name="SimulationCorePlayerRuleNoName" xml:space="preserve">
+    <value>The PlayerAttribute of class {0} does not contain a name.</value>
+    <comment>if playerInfo has no name (PlayerInfo.cs, 214)</comment>
+  </data>
+  <data name="SimulationCoreProxyUnloaded" xml:space="preserve">
+    <value>The simulation has already been unloaded.</value>
+    <comment>if step was called after unload. (SimulatorProxy.cs, 123)</comment>
+  </data>
+  <data name="SimulationCoreProxyWrongPlayerInfo" xml:space="preserve">
+    <value>The configuration may only contain PlayerInfoFileName or PlayerInfoFileDump.</value>
+    <comment>if the config holds wrong PlayerInfos (SimulatorProxy.cs, 63)</comment>
+  </data>
+  <data name="SimulationCoreRightsConflictDb" xml:space="preserve">
+    <value>There are no rights to grand database-access to various colonies.</value>
+    <comment>if colony request rights without the needed rights in config (SimulatorProxy.cs)</comment>
+  </data>
+  <data name="SimulationCoreRightsConflictIo" xml:space="preserve">
+    <value>There are no rights to grand file-access to various colonies.</value>
+    <comment>if colony request rights without the needed rights in config (SimulatorProxy.cs)</comment>
+  </data>
+  <data name="SimulationCoreRightsConflictNet" xml:space="preserve">
+    <value>There are no rights to grand network-access to various colonies.</value>
+    <comment>if colony request rights without the needed rights in config (SimulatorProxy.cs)</comment>
+  </data>
+  <data name="SimulationCoreRightsConflictUi" xml:space="preserve">
+    <value>There are no rights to grand userinterface-access to various colonies.</value>
+    <comment>if colony request rights without the needed rights in config (SimulatorProxy.cs)</comment>
+  </data>
+  <data name="SimulationCoreSettingsCasteColumnToBig" xml:space="preserve">
+    <value>The index of the caste column is too large.</value>
+    <comment>if there was access to CasteColumns with a too big index (SimulatorCasteSettings.cs, 49)</comment>
+  </data>
+  <data name="SimulationCoreSettingsCasteColumnToSmall" xml:space="preserve">
+    <value>The index of the caste column is too small.</value>
+    <comment>if there was access to CasteColumns with a too small index (SimulatorCasteSettings.cs, 46)</comment>
+  </data>
+  <data name="SimulationCoreSimulatorRestartFailed" xml:space="preserve">
+    <value>Cannot call Step() on a simulation that has already completed.</value>
+    <comment>if a step was called on a finished simulation (Simulator.cs, 133)</comment>
+  </data>
+  <data name="SimulationCoreTeamInfoNoName" xml:space="preserve">
+    <value>The list of players of a team may not be empty.</value>
+    <comment>if there is no teamname (TeamInfo.cs, 95)</comment>
+  </data>
+</root>

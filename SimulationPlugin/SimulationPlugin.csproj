@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D622F308-35A9-4A86-8F2C-4E68CECA7C11}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AntMe.Plugin.Simulation</RootNamespace>
+    <AssemblyName>AntMe.Plugin.Simulation</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>..\bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <DocumentationFile>
+    </DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AntProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AntProperties.Designer.cs">
+      <DependentUpon>AntProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateForm.Designer.cs">
+      <DependentUpon>CreateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Generators\EnglishCSharpGenerator.cs" />
+    <Compile Include="Generators\GeneratorFiles.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GeneratorFiles.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Generators\GermanCSharpGenerator.cs" />
+    <Compile Include="Generators\IGenerator.cs" />
+    <Compile Include="Generators\VsGenerator.cs" />
+    <Compile Include="Presets.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Presets.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RightsRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RightsRequest.Designer.cs">
+      <DependentUpon>RightsRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SummaryLoop.cs" />
+    <Compile Include="PlayerItem.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resource.de.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.de.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SummarySimulation.cs" />
+    <Compile Include="StatisticControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StatisticControl.Designer.cs">
+      <DependentUpon>StatisticControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StatisticPlugin.cs" />
+    <Compile Include="SummaryRoot.cs" />
+    <Compile Include="SummaryPlayer.cs" />
+    <Compile Include="SummaryTeam.cs" />
+    <Compile Include="SummaryValueSet.cs" />
+    <Compile Include="TeamItem.cs" />
+    <Compile Include="TeamSetup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TeamSetup.Designer.cs">
+      <DependentUpon>TeamSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SimulatorPlugin.cs" />
+    <Compile Include="SimulationPluginConfiguration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimulationProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SimulationProperties.Designer.cs">
+      <DependentUpon>SimulationProperties.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AntProperties.de.resx">
+      <DependentUpon>AntProperties.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AntProperties.resx">
+      <DependentUpon>AntProperties.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateForm.de.resx">
+      <DependentUpon>CreateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateForm.resx">
+      <DependentUpon>CreateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generators\GeneratorFiles.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GeneratorFiles.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presets.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Presets.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource.de.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.de.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightsRequest.de.resx">
+      <DependentUpon>RightsRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightsRequest.resx">
+      <DependentUpon>RightsRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimulationProperties.de.resx">
+      <DependentUpon>SimulationProperties.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatisticControl.de.resx">
+      <DependentUpon>StatisticControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatisticControl.resx">
+      <DependentUpon>StatisticControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TeamSetup.de.resx">
+      <DependentUpon>TeamSetup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TeamSetup.resx">
+      <DependentUpon>TeamSetup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimulationProperties.resx">
+      <DependentUpon>SimulationProperties.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SharedComponents\SharedComponents.csproj">
+      <Project>{415F50C3-BD70-4634-B1F7-A15B42F0B0C6}</Project>
+      <Name>SharedComponents</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SimulationCore\SimulationCore.csproj">
+      <Project>{35753E72-07F3-4F18-916C-479850EC375F}</Project>
+      <Name>SimulationCore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AntMe.snk" />
+    <None Include="Resources\captureTheApple.ant.config" />
+    <None Include="Resources\debugging.ant.config" />
+    <None Include="Resources\delete_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heros.ant.config" />
+    <None Include="Resources\load_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\properties_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resetteams.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\colony_nonstatic_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\debug_messages_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\duration_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\map_generation_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\security_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings_new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sugarRun.ant.config" />
+    <None Include="Resources\SurvivalOfTheFittest.ant.config" />
+    <None Include="Resources\timeout_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\properties.txt" />
+    <None Include="Resources\user.txt" />
+    <None Include="Resources\class_en.txt" />
+    <None Include="Resources\class_de.txt" />
+    <None Include="Resources\project.txt" />
+    <None Include="Resources\solution.txt" />
+    <None Include="Resources\toddler.png" />
+    <None Include="Resources\add.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
