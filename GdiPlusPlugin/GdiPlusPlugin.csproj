@@ -120,6 +120,7 @@
     <ProjectReference Include="..\SharedComponents\SharedComponents.csproj">
       <Project>{415F50C3-BD70-4634-B1F7-A15B42F0B0C6}</Project>
       <Name>SharedComponents</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

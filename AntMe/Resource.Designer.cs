@@ -133,6 +133,15 @@ namespace AntMe.Gui {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Mode selected.
+        /// </summary>
+        internal static string MainNoModeSelected {
+            get {
+                return ResourceManager.GetString("MainNoModeSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Maximum.
         /// </summary>
         internal static string MainSpeedMaximal {

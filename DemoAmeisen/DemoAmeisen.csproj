@@ -81,6 +81,7 @@
     <ProjectReference Include="..\SimulationCore\SimulationCore.csproj">
       <Project>{35753E72-07F3-4F18-916C-479850EC375F}</Project>
       <Name>SimulationCore</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

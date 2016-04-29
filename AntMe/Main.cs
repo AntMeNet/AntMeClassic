@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
+using System.Linq;
 
 using AntMe.Gui.Properties;
 using AntMe.SharedComponents.Plugin;
@@ -11,6 +12,7 @@ using AntMe.Online.Client;
 using System.Diagnostics;
 using System.Drawing;
 using System.Threading.Tasks;
+using AntMe.PlayerManagement;
 
 namespace AntMe.Gui
 {
@@ -50,6 +52,14 @@ namespace AntMe.Gui
                     englishMenuItem.Checked = true;
                     break;
             }
+
+            // Load Player
+            Task t = new Task(() => { PlayerStore.Instance.ToString(); });
+            t.Start();
+
+            // Prüfe auf Updates
+            t = new Task(BackgroundUpdateCheck);
+            t.Start();
 
             // Load welcomepage
             try
@@ -99,10 +109,6 @@ namespace AntMe.Gui
             }
 
             initPhase = false;
-
-            // Prüfe auf Updates
-            Task t = new Task(BackgroundUpdateCheck);
-            t.Start();
         }
 
         #endregion
@@ -158,30 +164,42 @@ namespace AntMe.Gui
                 speedDropDownToolItem.Text = Resource.MainSpeedMaximal;
             }
 
-            // producer-list
-            List<PluginItem> producerList = new List<PluginItem>(manager.ProducerPlugins);
-            for (int i = 0; i < producerComboBoxToolItem.Items.Count; i++)
+            // Producer List (Button-Based)
+            List<ToolStripItem> remove = new List<ToolStripItem>();
+            foreach (ToolStripItem item in producerButton.DropDownItems)
             {
-                PluginItem item = (PluginItem)producerComboBoxToolItem.Items[i];
-                if (!producerList.Contains(item))
-                {
-                    producerComboBoxToolItem.Items.Remove(item);
-                    i--;
-                }
+                if (!manager.ProducerPlugins.Any(p => p == item.Tag))
+                    remove.Add(item);
             }
-            foreach (PluginItem item in producerList)
+            foreach (var item in remove)
             {
-                if (!producerComboBoxToolItem.Items.Contains(item))
+                producerButton.DropDownItems.Remove(item);
+            }
+
+            foreach (var item in manager.ProducerPlugins)
+            {
+                if (producerButton.DropDownItems.Find(item.Guid.ToString(), false).Count() == 0)
                 {
-                    producerComboBoxToolItem.Items.Add(item);
+                    var menuItem = new ToolStripMenuItem()
+                    {
+                        Text = item.Name,
+                        Name = item.Guid.ToString(),
+                        Tag = item
+                    };
+
+                    menuItem.Click += button_producer;
+
+                    producerButton.DropDownItems.Add(menuItem);
                 }
             }
 
             // manage tabs
             if (activeProducer != manager.ActiveProducerPlugin)
             {
-                // Update Combobox
-                producerComboBoxToolItem.SelectedItem = manager.ActiveProducerPlugin;
+                bool isSelected = tabControl.SelectedIndex == 1;
+
+                // Update Mode Display
+                producerButton.Text = (manager.ActiveProducerPlugin == null ? Resource.MainNoModeSelected : manager.ActiveProducerPlugin.Name);
 
                 // remove old tab
                 if (activeProducer != null)
@@ -202,6 +220,7 @@ namespace AntMe.Gui
                         page.Controls.Add(manager.ActiveProducerPlugin.Producer.Control);
                         tabControl.TabPages.Insert(1, page);
                         manager.ActiveProducerPlugin.Producer.Control.Dock = DockStyle.Fill;
+                        if (isSelected) tabControl.SelectedIndex = 1;
                     }
                     activeProducer = manager.ActiveProducerPlugin;
                 }
@@ -417,6 +436,7 @@ namespace AntMe.Gui
             ignoreTimerEvents = true;
             Plugins pluginForm = new Plugins(manager);
             pluginForm.ShowDialog(this);
+            manager.SaveSettings();
             ignoreTimerEvents = false;
             updatePanel();
         }
@@ -582,27 +602,17 @@ namespace AntMe.Gui
             }
         }
 
-        #endregion
-
-        #region combos
-
-        private void combo_producer(object sender, EventArgs e)
+        private void button_producer(object sender, EventArgs e)
         {
             if (ignoreTimerEvents)
-            {
                 return;
-            }
 
             ignoreTimerEvents = true;
-            if (producerComboBoxToolItem.SelectedItem != null)
-            {
-                PluginItem plugin = (PluginItem)producerComboBoxToolItem.SelectedItem;
-                manager.ActivateProducer(plugin.Guid);
-            }
-            else
-            {
-                manager.ActivateProducer(new Guid());
-            }
+
+            ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
+            PluginItem plugin = menuItem.Tag as PluginItem;
+            manager.ActivateProducer(plugin.Guid);
+
             updatePanel();
             ignoreTimerEvents = false;
         }

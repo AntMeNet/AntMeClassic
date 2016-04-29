@@ -1,11 +1,13 @@
 using System;
 
-namespace AntMe.Simulation {
+namespace AntMe.Simulation
+{
     /// <summary>
     /// Spielerinfo mit zusätzlicher Angabe eines Dateinamens
     /// </summary>
     [Serializable]
-    public sealed class PlayerInfoFilename : PlayerInfo {
+    public sealed class PlayerInfoFilename : PlayerInfo
+    {
         #region interne Variablen
 
         /// <summary>
@@ -20,12 +22,13 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Creates an instance of PlayerInfoFilename
         /// </summary>
-        public PlayerInfoFilename() {}
+        public PlayerInfoFilename() { }
 
         /// <summary>
         /// Konstruktor der SpielerInfo mit Dateinamen
         /// </summary>
-        public PlayerInfoFilename(string file) {
+        public PlayerInfoFilename(string file)
+        {
             File = file;
         }
 
@@ -34,7 +37,9 @@ namespace AntMe.Simulation {
         /// </summary>
         /// <param name="info"></param>
         /// <param name="file"></param>
-        public PlayerInfoFilename(PlayerInfo info, string file) : base(info) {
+        public PlayerInfoFilename(PlayerInfo info, string file)
+            : base(info)
+        {
             File = file;
         }
 
@@ -45,8 +50,9 @@ namespace AntMe.Simulation {
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public override bool Equals(object obj) {
-            PlayerInfoFilename other = (PlayerInfoFilename) obj;
+        public override bool Equals(object obj)
+        {
+            PlayerInfoFilename other = (PlayerInfoFilename)obj;
             return (GetHashCode() == other.GetHashCode());
         }
 
@@ -54,7 +60,8 @@ namespace AntMe.Simulation {
         /// Erzeugt einen Hash aus den gegebenen Daten
         /// </summary>
         /// <returns>Hashcode</returns>
-        public override int GetHashCode() {
+        public override int GetHashCode()
+        {
             return File.GetHashCode() ^ ClassName.GetHashCode();
         }
     }

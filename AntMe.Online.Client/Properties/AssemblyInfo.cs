@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("AntMe! GmbH")]
 [assembly: AssemblyProduct("AntMe!")]
-[assembly: AssemblyCopyright("Copyright © 2014 AntMe! GmbH")]
+[assembly: AssemblyCopyright("Copyright © 2015 AntMe! GmbH")]
 [assembly: AssemblyTrademark("AntMe!")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.7.1.6")]
-[assembly: AssemblyFileVersion("1.7.1.6")]
+[assembly: AssemblyVersion("1.7.2.23")]
+[assembly: AssemblyFileVersion("1.7.2.23")]

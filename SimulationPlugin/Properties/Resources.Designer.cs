@@ -212,9 +212,9 @@ namespace AntMe.Plugin.Simulation.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap timeout_32x32 {
+        internal static System.Drawing.Bitmap star1 {
             get {
-                object obj = ResourceManager.GetObject("timeout_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("star1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -222,9 +222,19 @@ namespace AntMe.Plugin.Simulation.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap toddler {
+        internal static System.Drawing.Bitmap star2 {
             get {
-                object obj = ResourceManager.GetObject("toddler", resourceCulture);
+                object obj = ResourceManager.GetObject("star2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap timeout_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("timeout_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

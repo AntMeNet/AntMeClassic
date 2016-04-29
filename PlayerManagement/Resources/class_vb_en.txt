@@ -1,0 +1,92 @@
+Imports System.Collections.Generic
+
+Imports AntMe.English
+
+<Player( _
+    ColonyName:="{2}", _
+    FirstName:="", _
+    LastName:="" _
+)> _
+<Caste( _
+    Name:="Default", _
+    SpeedModificator:=0, _
+    RotationSpeedModificator:=0, _
+    LoadModificator:=0, _
+    RangeModificator:=0, _
+    ViewRangeModificator:=0, _
+    EnergyModificator:=0, _
+    AttackModificator:=0 _
+)> _
+Public Class {0}
+    Inherits BaseAnt
+
+#Region "Casts"
+
+    Public Overrides Function ChooseType(typeCount As Dictionary(Of String, Integer)) As String
+        Return "Default"
+    End Function
+
+#End Region
+
+#Region "Movement"
+
+    Public Overrides Sub Waits()
+    End Sub
+
+    Public Overrides Sub BecomesTired()
+    End Sub
+
+    Public Overrides Sub HasDied(kindOfDeath As KindOfDeath)
+    End Sub
+
+    Public Overrides Sub Tick()
+    End Sub
+
+#End Region
+
+#Region "Food"
+
+    Public Overrides Sub Spots(fruit As Fruit)
+    End Sub
+
+    Public Overrides Sub Spots(sugar As Sugar)
+    End Sub
+
+    Public Overrides Sub TargetReached(fruit As Fruit)
+    End Sub
+
+    Public Overrides Sub TargetReached(sugar As Sugar)
+    End Sub
+
+#End Region
+
+#Region "Communication"
+
+    Public Overrides Sub SmellsFriend(marker As Marker)
+    End Sub
+
+    Public Overrides Sub SpotsFriend(ant As Ant)
+    End Sub
+
+    Public Overrides Sub SpotsPartner(ant As Ant)
+    End Sub
+
+#End Region
+
+#Region "Fight"
+
+    Public Overrides Sub SpotsEnemy(ant As Ant)
+    End Sub
+
+    Public Overrides Sub SpotsEnemy(bug As Bug)
+    End Sub
+
+    Public Overrides Sub UnderAttack(ant As Ant)
+    End Sub
+
+    Public Overrides Sub UnderAttack(bug As Bug)
+    End Sub
+
+#End Region
+
+End Class

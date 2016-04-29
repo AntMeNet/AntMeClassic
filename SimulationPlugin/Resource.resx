@@ -117,6 +117,44 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AntPropertiesAuthorFormat" xml:space="preserve">
+    <value>{0} {1}</value>
+    <comment>Format of author-tag (AntProperties.cs)
+0: First Name
+1: Last Name</comment>
+  </data>
+  <data name="AntPropertiesDbAccess" xml:space="preserve">
+    <value>Access to a database</value>
+    <comment>To tell the user, that the ant needs DB-Access (AntProperties.cs)</comment>
+  </data>
+  <data name="AntPropertiesIoAccess" xml:space="preserve">
+    <value>Access to the file system</value>
+    <comment>To tell the user, that the ant needs IO-Access (AntProperties.cs)</comment>
+  </data>
+  <data name="AntPropertiesNetAccess" xml:space="preserve">
+    <value>Access to the network</value>
+    <comment>To tell the user, that the ant needs Network-Access (AntProperties.cs)</comment>
+  </data>
+  <data name="AntPropertiesNoAccess" xml:space="preserve">
+    <value>Full access limitation</value>
+    <comment>To tell the user, that the ant needs no Access (AntProperties.cs)</comment>
+  </data>
+  <data name="AntPropertiesRefAccess" xml:space="preserve">
+    <value>Ant references external assembly or assemblies.</value>
+    <comment>To tell the user, that the ant needs Ref-Access (AntProperties.cs)</comment>
+  </data>
+  <data name="AntPropertiesUiAccess" xml:space="preserve">
+    <value>Access to the user interface</value>
+    <comment>To tell the user, that the ant needs UI-Access (AntProperties.cs)</comment>
+  </data>
+  <data name="FreeGamePluginDescription" xml:space="preserve">
+    <value>The Free Game Mode allows to arrange free games</value>
+    <comment>Description of the Free Game Plugin</comment>
+  </data>
+  <data name="FreeGamePluginName" xml:space="preserve">
+    <value>Free Game</value>
+    <comment>Name of the Free Game Plugin</comment>
+  </data>
   <data name="No" xml:space="preserve">
     <value>no</value>
     <comment>Various uses of no (AntProperties.cs)</comment>
@@ -142,64 +180,17 @@
     <value>AntMe! - Simulation</value>
     <comment>Caption of every Messagebox (TeamSetup.cs)</comment>
   </data>
-  <data name="SimulationPluginRightsLocked" xml:space="preserve">
-    <value>Following rights are not granted in the settings:</value>
-    <comment>Header of a list of not granted rights (RightsRequest.cs)</comment>
-  </data>
   <data name="SimulationPluginRuleViolation" xml:space="preserve">
     <value>This colony creates a ruleViolation with current settings: {0}</value>
     <comment>Is used to show errormessage in listview-Tooltip (TeamSetup.cs)
 0: Message of RuleViolation</comment>
-  </data>
-  <data name="SimulatorPluginAntPropertiesAuthorFormat" xml:space="preserve">
-    <value>{0} {1}</value>
-    <comment>Format of author-tag (AntProperties.cs)
-0: First Name
-1: Last Name</comment>
-  </data>
-  <data name="SimulatorPluginAntPropertiesDbAccess" xml:space="preserve">
-    <value>Access to a database</value>
-    <comment>To tell the user, that the ant needs DB-Access (AntProperties.cs)</comment>
-  </data>
-  <data name="SimulatorPluginAntPropertiesIoAccess" xml:space="preserve">
-    <value>Access to the file system</value>
-    <comment>To tell the user, that the ant needs IO-Access (AntProperties.cs)</comment>
-  </data>
-  <data name="SimulatorPluginAntPropertiesNetAccess" xml:space="preserve">
-    <value>Access to the network</value>
-    <comment>To tell the user, that the ant needs Network-Access (AntProperties.cs)</comment>
-  </data>
-  <data name="SimulatorPluginAntPropertiesNoAccess" xml:space="preserve">
-    <value>Full access limitation</value>
-    <comment>To tell the user, that the ant needs no Access (AntProperties.cs)</comment>
-  </data>
-  <data name="SimulatorPluginAntPropertiesNoAdditionalInfos" xml:space="preserve">
-    <value>No further information available.</value>
-    <comment>Text, if there are no additional info to access-requests (AntProperties.cs)</comment>
-  </data>
-  <data name="SimulatorPluginAntPropertiesRefAccess" xml:space="preserve">
-    <value>Ant references external assembly or assemblies.</value>
-    <comment>To tell the user, that the ant needs Ref-Access (AntProperties.cs)</comment>
-  </data>
-  <data name="SimulatorPluginAntPropertiesTitle" xml:space="preserve">
-    <value>Properties of {0}</value>
-    <comment>Title-Bar of ant-property-window (AntProperties.cs)
-0: Folkname</comment>
-  </data>
-  <data name="SimulatorPluginAntPropertiesUiAccess" xml:space="preserve">
-    <value>Access to the user interface</value>
-    <comment>To tell the user, that the ant needs UI-Access (AntProperties.cs)</comment>
-  </data>
-  <data name="SimulatorPluginAntPropertiesUnknown" xml:space="preserve">
-    <value>Unknown</value>
-    <comment>Unknown information at filesize and filecreationtime (AntProperties.cs)</comment>
   </data>
   <data name="SimulatorPluginDescription" xml:space="preserve">
     <value>Ant simulation</value>
     <comment>Description of Simulator-Application (SimulatorPlugin.cs)</comment>
   </data>
   <data name="SimulatorPluginName" xml:space="preserve">
-    <value>Simulation</value>
+    <value>Free Game</value>
     <comment>Name of Simulator-Application (SimulatorPlugin.cs)</comment>
   </data>
   <data name="SimulatorPluginNotStarted" xml:space="preserve">

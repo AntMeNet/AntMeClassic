@@ -9,7 +9,7 @@
     Id="*"
     Name="AntMe! 1.7"
     Language="1033"
-    Version="1.7.1"
+    Version="1.7.2"
     Manufacturer="$(var.Manufactor)"
     UpgradeCode="$(var.UpgradeGuid)">
 
@@ -52,6 +52,7 @@
       <ComponentRef Id="SharedComponents" />
       <ComponentRef Id="AntMeSimulation" />
       <ComponentRef Id="AntMeOnlineClient" />
+      <ComponentRef Id="AntMePlayerManagement" />
       <ComponentRef Id="SimulationPlugin" />
       <ComponentRef Id="DemoAmeisen" />
       <ComponentRef Id="GdiPlusPlugin" />
@@ -131,6 +132,12 @@
         <File Source="$(var.AntMe.Online.Client.TargetDir)/AntMe.Online.Client.XML" />
         <File Source="$(var.AntMe.Online.Client.TargetDir)/Newtonsoft.Json.dll" Checksum="yes" />
       </Component>
+      
+      <!-- AntMe.PlayerManagement -->
+      <Component Id="AntMePlayerManagement" Guid="{E20CC850-09DF-403F-80C7-DE1E6BE16997}">
+        <File Source="$(var.PlayerManagement.TargetPath)" KeyPath="yes" Checksum="yes" />
+        <File Source="$(var.PlayerManagement.TargetDir)/AntMe.PlayerManagement.XML" />
+      </Component>
 
       <!-- AntMe.exe -->
       <Component Id="AntMe" Guid="DECBC6BD-E889-4079-9465-BC0B70439C4A">
@@ -155,6 +162,7 @@
       <File Source="$(var.SharedComponents.TargetDir)/de/AntMe.SharedComponents.resources.dll" />
       <File Source="$(var.SimulationCore.TargetDir)/de/AntMe.Simulation.resources.dll" />
       <File Source="$(var.AntMe.Online.Client.TargetDir)/de/AntMe.Online.Client.resources.dll" />
+      <File Source="$(var.PlayerManagement.TargetDir)/de/AntMe.PlayerManagement.resources.dll" />
       <File Source="$(var.SimulationPlugin.TargetDir)/de/AntMe.Plugin.Simulation.resources.dll" />
       <File Source="$(var.GdiPlusPlugin.TargetDir)/de/AntMe.Plugin.GdiPlusPlugin.resources.dll" />
       <File Source="$(var.XnaPlugin.TargetDir)/de/AntMe.Plugin.Xna.resources.dll" />

@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using AntMe.SharedComponents.States;
+using System.Threading;
 
 namespace AntMe.Plugin.Xna
 {
@@ -69,7 +70,7 @@ namespace AntMe.Plugin.Xna
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            Window.Title = "AntMe! XNA";
+            Window.Title = "AntMe! - " + Strings.PluginName;
             IsMouseVisible = true;
             Window.AllowUserResizing = true;
         }
@@ -78,6 +79,9 @@ namespace AntMe.Plugin.Xna
         {
             camera = new Camera(Window);
             previousKeyboardState = Keyboard.GetState();
+
+            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("de");
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("de");
 
             base.Initialize();
         }
@@ -392,27 +396,27 @@ namespace AntMe.Plugin.Xna
                         //    name = antNames[ameise.Id];
                         //}
 
-                        line1 = string.Format(Resource.HovertextAntLine1, name, selectedItem.AdditionalInfo);
-                        line2 = string.Format(Resource.HovertextAntLine2, ameise.Vitality);
+                        line1 = string.Format(Strings.HovertextAntLine1, name, selectedItem.AdditionalInfo);
+                        line2 = string.Format(Strings.HovertextAntLine2, ameise.Vitality);
                         break;
                     case SelectionType.Anthill:
-                        line1 = Resource.HovertextAnthillLine1;
-                        line2 = string.Format(Resource.HovertextAnthillLine2, selectedItem.AdditionalInfo);
+                        line1 = Strings.HovertextAnthillLine1;
+                        line2 = string.Format(Strings.HovertextAnthillLine2, selectedItem.AdditionalInfo);
                         break;
                     case SelectionType.Bug:
                         BugState bugState = (BugState)selectedItem.Item;
-                        line1 = Resource.HovertextBugLine1;
-                        line2 = string.Format(Resource.HovertextBugLine2, bugState.Vitality);
+                        line1 = Strings.HovertextBugLine1;
+                        line2 = string.Format(Strings.HovertextBugLine2, bugState.Vitality);
                         break;
                     case SelectionType.Fruit:
                         FruitState fruitState = (FruitState)selectedItem.Item;
-                        line1 = Resource.HovertextFruitLine1;
-                        line2 = string.Format(Resource.HovertextFruitLine2, fruitState.Amount);
+                        line1 = Strings.HovertextFruitLine1;
+                        line2 = string.Format(Strings.HovertextFruitLine2, fruitState.Amount);
                         break;
                     case SelectionType.Sugar:
                         SugarState sugar = (SugarState)selectedItem.Item;
-                        line1 = Resource.HovertextSugarLine1;
-                        line2 = string.Format(Resource.HovertextSugarLine2, sugar.Amount);
+                        line1 = Strings.HovertextSugarLine1;
+                        line2 = string.Format(Strings.HovertextSugarLine2, sugar.Amount);
                         break;
                     default:
                         line1 = String.Empty;
@@ -919,14 +923,14 @@ namespace AntMe.Plugin.Xna
             infoBox.Draw(spriteBatch, new Rectangle(355, 15, 80, height - 10), new Color(0.3f, 0.3f, 0.9f, 0.3f));
             infoBox.Draw(spriteBatch, new Rectangle(445, 15, 80, height - 10), new Color(1f, 1f, 1f, 0.3f));
 
-            spriteBatch.DrawString(hudFont, Resource.InfoboxColumnColony2, new Vector2(20, ROWHEIGHT + 20), Color.Black);
-            spriteBatch.DrawString(hudFont, Resource.InfoboxColumnCollectedFood1, new Vector2(180, 20), Color.Black); //Green);
-            spriteBatch.DrawString(hudFont, Resource.InfoboxColumnCollectedFood2, new Vector2(180, ROWHEIGHT + 20), Color.Black); //Green);
-            spriteBatch.DrawString(hudFont, Resource.InfoboxColumnKilledAnts1, new Vector2(270, 20), Color.Black); //Red);
-            spriteBatch.DrawString(hudFont, Resource.InfoboxColumnKilledAnts2, new Vector2(270, ROWHEIGHT + 20), Color.Black); //Red);
-            spriteBatch.DrawString(hudFont, Resource.InfoboxColumnKilledBugs1, new Vector2(360, 20), Color.Black); //Blue);
-            spriteBatch.DrawString(hudFont, Resource.InfoboxColumnKilledBugs2, new Vector2(360, ROWHEIGHT + 20), Color.Black); //Blue);
-            spriteBatch.DrawString(hudFont, Resource.InfoboxColumnPoints2, new Vector2(450, /*ROWHEIGHT +*/ 20), Color.Black);
+            spriteBatch.DrawString(hudFont, Strings.InfoboxColumnColony2, new Vector2(20, ROWHEIGHT + 20), Color.Black);
+            spriteBatch.DrawString(hudFont, Strings.InfoboxColumnCollectedFood1, new Vector2(180, 20), Color.Black); //Green);
+            spriteBatch.DrawString(hudFont, Strings.InfoboxColumnCollectedFood2, new Vector2(180, ROWHEIGHT + 20), Color.Black); //Green);
+            spriteBatch.DrawString(hudFont, Strings.InfoboxColumnKilledAnts1, new Vector2(270, 20), Color.Black); //Red);
+            spriteBatch.DrawString(hudFont, Strings.InfoboxColumnKilledAnts2, new Vector2(270, ROWHEIGHT + 20), Color.Black); //Red);
+            spriteBatch.DrawString(hudFont, Strings.InfoboxColumnKilledBugs1, new Vector2(360, 20), Color.Black); //Blue);
+            spriteBatch.DrawString(hudFont, Strings.InfoboxColumnKilledBugs2, new Vector2(360, ROWHEIGHT + 20), Color.Black); //Blue);
+            spriteBatch.DrawString(hudFont, Strings.InfoboxColumnPoints2, new Vector2(450, /*ROWHEIGHT +*/ 20), Color.Black);
 
             //int count = 0;
             for (int i = 0; i < state.ColonyStates.Count; i++)

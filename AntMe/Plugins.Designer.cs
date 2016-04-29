@@ -29,9 +29,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Plugins));
             this.pluginListView = new System.Windows.Forms.ListView();
-            this.nameColumn = new System.Windows.Forms.ColumnHeader();
-            this.versionColumn = new System.Windows.Forms.ColumnHeader();
-            this.descriptionColumn = new System.Windows.Forms.ColumnHeader();
+            this.nameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.versionColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.descriptionColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cancelButton = new System.Windows.Forms.Button();
             this.addPluginButton = new System.Windows.Forms.Button();
             this.descriptionLabel = new System.Windows.Forms.Label();
@@ -40,16 +40,12 @@
             // 
             // pluginListView
             // 
-            this.pluginListView.AccessibleDescription = null;
-            this.pluginListView.AccessibleName = null;
             resources.ApplyResources(this.pluginListView, "pluginListView");
-            this.pluginListView.BackgroundImage = null;
             this.pluginListView.CheckBoxes = true;
             this.pluginListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.nameColumn,
             this.versionColumn,
             this.descriptionColumn});
-            this.pluginListView.Font = null;
             this.pluginListView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
             ((System.Windows.Forms.ListViewGroup)(resources.GetObject("pluginListView.Groups"))),
             ((System.Windows.Forms.ListViewGroup)(resources.GetObject("pluginListView.Groups1")))});
@@ -74,32 +70,21 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.AccessibleDescription = null;
-            this.cancelButton.AccessibleName = null;
             resources.ApplyResources(this.cancelButton, "cancelButton");
-            this.cancelButton.BackgroundImage = null;
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.cancelButton.Font = null;
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
             // addPluginButton
             // 
-            this.addPluginButton.AccessibleDescription = null;
-            this.addPluginButton.AccessibleName = null;
             resources.ApplyResources(this.addPluginButton, "addPluginButton");
-            this.addPluginButton.BackgroundImage = null;
-            this.addPluginButton.Font = null;
             this.addPluginButton.Name = "addPluginButton";
             this.addPluginButton.UseVisualStyleBackColor = true;
             this.addPluginButton.Click += new System.EventHandler(this.addPluginButton_Click);
             // 
             // descriptionLabel
             // 
-            this.descriptionLabel.AccessibleDescription = null;
-            this.descriptionLabel.AccessibleName = null;
             resources.ApplyResources(this.descriptionLabel, "descriptionLabel");
-            this.descriptionLabel.Font = null;
             this.descriptionLabel.Name = "descriptionLabel";
             // 
             // openFileDialog
@@ -111,18 +96,13 @@
             // Plugins
             // 
             this.AcceptButton = this.cancelButton;
-            this.AccessibleDescription = null;
-            this.AccessibleName = null;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = null;
             this.CancelButton = this.cancelButton;
             this.Controls.Add(this.descriptionLabel);
             this.Controls.Add(this.addPluginButton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.pluginListView);
-            this.Font = null;
-            this.Icon = null;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Plugins";

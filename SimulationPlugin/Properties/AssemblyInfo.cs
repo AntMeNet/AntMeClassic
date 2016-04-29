@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("AntMe! GmbH")]
 [assembly: AssemblyProduct("AntMe!")]
-[assembly: AssemblyCopyright("Copyright © 2014 AntMe! GmbH")]
+[assembly: AssemblyCopyright("Copyright © 2015 AntMe! GmbH")]
 [assembly: AssemblyTrademark("AntMe!")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // Sie können alle Werte angeben oder die standardmäßigen Build- und Revisionsnummern 
 // übernehmen, indem Sie "*" eingeben:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.7.1.207")]
-[assembly: AssemblyFileVersion("1.7.1.207")]
+[assembly: AssemblyVersion("1.7.2.287")]
+[assembly: AssemblyFileVersion("1.7.2.287")]

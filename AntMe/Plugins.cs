@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 
 namespace AntMe.Gui {
@@ -59,7 +60,9 @@ namespace AntMe.Gui {
             if (openFileDialog.ShowDialog(this) == DialogResult.OK) {
                 try {
                     foreach (string filename in openFileDialog.FileNames) {
-                        manager.CheckForPlugin(filename);
+
+                        FileInfo fileInfo = new FileInfo(filename);
+                        manager.CheckForPlugin(fileInfo);
                     }
                     if (manager.Exceptions.Count > 0) {
                         ExceptionViewer problems = new ExceptionViewer(manager.Exceptions);
@@ -67,6 +70,7 @@ namespace AntMe.Gui {
                         manager.Exceptions.Clear();
                     }
                     UpdateList();
+                    manager.SaveSettings();
                 }
                 catch (Exception ex) {
                     MessageBox.Show(this, ex.Message);

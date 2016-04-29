@@ -1,0 +1,111 @@
+using AntMe.English;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace AntMe.Player.{2}
+{
+    [Player(
+        ColonyName = "{2}",
+        FirstName = "",
+        LastName = ""
+    )]
+    [Caste(
+        Name = "Default",
+        AttackModificator = 0,
+        EnergyModificator = 0,
+        LoadModificator = 0,
+        RangeModificator = 0,
+        RotationSpeedModificator = 0,
+        SpeedModificator = 0,
+        ViewRangeModificator = 0
+    )]
+    public class {0} : BaseAnt
+    {
+        #region Caste
+        
+        public override string ChooseType(Dictionary<string, int> typeCount)
+        {
+            return "Default";
+        }
+
+        #endregion
+
+        #region Movement
+
+        public override void Waits()
+        {
+        }
+
+        public override void BecomesTired()
+        {
+        }
+
+        public override void HasDied(KindOfDeath kindOfDeath)
+        {
+        }
+
+        public override void Tick()
+        {
+        }
+
+        #endregion
+
+        #region Food
+
+        public override void Spots(Fruit fruit)
+        {
+        }
+
+        public override void Spots(Sugar sugar)
+        {
+        }
+
+        public override void TargetReached(Fruit fruit)
+        {
+        }
+
+        public override void TargetReached(Sugar sugar)
+        {
+        }
+
+        #endregion
+
+        #region Communication
+
+        public override void SmellsFriend(Marker marker)
+        {
+        }
+
+        public override void SpotsFriend(Ant ant)
+        {
+        }
+
+        public override void SpotsPartner(Ant ant)
+        {
+        }
+
+        #endregion
+
+        #region Fight
+
+        public override void SpotsEnemy(Ant ant)
+        {
+        }
+
+        public override void SpotsEnemy(Bug bug)
+        {
+        }
+
+        public override void UnderAttack(Ant ant)
+        {
+        }
+
+        public override void UnderAttack(Bug bug)
+        {
+        }
+
+        #endregion
+    }
+}

@@ -122,7 +122,7 @@
     <value>..\Resources\welcome.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PluginSearchFolder" xml:space="preserve">
-    <value>\\plugins</value>
+    <value>plugins</value>
     <comment>Additional Plugin-path for autmated plugin-search (PluginManager.cs)</comment>
   </data>
   <data name="uparrow" type="System.Resources.ResXFileRef, System.Windows.Forms">

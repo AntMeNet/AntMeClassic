@@ -23,7 +23,7 @@ namespace AntMe.Plugin.Simulation {
             ColonyName = info.ColonyName;
             FileName = info.File;
             ClassName = info.ClassName;
-            AuthorName = string.Format(Resource.SimulatorPluginAntPropertiesAuthorFormat, info.FirstName, info.LastName);
+            AuthorName = string.Format(Resource.AntPropertiesAuthorFormat, info.FirstName, info.LastName);
         }
 
         /// <summary>

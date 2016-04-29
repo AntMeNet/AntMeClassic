@@ -145,6 +145,9 @@
   <data name="infoBoxMenuItem.Text" xml:space="preserve">
     <value>About...</value>
   </data>
+  <data name="speedMaxMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>153, 22</value>
+  </data>
   <data name="&gt;&gt;menuStrip.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
@@ -170,6 +173,9 @@
   </data>
   <data name="&gt;&gt;settingsMenuItem.Name" xml:space="preserve">
     <value>settingsMenuItem</value>
+  </data>
+  <data name="&gt;&gt;versionButton.Name" xml:space="preserve">
+    <value>versionButton</value>
   </data>
   <data name="settingsMenuItem.Text" xml:space="preserve">
     <value>Settings</value>
@@ -210,6 +216,9 @@
   <data name="&gt;&gt;settingsMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;startMenuItem.Name" xml:space="preserve">
+    <value>startMenuItem</value>
+  </data>
   <data name="&gt;&gt;speedLabelToolItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -240,8 +249,14 @@
   <data name="pauseMenuItem.Text" xml:space="preserve">
     <value>Pause</value>
   </data>
+  <data name="&gt;&gt;tabControl.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="&gt;&gt;infoWebBrowser.Type" xml:space="preserve">
-    <value>AntMe.Gui.WebBrowserEx, AntMe, Version=1.7.0.325, Culture=neutral, PublicKeyToken=a423eba442ea5664</value>
+    <value>AntMe.Gui.WebBrowserEx, AntMe, Version=1.7.1.331, Culture=neutral, PublicKeyToken=a423eba442ea5664</value>
+  </data>
+  <data name="&gt;&gt;producerButton.Name" xml:space="preserve">
+    <value>producerButton</value>
   </data>
   <data name="speedLabelToolItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>42, 22</value>
@@ -258,14 +273,11 @@
   <data name="&gt;&gt;logoutButton.Name" xml:space="preserve">
     <value>logoutButton</value>
   </data>
-  <data name="&gt;&gt;infoBoxMenuItem.Name" xml:space="preserve">
-    <value>infoBoxMenuItem</value>
-  </data>
   <data name="&gt;&gt;speed15fpmMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="stopMenuItem.Text" xml:space="preserve">
-    <value>Stop</value>
+  <data name="&gt;&gt;speedMenuItem.Name" xml:space="preserve">
+    <value>speedMenuItem</value>
   </data>
   <data name="speedMaxToolItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 22</value>
@@ -285,8 +297,11 @@
   <data name="speedDropDownToolItem.Text" xml:space="preserve">
     <value>[speed]</value>
   </data>
-  <data name="speed100fpmMenuItem.Text" xml:space="preserve">
-    <value>100 fps</value>
+  <data name="&gt;&gt;speed100fpmMenuItem.Name" xml:space="preserve">
+    <value>speed100fpmMenuItem</value>
+  </data>
+  <data name="&gt;&gt;versionButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;welcomeTab.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -300,9 +315,6 @@
   <data name="menuStrip.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="speed22fpmMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 22</value>
-  </data>
   <data name="&gt;&gt;group1ToolItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -314,12 +326,6 @@
   </data>
   <data name="startMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
-  </data>
-  <data name="onlineButton.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>TextBeforeImage</value>
-  </data>
-  <data name="classDescriptionMenuItem.Text" xml:space="preserve">
-    <value>Class-Description</value>
   </data>
   <data name="stateLabelBarItem.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
@@ -349,7 +355,7 @@
     <value>116, 22</value>
   </data>
   <data name="sourceLabelToolItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 22</value>
+    <value>41, 22</value>
   </data>
   <data name="&gt;&gt;fpsBarItem.Name" xml:space="preserve">
     <value>fpsBarItem</value>
@@ -366,6 +372,9 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="speedMenuItem.Text" xml:space="preserve">
+    <value>Speed</value>
+  </data>
   <data name="stopToolItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 22</value>
   </data>
@@ -374,9 +383,6 @@
   </data>
   <data name="&gt;&gt;logoutButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;infoWebBrowser.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="&gt;&gt;onlineButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripDropDownButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -402,8 +408,8 @@
   <data name="loginButton.ToolTipText" xml:space="preserve">
     <value>Login with your AntMe! Online Account</value>
   </data>
-  <data name="speedMaxMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 22</value>
+  <data name="speed80fpmMenuItem.Text" xml:space="preserve">
+    <value>80 fps</value>
   </data>
   <data name="&gt;&gt;speed8fpmToolItem.Name" xml:space="preserve">
     <value>speed8fpmToolItem</value>
@@ -426,8 +432,8 @@
   <data name="logoutButton.Text" xml:space="preserve">
     <value>Logout</value>
   </data>
-  <data name="speed2fpmMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 22</value>
+  <data name="&gt;&gt;infoBoxMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="speed2fpmToolItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 22</value>
@@ -450,9 +456,6 @@
   <data name="tutorialsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
   </data>
-  <data name="&gt;&gt;producerComboBoxToolItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>932, 723</value>
   </data>
@@ -465,8 +468,8 @@
   <data name="classDescriptionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
   </data>
-  <data name="speedMenuItem.Text" xml:space="preserve">
-    <value>Speed</value>
+  <data name="speed2fpmMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>153, 22</value>
   </data>
   <data name="speed50fpmMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 22</value>
@@ -479,6 +482,9 @@
   </data>
   <data name="stateLabelBarItem.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
+  </data>
+  <data name="producerButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>13, 22</value>
   </data>
   <data name="speed22fpmMenuItem.Text" xml:space="preserve">
     <value>22,5 fps (150%)</value>
@@ -501,11 +507,11 @@
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
   </data>
+  <data name="&gt;&gt;speed15fpmToolItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="tabControl.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
-  </data>
-  <data name="&gt;&gt;stopToolItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="stopToolItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -555,14 +561,17 @@
   <data name="&gt;&gt;speedMaxMenuItem.Name" xml:space="preserve">
     <value>speedMaxMenuItem</value>
   </data>
+  <data name="producerButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
   <data name="&gt;&gt;classDescriptionMenuItem.Name" xml:space="preserve">
     <value>classDescriptionMenuItem</value>
   </data>
   <data name="pauseToolItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 22</value>
   </data>
-  <data name="&gt;&gt;classDescriptionMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="speed100fpmMenuItem.Text" xml:space="preserve">
+    <value>100 fps</value>
   </data>
   <data name="&gt;&gt;sourceLabelToolItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -571,7 +580,7 @@
     <value>AntMe! Tutorials</value>
   </data>
   <data name="sourceLabelToolItem.Text" xml:space="preserve">
-    <value>Source:</value>
+    <value>Mode:</value>
   </data>
   <data name="startToolItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 22</value>
@@ -581,9 +590,6 @@
   </data>
   <data name="&gt;&gt;group2ToolItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="startMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>105, 22</value>
   </data>
   <data name="&gt;&gt;fasterToolItem.Name" xml:space="preserve">
     <value>fasterToolItem</value>
@@ -597,14 +603,14 @@
   <data name="&gt;&gt;speed30fpmMenuItem.Name" xml:space="preserve">
     <value>speed30fpmMenuItem</value>
   </data>
-  <data name="speed50fpmToolItem.Text" xml:space="preserve">
-    <value>50 fps</value>
+  <data name="classDescriptionMenuItem.Text" xml:space="preserve">
+    <value>Class-Description</value>
   </data>
   <data name="startMenuItem.Text" xml:space="preserve">
     <value>Start</value>
   </data>
-  <data name="slowerToolItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+  <data name="&gt;&gt;infoWebBrowser.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -4642,11 +4648,8 @@
   <data name="speed30fpmToolItem.Text" xml:space="preserve">
     <value>30 fps (200%)</value>
   </data>
-  <data name="&gt;&gt;producerComboBoxToolItem.Name" xml:space="preserve">
-    <value>producerComboBoxToolItem</value>
-  </data>
-  <data name="infoWebBrowser.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
+  <data name="pauseToolItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="germanMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>116, 22</value>
@@ -4654,8 +4657,8 @@
   <data name="&gt;&gt;speedLabelToolItem.Name" xml:space="preserve">
     <value>speedLabelToolItem</value>
   </data>
-  <data name="speed100fpmToolItem.Text" xml:space="preserve">
-    <value>100 fps</value>
+  <data name="&gt;&gt;infoBoxMenuItem.Name" xml:space="preserve">
+    <value>infoBoxMenuItem</value>
   </data>
   <data name="&gt;&gt;germanMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -4687,14 +4690,35 @@
   <data name="tabControl.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
+  <data name="&gt;&gt;producerButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripDropDownButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="toolStrip.Text" xml:space="preserve">
     <value>toolStrip1</value>
+  </data>
+  <data name="producerButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAgNJREFUOE+lkutLk2EYxvePhJaHShFBUTEPiCieQOmDiEZgrEbpYGiCQxkqA80I
+        RUkUEZ0YRMS+DDI70MkTmzJnDc8iU8QT2mAEItnle90wHwTDyBduXnie5/rd133Q4ZKfAJqHFs9E08A8
+        zD1emDpmYXjqRlnTFIrMk8iuGkNaxWekGEaQrHecBfw+/vPXODw6hj9whN2fh/Bt/8LSRgA3cxr/DeBZ
+        9kvmTNMoHGNbIrYN+3Aj23IxgJkpds0doP3VstgmsNexhutZ9QrAms8T0zYzU5xXM46kcjsmvfvoeL2i
+        AeoUgA07T8yaaZuZKab1rzN74jgys1YB2O2gmBZzH49LODXrrJlnzEzxe9cOLH1ziMioVgCOiuIFX0CE
+        Q+/WYf+yieiCFrRp9tkwxnP7Kt5MbKGm6wfC000KwDlTXNLgEvHMkh+Db32o7fYivtQm1l9+3IBOp5P7
+        yjYPwlKNCsAluWudxgvtknb5t9oWcL/VLU2Mvd2JFq3uqs7vAtE/ceNayiMF4KiYMSjmY2O7B4Ua+NaD
+        YQGEJumRbvyG1IcfBHI12aAAXM8R57aIWTNrLLY4tfNPiCvpR1SeVeu6WWzHFD6THSDwFMDdpmUG62NJ
+        PKM4Or9ZxBxb8H8l7g5CEu8pAOfM3WanSeeS8CFHxW4zM2umbWamOCShXAH+/wNOANABIDUxWnDPAAAA
+        AElFTkSuQmCC
+</value>
   </data>
   <data name="&gt;&gt;updateMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="speedMaxToolItem.Text" xml:space="preserve">
     <value>Maximum</value>
+  </data>
+  <data name="&gt;&gt;classDescriptionMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tabControl.Name" xml:space="preserve">
     <value>tabControl</value>
@@ -4705,8 +4729,8 @@
   <data name="startToolItem.Text" xml:space="preserve">
     <value>Start</value>
   </data>
-  <data name="speed80fpmMenuItem.Text" xml:space="preserve">
-    <value>80 fps</value>
+  <data name="&gt;&gt;statusStrip.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;stateLabelBarItem.Name" xml:space="preserve">
     <value>stateLabelBarItem</value>
@@ -4717,11 +4741,14 @@
   <data name="&gt;&gt;progressBarItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="stopMenuItem.Text" xml:space="preserve">
+    <value>Stop</value>
+  </data>
   <data name="fasterToolItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 22</value>
   </data>
-  <data name="&gt;&gt;versionButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="stepCounterBarItem.Text" xml:space="preserve">
+    <value>[stepcounter]</value>
   </data>
   <data name="loginButton.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
     <value>TextBeforeImage</value>
@@ -4750,10 +4777,10 @@
   <data name="websiteMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
   </data>
-  <data name="&gt;&gt;speedMaxToolItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="speed50fpmToolItem.Text" xml:space="preserve">
+    <value>50 fps</value>
   </data>
-  <data name="&gt;&gt;speed50fpmToolItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;speedMaxToolItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="speed8fpmMenuItem.Size" type="System.Drawing.Size, System.Drawing">
@@ -4771,8 +4798,8 @@
   <data name="settingsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>61, 20</value>
   </data>
-  <data name="&gt;&gt;tabControl.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="welcomeTab.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
   </data>
   <data name="&gt;&gt;pauseMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -4780,8 +4807,8 @@
   <data name="menuStrip.Text" xml:space="preserve">
     <value>menuStrip</value>
   </data>
-  <data name="speed80fpmToolItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 22</value>
+  <data name="group1MenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>102, 6</value>
   </data>
   <data name="loginButton.Text" xml:space="preserve">
     <value>Login</value>
@@ -4812,6 +4839,9 @@
   </data>
   <data name="statusStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>924, 22</value>
+  </data>
+  <data name="speed100fpmToolItem.Text" xml:space="preserve">
+    <value>100 fps</value>
   </data>
   <data name="&gt;&gt;onlineButton.Name" xml:space="preserve">
     <value>onlineButton</value>
@@ -4858,17 +4888,11 @@
   <data name="slowerToolItem.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
-  <data name="group1MenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>102, 6</value>
-  </data>
   <data name="&gt;&gt;speed2fpmToolItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="stopMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>105, 22</value>
-  </data>
-  <data name="&gt;&gt;speed50fpmMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;pluginSettingsMenuItem.Name" xml:space="preserve">
     <value>pluginSettingsMenuItem</value>
@@ -4894,9 +4918,6 @@
   <data name="&gt;&gt;tutorialsMenuItem.Name" xml:space="preserve">
     <value>tutorialsMenuItem</value>
   </data>
-  <data name="producerComboBoxToolItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 25</value>
-  </data>
   <data name="pauseToolItem.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
@@ -4918,11 +4939,14 @@
   <data name="versionButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
+  <data name="&gt;&gt;speed50fpmMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="slowerToolItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 22</value>
+  </data>
   <data name="speed8fpmToolItem.Text" xml:space="preserve">
     <value>8 fps</value>
-  </data>
-  <data name="&gt;&gt;speed15fpmToolItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="fasterToolItem.Text" xml:space="preserve">
     <value>Faster</value>
@@ -4951,8 +4975,8 @@
   <data name="statusStrip.Text" xml:space="preserve">
     <value>statusStrip1</value>
   </data>
-  <data name="&gt;&gt;speedMenuItem.Name" xml:space="preserve">
-    <value>speedMenuItem</value>
+  <data name="startMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>105, 22</value>
   </data>
   <data name="welcomeTab.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -4966,8 +4990,8 @@
   <data name="welcomeTab.Text" xml:space="preserve">
     <value>Welcome</value>
   </data>
-  <data name="&gt;&gt;speed100fpmMenuItem.Name" xml:space="preserve">
-    <value>speed100fpmMenuItem</value>
+  <data name="speed22fpmMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>153, 22</value>
   </data>
   <data name="&gt;&gt;speed50fpmMenuItem.Name" xml:space="preserve">
     <value>speed50fpmMenuItem</value>
@@ -4975,14 +4999,11 @@
   <data name="&gt;&gt;toolStrip.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="welcomeTab.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
   <data name="fpsBarItem.Text" xml:space="preserve">
     <value>[fps]</value>
   </data>
-  <data name="&gt;&gt;startMenuItem.Name" xml:space="preserve">
-    <value>startMenuItem</value>
+  <data name="onlineButton.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>TextBeforeImage</value>
   </data>
   <data name="&gt;&gt;websiteMenuItem.Name" xml:space="preserve">
     <value>websiteMenuItem</value>
@@ -5002,14 +5023,11 @@
   <data name="&gt;&gt;forumMenuItem.Name" xml:space="preserve">
     <value>forumMenuItem</value>
   </data>
-  <data name="&gt;&gt;versionButton.Name" xml:space="preserve">
-    <value>versionButton</value>
+  <data name="speedLabelToolItem.Text" xml:space="preserve">
+    <value>Speed:</value>
   </data>
-  <data name="&gt;&gt;statusStrip.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;infoBoxMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="infoWebBrowser.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
   </data>
   <data name="toolStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>924, 25</value>
@@ -5026,14 +5044,17 @@
   <data name="&gt;&gt;stateLabelBarItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="pauseToolItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="speed80fpmToolItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>153, 22</value>
+  </data>
+  <data name="&gt;&gt;speed50fpmToolItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;stepCounterBarItem.Name" xml:space="preserve">
     <value>stepCounterBarItem</value>
   </data>
-  <data name="speedLabelToolItem.Text" xml:space="preserve">
-    <value>Speed:</value>
+  <data name="&gt;&gt;stopToolItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="onlineButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 22</value>
@@ -5047,9 +5068,6 @@
   <data name="versionButton.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="stepCounterBarItem.Text" xml:space="preserve">
-    <value>[stepcounter]</value>
-  </data>
   <data name="helpMenuItem.Text" xml:space="preserve">
     <value>Help</value>
   </data>
@@ -5058,6 +5076,9 @@
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>de</value>
   </metadata>
   <metadata name="toolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 24</value>

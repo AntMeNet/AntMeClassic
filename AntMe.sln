@@ -23,6 +23,8 @@ Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Setup", "Setup\Setup.wixpro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XnaPluginContent", "XnaPlugin\XnaPluginContent\XnaPluginContent.contentproj", "{B09C7823-AFF3-45A4-AAAC-88821B464DEC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayerManagement", "PlayerManagement\PlayerManagement.csproj", "{5D566A2A-C112-4543-95EA-F3E81A53CDE9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -67,6 +69,10 @@ Global
 		{EC7AA916-0218-436F-B4DC-510BDB769260}.Release|x86.Build.0 = Release|x86
 		{B09C7823-AFF3-45A4-AAAC-88821B464DEC}.Debug|x86.ActiveCfg = Debug|x86
 		{B09C7823-AFF3-45A4-AAAC-88821B464DEC}.Release|x86.ActiveCfg = Release|x86
+		{5D566A2A-C112-4543-95EA-F3E81A53CDE9}.Debug|x86.ActiveCfg = Debug|x86
+		{5D566A2A-C112-4543-95EA-F3E81A53CDE9}.Debug|x86.Build.0 = Debug|x86
+		{5D566A2A-C112-4543-95EA-F3E81A53CDE9}.Release|x86.ActiveCfg = Release|x86
+		{5D566A2A-C112-4543-95EA-F3E81A53CDE9}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

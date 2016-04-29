@@ -150,6 +150,9 @@
     <value>Tutorials</value>
     <comment>Title of messagebox to inform about missing tutorials (Main.cs)</comment>
   </data>
+  <data name="MainNoModeSelected" xml:space="preserve">
+    <value>No Mode selected</value>
+  </data>
   <data name="MainSpeedMaximal" xml:space="preserve">
     <value>Maximum</value>
     <comment>string for maximal speed without limit (Main.cs)</comment>

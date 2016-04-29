@@ -61,6 +61,87 @@ namespace AntMe.Plugin.Simulation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} {1}.
+        /// </summary>
+        internal static string AntPropertiesAuthorFormat {
+            get {
+                return ResourceManager.GetString("AntPropertiesAuthorFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access to a database.
+        /// </summary>
+        internal static string AntPropertiesDbAccess {
+            get {
+                return ResourceManager.GetString("AntPropertiesDbAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access to the file system.
+        /// </summary>
+        internal static string AntPropertiesIoAccess {
+            get {
+                return ResourceManager.GetString("AntPropertiesIoAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access to the network.
+        /// </summary>
+        internal static string AntPropertiesNetAccess {
+            get {
+                return ResourceManager.GetString("AntPropertiesNetAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Full access limitation.
+        /// </summary>
+        internal static string AntPropertiesNoAccess {
+            get {
+                return ResourceManager.GetString("AntPropertiesNoAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ant references external assembly or assemblies..
+        /// </summary>
+        internal static string AntPropertiesRefAccess {
+            get {
+                return ResourceManager.GetString("AntPropertiesRefAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access to the user interface.
+        /// </summary>
+        internal static string AntPropertiesUiAccess {
+            get {
+                return ResourceManager.GetString("AntPropertiesUiAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Free Game Mode allows to arrange free games.
+        /// </summary>
+        internal static string FreeGamePluginDescription {
+            get {
+                return ResourceManager.GetString("FreeGamePluginDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Free Game.
+        /// </summary>
+        internal static string FreeGamePluginName {
+            get {
+                return ResourceManager.GetString("FreeGamePluginName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to no.
         /// </summary>
         internal static string No {
@@ -106,110 +187,11 @@ namespace AntMe.Plugin.Simulation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Following rights are not granted in the settings:.
-        /// </summary>
-        internal static string SimulationPluginRightsLocked {
-            get {
-                return ResourceManager.GetString("SimulationPluginRightsLocked", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to This colony creates a ruleViolation with current settings: {0}.
         /// </summary>
         internal static string SimulationPluginRuleViolation {
             get {
                 return ResourceManager.GetString("SimulationPluginRuleViolation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} {1}.
-        /// </summary>
-        internal static string SimulatorPluginAntPropertiesAuthorFormat {
-            get {
-                return ResourceManager.GetString("SimulatorPluginAntPropertiesAuthorFormat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Access to a database.
-        /// </summary>
-        internal static string SimulatorPluginAntPropertiesDbAccess {
-            get {
-                return ResourceManager.GetString("SimulatorPluginAntPropertiesDbAccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Access to the file system.
-        /// </summary>
-        internal static string SimulatorPluginAntPropertiesIoAccess {
-            get {
-                return ResourceManager.GetString("SimulatorPluginAntPropertiesIoAccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Access to the network.
-        /// </summary>
-        internal static string SimulatorPluginAntPropertiesNetAccess {
-            get {
-                return ResourceManager.GetString("SimulatorPluginAntPropertiesNetAccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Full access limitation.
-        /// </summary>
-        internal static string SimulatorPluginAntPropertiesNoAccess {
-            get {
-                return ResourceManager.GetString("SimulatorPluginAntPropertiesNoAccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No further information available..
-        /// </summary>
-        internal static string SimulatorPluginAntPropertiesNoAdditionalInfos {
-            get {
-                return ResourceManager.GetString("SimulatorPluginAntPropertiesNoAdditionalInfos", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ant references external assembly or assemblies..
-        /// </summary>
-        internal static string SimulatorPluginAntPropertiesRefAccess {
-            get {
-                return ResourceManager.GetString("SimulatorPluginAntPropertiesRefAccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Properties of {0}.
-        /// </summary>
-        internal static string SimulatorPluginAntPropertiesTitle {
-            get {
-                return ResourceManager.GetString("SimulatorPluginAntPropertiesTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Access to the user interface.
-        /// </summary>
-        internal static string SimulatorPluginAntPropertiesUiAccess {
-            get {
-                return ResourceManager.GetString("SimulatorPluginAntPropertiesUiAccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unknown.
-        /// </summary>
-        internal static string SimulatorPluginAntPropertiesUnknown {
-            get {
-                return ResourceManager.GetString("SimulatorPluginAntPropertiesUnknown", resourceCulture);
             }
         }
         
@@ -223,7 +205,7 @@ namespace AntMe.Plugin.Simulation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Simulation.
+        ///   Looks up a localized string similar to Free Game.
         /// </summary>
         internal static string SimulatorPluginName {
             get {

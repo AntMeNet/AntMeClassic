@@ -118,21 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="programMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 20</value>
-  </data>
-  <data name="programMenuItem.Text" xml:space="preserve">
-    <value>Programm</value>
-  </data>
-  <data name="settingsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 20</value>
-  </data>
-  <data name="settingsMenuItem.Text" xml:space="preserve">
-    <value>Einstellungen</value>
-  </data>
-  <data name="helpMenuItem.Text" xml:space="preserve">
-    <value>Hilfe</value>
-  </data>
   <data name="startMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 22</value>
   </data>
@@ -154,6 +139,12 @@
   <data name="closeMenuItem.Text" xml:space="preserve">
     <value>Schließen</value>
   </data>
+  <data name="programMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 20</value>
+  </data>
+  <data name="programMenuItem.Text" xml:space="preserve">
+    <value>Programm</value>
+  </data>
   <data name="pluginSettingsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 22</value>
   </data>
@@ -162,12 +153,6 @@
   </data>
   <data name="speedMenuItem.Text" xml:space="preserve">
     <value>Geschwindigkeit</value>
-  </data>
-  <data name="languageMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
-  </data>
-  <data name="languageMenuItem.Text" xml:space="preserve">
-    <value>Sprache</value>
   </data>
   <data name="germanMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>118, 22</value>
@@ -181,11 +166,23 @@
   <data name="englishMenuItem.Text" xml:space="preserve">
     <value>Englisch</value>
   </data>
+  <data name="languageMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 22</value>
+  </data>
+  <data name="languageMenuItem.Text" xml:space="preserve">
+    <value>Sprache</value>
+  </data>
   <data name="updateMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 22</value>
   </data>
   <data name="updateMenuItem.Text" xml:space="preserve">
     <value>Updates suchen</value>
+  </data>
+  <data name="settingsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 20</value>
+  </data>
+  <data name="settingsMenuItem.Text" xml:space="preserve">
+    <value>Einstellungen</value>
   </data>
   <data name="tutorialsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>185, 22</value>
@@ -211,14 +208,32 @@
   <data name="infoBoxMenuItem.Text" xml:space="preserve">
     <value>Über AntMe!...</value>
   </data>
+  <data name="helpMenuItem.Text" xml:space="preserve">
+    <value>Hilfe</value>
+  </data>
   <data name="stopToolItem.Text" xml:space="preserve">
     <value>Stopp</value>
   </data>
   <data name="sourceLabelToolItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 22</value>
+    <value>47, 22</value>
   </data>
   <data name="sourceLabelToolItem.Text" xml:space="preserve">
-    <value>Quelle:</value>
+    <value>Modus:</value>
+  </data>
+  <data name="producerButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIDSURBVDhPpZLrS5NhGMb3j4SWh0oRQVExD4gonkDpg4hG
+        YKxG6WBogkMZKgPNCEVJFBGdGETEvgwyO9DJE5syZw3PIlPEE9pgBCLZ5XvdMB8Ew8gXbl54nuf63dd9
+        0OGSnwCahxbPRNPAPMw9Xpg6ZmF46kZZ0xSKzJPIrhpDWsVnpBhGkKx3nAX8Pv7z1zg8OoY/cITdn4fw
+        bf/C0kYAN3Ma/w3gWfZL5kzTKBxjWyK2DftwI9tyMYCZKXbNHaD91bLYJrDXsYbrWfUKwJrPE9M2M1Oc
+        VzOOpHI7Jr376Hi9ogHqFIANO0/MmmmbmSmm9a8ze+I4MrNWAdjtoJgWcx+PSzg166yZZ8xM8XvXDix9
+        c4jIqFYAjoriBV9AhEPv1mH/sonogha0afbZMMZz+yreTGyhpusHwtNNCsA5U1zS4BLxzJIfg299qO32
+        Ir7UJtZfftyATqeT+8o2D8JSjQrAJblrncYL7ZJ2+bfaFnC/1S1NjL3diRat7qrO7wLRP3HjWsojBeCo
+        mDEo5mNjuweFGvjWg2EBhCbpkW78htSHHwRyNdmgAFzPEee2iFkzayy2OLXzT4gr6UdUnlXrullsxxQ+
+        kx0g8BTA3aZlButjSTyjODq/WcQcW/B/Je4OQhLvKQDnzN1mp0nnkvAhR8VuMzNrpm1mpjgkoVwB/v8D
+        TgDQASA1MVpwzwAAAABJRU5ErkJggg==
+</value>
   </data>
   <data name="speedLabelToolItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>97, 22</value>

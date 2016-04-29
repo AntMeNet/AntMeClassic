@@ -12,7 +12,7 @@ using System;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("AntMe! GmbH")]
 [assembly: AssemblyProduct("AntMe!")]
-[assembly: AssemblyCopyright("Copyright © 2014 AntMe! GmbH")]
+[assembly: AssemblyCopyright("Copyright © 2015 AntMe! GmbH")]
 [assembly: AssemblyTrademark("AntMe!")]
 [assembly: AssemblyCulture("")]
 [assembly: AllowPartiallyTrustedCallers]
@@ -39,5 +39,5 @@ using System;
 //
 // Sie können alle Werte angeben oder die standardmäßigen Revisions- und Buildnummern 
 // übernehmen, indem Sie "*" eingeben:
-[assembly: AssemblyVersion("1.7.1.64")]
-[assembly: AssemblyFileVersion("1.7.1.64")]
+[assembly: AssemblyVersion("1.7.2.69")]
+[assembly: AssemblyFileVersion("1.7.2.69")]

@@ -70,7 +70,7 @@ namespace AntMe.Gui {
             this.pauseToolItem = new System.Windows.Forms.ToolStripButton();
             this.group1ToolItem = new System.Windows.Forms.ToolStripSeparator();
             this.sourceLabelToolItem = new System.Windows.Forms.ToolStripLabel();
-            this.producerComboBoxToolItem = new System.Windows.Forms.ToolStripComboBox();
+            this.producerButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.group2ToolItem = new System.Windows.Forms.ToolStripSeparator();
             this.speedLabelToolItem = new System.Windows.Forms.ToolStripLabel();
             this.speedDropDownToolItem = new System.Windows.Forms.ToolStripDropDownButton();
@@ -354,7 +354,7 @@ namespace AntMe.Gui {
             this.pauseToolItem,
             this.group1ToolItem,
             this.sourceLabelToolItem,
-            this.producerComboBoxToolItem,
+            this.producerButton,
             this.group2ToolItem,
             this.speedLabelToolItem,
             this.speedDropDownToolItem,
@@ -399,12 +399,12 @@ namespace AntMe.Gui {
             resources.ApplyResources(this.sourceLabelToolItem, "sourceLabelToolItem");
             this.sourceLabelToolItem.Name = "sourceLabelToolItem";
             // 
-            // producerComboBoxToolItem
+            // producerButton
             // 
-            resources.ApplyResources(this.producerComboBoxToolItem, "producerComboBoxToolItem");
-            this.producerComboBoxToolItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.producerComboBoxToolItem.Name = "producerComboBoxToolItem";
-            this.producerComboBoxToolItem.SelectedIndexChanged += new System.EventHandler(this.combo_producer);
+            resources.ApplyResources(this.producerButton, "producerButton");
+            this.producerButton.AutoToolTip = false;
+            this.producerButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.producerButton.Name = "producerButton";
             // 
             // group2ToolItem
             // 
@@ -621,7 +621,6 @@ namespace AntMe.Gui {
         private System.Windows.Forms.ToolStripSeparator group2MenuItem;
         private System.Windows.Forms.ToolStripMenuItem infoBoxMenuItem;
         private WebBrowserEx infoWebBrowser;
-        private System.Windows.Forms.ToolStripComboBox producerComboBoxToolItem;
         private System.Windows.Forms.ToolStripLabel sourceLabelToolItem;
         private System.Windows.Forms.ToolStripSeparator group1ToolItem;
         private System.Windows.Forms.Timer timer;
@@ -664,5 +663,6 @@ namespace AntMe.Gui {
         private System.Windows.Forms.ToolStripMenuItem logoutButton;
         private System.Windows.Forms.ToolStripButton loginButton;
         private System.Windows.Forms.ToolStripButton versionButton;
+        private System.Windows.Forms.ToolStripDropDownButton producerButton;
     }
 }

@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyProduct("AntMe!")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("AntMe! GmbH")]
-[assembly: AssemblyCopyright("Copyright © 2014 AntMe! GmbH")]
+[assembly: AssemblyCopyright("Copyright © 2015 AntMe! GmbH")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("1.7.1.461")]
-[assembly: AssemblyFileVersionAttribute("1.7.1.461")]
+[assembly: AssemblyVersion("1.7.2.464")]
+[assembly: AssemblyFileVersionAttribute("1.7.2.464")]

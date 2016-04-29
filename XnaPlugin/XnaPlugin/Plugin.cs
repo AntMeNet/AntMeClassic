@@ -18,15 +18,17 @@ namespace AntMe.Plugin.Xna
 
         private PluginState state = PluginState.Ready;
 
+        private InstructionPanel control = new InstructionPanel();
+
         private RenderWindow window;
 
         public Guid Guid { get { return Guid.Parse("{AC254307-B465-493B-B99C-9E7BC8F19234}"); } }
 
         public Version Version { get { return version; } }
 
-        public string Name { get { return Resource.PluginName; } }
+        public string Name { get { return Strings.PluginName; } }
 
-        public string Description { get { return Resource.PluginDescription; } }
+        public string Description { get { return Strings.PluginDescription; } }
 
         public void StartupParameter(string[] parameter) { }
 
@@ -41,7 +43,7 @@ namespace AntMe.Plugin.Xna
 
         public Control Control
         {
-            get { return null; }
+            get { return control; }
         }
 
         public byte[] Settings
@@ -69,6 +71,8 @@ namespace AntMe.Plugin.Xna
             if (window == null)
             {
                 Thread t = new Thread(Loop);
+                t.CurrentCulture = Thread.CurrentThread.CurrentCulture;
+                t.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
                 t.IsBackground = true;
                 t.Start();
             }

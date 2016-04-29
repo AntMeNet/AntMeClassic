@@ -168,7 +168,7 @@ namespace AntMe.Gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \\plugins.
+        ///   Looks up a localized string similar to plugins.
         /// </summary>
         internal static string PluginSearchFolder {
             get {
