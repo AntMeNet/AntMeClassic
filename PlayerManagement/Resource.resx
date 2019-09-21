@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AntColonyLanguageNotValid" xml:space="preserve">
+    <value>Wrong setting for languages.</value>
+    <comment>Error message when ant colony language has not been set properly.</comment>
+  </data>
+  <data name="AntColonyNameNotValid" xml:space="preserve">
+    <value>The name can only contain letters and numbers, is not allowed to begin with a number and needs to be between 2 and 20 characters long.</value>
+    <comment>Error message when ant colony name contains non valid characters or does not satisfy length requirements.</comment>
+  </data>
+  <data name="AntColonyOutputFolderDoesNotExist" xml:space="preserve">
+    <value>Output folder does not exist.</value>
+    <comment>Error message when ant colony should be saved in directory that does not exist.</comment>
+  </data>
   <data name="AntPropertiesAuthorFormat" xml:space="preserve">
     <value>{0} {1}</value>
     <comment>Format of author-tag (AntProperties.cs)
