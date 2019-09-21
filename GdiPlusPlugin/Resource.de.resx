@@ -118,37 +118,37 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AntName" xml:space="preserve">
-    <value>Ant {0}</value>
+    <value>Ameise {0}</value>
     <comment>Name of an ant (AntInfoBox.cs)
 0: Female name</comment>
   </data>
   <data name="BugName" xml:space="preserve">
-    <value>Bug {0}</value>
+    <value>Wanze {0}</value>
     <comment>Name of a bug (BugInfoBox.cs)
 0: Male name</comment>
   </data>
   <data name="CollectedFood" xml:space="preserve">
-    <value>Collected Food</value>
+    <value>Gesammelte Nahrung</value>
     <comment>Collected food in point view</comment>
   </data>
   <data name="ColonyName" xml:space="preserve">
-    <value>Colony</value>
+    <value>Ameisenvolk</value>
     <comment>Colony name in point view</comment>
   </data>
   <data name="DeadAnts" xml:space="preserve">
-    <value>Dead Ants</value>
+    <value>Gestorbene Ameisen</value>
     <comment>Dead ants in point view</comment>
   </data>
   <data name="KilledBugs" xml:space="preserve">
-    <value>Killed Bugs</value>
+    <value>Getöte Wanzen</value>
     <comment>Killed ants in point view</comment>
   </data>
   <data name="KilledEnemies" xml:space="preserve">
-    <value>Killed Enemies</value>
+    <value>Getöte Ameisen</value>
     <comment>Killed enemies in point view</comment>
   </data>
   <data name="Points" xml:space="preserve">
-    <value>Points</value>
+    <value>Punkte</value>
     <comment>Total points in point view</comment>
   </data>
 </root>
