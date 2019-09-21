@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29102.190
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedComponents", "SharedComponents\SharedComponents.csproj", "{415F50C3-BD70-4634-B1F7-A15B42F0B0C6}"
 EndProject
@@ -128,7 +128,58 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {211EB653-1B4C-49C1-B89F-6679A2F14822}
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 17
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://antmeonline.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = SharedComponents\\SharedComponents.csproj
+		SccProjectName1 = SharedComponents
+		SccLocalPath1 = SharedComponents
+		SccProjectUniqueName2 = AntMe\\AntMe.csproj
+		SccProjectName2 = AntMe
+		SccLocalPath2 = AntMe
+		SccProjectUniqueName3 = DemoAmeisen\\DemoAmeisen.csproj
+		SccProjectName3 = DemoAmeisen
+		SccLocalPath3 = DemoAmeisen
+		SccProjectUniqueName4 = GdiPlusPlugin\\GdiPlusPlugin.csproj
+		SccProjectName4 = GdiPlusPlugin
+		SccLocalPath4 = GdiPlusPlugin
+		SccProjectUniqueName5 = SimulationCore\\SimulationCore.csproj
+		SccProjectName5 = SimulationCore
+		SccLocalPath5 = SimulationCore
+		SccProjectUniqueName6 = SimulationPlugin\\SimulationPlugin.csproj
+		SccProjectName6 = SimulationPlugin
+		SccLocalPath6 = SimulationPlugin
+		SccProjectUniqueName7 = XnaPlugin\\XnaPlugin\\XnaPlugin.csproj
+		SccProjectName7 = XnaPlugin/XnaPlugin
+		SccLocalPath7 = XnaPlugin\\XnaPlugin
+		SccProjectUniqueName8 = AntMe.Online.Client\\AntMe.Online.Client.csproj
+		SccProjectName8 = AntMe.Online.Client
+		SccLocalPath8 = AntMe.Online.Client
+		SccProjectUniqueName9 = OnlinePlugin\\OnlinePlugin.csproj
+		SccProjectName9 = OnlinePlugin
+		SccLocalPath9 = OnlinePlugin
+		SccProjectUniqueName10 = Setup\\Setup.wixproj
+		SccProjectName10 = Setup
+		SccLocalPath10 = Setup
+		SccProjectUniqueName11 = XnaPlugin\\XnaPluginContent\\XnaPluginContent.contentproj
+		SccProjectName11 = XnaPlugin/XnaPluginContent
+		SccLocalPath11 = XnaPlugin\\XnaPluginContent
+		SccProjectUniqueName12 = VideoPlugin\\VideoPlugin.csproj
+		SccProjectName12 = VideoPlugin
+		SccLocalPath12 = VideoPlugin
+		SccProjectUniqueName13 = PlayerManagement\\PlayerManagement.csproj
+		SccProjectName13 = PlayerManagement
+		SccLocalPath13 = PlayerManagement
+		SccProjectUniqueName14 = Help.English\\Help.English.shfbproj
+		SccProjectName14 = Help.English
+		SccLocalPath14 = Help.English
+		SccProjectUniqueName15 = Help.Deutsch\\Help.Deutsch.shfbproj
+		SccProjectName15 = Help.Deutsch
+		SccLocalPath15 = Help.Deutsch
+		SccProjectUniqueName16 = Help.SDK\\Help.SDK.shfbproj
+		SccProjectName16 = Help.SDK
+		SccLocalPath16 = Help.SDK
 	EndGlobalSection
 EndGlobal
