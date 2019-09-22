@@ -512,40 +512,111 @@ namespace AntMe.Plugin.GdiPlusPlugin
 			}
 
 			if (ShowScore)
-			{
-				// Zeichne den Hintergrund des Punktekastens.
-				bitmapGraphics.FillRectangle
-					(scoreBrush, 10f, 10f, 250f, window.State.ColonyStates.Count * 16f + 18f);
+            {
+                DrawScore();
+            }
 
-				// Speichert die Y-Koordinate der aktuellen Textzeile.
-				float x, y;
-
-				// Zeichne die Überschriften des Punktekastens.
-				y = 20f;
-
-				// Zeichne die Punkte aller Völker.
-				for (v = 0; v < window.State.ColonyStates.Count; v++)
-				{
-					bitmapGraphics.DrawString(window.State.ColonyStates[v].ColonyName, smallFont, Brushes.Black, 37f, y);
-					string s = window.State.ColonyStates[v].Points.ToString();
-					x = bitmapGraphics.MeasureString(s, smallBoldFont).Width;
-					bitmapGraphics.DrawString(s, smallBoldFont, Brushes.Black, 250f - x, y);
-					bitmapGraphics.FillRectangle(playerBrushes[v], 20f, y + 2f, 11f, 11f);
-					y += 16f;
-				}
-			}
-
-			timeStamp = DateTime.Now.Ticks;
+            timeStamp = DateTime.Now.Ticks;
 
 			// Zeichne die Hintergrund-Grafik auf das Fenster.
 			OnPaint(new PaintEventArgs(controlGraphics, ClientRectangle));
 		}
 
-		/// <summary>
-		/// Zeichnet die Hintergrund-Grafik auf das Kontrollelement.
-		/// </summary>
-		/// <param name="e"></param>
-		protected override void OnPaint(PaintEventArgs e)
+        // Zeichnet Punkte als Tabelle und richtet Spalten nach Textlaenge aus, 18f horizontaler Abstand
+        private void DrawScore()
+        {
+            // Merke die Texte zum Ausgeben
+            string[][] renderElements = new string[window.State.ColonyStates.Count + 1][];
+            renderElements[0] = new string[]
+            {
+                Resource.ColonyName,
+                Resource.CollectedFood,
+                Resource.DeadAnts,
+                Resource.KilledBugs,
+                Resource.KilledEnemies,
+                Resource.Points
+            };
+
+            // fuelle die Tabelle mit Zahlen der Voelker
+            for (int currentRenderElementY = 1; currentRenderElementY < renderElements.Length; currentRenderElementY++)
+            {
+                renderElements[currentRenderElementY] = new string[]
+                {
+                    window.State.ColonyStates[currentRenderElementY - 1].ColonyName,
+                    window.State.ColonyStates[currentRenderElementY - 1].CollectedFood.ToString(),
+                    (window.State.ColonyStates[currentRenderElementY - 1].BeatenAnts
+                        + window.State.ColonyStates[currentRenderElementY - 1].EatenAnts
+                        + window.State.ColonyStates[currentRenderElementY - 1].StarvedAnts).ToString(),
+                    window.State.ColonyStates[currentRenderElementY - 1].KilledBugs.ToString(),
+                    window.State.ColonyStates[currentRenderElementY - 1].KilledEnemies.ToString(),
+                    window.State.ColonyStates[currentRenderElementY - 1].Points.ToString()
+                };
+            }
+
+            // Merke die Laenge der Texte zum Ausgeben, eine Extrazeile fuer die Max Laengen pro Spalte
+            float[][] renderSizes = new float[renderElements.Length + 1][];
+            for (int currentRenderSizeY = 0; currentRenderSizeY < renderSizes.Length -1; currentRenderSizeY++)
+            {
+                renderSizes[currentRenderSizeY] = new float[renderElements[0].Length];
+                for(int currentRenderSizeX = 0; currentRenderSizeX < renderElements[0].Length; currentRenderSizeX++)
+                {
+                    renderSizes[currentRenderSizeY][currentRenderSizeX] = bitmapGraphics.MeasureString(
+                        renderElements[currentRenderSizeY][currentRenderSizeX],
+                        smallBoldFont).Width;
+                }
+            }
+
+            // Gesamtbreite der Tabelle
+            float totalWidth = 0;
+
+            // Berechne Max-Laenge pro Spalte
+            renderSizes[renderElements.Length] = new float[renderElements[0].Length];
+            for (int currentRenderSizeX = 0; currentRenderSizeX < renderElements[0].Length; currentRenderSizeX++)
+            {
+                float maxLength = 0;
+                for (int currentRenderSizeY = 0; currentRenderSizeY < renderSizes.Length - 1; currentRenderSizeY++)
+                {
+
+                    if (renderSizes[currentRenderSizeY][currentRenderSizeX] > maxLength)
+                    {
+                        maxLength = renderSizes[currentRenderSizeY][currentRenderSizeX];
+                    }
+                }
+
+                renderSizes[renderElements.Length][currentRenderSizeX] = maxLength;
+                totalWidth += maxLength + 18f;
+            }       
+            
+            // Zeichne den Hintergrund des Punktekastens.
+            bitmapGraphics.FillRectangle
+                (scoreBrush, 10f, 10f, totalWidth, renderElements.Length * 16f + 18f);
+
+            float y = 20f;
+
+            // Zeichne alle Text-Elemente an den jeweiligen Positionen
+            for (int currentRenderElementY = 0; currentRenderElementY < renderElements.Length; currentRenderElementY++)
+            {
+                if (currentRenderElementY != 0)
+                {
+                    bitmapGraphics.FillRectangle(playerBrushes[currentRenderElementY - 1], 20f, y + 2f, 11f, 11f);
+                }
+
+                float currentXStart = 37f;
+                for (int currentRenderElementX = 0; currentRenderElementX < renderElements[0].Length; currentRenderElementX++)
+                {
+                    bitmapGraphics.DrawString(renderElements[currentRenderElementY][currentRenderElementX], smallFont, Brushes.Black, currentXStart, y);
+                    currentXStart += renderSizes[renderSizes.Length - 1][currentRenderElementX];
+                }
+
+                y += 16f;
+            }
+        }
+
+        /// <summary>
+        /// Zeichnet die Hintergrund-Grafik auf das Kontrollelement.
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnPaint(PaintEventArgs e)
 		{
 			// Zeichne die Hintergrund-Grafik auf das Fenster.
 			if (bitmap != null)
