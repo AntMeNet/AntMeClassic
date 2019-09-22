@@ -71,7 +71,7 @@ namespace AntMe.PlayerManagement
             // Check den Namen (muss den Namenskonventionen von Klassennamen entsprechen)
             if (!Regex.IsMatch(nameTextBox.Text, @"^[a-zA-Z][a-zA-Z0-9]{1,19}$"))
             {
-                MessageBox.Show("Der Name darf nur Buchstaben und Zahlen enthalten, nicht mit einer Zahl beginnen und zwischen 2 und 20 Zeichen lang sein.");
+                MessageBox.Show(Resource.AntColonyNameNotValid);
                 e.Cancel = true;
                 return;
             }
@@ -80,7 +80,7 @@ namespace AntMe.PlayerManagement
             var generator = generators.Where(g => g.Language.Equals(languageComboBox.Text) && g.ProgrammingLanguage.Equals(codeComboBox.Text)).FirstOrDefault();
             if (generator == null)
             {
-                MessageBox.Show("Falsche Einstellungen bei den Sprachen");
+                MessageBox.Show(Resource.AntColonyLanguageNotValid);
                 e.Cancel = true;
                 return;
             }
@@ -89,7 +89,7 @@ namespace AntMe.PlayerManagement
             DirectoryInfo root = new DirectoryInfo(folderTextBox.Text);
             if (!root.Exists)
             {
-                MessageBox.Show("Ausgabeverzeichnis existiert nicht");
+                MessageBox.Show(Resource.AntColonyOutputFolderDoesNotExist);
                 e.Cancel = true;
                 return;
             }

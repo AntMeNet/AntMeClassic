@@ -61,6 +61,33 @@ namespace AntMe.PlayerManagement {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Wrong setting for languages..
+        /// </summary>
+        internal static string AntColonyLanguageNotValid {
+            get {
+                return ResourceManager.GetString("AntColonyLanguageNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name can only contain letters and numbers, is not allowed to begin with a number and needs to be between 2 and 20 characters long..
+        /// </summary>
+        internal static string AntColonyNameNotValid {
+            get {
+                return ResourceManager.GetString("AntColonyNameNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output folder does not exist..
+        /// </summary>
+        internal static string AntColonyOutputFolderDoesNotExist {
+            get {
+                return ResourceManager.GetString("AntColonyOutputFolderDoesNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} {1}.
         /// </summary>
         internal static string AntPropertiesAuthorFormat {
