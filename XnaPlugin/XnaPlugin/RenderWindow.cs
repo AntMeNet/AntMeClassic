@@ -81,8 +81,11 @@ namespace AntMe.Plugin.Xna
             camera = new Camera(Window);
             previousKeyboardState = Keyboard.GetState();
 
-            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("de");
-            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("de");
+            if (!string.Equals(Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName, "de", StringComparison.InvariantCultureIgnoreCase))
+            {
+                Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
+                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+            }
 
             base.Initialize();
         }
