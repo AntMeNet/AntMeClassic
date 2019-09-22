@@ -164,6 +164,14 @@
     <value>Nein</value>
     <comment>Various use of no (AntProperties.cs)</comment>
   </data>
+  <data name="PlayerSelectorOpenIde" xml:space="preserve">
+    <value>Es wurde eine neue Ameisenvorlage erstellt. Um deine neue Ameise aber im Spiel zu sehen, muss sie zuvor mit einer Entwicklungsumgebung geöffnet und kompiliert werden. Soll die Entwicklungsumgebung gleich geöffnet werden?</value>
+    <comment>Message displayed asking whether IDE should be launched.</comment>
+  </data>
+  <data name="PlayerSelectorOpenIdeTitle" xml:space="preserve">
+    <value>Ameise bearbeiten</value>
+    <comment>Message title displayed asking whether IDE should be launched.</comment>
+  </data>
   <data name="SimulationPluginRightsLocked" xml:space="preserve">
     <value>Folgende Rechte wurden in den Einstellungen nicht frei geschaltet:</value>
     <comment>Header of a list of not granted rights (RightsRequest.cs)</comment>
