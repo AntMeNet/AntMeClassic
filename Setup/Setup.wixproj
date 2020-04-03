@@ -80,14 +80,6 @@
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
       <RefTargetDir>INSTALLFOLDER</RefTargetDir>
     </ProjectReference>
-    <ProjectReference Include="..\SharedComponents\SharedComponents.csproj">
-      <Name>SharedComponents</Name>
-      <Project>{415f50c3-bd70-4634-b1f7-a15b42f0b0c6}</Project>
-      <Private>True</Private>
-      <DoNotHarvest>True</DoNotHarvest>
-      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
-      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
-    </ProjectReference>
     <ProjectReference Include="..\SimulationCore\SimulationCore.csproj">
       <Name>SimulationCore</Name>
       <Project>{35753e72-07f3-4f18-916c-479850ec375f}</Project>

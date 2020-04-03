@@ -149,5 +149,14 @@ namespace AntMe.SharedComponents.Properties {
                 return ResourceManager.GetString("MaleNames", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to test.
+        /// </summary>
+        internal static string test {
+            get {
+                return ResourceManager.GetString("test", resourceCulture);
+            }
+        }
     }
 }

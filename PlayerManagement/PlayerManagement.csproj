@@ -196,11 +196,6 @@
     <None Include="Resources\user.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SharedComponents\SharedComponents.csproj">
-      <Project>{415f50c3-bd70-4634-b1f7-a15b42f0b0c6}</Project>
-      <Name>SharedComponents</Name>
-      <Private>False</Private>
-    </ProjectReference>
     <ProjectReference Include="..\SimulationCore\SimulationCore.csproj">
       <Project>{35753e72-07f3-4f18-916c-479850ec375f}</Project>
       <Name>SimulationCore</Name>

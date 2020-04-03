@@ -90,11 +90,6 @@
       <Project>{43e44b6c-78f6-4515-88f2-c238b51886c5}</Project>
       <Name>AntMe.Online.Client</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SharedComponents\SharedComponents.csproj">
-      <Project>{415f50c3-bd70-4634-b1f7-a15b42f0b0c6}</Project>
-      <Name>SharedComponents</Name>
-      <Private>False</Private>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="VideoPlayerControl.resx">
