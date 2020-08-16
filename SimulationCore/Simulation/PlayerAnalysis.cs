@@ -183,17 +183,13 @@ namespace AntMe.Simulation
             {
                 // Suche nach statischen Variablen und bestimme so, ob der Spieler
                 // ein globales Gedächtnis für seine Ameisen benutzt.
-                BindingFlags flags =
-                    BindingFlags.Public | BindingFlags.NonPublic |
-                    BindingFlags.Static | BindingFlags.SetField;
-                staticVariables |= typeDefinition.Fields.Any();
+                staticVariables |= typeDefinition.Fields.Any(f => f.IsStatic);
+                staticVariables |= typeDefinition.Properties.Any(p => (p.SetMethod?.IsStatic ?? false) || (p.GetMethod?.IsStatic ?? false));
             }
 
             // Gefundene KIs auf Regeln prüfen
             // Betrachte alle öffentlichen Typen in der Bibliothek.
-            foreach (var exportedType in module.Types.Where(t => t.Attributes.HasFlag(Mono.Cecil.TypeAttributes.Public)
-            && !t.Attributes.HasFlag(Mono.Cecil.TypeAttributes.Interface)
-            && !t.Attributes.HasFlag(Mono.Cecil.TypeAttributes.Abstract)))
+            foreach (var exportedType in module.Types.Where(t => t.IsPublic && !t.IsInterface && !t.IsAbstract))
             {
                 // Prüfe ob der Typ von der Klasse Ameise erbt.
                 var exportedTypeDefinition = exportedType.Resolve();
@@ -223,7 +219,7 @@ namespace AntMe.Simulation
                     foreach (var attribute in exportedTypeDefinition.CustomAttributes)
                     {
                         // Player-Attribut auslesen
-                        switch (attribute.Constructor.DeclaringType.FullName)
+                        switch (attribute.AttributeType.FullName)
                         {
                             case "AntMe.Deutsch.SpielerAttribute":
                                 playerDefinitions++;
@@ -471,7 +467,7 @@ namespace AntMe.Simulation
                     foreach (var attribute in exportedTypeDefinition.CustomAttributes)
                     {
                         // Spieler-Attribut auslesen
-                        if (attribute.Constructor.ReturnType.FullName == "AntMe.SpielerAttribute")
+                        if (attribute.AttributeType.FullName == "AntMe.SpielerAttribute")
                         {
                             playerDefinitions++;
                             foreach (var property in attribute.Properties)
@@ -493,36 +489,36 @@ namespace AntMe.Simulation
                         }
 
                         // Typ-Attribut auslesen
-                        if (attribute.Constructor.ReturnType.FullName == "AntMe.TypAttribute")
+                        if (attribute.AttributeType.FullName == "AntMe.TypAttribute")
                         {
                             CasteInfo caste = new CasteInfo();
-                            foreach (var property in attribute.Properties)
+                            foreach (var field in attribute.Fields)
                             {
-                                switch (property.Name)
+                                switch (field.Name)
                                 {
                                     case "Name":
-                                        caste.Name = (string)property.Argument.Value;
+                                        caste.Name = (string)field.Argument.Value;
                                         break;
                                     case "GeschwindigkeitModifikator":
-                                        caste.Speed = (int)property.Argument.Value;
+                                        caste.Speed = (int)field.Argument.Value;
                                         break;
                                     case "DrehgeschwindigkeitModifikator":
-                                        caste.RotationSpeed = (int)property.Argument.Value;
+                                        caste.RotationSpeed = (int)field.Argument.Value;
                                         break;
                                     case "LastModifikator":
-                                        caste.Load = (int)property.Argument.Value;
+                                        caste.Load = (int)field.Argument.Value;
                                         break;
                                     case "ReichweiteModifikator":
-                                        caste.Range = (int)property.Argument.Value;
+                                        caste.Range = (int)field.Argument.Value;
                                         break;
                                     case "SichtweiteModifikator":
-                                        caste.ViewRange = (int)property.Argument.Value;
+                                        caste.ViewRange = (int)field.Argument.Value;
                                         break;
                                     case "EnergieModifikator":
-                                        caste.Energy = (int)property.Argument.Value;
+                                        caste.Energy = (int)field.Argument.Value;
                                         break;
                                     case "AngriffModifikator":
-                                        caste.Attack = (int)property.Argument.Value;
+                                        caste.Attack = (int)field.Argument.Value;
                                         break;
                                 }
                             }
