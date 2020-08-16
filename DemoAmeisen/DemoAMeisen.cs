@@ -1,12 +1,14 @@
 using AntMe.Deutsch;
 
-namespace AntMe.Spieler.WolfgangGallo {
+namespace AntMe.Spieler.WolfgangGallo
+{
     [Spieler(
         Volkname = "Demo-A-Meisen",
         Vorname = "Wolfgang",
         Nachname = "Gallo"
         )]
-    public class DemoAMeise : Basisameise {
+    public class DemoAMeise : Basisameise
+    {
         private bool laufeWeg = false;
 
         #region Fortbewegung
@@ -15,12 +17,15 @@ namespace AntMe.Spieler.WolfgangGallo {
         /// Wird wiederholt aufgerufen, wenn der die Ameise nicht weiss wo sie
         /// hingehen soll.
         /// </summary>
-        public override void Wartet() {
+        public override void Wartet()
+        {
             laufeWeg = false;
-            if (AktuelleEnergie < MaximaleEnergie/2) {
+            if (AktuelleEnergie < MaximaleEnergie / 2)
+            {
                 GeheZuBau();
             }
-            else {
+            else
+            {
                 DreheUmWinkel(Zufall.Zahl(-36, 36));
                 GeheGeradeaus(Zufall.Zahl(20, 40));
             }
@@ -30,8 +35,10 @@ namespace AntMe.Spieler.WolfgangGallo {
         /// Wird einmal aufgerufen, wenn die Ameise ein Drittel ihrer maximalen
         /// Reichweite überschritten hat.
         /// </summary>
-        public override void WirdMüde() {
-            if (Ziel == null) {
+        public override void WirdMüde()
+        {
+            if (Ziel == null)
+            {
                 GeheZuBau();
             }
         }
@@ -45,11 +52,14 @@ namespace AntMe.Spieler.WolfgangGallo {
         /// Zuckerhaufen sieht.
         /// </summary>
         /// <param name="zucker">Der nächstgelegene Zuckerhaufen.</param>
-        public override void Sieht(Zucker zucker) {
-            if (!laufeWeg) {
+        public override void Sieht(Zucker zucker)
+        {
+            if (!laufeWeg)
+            {
                 int entfernung = Koordinate.BestimmeEntfernung(this, zucker);
                 SprüheMarkierung(Koordinate.BestimmeRichtung(this, zucker), entfernung);
-                if (Ziel == null && AktuelleLast < MaximaleLast) {
+                if (Ziel == null && AktuelleLast < MaximaleLast)
+                {
                     GeheZuZiel(zucker);
                 }
             }
@@ -60,8 +70,10 @@ namespace AntMe.Spieler.WolfgangGallo {
         /// Obststück sieht.
         /// </summary>
         /// <param name="obst">Das nächstgelegene Obststück.</param>
-        public override void Sieht(Obst obst) {
-            if (!laufeWeg && Ziel == null && AktuelleLast == 0 && BrauchtNochTräger(obst)) {
+        public override void Sieht(Obst obst)
+        {
+            if (!laufeWeg && Ziel == null && AktuelleLast == 0 && BrauchtNochTräger(obst))
+            {
                 GeheZuZiel(obst);
             }
         }
@@ -71,9 +83,11 @@ namespace AntMe.Spieler.WolfgangGallo {
         /// hat und bei diesem ankommt.
         /// </summary>
         /// <param name="zucker">Der Zuckerhaufen.</param>
-        public override void ZielErreicht(Zucker zucker) {
+        public override void ZielErreicht(Zucker zucker)
+        {
             Nimm(zucker);
-            if (AktuelleLast == MaximaleLast) {
+            if (AktuelleLast == MaximaleLast)
+            {
                 GeheZuBau();
             }
         }
@@ -83,8 +97,10 @@ namespace AntMe.Spieler.WolfgangGallo {
         /// bei diesem ankommt.
         /// </summary>
         /// <param name="obst">Das Obstück.</param>
-        public override void ZielErreicht(Obst obst) {
-            if (BrauchtNochTräger(obst)) {
+        public override void ZielErreicht(Obst obst)
+        {
+            if (BrauchtNochTräger(obst))
+            {
                 Nimm(obst);
                 GeheZuBau();
             }
@@ -100,8 +116,10 @@ namespace AntMe.Spieler.WolfgangGallo {
         /// gerochen.
         /// </summary>
         /// <param name="markierung">Die nächste neue Markierung.</param>
-        public override void RiechtFreund(Markierung markierung) {
-            if (!laufeWeg && Ziel == null) {
+        public override void RiechtFreund(Markierung markierung)
+        {
+            if (!laufeWeg && Ziel == null)
+            {
                 DreheInRichtung(markierung.Information);
                 GeheGeradeaus(10);
             }
@@ -116,7 +134,8 @@ namespace AntMe.Spieler.WolfgangGallo {
         /// sieht.
         /// </summary>
         /// <param name="wanze">Der nächstgelegene Käfer.</param>
-        public override void SiehtFeind(Wanze wanze) {
+        public override void SiehtFeind(Wanze wanze)
+        {
             laufeWeg = true;
             LasseNahrungFallen();
             GeheGeradeaus(40);
@@ -127,7 +146,8 @@ namespace AntMe.Spieler.WolfgangGallo {
         /// wird.
         /// </summary>
         /// <param name="wanze">Der angreifende Käfer.</param>
-        public override void WirdAngegriffen(Wanze wanze) {
+        public override void WirdAngegriffen(Wanze wanze)
+        {
             laufeWeg = true;
             LasseNahrungFallen();
             GeheGeradeaus(40);
@@ -140,11 +160,14 @@ namespace AntMe.Spieler.WolfgangGallo {
         /// <summary>
         /// Wird unabhängig von äußeren Umständen in jeder Runde aufgerufen.
         /// </summary>
-        public override void Tick() {
-            if (Ziel is Obst && !BrauchtNochTräger((Obst) Ziel)) {
+        public override void Tick()
+        {
+            if (Ziel is Obst && !BrauchtNochTräger((Obst)Ziel))
+            {
                 BleibStehen();
             }
-            else if (Ziel is Bau && AktuelleLast > 0 && GetragenesObst == null) {
+            else if (Ziel is Bau && AktuelleLast > 0 && GetragenesObst == null)
+            {
                 SprüheMarkierung(Richtung + 180);
             }
         }

@@ -265,38 +265,38 @@ namespace AntMe.Simulation
 
                         // Caste-Attribut auslesen
                         CasteInfo caste = new CasteInfo();
-                        switch (attribute.Constructor.ReturnType.FullName)
+                        switch (attribute.AttributeType.FullName)
                         {
                             case "AntMe.English.CasteAttribute":
 
                                 // englische Kasten
-                                foreach (var property in attribute.Properties)
+                                foreach (var field in attribute.Fields)
                                 {
-                                    switch (property.Name)
+                                    switch (field.Name)
                                     {
                                         case "Name":
-                                            caste.Name = (string)property.Argument.Value;
+                                            caste.Name = (string)field.Argument.Value;
                                             break;
                                         case "SpeedModifier":
-                                            caste.Speed = (int)property.Argument.Value;
+                                            caste.Speed = (int)field.Argument.Value;
                                             break;
                                         case "RotationSpeedModifier":
-                                            caste.RotationSpeed = (int)property.Argument.Value;
+                                            caste.RotationSpeed = (int)field.Argument.Value;
                                             break;
                                         case "LoadModifier":
-                                            caste.Load = (int)property.Argument.Value;
+                                            caste.Load = (int)field.Argument.Value;
                                             break;
                                         case "RangeModifier":
-                                            caste.Range = (int)property.Argument.Value;
+                                            caste.Range = (int)field.Argument.Value;
                                             break;
                                         case "ViewRangeModifier":
-                                            caste.ViewRange = (int)property.Argument.Value;
+                                            caste.ViewRange = (int)field.Argument.Value;
                                             break;
                                         case "EnergyModifier":
-                                            caste.Energy = (int)property.Argument.Value;
+                                            caste.Energy = (int)field.Argument.Value;
                                             break;
                                         case "AttackModifier":
-                                            caste.Attack = (int)property.Argument.Value;
+                                            caste.Attack = (int)field.Argument.Value;
                                             break;
                                     }
                                 }
@@ -310,33 +310,33 @@ namespace AntMe.Simulation
                             case "AntMe.Deutsch.KasteAttribute":
 
                                 // deutsche Kasten
-                                foreach (var property in attribute.Properties)
+                                foreach (var field in attribute.Fields)
                                 {
-                                    switch (property.Name)
+                                    switch (field.Name)
                                     {
                                         case "Name":
-                                            caste.Name = (string)property.Argument.Value;
+                                            caste.Name = (string)field.Argument.Value;
                                             break;
                                         case "GeschwindigkeitModifikator":
-                                            caste.Speed = (int)property.Argument.Value;
+                                            caste.Speed = (int)field.Argument.Value;
                                             break;
                                         case "DrehgeschwindigkeitModifikator":
-                                            caste.RotationSpeed = (int)property.Argument.Value;
+                                            caste.RotationSpeed = (int)field.Argument.Value;
                                             break;
                                         case "LastModifikator":
-                                            caste.Load = (int)property.Argument.Value;
+                                            caste.Load = (int)field.Argument.Value;
                                             break;
                                         case "ReichweiteModifikator":
-                                            caste.Range = (int)property.Argument.Value;
+                                            caste.Range = (int)field.Argument.Value;
                                             break;
                                         case "SichtweiteModifikator":
-                                            caste.ViewRange = (int)property.Argument.Value;
+                                            caste.ViewRange = (int)field.Argument.Value;
                                             break;
                                         case "EnergieModifikator":
-                                            caste.Energy = (int)property.Argument.Value;
+                                            caste.Energy = (int)field.Argument.Value;
                                             break;
                                         case "AngriffModifikator":
-                                            caste.Attack = (int)property.Argument.Value;
+                                            caste.Attack = (int)field.Argument.Value;
                                             break;
                                     }
                                 }
@@ -352,7 +352,7 @@ namespace AntMe.Simulation
                         // Access-Attributes
                         bool isAccessAttribute = false;
                         // TODO: Request-Infos lokalisieren
-                        switch (attribute.Constructor.ReturnType.FullName)
+                        switch (attribute.AttributeType.FullName)
                         {
                             case "AntMe.Deutsch.DateizugriffAttribute":
                                 player.RequestFileAccess = true;
@@ -398,16 +398,16 @@ namespace AntMe.Simulation
 
                         if (isAccessAttribute)
                         {
-                            foreach (var property in attribute.Properties)
+                            foreach (var field in attribute.Fields)
                             {
-                                switch (property.Name)
+                                switch (field.Name)
                                 {
                                     case "Beschreibung":
-                                        player.RequestInformation += property.Argument.Value +
+                                        player.RequestInformation += field.Argument.Value +
                                             Environment.NewLine + Environment.NewLine;
                                         break;
                                     case "Description":
-                                        player.RequestInformation += property.Argument.Value +
+                                        player.RequestInformation += field.Argument.Value +
                                             Environment.NewLine + Environment.NewLine;
                                         break;
                                 }
