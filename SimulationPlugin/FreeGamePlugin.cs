@@ -98,19 +98,10 @@ namespace AntMe.Plugin.Simulation
                 {
                     using (MemoryStream puffer = new MemoryStream(value))
                     {
-                        try
-                        {
-                            XmlSerializer serializer = new XmlSerializer(typeof(FreeGameSetup));
-                            var temp = serializer.Deserialize(puffer) as FreeGameSetup;
-                            if (temp != null)
-                                setup = temp;
-                        }
-                        catch (Exception ex)
-                        {
-
-                            throw;
-                        }
-
+                        XmlSerializer serializer = new XmlSerializer(typeof(FreeGameSetup));
+                        var temp = serializer.Deserialize(puffer) as FreeGameSetup;
+                        if (temp != null)
+                            setup = temp;
                     }
 
                     DiscoverPlayerInfo(setup.Slot1);
