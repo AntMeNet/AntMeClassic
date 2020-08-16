@@ -147,10 +147,10 @@ namespace AntMe.Plugin.Simulation
             {
                 // Create new simulator
                 SimulatorConfiguration config = setup.SimulatorConfiguration.Clone() as SimulatorConfiguration;
-                FreeGameSlot[] slots = new[] { 
-                    setup.Slot1, setup.Slot2, 
-                    setup.Slot3, setup.Slot4, 
-                    setup.Slot5, setup.Slot6, 
+                FreeGameSlot[] slots = new[] {
+                    setup.Slot1, setup.Slot2,
+                    setup.Slot3, setup.Slot4,
+                    setup.Slot5, setup.Slot6,
                     setup.Slot7, setup.Slot8 };
 
                 for (int i = 0; i < 8; i++)

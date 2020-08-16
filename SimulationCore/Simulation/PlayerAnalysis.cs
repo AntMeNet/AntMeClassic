@@ -1,30 +1,29 @@
+using Mono.Cecil;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
+using System.Linq;
+using AntMe.SharedComponents.Tools;
 
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Host-Class for Ai-Analysis to host the analyze-core inside application-domains.
+    /// Player-Analysis-Class 
     /// </summary>
-    internal sealed class AnalysisHost : MarshalByRefObject
+    internal sealed class PlayerAnalysis
     {
         #region local Variables
 
         /// <summary>
         /// Type of baseAnt from core.
         /// </summary>
-        private Type coreAnt;
-
-        /// <summary>
-        /// Holds all thrown exceptions.
-        /// </summary>
-        private Exception exception;
+        private TypeDefinition _coreAnt;
 
         /// <summary>
         /// List of all Ant-BaseClasses in every known language.
         /// </summary>
-        private Dictionary<PlayerLanguages, Type> languageBases;
+        private Dictionary<PlayerLanguages, TypeDefinition> _languageBases;
 
         #endregion
 
@@ -47,32 +46,24 @@ namespace AntMe.Simulation
         /// <returns>List of found players.</returns>
         public List<PlayerInfo> Analyse(byte[] file, bool checkRules)
         {
-            try
+            // load base-class from Simulation-Core.#     
+            ModuleDefinition simulation = ModuleDefinition.ReadModule(Assembly.GetExecutingAssembly().Modules.First().FullyQualifiedName);
+            _coreAnt = simulation.GetType("AntMe.Simulation.CoreAnt");
+            //coreAnt = simulation.GetType("AntMe.Simulation.CoreAnt");
+
+            // load all base-classes of different languages
+            _languageBases = new Dictionary<PlayerLanguages, TypeDefinition>();
+            _languageBases.Add(
+                PlayerLanguages.Deutsch,
+                simulation.GetType("AntMe.Deutsch.Basisameise"));
+            _languageBases.Add(
+                PlayerLanguages.English,
+                simulation.GetType("AntMe.English.BaseAnt"));
+
+            // open Ai-File
+            using (var filestream = new MemoryStream(file))
             {
-                // load base-class from Simulation-Core.
-                Assembly simulation = Assembly.Load(Assembly.GetExecutingAssembly().FullName);
-                coreAnt = simulation.GetType("AntMe.Simulation.CoreAnt");
-
-                // load all base-classes of different languages
-                languageBases = new Dictionary<PlayerLanguages, Type>();
-                languageBases.Add(
-                    PlayerLanguages.Deutsch,
-                    simulation.GetType("AntMe.Deutsch.Basisameise"));
-                languageBases.Add(
-                    PlayerLanguages.English,
-                    simulation.GetType("AntMe.English.BaseAnt"));
-
-                // open Ai-File
-                exception = null;
-                Assembly assembly = Assembly.Load(file);
-
-                return analyseAssembly(assembly, checkRules);
-            }
-            catch (Exception ex)
-            {
-                // problems during analyse - save Exception without throwing and return null
-                exception = ex;
-                return null;
+                return analyseAssembly(ModuleDefinition.ReadModule(filestream), checkRules);
             }
         }
 
@@ -83,10 +74,10 @@ namespace AntMe.Simulation
         /// <summary>
         /// Analyzes the given for any kind of valid player-information.
         /// </summary>
-        /// <param name="assembly">given assembly.</param>
+        /// <param name="module">given module.</param>
         /// <param name="checkRules">true, if the Analyser should also check player-rules</param>
         /// <returns>List of valid players.</returns>
-        private List<PlayerInfo> analyseAssembly(Assembly assembly, bool checkRules)
+        private List<PlayerInfo> analyseAssembly(ModuleDefinition module, bool checkRules)
         {
             // All included players would be marked as static, if one static play is found.
             bool staticVariables = false;
@@ -97,15 +88,14 @@ namespace AntMe.Simulation
             List<PlayerInfo> players = new List<PlayerInfo>();
 
             // filter valid references
-            AssemblyName[] references = assembly.GetReferencedAssemblies();
-            foreach (AssemblyName reference in references)
+            foreach (var reference in module.AssemblyReferences)
             {
                 switch (reference.Name)
                 {
                     case "mscorlib":
                         // Framework-Core
                         byte[] coreschlüssel = new AssemblyName(typeof(object).Assembly.FullName).GetPublicKeyToken();
-                        byte[] referenzschlüssel = reference.GetPublicKeyToken();
+                        byte[] referenzschlüssel = reference.PublicKeyToken;
                         if (coreschlüssel[0] != referenzschlüssel[0] ||
                             coreschlüssel[1] != referenzschlüssel[1] ||
                             coreschlüssel[2] != referenzschlüssel[2] ||
@@ -170,7 +160,7 @@ namespace AntMe.Simulation
                         // load unknown refereneces and add to list
                         try
                         {
-                            Assembly.ReflectionOnlyLoad(reference.FullName);
+                            //Assembly.ReflectionOnlyLoad(reference.FullName);
                         }
                         catch (Exception ex)
                         {
@@ -189,37 +179,35 @@ namespace AntMe.Simulation
             // TODO: Statische Konstruktoren finden - immernoch ein Problem?
             // TODO: Nested Types!
 
-            Type[] types = assembly.GetTypes();
-            foreach (Type type in types)
+            foreach (var typeDefinition in module.Types)
             {
                 // Suche nach statischen Variablen und bestimme so, ob der Spieler
                 // ein globales Gedächtnis für seine Ameisen benutzt.
-                BindingFlags flags =
-                    BindingFlags.Public | BindingFlags.NonPublic |
-                    BindingFlags.Static | BindingFlags.SetField;
-                staticVariables |= type.GetFields(flags).Length > 0;
+                staticVariables |= typeDefinition.Fields.Any(f => f.IsStatic);
+                staticVariables |= typeDefinition.Properties.Any(p => (p.SetMethod?.IsStatic ?? false) || (p.GetMethod?.IsStatic ?? false));
             }
 
             // Gefundene KIs auf Regeln prüfen
             // Betrachte alle öffentlichen Typen in der Bibliothek.
-            foreach (Type type in assembly.GetExportedTypes())
+            foreach (var exportedType in module.Types.Where(t => t.IsPublic && !t.IsInterface && !t.IsAbstract))
             {
                 // Prüfe ob der Typ von der Klasse Ameise erbt.
+                var exportedTypeDefinition = exportedType.Resolve();
 
                 // Ameisenversion 1.6
-                if (type.IsSubclassOf(coreAnt))
+                if (exportedTypeDefinition.IsSubclassOf(_coreAnt))
                 {
                     // Leerer Spieler-Rumpf
                     int playerDefinitions = 0;
 
                     PlayerInfo player = new PlayerInfo();
                     player.SimulationVersion = PlayerSimulationVersions.Version_1_7;
-                    player.ClassName = type.FullName;
+                    player.ClassName = exportedType.FullName;
 
                     // Sprache ermitteln
-                    foreach (PlayerLanguages sprache in languageBases.Keys)
+                    foreach (PlayerLanguages sprache in _languageBases.Keys)
                     {
-                        if (type.IsSubclassOf(languageBases[sprache]))
+                        if (exportedTypeDefinition.IsSubclassOf(_languageBases[sprache]))
                         {
                             player.Language = sprache;
                             break;
@@ -228,43 +216,43 @@ namespace AntMe.Simulation
                     // TODO: Vorgehensweise bei unbekannten Sprachen
 
                     // Attribute auslesen
-                    foreach (CustomAttributeData attribute in CustomAttributeData.GetCustomAttributes(type))
+                    foreach (var attribute in exportedTypeDefinition.CustomAttributes)
                     {
                         // Player-Attribut auslesen
-                        switch (attribute.Constructor.ReflectedType.FullName)
+                        switch (attribute.AttributeType.FullName)
                         {
                             case "AntMe.Deutsch.SpielerAttribute":
                                 playerDefinitions++;
-                                foreach (CustomAttributeNamedArgument argument in attribute.NamedArguments)
+                                foreach (var property in attribute.Properties)
                                 {
-                                    switch (argument.MemberInfo.Name)
+                                    switch (property.Name)
                                     {
                                         case "Volkname":
-                                            player.ColonyName = (string)argument.TypedValue.Value;
+                                            player.ColonyName = (string)property.Argument.Value;
                                             break;
                                         case "Vorname":
-                                            player.FirstName = (string)argument.TypedValue.Value;
+                                            player.FirstName = (string)property.Argument.Value;
                                             break;
                                         case "Nachname":
-                                            player.LastName = (string)argument.TypedValue.Value;
+                                            player.LastName = (string)property.Argument.Value;
                                             break;
                                     }
                                 }
                                 break;
                             case "AntMe.English.PlayerAttribute":
                                 playerDefinitions++;
-                                foreach (CustomAttributeNamedArgument argument in attribute.NamedArguments)
+                                foreach (var property in attribute.Properties)
                                 {
-                                    switch (argument.MemberInfo.Name)
+                                    switch (property.Name)
                                     {
                                         case "ColonyName":
-                                            player.ColonyName = (string)argument.TypedValue.Value;
+                                            player.ColonyName = (string)property.Argument.Value;
                                             break;
                                         case "FirstName":
-                                            player.FirstName = (string)argument.TypedValue.Value;
+                                            player.FirstName = (string)property.Argument.Value;
                                             break;
                                         case "LastName":
-                                            player.LastName = (string)argument.TypedValue.Value;
+                                            player.LastName = (string)property.Argument.Value;
                                             break;
                                     }
                                 }
@@ -273,38 +261,38 @@ namespace AntMe.Simulation
 
                         // Caste-Attribut auslesen
                         CasteInfo caste = new CasteInfo();
-                        switch (attribute.Constructor.ReflectedType.FullName)
+                        switch (attribute.AttributeType.FullName)
                         {
                             case "AntMe.English.CasteAttribute":
 
                                 // englische Kasten
-                                foreach (CustomAttributeNamedArgument argument in attribute.NamedArguments)
+                                foreach (var field in attribute.Fields)
                                 {
-                                    switch (argument.MemberInfo.Name)
+                                    switch (field.Name)
                                     {
                                         case "Name":
-                                            caste.Name = (string)argument.TypedValue.Value;
+                                            caste.Name = (string)field.Argument.Value;
                                             break;
                                         case "SpeedModifier":
-                                            caste.Speed = (int)argument.TypedValue.Value;
+                                            caste.Speed = (int)field.Argument.Value;
                                             break;
                                         case "RotationSpeedModifier":
-                                            caste.RotationSpeed = (int)argument.TypedValue.Value;
+                                            caste.RotationSpeed = (int)field.Argument.Value;
                                             break;
                                         case "LoadModifier":
-                                            caste.Load = (int)argument.TypedValue.Value;
+                                            caste.Load = (int)field.Argument.Value;
                                             break;
                                         case "RangeModifier":
-                                            caste.Range = (int)argument.TypedValue.Value;
+                                            caste.Range = (int)field.Argument.Value;
                                             break;
                                         case "ViewRangeModifier":
-                                            caste.ViewRange = (int)argument.TypedValue.Value;
+                                            caste.ViewRange = (int)field.Argument.Value;
                                             break;
                                         case "EnergyModifier":
-                                            caste.Energy = (int)argument.TypedValue.Value;
+                                            caste.Energy = (int)field.Argument.Value;
                                             break;
                                         case "AttackModifier":
-                                            caste.Attack = (int)argument.TypedValue.Value;
+                                            caste.Attack = (int)field.Argument.Value;
                                             break;
                                     }
                                 }
@@ -318,33 +306,33 @@ namespace AntMe.Simulation
                             case "AntMe.Deutsch.KasteAttribute":
 
                                 // deutsche Kasten
-                                foreach (CustomAttributeNamedArgument argument in attribute.NamedArguments)
+                                foreach (var field in attribute.Fields)
                                 {
-                                    switch (argument.MemberInfo.Name)
+                                    switch (field.Name)
                                     {
                                         case "Name":
-                                            caste.Name = (string)argument.TypedValue.Value;
+                                            caste.Name = (string)field.Argument.Value;
                                             break;
                                         case "GeschwindigkeitModifikator":
-                                            caste.Speed = (int)argument.TypedValue.Value;
+                                            caste.Speed = (int)field.Argument.Value;
                                             break;
                                         case "DrehgeschwindigkeitModifikator":
-                                            caste.RotationSpeed = (int)argument.TypedValue.Value;
+                                            caste.RotationSpeed = (int)field.Argument.Value;
                                             break;
                                         case "LastModifikator":
-                                            caste.Load = (int)argument.TypedValue.Value;
+                                            caste.Load = (int)field.Argument.Value;
                                             break;
                                         case "ReichweiteModifikator":
-                                            caste.Range = (int)argument.TypedValue.Value;
+                                            caste.Range = (int)field.Argument.Value;
                                             break;
                                         case "SichtweiteModifikator":
-                                            caste.ViewRange = (int)argument.TypedValue.Value;
+                                            caste.ViewRange = (int)field.Argument.Value;
                                             break;
                                         case "EnergieModifikator":
-                                            caste.Energy = (int)argument.TypedValue.Value;
+                                            caste.Energy = (int)field.Argument.Value;
                                             break;
                                         case "AngriffModifikator":
-                                            caste.Attack = (int)argument.TypedValue.Value;
+                                            caste.Attack = (int)field.Argument.Value;
                                             break;
                                     }
                                 }
@@ -360,7 +348,7 @@ namespace AntMe.Simulation
                         // Access-Attributes
                         bool isAccessAttribute = false;
                         // TODO: Request-Infos lokalisieren
-                        switch (attribute.Constructor.ReflectedType.FullName)
+                        switch (attribute.AttributeType.FullName)
                         {
                             case "AntMe.Deutsch.DateizugriffAttribute":
                                 player.RequestFileAccess = true;
@@ -406,16 +394,16 @@ namespace AntMe.Simulation
 
                         if (isAccessAttribute)
                         {
-                            foreach (CustomAttributeNamedArgument argument in attribute.NamedArguments)
+                            foreach (var field in attribute.Fields)
                             {
-                                switch (argument.MemberInfo.Name)
+                                switch (field.Name)
                                 {
                                     case "Beschreibung":
-                                        player.RequestInformation += argument.TypedValue.Value +
+                                        player.RequestInformation += field.Argument.Value +
                                             Environment.NewLine + Environment.NewLine;
                                         break;
                                     case "Description":
-                                        player.RequestInformation += argument.TypedValue.Value +
+                                        player.RequestInformation += field.Argument.Value +
                                             Environment.NewLine + Environment.NewLine;
                                         break;
                                 }
@@ -459,41 +447,41 @@ namespace AntMe.Simulation
                 #region Erkennung älterer KI-Versionen
 
                 // Ältere Versionen
-                else if (type.BaseType.Name == "AntMe.Ameise")
+                else if (exportedTypeDefinition.BaseType.Name == "AntMe.Ameise")
                 {
                     // Leerer Spieler-Rumpf
                     int playerDefinitions = 0;
 
                     PlayerInfo player = new PlayerInfo();
                     player.SimulationVersion = PlayerSimulationVersions.Version_1_1;
-                    player.ClassName = type.FullName;
+                    player.ClassName = exportedTypeDefinition.FullName;
 
                     // Veraltete Version (1.1 oder 1.5)
                     // TODO: Prüfen
-                    if (type.GetMember("RiechtFreund") != null)
+                    if (exportedTypeDefinition.Methods.Any(MethodDefinition => MethodDefinition.Name == "RiechtFreund"))
                     {
                         player.SimulationVersion = PlayerSimulationVersions.Version_1_5;
                     }
 
                     // Attribute auslesen
-                    foreach (CustomAttributeData attribute in CustomAttributeData.GetCustomAttributes(type))
+                    foreach (var attribute in exportedTypeDefinition.CustomAttributes)
                     {
                         // Spieler-Attribut auslesen
-                        if (attribute.Constructor.ReflectedType.FullName == "AntMe.SpielerAttribute")
+                        if (attribute.AttributeType.FullName == "AntMe.SpielerAttribute")
                         {
                             playerDefinitions++;
-                            foreach (CustomAttributeNamedArgument argument in attribute.NamedArguments)
+                            foreach (var property in attribute.Properties)
                             {
-                                switch (argument.MemberInfo.Name)
+                                switch (property.Name)
                                 {
                                     case "Name":
-                                        player.ColonyName = (string)argument.TypedValue.Value;
+                                        player.ColonyName = (string)property.Argument.Value;
                                         break;
                                     case "Vorname":
-                                        player.FirstName = (string)argument.TypedValue.Value;
+                                        player.FirstName = (string)property.Argument.Value;
                                         break;
                                     case "Nachname":
-                                        player.LastName = (string)argument.TypedValue.Value;
+                                        player.LastName = (string)property.Argument.Value;
                                         break;
                                 }
                             }
@@ -501,36 +489,36 @@ namespace AntMe.Simulation
                         }
 
                         // Typ-Attribut auslesen
-                        if (attribute.Constructor.ReflectedType.FullName == "AntMe.TypAttribute")
+                        if (attribute.AttributeType.FullName == "AntMe.TypAttribute")
                         {
                             CasteInfo caste = new CasteInfo();
-                            foreach (CustomAttributeNamedArgument argument in attribute.NamedArguments)
+                            foreach (var field in attribute.Fields)
                             {
-                                switch (argument.MemberInfo.Name)
+                                switch (field.Name)
                                 {
                                     case "Name":
-                                        caste.Name = (string)argument.TypedValue.Value;
+                                        caste.Name = (string)field.Argument.Value;
                                         break;
                                     case "GeschwindigkeitModifikator":
-                                        caste.Speed = (int)argument.TypedValue.Value;
+                                        caste.Speed = (int)field.Argument.Value;
                                         break;
                                     case "DrehgeschwindigkeitModifikator":
-                                        caste.RotationSpeed = (int)argument.TypedValue.Value;
+                                        caste.RotationSpeed = (int)field.Argument.Value;
                                         break;
                                     case "LastModifikator":
-                                        caste.Load = (int)argument.TypedValue.Value;
+                                        caste.Load = (int)field.Argument.Value;
                                         break;
                                     case "ReichweiteModifikator":
-                                        caste.Range = (int)argument.TypedValue.Value;
+                                        caste.Range = (int)field.Argument.Value;
                                         break;
                                     case "SichtweiteModifikator":
-                                        caste.ViewRange = (int)argument.TypedValue.Value;
+                                        caste.ViewRange = (int)field.Argument.Value;
                                         break;
                                     case "EnergieModifikator":
-                                        caste.Energy = (int)argument.TypedValue.Value;
+                                        caste.Energy = (int)field.Argument.Value;
                                         break;
                                     case "AngriffModifikator":
-                                        caste.Attack = (int)argument.TypedValue.Value;
+                                        caste.Attack = (int)field.Argument.Value;
                                         break;
                                 }
                             }
@@ -573,18 +561,6 @@ namespace AntMe.Simulation
             }
 
             return players;
-        }
-
-        #endregion
-
-        #region Eigenschaften
-
-        /// <summary>
-        /// List of thrown Exceptions.s
-        /// </summary>
-        public Exception Exception
-        {
-            get { return exception; }
         }
 
         #endregion
