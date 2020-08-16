@@ -11,7 +11,7 @@
     <RootNamespace>AntMe.Gui</RootNamespace>
     <AssemblyName>AntMe</AssemblyName>
     <StartupObject>AntMe.Gui.Program</StartupObject>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
     <ApplicationIcon>antme.ico</ApplicationIcon>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
@@ -56,6 +56,7 @@
     <CodeAnalysisRuleSet>Migrated rules for AntMe.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
     <Prefer32Bit>false</Prefer32Bit>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>..\bin\</OutputPath>

@@ -14,7 +14,7 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>AntMe.snk</AssemblyOriginatorKeyFile>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -51,6 +51,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>..\bin\</OutputPath>
@@ -142,7 +143,7 @@
     <Compile Include="Simulation\AiException.cs" />
     <Compile Include="Simulation\CoreAnt.cs" />
     <Compile Include="Simulation\CasteInfo.cs" />
-    <Compile Include="Simulation\AnalysisHost.cs" />
+    <Compile Include="Simulation\PlayerAnalysis.cs" />
     <Compile Include="Simulation\CoreAnthill.cs" />
     <Compile Include="Simulation\Grid.cs" />
     <Compile Include="Simulation\CoreFruit.cs" />
@@ -232,6 +233,11 @@
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Mono.Cecil">
+      <Version>0.11.2</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

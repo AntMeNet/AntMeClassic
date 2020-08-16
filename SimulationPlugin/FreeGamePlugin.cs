@@ -98,10 +98,19 @@ namespace AntMe.Plugin.Simulation
                 {
                     using (MemoryStream puffer = new MemoryStream(value))
                     {
-                        XmlSerializer serializer = new XmlSerializer(typeof(FreeGameSetup));
-                        var temp = serializer.Deserialize(puffer) as FreeGameSetup;
-                        if (temp != null)
-                            setup = temp;
+                        try
+                        {
+                            XmlSerializer serializer = new XmlSerializer(typeof(FreeGameSetup));
+                            var temp = serializer.Deserialize(puffer) as FreeGameSetup;
+                            if (temp != null)
+                                setup = temp;
+                        }
+                        catch (Exception ex)
+                        {
+
+                            throw;
+                        }
+
                     }
 
                     DiscoverPlayerInfo(setup.Slot1);
@@ -147,10 +156,10 @@ namespace AntMe.Plugin.Simulation
             {
                 // Create new simulator
                 SimulatorConfiguration config = setup.SimulatorConfiguration.Clone() as SimulatorConfiguration;
-                FreeGameSlot[] slots = new[] { 
-                    setup.Slot1, setup.Slot2, 
-                    setup.Slot3, setup.Slot4, 
-                    setup.Slot5, setup.Slot6, 
+                FreeGameSlot[] slots = new[] {
+                    setup.Slot1, setup.Slot2,
+                    setup.Slot3, setup.Slot4,
+                    setup.Slot5, setup.Slot6,
                     setup.Slot7, setup.Slot8 };
 
                 for (int i = 0; i < 8; i++)

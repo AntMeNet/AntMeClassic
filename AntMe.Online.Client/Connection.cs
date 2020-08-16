@@ -15,7 +15,7 @@ namespace AntMe.Online.Client
 {
     public sealed class Connection
     {
-        private readonly string configPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "AntMe";
+        private readonly string configPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "AntMe");
         private readonly string pluginGuid = "DB565C88-0E2C-450A-B5C7-3F7E6C363E39";
 #if DEBUG
         private readonly Uri identityUri = new Uri("https://localhost:44303/");
@@ -27,7 +27,7 @@ namespace AntMe.Online.Client
         private readonly int timeout = 5000;
 #endif
         private readonly string clientVersion = "1.7";
-        
+
 
         #region Singleton
 
@@ -235,7 +235,7 @@ namespace AntMe.Online.Client
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(request));
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                
+
                 Task<HttpResponseMessage> t = client.PostAsync(path, content);
                 return Handle<T>(t);
             }
@@ -371,7 +371,7 @@ namespace AntMe.Online.Client
                             State = ConnectionState.NoConnection;
                             throw new TimeoutException();
                         }
-                        
+
                         return;
                     }
                     else if (
@@ -434,7 +434,7 @@ namespace AntMe.Online.Client
         /// </summary>
         private void LoadSettings()
         {
-            string path = configPath + pluginGuid + ".conf";
+            string path = Path.Combine(configPath, $"{pluginGuid}.conf");
             try
             {
                 configuration = new Configuration();
@@ -454,7 +454,7 @@ namespace AntMe.Online.Client
         /// </summary>
         private void SaveSettings()
         {
-            string path = configPath + pluginGuid + ".conf";
+            string path = Path.Combine(configPath, $"{pluginGuid}.conf");
             using (Stream file = File.Open(path, FileMode.Create))
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(Configuration));
