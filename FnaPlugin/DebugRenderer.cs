@@ -1,11 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-// if using XNA with non-reach profile:
+﻿using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics; // if using XNA with non-reach profile:
 // using indexer = System.Int32
 
 // if using XNA with reach profile:
@@ -15,7 +10,7 @@ using indexer = System.Int16;
 // using indexer = System.UInt32
 
 
-namespace AntMe.Plugin.Xna
+namespace AntMe.Plugin.Fna
 {
     internal class DebugRenderer
     {

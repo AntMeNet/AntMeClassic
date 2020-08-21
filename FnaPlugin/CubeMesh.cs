@@ -1,11 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace AntMe.Plugin.Xna
+namespace AntMe.Plugin.Fna
 {
     // A cube mesh for the skybox
     public class CubeMesh

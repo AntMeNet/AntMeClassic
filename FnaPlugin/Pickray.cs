@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace AntMe.Plugin.Xna
+namespace AntMe.Plugin.Fna
 {
     /// <summary>
     /// Pickray for selection

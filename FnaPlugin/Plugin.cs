@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+using System.Reflection;
+using System.Threading;
+using System.Windows.Forms;
+using AntMe.Plugin.Xna;
 using AntMe.SharedComponents.Plugin;
 using AntMe.SharedComponents.States;
-using System.Windows.Forms;
-using System.Threading;
-using System.Reflection;
 
-namespace AntMe.Plugin.Xna
+namespace AntMe.Plugin.Fna
 {
     [Preselected]
     public sealed class Plugin : IConsumerPlugin
@@ -22,7 +19,7 @@ namespace AntMe.Plugin.Xna
 
         private RenderWindow window;
 
-        public Guid Guid { get { return Guid.Parse("{AC254307-B465-493B-B99C-9E7BC8F19234}"); } }
+        public Guid Guid { get { return Guid.Parse("{12A1A289-C318-41B0-81F0-9CCB6ABB6654}"); } }
 
         public Version Version { get { return version; } }
 

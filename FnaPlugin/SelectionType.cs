@@ -1,4 +1,4 @@
-﻿namespace AntMe.Plugin.Xna
+﻿namespace AntMe.Plugin.Fna
 {
     /// <summary>
     /// List of all selectable items on map.

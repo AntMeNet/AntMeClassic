@@ -1,9 +1,8 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using System;
 
-
-namespace AntMe.Plugin.Xna
+namespace AntMe.Plugin.Fna
 {
     internal sealed class Camera
     {

@@ -1,13 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-
-using AntMe.SharedComponents.States;
-using AntMe.SharedComponents.Tools;
-
-using Microsoft.Xna.Framework;
-
-namespace AntMe.Plugin.Xna
+namespace AntMe.Plugin.Fna
 {
     /// <summary>
     /// class, to manage and render all model-resources.

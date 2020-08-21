@@ -1,4 +1,4 @@
-﻿namespace AntMe.Plugin.Xna
+﻿namespace AntMe.Plugin.Fna
 {
     partial class InstructionPanel
     {

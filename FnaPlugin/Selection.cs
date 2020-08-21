@@ -1,4 +1,4 @@
-namespace AntMe.Plugin.Xna
+namespace AntMe.Plugin.Fna
 {
     /// <summary>
     /// class, to hold selection-information.

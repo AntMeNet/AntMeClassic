@@ -1,17 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using AntMe.Plugin.Xna;
+using AntMe.SharedComponents.States;
+using AntMe.SharedComponents.Tools;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using AntMe.SharedComponents.States;
-using System.Threading;
-using AntMe.SharedComponents.Tools;
 
-namespace AntMe.Plugin.Xna
+namespace AntMe.Plugin.Fna
 {
     internal sealed class RenderWindow : Game
     {
