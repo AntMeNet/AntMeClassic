@@ -64,6 +64,14 @@
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
       <RefTargetDir>INSTALLFOLDER</RefTargetDir>
     </ProjectReference>
+    <ProjectReference Include="..\FNA\FNA.csproj">
+      <Name>FNA</Name>
+      <Project>{35253ce1-c864-4cd3-8249-4d1319748e8f}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
     <ProjectReference Include="..\GdiPlusPlugin\GdiPlusPlugin.csproj">
       <Name>GdiPlusPlugin</Name>
       <Project>{4083b1e6-5eb5-4e51-bb09-eec4b489f355}</Project>
