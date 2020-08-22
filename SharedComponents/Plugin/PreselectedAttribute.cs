@@ -8,6 +8,6 @@ namespace AntMe.SharedComponents.Plugin
     /// configuration-file from earlier starts.
     /// </summary>
     /// <author>Tom Wendel (tom@antme.net)</author>
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Class)]
     public sealed class PreselectedAttribute : Attribute { }
 }

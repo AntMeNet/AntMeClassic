@@ -128,7 +128,6 @@
       <DependentUpon>ShutterControl.cs</DependentUpon>
     </Compile>
     <Compile Include="NamespaceDoc.cs" />
-    <Compile Include="Plugin\NamespaceDoc.cs" />
     <Compile Include="Plugin\ReadCustomStateAttribute.cs" />
     <Compile Include="Plugin\WriteCustomStateAttribute.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
