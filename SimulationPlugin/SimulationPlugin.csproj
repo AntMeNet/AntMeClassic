@@ -214,11 +214,12 @@
     <ProjectReference Include="..\AntMe.Online.Client\AntMe.Online.Client.csproj">
       <Project>{43e44b6c-78f6-4515-88f2-c238b51886c5}</Project>
       <Name>AntMe.Online.Client</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\PlayerManagement\PlayerManagement.csproj">
       <Project>{5d566a2a-c112-4543-95ea-f3e81a53cde9}</Project>
       <Name>PlayerManagement</Name>
-      <Private>True</Private>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\SharedComponents\SharedComponents.csproj">
       <Project>{415F50C3-BD70-4634-B1F7-A15B42F0B0C6}</Project>
@@ -228,7 +229,7 @@
     <ProjectReference Include="..\SimulationCore\SimulationCore.csproj">
       <Project>{35753E72-07F3-4F18-916C-479850EC375F}</Project>
       <Name>SimulationCore</Name>
-      <Private>True</Private>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
