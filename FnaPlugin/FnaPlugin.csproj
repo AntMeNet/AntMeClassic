@@ -85,9 +85,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="InstructionPanel.af.resx">
-      <DependentUpon>InstructionPanel.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="InstructionPanel.de.resx">
       <DependentUpon>InstructionPanel.cs</DependentUpon>
     </EmbeddedResource>
