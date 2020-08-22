@@ -40,60 +40,15 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <TargetFrameworkProfile />
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\bin\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <CodeAnalysisRuleAssemblies>
-    </CodeAnalysisRuleAssemblies>
-    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
-    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
-    <ErrorReport>prompt</ErrorReport>
-    <DocumentationFile>
-    </DocumentationFile>
-    <CodeAnalysisRuleSet>Migrated rules for AntMe.ruleset</CodeAnalysisRuleSet>
-    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
-    <Prefer32Bit>false</Prefer32Bit>
-    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <OutputPath>..\bin\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <CodeAnalysisRuleAssemblies>
-    </CodeAnalysisRuleAssemblies>
-    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
-    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
-    <ErrorReport>prompt</ErrorReport>
-    <DocumentationFile>
-    </DocumentationFile>
-    <CodeAnalysisRuleSet>Migrated rules for AntMe.ruleset</CodeAnalysisRuleSet>
-    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>AntMe.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Azure|x86'">
-    <OutputPath>bin\x86\Azure\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>Migrated rules for AntMe.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
@@ -101,16 +56,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>Migrated rules for AntMe.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Azure|AnyCPU'">
-    <OutputPath>bin\Azure\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
@@ -304,7 +249,11 @@
     <ProjectReference Include="..\AntMe.Online.Client\AntMe.Online.Client.csproj">
       <Project>{43e44b6c-78f6-4515-88f2-c238b51886c5}</Project>
       <Name>AntMe.Online.Client</Name>
-      <Private>False</Private>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\FnaPlugin\FnaPlugin.csproj">
+      <Project>{b82cb28b-7468-47da-939d-e21834c1aee0}</Project>
+      <Name>FnaPlugin</Name>
     </ProjectReference>
     <ProjectReference Include="..\PlayerManagement\PlayerManagement.csproj">
       <Project>{5d566a2a-c112-4543-95ea-f3e81a53cde9}</Project>
@@ -314,7 +263,15 @@
     <ProjectReference Include="..\SharedComponents\SharedComponents.csproj">
       <Project>{415F50C3-BD70-4634-B1F7-A15B42F0B0C6}</Project>
       <Name>SharedComponents</Name>
-      <Private>False</Private>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SimulationCore\SimulationCore.csproj">
+      <Project>{35753e72-07f3-4f18-916c-479850ec375f}</Project>
+      <Name>SimulationCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SimulationPlugin\SimulationPlugin.csproj">
+      <Project>{d622f308-35a9-4a86-8f2c-4e68ceca7c11}</Project>
+      <Name>SimulationPlugin</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
