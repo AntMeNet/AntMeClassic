@@ -1,10 +1,12 @@
 ﻿using System;
-namespace AntMe.SharedComponents.States {
+namespace AntMe.SharedComponents.States
+{
     /// <summary>
     /// List of possible loads.
     /// </summary>
     [Serializable]
-    public enum LoadType {
+    public enum LoadType
+    {
         /// <summary>
         /// No load
         /// </summary>

@@ -1,24 +1,28 @@
-﻿using System;
-using AntMe.Simulation;
+﻿using AntMe.Simulation;
+using System;
 
-namespace AntMe.Plugin.Simulation {
+namespace AntMe.Plugin.Simulation
+{
     /// <summary>
     /// Represents an instance of a player in a team.
     /// </summary>
     [Serializable]
-    public sealed class PlayerItem : ICloneable {
+    public sealed class PlayerItem : ICloneable
+    {
 
         /// <summary>
         /// Creates an empty PlayerItem.
         /// </summary>
-        public PlayerItem() {
+        public PlayerItem()
+        {
         }
 
         /// <summary>
         /// Creates a new instance of PlayerItem.
         /// </summary>
         /// <param name="info">base <see cref="PlayerInfoFilename"/></param>
-        public PlayerItem(PlayerInfoFilename info) {
+        public PlayerItem(PlayerInfoFilename info)
+        {
             PlayerInfo = info;
             ColonyName = info.ColonyName;
             FileName = info.File;
@@ -64,7 +68,7 @@ namespace AntMe.Plugin.Simulation {
         /// <returns>copy of item</returns>
         public object Clone()
         {
-            PlayerItem item = (PlayerItem) MemberwiseClone();
+            PlayerItem item = (PlayerItem)MemberwiseClone();
             item.Guid = Guid.NewGuid();
             return item;
         }

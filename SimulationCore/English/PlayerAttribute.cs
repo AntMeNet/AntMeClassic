@@ -1,11 +1,13 @@
 ﻿using System;
 
-namespace AntMe.English {
+namespace AntMe.English
+{
     /// <summary>
     /// Attribute to descripe an ant
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-    public sealed class PlayerAttribute : Attribute {
+    public sealed class PlayerAttribute : Attribute
+    {
         /// <summary>
         /// First name of the player
         /// </summary>

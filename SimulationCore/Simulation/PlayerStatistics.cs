@@ -1,11 +1,13 @@
 ﻿using System;
 
-namespace AntMe.Simulation {
+namespace AntMe.Simulation
+{
     /// <summary>
     /// Speichert die Statistik eines Spielers.
     /// </summary>
     [Serializable]
-    public struct PlayerStatistics {
+    public struct PlayerStatistics
+    {
         /// <summary>
         /// Die aktuelle Anzahl an Ameisen.
         /// </summary>
@@ -51,8 +53,10 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Gibt die Gesamtpunktzahl zurück.
         /// </summary>
-        public int Points {
-            get {
+        public int Points
+        {
+            get
+            {
                 return (
                     (int)(SimulationSettings.Custom.PointsForFoodMultiplier * CollectedFood) +
                     (SimulationSettings.Custom.PointsForFruits * CollectedFruits) +
@@ -61,7 +65,7 @@ namespace AntMe.Simulation {
                     (SimulationSettings.Custom.PointsForBeatenAnts * BeatenAnts) +
                     (SimulationSettings.Custom.PointsForEatenAnts * EatenAnts) +
                     (SimulationSettings.Custom.PointsForStarvedAnts * StarvedAnts)
-                       )/Math.Max(LoopCount, 1);
+                       ) / Math.Max(LoopCount, 1);
             }
         }
 
@@ -72,7 +76,8 @@ namespace AntMe.Simulation {
         /// <param name="s2">Statistik 2.</param>
         /// <returns>Statistik 1 + Statistik 2.</returns>
         public static PlayerStatistics
-            operator +(PlayerStatistics s1, PlayerStatistics s2) {
+            operator +(PlayerStatistics s1, PlayerStatistics s2)
+        {
             PlayerStatistics s = new PlayerStatistics();
             s.CollectedFood = s1.CollectedFood + s2.CollectedFood;
             s.CollectedFruits = s1.CollectedFruits + s2.CollectedFruits;

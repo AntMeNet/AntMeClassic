@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using AntMe.Online.Client;
+using System;
 using System.IO;
-using AntMe.Online.Client;
+using System.Windows.Forms;
 
 namespace AntMe.Plugin.Video
 {
@@ -34,15 +28,16 @@ namespace AntMe.Plugin.Video
         public bool Recording
         {
             get { return recording; }
-            set 
+            set
             {
                 recording = value;
             }
         }
 
-        public int RecordedFrame {
+        public int RecordedFrame
+        {
             get { return recordedFrame; }
-            set 
+            set
             {
                 recordedFrame = value;
             }

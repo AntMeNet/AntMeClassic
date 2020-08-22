@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace AntMe.SharedComponents.Controls
@@ -25,13 +19,14 @@ namespace AntMe.SharedComponents.Controls
 
         public string InitMessage { get; set; }
 
-        public ShutterState ShutterState {
+        public ShutterState ShutterState
+        {
             get { return shutterState; }
             set
             {
                 shutterState = value;
                 SetShutterState(shutterState);
-            } 
+            }
         }
 
         protected override void OnResize(EventArgs e)

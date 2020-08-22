@@ -1,9 +1,11 @@
-﻿namespace AntMe.SharedComponents.Plugin {
+﻿namespace AntMe.SharedComponents.Plugin
+{
     /// <summary>
     /// List of possible plugin-states.
     /// </summary>
     /// <author>Tom Wendel (tom@antme.net)</author>
-    public enum PluginState {
+    public enum PluginState
+    {
         /// <summary>
         /// Indicates a not startable state.
         /// </summary>

@@ -1,10 +1,12 @@
 ﻿using System;
-namespace AntMe.SharedComponents.States {
+namespace AntMe.SharedComponents.States
+{
     /// <summary>
     /// List of possible targets for an ant.
     /// </summary>
     [Serializable]
-    public enum TargetType {
+    public enum TargetType
+    {
         /// <summary>
         /// There is no target.
         /// </summary>

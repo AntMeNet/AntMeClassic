@@ -1,11 +1,12 @@
-﻿using System;
+﻿using AntMe.SharedComponents.States;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-using AntMe.SharedComponents.States;
-
-namespace AntMe.Plugin.Simulation {
-    internal sealed partial class StatisticControl : UserControl {
+namespace AntMe.Plugin.Simulation
+{
+    internal sealed partial class StatisticControl : UserControl
+    {
         private readonly SummaryRoot root = new SummaryRoot();
 
         private SummarySimulation currentSim;
@@ -15,11 +16,13 @@ namespace AntMe.Plugin.Simulation {
         private TreeNode currentLoopNode;
         private int loopCount = 0;
 
-        public StatisticControl() {
+        public StatisticControl()
+        {
             InitializeComponent();
         }
 
-        public void Start() {
+        public void Start()
+        {
             currentSim = new SummarySimulation();
             root.simulations.Add(currentSim);
             loopCount = 0;
@@ -32,19 +35,22 @@ namespace AntMe.Plugin.Simulation {
             timer.Enabled = true;
         }
 
-        public void Stop() {
+        public void Stop()
+        {
             currentSimNode.ImageKey = "simset_complete";
             currentSim = null;
 
             timer.Enabled = false;
         }
 
-        public void SimulationState(SimulationState state) {
-            if (state.CurrentRound == 1) {
+        public void SimulationState(SimulationState state)
+        {
+            if (state.CurrentRound == 1)
+            {
                 currentLoop = new SummaryLoop();
                 currentLoop.rounds = state.TotalRounds;
                 currentSim.loops.Add(currentLoop);
-                
+
                 // Create Node
                 currentLoopNode = currentSimNode.Nodes.Add("Loop " + (++loopCount));
                 currentLoopNode.Tag = currentLoop;
@@ -98,7 +104,8 @@ namespace AntMe.Plugin.Simulation {
                 }
             }
 
-            if (state.CurrentRound == state.TotalRounds) {
+            if (state.CurrentRound == state.TotalRounds)
+            {
                 currentLoopNode.ImageKey = "loop_complete";
                 currentLoop.completed = true;
                 currentLoop = null;
@@ -107,21 +114,25 @@ namespace AntMe.Plugin.Simulation {
 
         private void tree_select(object sender, TreeViewEventArgs e)
         {
-            if (loopsTreeView.SelectedNode != null) {
+            if (loopsTreeView.SelectedNode != null)
+            {
 
                 summaryListView.Items.Clear();
 
                 // In case of a selected loop
-                if (loopsTreeView.SelectedNode.Tag is SummaryLoop) {
-                    SummaryLoop loop = (SummaryLoop) loopsTreeView.SelectedNode.Tag;
+                if (loopsTreeView.SelectedNode.Tag is SummaryLoop)
+                {
+                    SummaryLoop loop = (SummaryLoop)loopsTreeView.SelectedNode.Tag;
 
                     int teamcount = 0;
-                    foreach (SummaryTeam team in loop.teams.Values) {
+                    foreach (SummaryTeam team in loop.teams.Values)
+                    {
                         teamcount++;
 
                         ListViewGroup teamGroup = summaryListView.Groups["team" + teamcount + "Group"];
 
-                        foreach (SummaryPlayer player in team.players.Values) {
+                        foreach (SummaryPlayer player in team.players.Values)
+                        {
                             SummaryValueSet set = player.values[player.values.Count - 1];
 
                             ListViewItem item = summaryListView.Items.Add(player.name, "colony");
@@ -139,17 +150,20 @@ namespace AntMe.Plugin.Simulation {
                 }
 
                 // In case of a selected simulation-set
-                if (loopsTreeView.SelectedNode.Tag is SummarySimulation) {
-                    SummarySimulation simulation = (SummarySimulation) loopsTreeView.SelectedNode.Tag;
+                if (loopsTreeView.SelectedNode.Tag is SummarySimulation)
+                {
+                    SummarySimulation simulation = (SummarySimulation)loopsTreeView.SelectedNode.Tag;
 
                     // Check for any Teaminformation
-                    if (simulation.loops.Count > 0) {
+                    if (simulation.loops.Count > 0)
+                    {
 
                         // Create the summary for included loops
                         int loops = 0;
-                        Dictionary<Guid, SummaryTeam> teams = 
+                        Dictionary<Guid, SummaryTeam> teams =
                             new Dictionary<Guid, SummaryTeam>(simulation.loops[0].teams.Count);
-                        foreach (SummaryTeam team in simulation.loops[0].teams.Values) {
+                        foreach (SummaryTeam team in simulation.loops[0].teams.Values)
+                        {
 
                             // Clone team
                             SummaryTeam summaryTeam = new SummaryTeam();
@@ -158,7 +172,8 @@ namespace AntMe.Plugin.Simulation {
                             summaryTeam.players = new Dictionary<Guid, SummaryPlayer>(team.players.Count);
                             teams.Add(team.guid, summaryTeam);
 
-                            foreach (SummaryPlayer player in team.players.Values) {
+                            foreach (SummaryPlayer player in team.players.Values)
+                            {
 
                                 // Clone player
                                 SummaryPlayer summaryPlayer = new SummaryPlayer();
@@ -171,12 +186,16 @@ namespace AntMe.Plugin.Simulation {
                         }
 
                         // Sum up all loops
-                        foreach (SummaryLoop loop in simulation.loops) {
-                            if (loop.completed) {
+                        foreach (SummaryLoop loop in simulation.loops)
+                        {
+                            if (loop.completed)
+                            {
                                 loops++;
 
-                                foreach (SummaryTeam team in loop.teams.Values) {
-                                    foreach (SummaryPlayer player in team.players.Values) {
+                                foreach (SummaryTeam team in loop.teams.Values)
+                                {
+                                    foreach (SummaryPlayer player in team.players.Values)
+                                    {
                                         SummaryValueSet set = player.values[player.values.Count - 1];
                                         teams[team.guid].players[player.guid].values[0].Add(set);
                                     }
@@ -196,16 +215,17 @@ namespace AntMe.Plugin.Simulation {
                             {
                                 SummaryValueSet set = player.values[0];
 
-                                if (loops > 0) {
+                                if (loops > 0)
+                                {
                                     // Calculate average values
-                                    float collectedFood = (float) set.collectedFood/loops;
-                                    float collectedFruit = (float) set.collectedFruit/loops;
-                                    float killedAnts = (float) set.killedAnts/loops;
-                                    float killedBugs = (float) set.killedBugs/loops;
-                                    float starvedAnts = (float) set.starvedAnts/loops;
-                                    float beatenAnts = (float) set.beatenAnts/loops;
-                                    float eatenAnts = (float) set.eatenAnts/loops;
-                                    float totalPoints = (float) set.totalPoints/loops;
+                                    float collectedFood = (float)set.collectedFood / loops;
+                                    float collectedFruit = (float)set.collectedFruit / loops;
+                                    float killedAnts = (float)set.killedAnts / loops;
+                                    float killedBugs = (float)set.killedBugs / loops;
+                                    float starvedAnts = (float)set.starvedAnts / loops;
+                                    float beatenAnts = (float)set.beatenAnts / loops;
+                                    float eatenAnts = (float)set.eatenAnts / loops;
+                                    float totalPoints = (float)set.totalPoints / loops;
 
                                     // push it to listview
                                     ListViewItem item = summaryListView.Items.Add(player.name, "colony");
@@ -219,7 +239,8 @@ namespace AntMe.Plugin.Simulation {
                                     item.SubItems.Add(totalPoints.ToString("0.00"));
                                     item.Group = teamGroup;
                                 }
-                                else {
+                                else
+                                {
                                     // push empty row
                                     ListViewItem item = summaryListView.Items.Add(player.name, "colony");
                                     item.Group = teamGroup;

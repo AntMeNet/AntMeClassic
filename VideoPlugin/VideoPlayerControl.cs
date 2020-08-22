@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using AntMe.Online.Client;
 using AntMe.SharedComponents.AntVideo;
-using System.IO;
 using AntMe.SharedComponents.States;
-using AntMe.Online.Client;
+using System;
+using System.Data;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace AntMe.Plugin.Video
 {
@@ -65,7 +61,7 @@ namespace AntMe.Plugin.Video
                         loadingProgressBar.Value = lastState.CurrentRound;
                     }
                     roundsLabel.Text = lastState.CurrentRound.ToString();
-                    stateLabel.Text = lastState.CurrentRound == lastState.TotalRounds ? "Finished" : "Not Finished"; 
+                    stateLabel.Text = lastState.CurrentRound == lastState.TotalRounds ? "Finished" : "Not Finished";
                     playerLabel.Text = string.Join("\r\n", lastState.ColonyStates.Select(c => c.ColonyName));
                 }
                 catch (Exception ex)
@@ -78,7 +74,7 @@ namespace AntMe.Plugin.Video
                     Stream.Dispose();
                     Stream = null;
                 }
-                
+
                 loadingProgressBar.Visible = false;
             }
             else

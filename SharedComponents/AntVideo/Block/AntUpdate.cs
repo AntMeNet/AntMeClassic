@@ -1,6 +1,5 @@
-﻿using System;
-
-using AntMe.SharedComponents.States;
+﻿using AntMe.SharedComponents.States;
+using System;
 
 namespace AntMe.SharedComponents.AntVideo.Block
 {
@@ -20,7 +19,7 @@ namespace AntMe.SharedComponents.AntVideo.Block
         Vitality = 128,
         LoadType = 256,
         DebugMessage = 512,
-    } ;
+    };
 
     internal sealed class AntUpdate : UpdateBase
     {

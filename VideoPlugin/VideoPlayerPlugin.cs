@@ -2,11 +2,8 @@
 using AntMe.SharedComponents.Plugin;
 using AntMe.SharedComponents.States;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Windows.Forms;
 
 namespace AntMe.Plugin.Video
@@ -36,7 +33,7 @@ namespace AntMe.Plugin.Video
             get
             {
                 if (state == PluginState.Ready)
-                    return control.Stream != null ? 
+                    return control.Stream != null ?
                         PluginState.Ready : PluginState.NotReady;
                 return state;
             }

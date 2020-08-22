@@ -1,6 +1,5 @@
-﻿using System;
-
-using AntMe.SharedComponents.Properties;
+﻿using AntMe.SharedComponents.Properties;
+using System;
 
 namespace AntMe.SharedComponents.Tools
 {

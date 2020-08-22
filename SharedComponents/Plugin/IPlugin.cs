@@ -1,14 +1,15 @@
+using AntMe.SharedComponents.States;
 using System;
 using System.Windows.Forms;
 
-using AntMe.SharedComponents.States;
-
-namespace AntMe.SharedComponents.Plugin {
+namespace AntMe.SharedComponents.Plugin
+{
     /// <summary>
     /// Base-Interface for all AntMe-Plugins.
     /// </summary>
     /// <author>Tom Wendel (tom@antme.net)</author>
-    public interface IPlugin {
+    public interface IPlugin
+    {
         /// <summary>
         /// Plugin-Description. Only called by UI-Thread.
         /// </summary>

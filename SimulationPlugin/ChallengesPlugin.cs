@@ -1,13 +1,4 @@
-﻿using AntMe.SharedComponents.Plugin;
-using AntMe.SharedComponents.States;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Windows.Forms;
-
-namespace AntMe.Plugin.Simulation
+﻿namespace AntMe.Plugin.Simulation
 {
     //public sealed class ChallengesPlugin : IProducerPlugin
     //{
@@ -51,38 +42,38 @@ namespace AntMe.Plugin.Simulation
     //        }
     //        set
     //        {
-                
+
     //        }
     //    }
 
     //    public void Start()
     //    {
-            
+
     //    }
 
     //    public void Stop()
     //    {
-            
+
     //    }
 
     //    public void Pause()
     //    {
-            
+
     //    }
 
     //    public void StartupParameter(string[] parameter)
     //    {
-           
+
     //    }
 
     //    public void SetVisibility(bool visible)
     //    {
-            
+
     //    }
 
     //    public void UpdateUI(SimulationState state)
     //    {
-            
+
     //    }
     //}
 }

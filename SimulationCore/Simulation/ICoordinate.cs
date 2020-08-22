@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AntMe.Simulation
+﻿namespace AntMe.Simulation
 {
     /// <summary>
     /// Ermöglicht es, die Koordinate eines Objekts auf dem Spielfeld abzufragen.

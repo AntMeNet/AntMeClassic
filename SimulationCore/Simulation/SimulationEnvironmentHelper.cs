@@ -243,7 +243,7 @@ namespace AntMe.Simulation
                 }
             }
 
-              // Zuckerhaufen.
+            // Zuckerhaufen.
             else if (ant.ZielBase is CoreSugar)
             {
                 CoreSugar zucker = (CoreSugar)ant.ZielBase;
@@ -254,7 +254,7 @@ namespace AntMe.Simulation
                 }
             }
 
-              // Obststück.
+            // Obststück.
             else if (ant.ZielBase is CoreFruit)
             {
                 CoreFruit obst = (CoreFruit)ant.ZielBase;
@@ -265,10 +265,10 @@ namespace AntMe.Simulation
                 }
             }
 
-              // Insekt.
+            // Insekt.
             else if (ant.ZielBase is CoreInsect) { }
 
-              // Anderes Ziel.
+            // Anderes Ziel.
             else
             {
                 ant.ZielBase = null;
@@ -407,7 +407,7 @@ namespace AntMe.Simulation
         // Bewegt Obsstücke und alle Insekten die das Obsstück tragen.
         private void bewegeObstUndInsekten()
         {
-            Playground.Fruits.ForEach(delegate(CoreFruit fruit)
+            Playground.Fruits.ForEach(delegate (CoreFruit fruit)
             {
                 if (fruit.TragendeInsekten.Count > 0)
                 {
@@ -415,7 +415,7 @@ namespace AntMe.Simulation
                     int dy = 0;
                     int last = 0;
 
-                    fruit.TragendeInsekten.ForEach(delegate(CoreInsect insect)
+                    fruit.TragendeInsekten.ForEach(delegate (CoreInsect insect)
                     {
                         if (insect.ZielBase != fruit && insect.RestWinkelBase == 0)
                         {
@@ -431,7 +431,7 @@ namespace AntMe.Simulation
 
                     fruit.CoordinateBase = new CoreCoordinate(fruit.CoordinateBase, dx, dy);
                     fruit.TragendeInsekten.ForEach(
-                      delegate(CoreInsect insect) { insect.CoordinateBase = new CoreCoordinate(insect.CoordinateBase, dx, dy); });
+                      delegate (CoreInsect insect) { insect.CoordinateBase = new CoreCoordinate(insect.CoordinateBase, dx, dy); });
                 }
             });
             //foreach(CoreFruit obst in Playground.Fruits) {
@@ -487,9 +487,9 @@ namespace AntMe.Simulation
                     gemerkteMarkierungen.Add(markierung);
                 }
             }
-            gemerkteMarkierungen.ForEach(delegate(CoreMarker marker)
+            gemerkteMarkierungen.ForEach(delegate (CoreMarker marker)
             {
-                colony.Insects.ForEach(delegate(CoreInsect insect)
+                colony.Insects.ForEach(delegate (CoreInsect insect)
                 {
                     CoreAnt ant = insect as CoreAnt;
                     if (ant != null)
@@ -502,7 +502,7 @@ namespace AntMe.Simulation
 
             // Neue Markierungen überprüfen und hinzufügen.
             gemerkteMarkierungen.Clear();
-            colony.NewMarker.ForEach(delegate(CoreMarker newMarker)
+            colony.NewMarker.ForEach(delegate (CoreMarker newMarker)
             {
                 bool zuNah = false;
                 foreach (CoreMarker markierung in colony.Marker)

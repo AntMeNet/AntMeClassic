@@ -1,23 +1,27 @@
 ﻿using AntMe.Simulation;
 
-namespace AntMe.Deutsch {
+namespace AntMe.Deutsch
+{
     /// <summary>
     /// Allgemeines Spielelement
     /// </summary>
-    public abstract class Spielobjekt {
+    public abstract class Spielobjekt
+    {
         /// <summary>
         /// Speichert die Referenz auf das original Spielobjekt
         /// </summary>
         protected ICoordinate element;
 
-        internal Spielobjekt(ICoordinate element) {
+        internal Spielobjekt(ICoordinate element)
+        {
             this.element = element;
         }
 
         /// <summary>
         /// Gibt das Basiselement zurück
         /// </summary>
-        internal ICoordinate Element {
+        internal ICoordinate Element
+        {
             get { return element; }
         }
 
@@ -72,10 +76,12 @@ namespace AntMe.Deutsch {
         /// </summary>
         /// <param name="obj">Vergleichsobjekt</param>
         /// <returns>Haben den gleichen Inhalt</returns>
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj)
+        {
             if (obj == null)
                 return false;
-            if (obj.GetType() == GetType()) {
+            if (obj.GetType() == GetType())
+            {
                 return obj.GetHashCode() == GetHashCode();
             }
             return false;
@@ -85,7 +91,8 @@ namespace AntMe.Deutsch {
         /// Erstellt einen eindeutigen Code für dieses Objekt
         /// </summary>
         /// <returns>eindeutiger Code</returns>
-        public override int GetHashCode() {
+        public override int GetHashCode()
+        {
             return Id;
         }
 

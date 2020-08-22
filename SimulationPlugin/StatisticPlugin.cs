@@ -1,19 +1,21 @@
-﻿using System;
+﻿using AntMe.SharedComponents.Plugin;
+using AntMe.SharedComponents.States;
+using System;
 using System.Reflection;
 using System.Windows.Forms;
 
-using AntMe.SharedComponents.Plugin;
-using AntMe.SharedComponents.States;
-
-namespace AntMe.Plugin.Simulation {
+namespace AntMe.Plugin.Simulation
+{
     [Preselected]
-    public sealed class StatisticPlugin : IConsumerPlugin {
+    public sealed class StatisticPlugin : IConsumerPlugin
+    {
         private readonly string name = Resource.StatisticPluginName;
         private readonly string description = Resource.StatisticPluginDescription;
         private readonly Version version = Assembly.GetExecutingAssembly().GetName().Version;
         private readonly Guid guid = new Guid("C83570BF-E5A7-492c-BEF2-9D25C005D6A9");
 
-        public StatisticPlugin() {
+        public StatisticPlugin()
+        {
             control = new StatisticControl();
             pluginState = PluginState.Ready;
         }
@@ -24,9 +26,9 @@ namespace AntMe.Plugin.Simulation {
         private StatisticControl control;
 
         public bool Interrupt { get { return false; } }
-        public void CreateState(ref SimulationState state) {}
-        public void CreatingState(ref SimulationState state) {}
-        public void CreatedState(ref SimulationState state) {}
+        public void CreateState(ref SimulationState state) { }
+        public void CreatingState(ref SimulationState state) { }
+        public void CreatedState(ref SimulationState state) { }
 
         #endregion
 
@@ -39,27 +41,32 @@ namespace AntMe.Plugin.Simulation {
         public PluginState State { get { return pluginState; } }
         public Control Control { get { return control; } }
 
-        public byte[] Settings {
+        public byte[] Settings
+        {
             get { return new byte[0]; }
             set { }
         }
 
-        public void Start() {
+        public void Start()
+        {
             control.Start();
             pluginState = PluginState.Running;
         }
-        public void Stop() {
+        public void Stop()
+        {
             control.Stop();
             pluginState = PluginState.Ready;
         }
         public void Pause() { pluginState = PluginState.Paused; }
 
-        public void StartupParameter(string[] parameter) {}
-        public void SetVisibility(bool visible) {
-            
+        public void StartupParameter(string[] parameter) { }
+        public void SetVisibility(bool visible)
+        {
+
         }
 
-        public void UpdateUI(SimulationState state) {
+        public void UpdateUI(SimulationState state)
+        {
             control.SimulationState(state);
         }
 
