@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Configuration;
 
-namespace AntMe.Simulation {
+namespace AntMe.Simulation
+{
     /// <summary>
     /// Holds a set of caste-Settings in one column.
     /// </summary>
     [Serializable]
-    public struct SimulationCasteSettingsColumn {
-        
+    public struct SimulationCasteSettingsColumn
+    {
+
         /// <summary>
         /// Minimum attack-value
         /// </summary>
@@ -114,7 +116,8 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Checks, if values are valid
         /// </summary>
-        public void RuleCheck() {
+        public void RuleCheck()
+        {
 
             if (Attack < ATTACK_MINIMUM)
             {
@@ -134,7 +137,7 @@ namespace AntMe.Simulation {
             {
                 throw new ConfigurationErrorsException(string.Format("Der Wert bei RotationSpeed (Aktuell: {0}) muss kleiner oder gleich {1} sein", RotationSpeed, ROTATIONSPEED_MAXIMUM));
             }
-            
+
             if (Energy < ENERGY_MINIMUM)
             {
                 throw new ConfigurationErrorsException(string.Format("Der Wert bei Energy (Aktuell: {0}) muss größer oder gleich {1} sein", Energy, ENERGY_MINIMUM));

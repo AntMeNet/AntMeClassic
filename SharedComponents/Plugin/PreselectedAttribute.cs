@@ -1,6 +1,7 @@
 using System;
 
-namespace AntMe.SharedComponents.Plugin {
+namespace AntMe.SharedComponents.Plugin
+{
     /// <summary>
     /// Attribute to mark a plugin as important that should be selected at the 
     /// first start of AntMe. This attribute only takes effect, if there is no 
@@ -8,5 +9,5 @@ namespace AntMe.SharedComponents.Plugin {
     /// </summary>
     /// <author>Tom Wendel (tom@antme.net)</author>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-    public sealed class PreselectedAttribute : Attribute {}
+    public sealed class PreselectedAttribute : Attribute { }
 }

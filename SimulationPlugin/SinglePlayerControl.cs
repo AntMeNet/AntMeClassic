@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using AntMe.Online.Client;
+﻿using AntMe.Online.Client;
 using AntMe.PlayerManagement;
-using AntMe.Simulation;
-using AntMe.SharedComponents.States;
-using System.Threading.Tasks;
 using AntMe.SharedComponents.Controls;
+using AntMe.Simulation;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AntMe.Plugin.Simulation
 {
@@ -266,7 +260,7 @@ namespace AntMe.Plugin.Simulation
                 return;
             }
 
-            if (Handle == null) 
+            if (Handle == null)
                 return;
 
             if (needHighscoreUpdate)

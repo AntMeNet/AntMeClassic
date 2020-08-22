@@ -1,10 +1,9 @@
+using AntMe.SharedComponents.States;
 using System;
 using System.Configuration;
 using System.Reflection;
 using System.Security;
 using System.Security.Permissions;
-
-using AntMe.SharedComponents.States;
 
 namespace AntMe.Simulation
 {

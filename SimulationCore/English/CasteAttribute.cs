@@ -1,11 +1,13 @@
 ﻿using System;
 
-namespace AntMe.English {
+namespace AntMe.English
+{
     /// <summary>
     /// Attribute to descripe the different professions of ants
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-    public sealed class CasteAttribute : Attribute {
+    public sealed class CasteAttribute : Attribute
+    {
         /// <summary>
         /// The Attackstrength
         /// </summary>

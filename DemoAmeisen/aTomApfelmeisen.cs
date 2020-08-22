@@ -1,7 +1,8 @@
-using System.Collections.Generic;
 using AntMe.Deutsch;
+using System.Collections.Generic;
 
-namespace AntMe.DemoAmeisen {
+namespace AntMe.DemoAmeisen
+{
     /// <summary>
     /// Ameisendemo die sich darauf konzentriert effizient Äpfel einzusammeln.
     /// Andere Nahrungsmittel werden ignoriert und den Käfern wird nur versucht
@@ -161,7 +162,7 @@ namespace AntMe.DemoAmeisen {
         {
             // Bei Käfersicht wird ermittelt ob die Ameise evtl. kollidiert, wenn sie
             // geradeaus weitergeht.
-            int relativeRichtung = 
+            int relativeRichtung =
                 Koordinate.BestimmeRichtung(this, wanze) - Richtung;
             if (relativeRichtung > -15 && relativeRichtung < 15)
             {

@@ -1,8 +1,10 @@
-﻿namespace AntMe.Deutsch {
+﻿namespace AntMe.Deutsch
+{
     /// <summary>
     /// Liste möglicher Todesursachen
     /// </summary>
-    public enum Todesart {
+    public enum Todesart
+    {
         /// <summary>
         /// Ameise verhungert
         /// </summary>

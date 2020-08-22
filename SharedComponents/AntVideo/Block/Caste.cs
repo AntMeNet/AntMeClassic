@@ -1,8 +1,11 @@
 ﻿using AntMe.SharedComponents.States;
 
-namespace AntMe.SharedComponents.AntVideo.Block {
-    internal sealed class Caste : CasteState, ISerializable {
-        public Caste(CasteState zustand) : base(zustand.ColonyId, zustand.Id) {
+namespace AntMe.SharedComponents.AntVideo.Block
+{
+    internal sealed class Caste : CasteState, ISerializable
+    {
+        public Caste(CasteState zustand) : base(zustand.ColonyId, zustand.Id)
+        {
             Name = zustand.Name;
             SpeedModificator = zustand.SpeedModificator;
             RotationSpeedModificator = zustand.RotationSpeedModificator;
@@ -14,11 +17,13 @@ namespace AntMe.SharedComponents.AntVideo.Block {
         }
 
         public Caste(Serializer serializer)
-            : base(0, 0) {
+            : base(0, 0)
+        {
             Deserialize(serializer);
         }
 
-        public CasteState GenerateState() {
+        public CasteState GenerateState()
+        {
             CasteState state = new CasteState(ColonyId, Id);
             state.Name = Name;
             state.SpeedModificator = SpeedModificator;
@@ -45,9 +50,10 @@ namespace AntMe.SharedComponents.AntVideo.Block {
         // - byte Vitality
         // - byte Attack
 
-        public void Serialize(Serializer serializer) {
-            serializer.SendUshort((ushort) Id);
-            serializer.SendUshort((ushort) ColonyId);
+        public void Serialize(Serializer serializer)
+        {
+            serializer.SendUshort((ushort)Id);
+            serializer.SendUshort((ushort)ColonyId);
             serializer.SendString(Name);
             serializer.SendByte(SpeedModificator);
             serializer.SendByte(RotationSpeedModificator);
@@ -58,7 +64,8 @@ namespace AntMe.SharedComponents.AntVideo.Block {
             serializer.SendByte(AttackModificator);
         }
 
-        public void Deserialize(Serializer serializer) {
+        public void Deserialize(Serializer serializer)
+        {
             Id = serializer.ReadUShort();
             ColonyId = serializer.ReadUShort();
             Name = serializer.ReadString();

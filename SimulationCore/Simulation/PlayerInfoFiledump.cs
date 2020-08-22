@@ -1,11 +1,13 @@
 using System;
 
-namespace AntMe.Simulation {
+namespace AntMe.Simulation
+{
     /// <summary>
     /// SpielerInfo Klasse mit der angabe eines zusätzlichen Dumps einer Spieler-KI
     /// </summary>
     [Serializable]
-    public sealed class PlayerInfoFiledump : PlayerInfo {
+    public sealed class PlayerInfoFiledump : PlayerInfo
+    {
         #region interne Variablen
 
         /// <summary>
@@ -20,13 +22,14 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Creates an instance of PlayerInfoFiledump
         /// </summary>
-        public PlayerInfoFiledump() {}
+        public PlayerInfoFiledump() { }
 
         /// <summary>
         /// Konstruktor der SpielerInfo mit Dateikopie
         /// <param name="file">Kopie der Datei in Form eines Byte[]</param>
         /// </summary>
-        public PlayerInfoFiledump(byte[] file) {
+        public PlayerInfoFiledump(byte[] file)
+        {
             File = file;
         }
 
@@ -36,7 +39,8 @@ namespace AntMe.Simulation {
         /// <param name="info">Basis SpielerInfo</param>
         /// <param name="file">Kopie der Datei in Form eines Byte[]</param>
         public PlayerInfoFiledump(PlayerInfo info, byte[] file)
-            : base(info) {
+            : base(info)
+        {
             File = file;
         }
 

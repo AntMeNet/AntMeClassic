@@ -1,7 +1,7 @@
-using AntMe.SharedComponents.Plugin;
 using AntMe.SharedComponents.States;
 
-namespace AntMe.SharedComponents.Plugin {
+namespace AntMe.SharedComponents.Plugin
+{
     /// <summary>
     /// Interface for all consuming plugins.
     /// </summary>

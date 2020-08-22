@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace AntMe.Online.Client
+﻿namespace AntMe.Online.Client
 {
     /// <summary>
     /// Liste möglicher Connection States.

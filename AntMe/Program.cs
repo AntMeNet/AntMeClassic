@@ -1,20 +1,23 @@
+using AntMe.Gui.Properties;
 using System;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
 
-using AntMe.Gui.Properties;
-
-namespace AntMe.Gui {
-    internal sealed class Program {
+namespace AntMe.Gui
+{
+    internal sealed class Program
+    {
         [STAThread]
-        public static void Main(string[] parameter) {
+        public static void Main(string[] parameter)
+        {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
             bool restart = true;
 
-            while (restart) {
+            while (restart)
+            {
 
                 // Language-Settings
                 switch (Settings.Default.culture)
@@ -30,7 +33,8 @@ namespace AntMe.Gui {
                 }
 
                 // Run
-                using (Main form = new Main(parameter)) {
+                using (Main form = new Main(parameter))
+                {
                     Application.Run(form);
                     restart = form.Restart;
                 }

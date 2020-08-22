@@ -1,7 +1,6 @@
+using AntMe.SharedComponents.States;
 using System;
 using System.Collections.Generic;
-
-using AntMe.SharedComponents.States;
 
 namespace AntMe.Simulation
 {
@@ -200,7 +199,7 @@ namespace AntMe.Simulation
             BreiteI2 = BreiteI * 2;
             HöheI2 = HöheI * 2;
 
-            
+
 
             Marker =
                 new Grid<CoreMarker>

@@ -1,18 +1,16 @@
+using AntMe.Gui.Properties;
+using AntMe.Online.Client;
+using AntMe.PlayerManagement;
+using AntMe.SharedComponents.Plugin;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Threading;
-using System.Windows.Forms;
-using System.Linq;
-
-using AntMe.Gui.Properties;
-using AntMe.SharedComponents.Plugin;
-using System.Reflection;
-using AntMe.Online.Client;
 using System.Diagnostics;
-using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
-using AntMe.PlayerManagement;
+using System.Windows.Forms;
 
 namespace AntMe.Gui
 {
@@ -317,7 +315,7 @@ namespace AntMe.Gui
                 switch (Connection.Instance.State)
                 {
                     case ConnectionState.NoConnection:
-                        onlineButton .Image = Resources.connection;
+                        onlineButton.Image = Resources.connection;
                         onlineButton.ToolTipText = Resource.UpdateNoConnection;
                         break;
                     case ConnectionState.TokenInvalid:
@@ -563,10 +561,10 @@ namespace AntMe.Gui
             {
                 Uri download = Connection.Instance.CheckForUpdates(
                     Assembly.GetExecutingAssembly().GetName().Version);
-                
+
                 if (download != null)
                 {
-                    if (MessageBox.Show(this, Resource.UpdateNewerMessage, 
+                    if (MessageBox.Show(this, Resource.UpdateNewerMessage,
                         Resource.UpdateTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.Yes)
                     {
                         Process.Start(download.ToString());
@@ -574,13 +572,13 @@ namespace AntMe.Gui
                 }
                 else
                 {
-                    MessageBox.Show(this, Resource.UpdateNewestMessage, Resource.UpdateTitle, 
+                    MessageBox.Show(this, Resource.UpdateNewestMessage, Resource.UpdateTitle,
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show(this, Resource.UpdateErrorMessage, Resource.UpdateTitle, 
+                MessageBox.Show(this, Resource.UpdateErrorMessage, Resource.UpdateTitle,
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
@@ -688,7 +686,7 @@ namespace AntMe.Gui
                     else
                         Settings.Default.updateLink = string.Empty;
                 }
-                catch (Exception) {}
+                catch (Exception) { }
 
                 Settings.Default.lastUpdateCheck = DateTime.Now.Date;
                 Settings.Default.Save();
@@ -702,7 +700,7 @@ namespace AntMe.Gui
 
         private void versionButton_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(this, Resource.UpdateNewerMessage, Resource.UpdateTitle, 
+            if (MessageBox.Show(this, Resource.UpdateNewerMessage, Resource.UpdateTitle,
                 MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.Yes)
             {
                 // Open Link

@@ -1,3 +1,6 @@
+using AntMe.Gui.Properties;
+using AntMe.SharedComponents.Plugin;
+using AntMe.SharedComponents.States;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,10 +10,6 @@ using System.Reflection;
 using System.Security;
 using System.Threading;
 using System.Xml.Serialization;
-
-using AntMe.Gui.Properties;
-using AntMe.SharedComponents.Plugin;
-using AntMe.SharedComponents.States;
 
 namespace AntMe.Gui
 {
@@ -140,13 +139,13 @@ namespace AntMe.Gui
                 if (addPlugin(assembly))
                 {
                     if (
-                        !file.Directory.FullName.ToLower().Equals(applicationPath.FullName.ToLower()) && 
+                        !file.Directory.FullName.ToLower().Equals(applicationPath.FullName.ToLower()) &&
                         !file.Directory.FullName.ToLower().Equals(pluginPath.FullName.ToLower()) &&
                         !config.knownPluginFiles.Contains(file.FullName.ToLower()))
                     {
                         config.knownPluginFiles.Add(file.FullName.ToLower());
                     }
-                        
+
                     return true;
                 }
             }
@@ -355,7 +354,7 @@ namespace AntMe.Gui
                         }
                     }
 
-                        // Consumer found
+                    // Consumer found
                     else if (plugin == typeof(IConsumerPlugin))
                     {
                         // Create an instance of plugin and add to list

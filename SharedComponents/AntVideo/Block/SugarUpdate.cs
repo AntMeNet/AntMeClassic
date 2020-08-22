@@ -1,16 +1,19 @@
 ﻿using System;
 
-namespace AntMe.SharedComponents.AntVideo.Block {
+namespace AntMe.SharedComponents.AntVideo.Block
+{
     /// <summary>
     /// Possible Fields of sugarupdate
     /// </summary>
     [Flags]
-    internal enum SugarFields {
+    internal enum SugarFields
+    {
         Amount = 1,
         Range = 2
     }
 
-    internal sealed class SugarUpdate : UpdateBase {
+    internal sealed class SugarUpdate : UpdateBase
+    {
         #region Updateinformation
 
         private int m_aMenge;
@@ -18,7 +21,7 @@ namespace AntMe.SharedComponents.AntVideo.Block {
 
         #endregion
 
-        public SugarUpdate() {}
+        public SugarUpdate() { }
 
         // Blocklayout:
         // ...
@@ -26,32 +29,40 @@ namespace AntMe.SharedComponents.AntVideo.Block {
         // ushort aRadius
 
         public SugarUpdate(Serializer serializer)
-            : base(serializer) {
-            if (HasChanged(SugarFields.Amount)) {
+            : base(serializer)
+        {
+            if (HasChanged(SugarFields.Amount))
+            {
                 m_aMenge = serializer.ReadUShort();
             }
-            if (HasChanged(SugarFields.Range)) {
+            if (HasChanged(SugarFields.Range))
+            {
                 m_aRadius = serializer.ReadUShort();
             }
         }
 
-        public override void Serialize(Serializer serializer) {
+        public override void Serialize(Serializer serializer)
+        {
             base.Serialize(serializer);
 
-            if (HasChanged(SugarFields.Amount)) {
-                serializer.SendUshort((ushort) m_aMenge);
+            if (HasChanged(SugarFields.Amount))
+            {
+                serializer.SendUshort((ushort)m_aMenge);
             }
-            if (HasChanged(SugarFields.Range)) {
-                serializer.SendUshort((ushort) m_aRadius);
+            if (HasChanged(SugarFields.Range))
+            {
+                serializer.SendUshort((ushort)m_aRadius);
             }
         }
 
-        public void Change(SugarFields field) {
-            Change((int) field);
+        public void Change(SugarFields field)
+        {
+            Change((int)field);
         }
 
-        public bool HasChanged(SugarFields field) {
-            return HasChanged((int) field);
+        public bool HasChanged(SugarFields field)
+        {
+            return HasChanged((int)field);
         }
 
         #region Properties
@@ -59,7 +70,8 @@ namespace AntMe.SharedComponents.AntVideo.Block {
         /// <summary>
         /// Gets or sets the absolute value of amount.
         /// </summary>
-        public int AbsoluteAmount {
+        public int AbsoluteAmount
+        {
             get { return m_aMenge; }
             set { m_aMenge = value; }
         }
@@ -67,7 +79,8 @@ namespace AntMe.SharedComponents.AntVideo.Block {
         /// <summary>
         /// Gets or sets the absolute value for radius.
         /// </summary>
-        public int AbsoluteRadius {
+        public int AbsoluteRadius
+        {
             get { return m_aRadius; }
             set { m_aRadius = value; }
         }

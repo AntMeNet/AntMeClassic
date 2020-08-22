@@ -1,8 +1,10 @@
-﻿namespace AntMe.SharedComponents.AntVideo {
+﻿namespace AntMe.SharedComponents.AntVideo
+{
     /// <summary>
     /// Interface for all serializable blocks.
     /// </summary>
-    internal interface ISerializable {
+    internal interface ISerializable
+    {
         /// <summary>
         /// Serializes the object into the given stream.
         /// </summary>

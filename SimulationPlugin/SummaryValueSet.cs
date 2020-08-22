@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AntMe.Plugin.Simulation
 {
@@ -54,7 +52,8 @@ namespace AntMe.Plugin.Simulation
         /// Adds another valueSet to the current one.
         /// </summary>
         /// <param name="valueSet">valueSet to add to this set.</param>
-        public void Add(SummaryValueSet valueSet) {
+        public void Add(SummaryValueSet valueSet)
+        {
             collectedFood += valueSet.collectedFood;
             collectedFruit += valueSet.collectedFruit;
             killedAnts += valueSet.killedAnts;

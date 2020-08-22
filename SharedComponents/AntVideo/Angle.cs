@@ -1,14 +1,19 @@
-﻿namespace AntMe.SharedComponents.AntVideo {
-    internal static class Angle {
-        public static int Interpolate(int angle, int delta) {
-            int output = (angle + delta)%360;
-            if (output < 0) {
+﻿namespace AntMe.SharedComponents.AntVideo
+{
+    internal static class Angle
+    {
+        public static int Interpolate(int angle, int delta)
+        {
+            int output = (angle + delta) % 360;
+            if (output < 0)
+            {
                 output += 360;
             }
             return output;
         }
 
-        public static int Delta(int oldAngle, int newAngle) {
+        public static int Delta(int oldAngle, int newAngle)
+        {
             // Cases
             // old: 100, new: 90 -> -10
             // old: 100, new: 110 -> 10

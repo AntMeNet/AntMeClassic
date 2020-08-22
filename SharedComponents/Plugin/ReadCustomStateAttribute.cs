@@ -1,11 +1,13 @@
 ﻿using System;
 
-namespace AntMe.SharedComponents.Plugin {
+namespace AntMe.SharedComponents.Plugin
+{
     /// <summary>
     /// Attribute, to signal, that the marked plugin reads the custom field.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-    public sealed class ReadCustomStateAttribute : Attribute {
+    public sealed class ReadCustomStateAttribute : Attribute
+    {
         /// <summary>
         /// The name of the custom field.
         /// </summary>

@@ -1,7 +1,9 @@
 ﻿using AntMe.SharedComponents.States;
 
-namespace AntMe.SharedComponents.AntVideo.Block {
-    internal class Marker : MarkerState, IUpdateable<MarkerUpdate, MarkerState>, ISerializable {
+namespace AntMe.SharedComponents.AntVideo.Block
+{
+    internal class Marker : MarkerState, IUpdateable<MarkerUpdate, MarkerState>, ISerializable
+    {
         #region Updateinformation
 
         public int aRichtung;
@@ -11,13 +13,15 @@ namespace AntMe.SharedComponents.AntVideo.Block {
         #endregion
 
         public Marker(Serializer serializer)
-            : base(0, 0) {
+            : base(0, 0)
+        {
             Deserialize(serializer);
 
             Reset();
         }
 
-        public Marker(MarkerState zustand) : base(zustand.ColonyId, zustand.Id) {
+        public Marker(MarkerState zustand) : base(zustand.ColonyId, zustand.Id)
+        {
             PositionX = zustand.PositionX;
             PositionY = zustand.PositionY;
             Radius = zustand.Radius;
@@ -26,51 +30,61 @@ namespace AntMe.SharedComponents.AntVideo.Block {
             Reset();
         }
 
-        private void Reset() {
+        private void Reset()
+        {
             aRichtung = Direction;
             dRadius = 0;
         }
 
         #region IUpdateable<MarkerUpdate,MarkerState> Member
 
-        public void Interpolate() {
+        public void Interpolate()
+        {
             Radius += dRadius;
             Direction = aRichtung;
         }
 
-        public void Update(MarkerUpdate update) {
-            if (update.HasChanged(MarkerFields.Radius)) {
+        public void Update(MarkerUpdate update)
+        {
+            if (update.HasChanged(MarkerFields.Radius))
+            {
                 dRadius = update.dRadius;
             }
-            if (update.HasChanged(MarkerFields.Direction)) {
+            if (update.HasChanged(MarkerFields.Direction))
+            {
                 aRichtung = update.aDirection;
             }
         }
 
-        public MarkerUpdate GenerateUpdate(MarkerState state) {
+        public MarkerUpdate GenerateUpdate(MarkerState state)
+        {
             MarkerUpdate update = new MarkerUpdate();
             update.Id = Id;
             bool changed = false;
 
-            if (state.Radius != (Radius + dRadius)) {
+            if (state.Radius != (Radius + dRadius))
+            {
                 update.Change(MarkerFields.Radius);
                 update.dRadius = state.Radius - Radius;
                 changed = true;
             }
-            if (state.Direction != Direction) {
+            if (state.Direction != Direction)
+            {
                 update.Change(MarkerFields.Direction);
                 update.aDirection = state.Direction;
                 changed = true;
             }
 
-            if (changed) {
+            if (changed)
+            {
                 Update(update);
                 return update;
             }
             return null;
         }
 
-        public MarkerState GenerateState() {
+        public MarkerState GenerateState()
+        {
             MarkerState state = new MarkerState(ColonyId, Id);
             state.PositionX = PositionX;
             state.PositionY = PositionY;
@@ -79,7 +93,8 @@ namespace AntMe.SharedComponents.AntVideo.Block {
             return state;
         }
 
-        public bool IsAlive {
+        public bool IsAlive
+        {
             get { return isAlive; }
             set { isAlive = value; }
         }
@@ -95,16 +110,18 @@ namespace AntMe.SharedComponents.AntVideo.Block {
         // - ushort PositionY
         // - ushort Radius
         // - ushort Direction
-        public void Serialize(Serializer serializer) {
-            serializer.SendUshort((ushort) Id);
-            serializer.SendUshort((ushort) ColonyId);
-            serializer.SendUshort((ushort) PositionX);
-            serializer.SendUshort((ushort) PositionY);
-            serializer.SendUshort((ushort) Radius);
-            serializer.SendUshort((ushort) Direction);
+        public void Serialize(Serializer serializer)
+        {
+            serializer.SendUshort((ushort)Id);
+            serializer.SendUshort((ushort)ColonyId);
+            serializer.SendUshort((ushort)PositionX);
+            serializer.SendUshort((ushort)PositionY);
+            serializer.SendUshort((ushort)Radius);
+            serializer.SendUshort((ushort)Direction);
         }
 
-        public void Deserialize(Serializer serializer) {
+        public void Deserialize(Serializer serializer)
+        {
             Id = serializer.ReadUShort();
             ColonyId = serializer.ReadUShort();
             PositionX = serializer.ReadUShort();

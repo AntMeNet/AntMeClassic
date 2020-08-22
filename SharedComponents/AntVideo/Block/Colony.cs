@@ -1,7 +1,9 @@
 ﻿using AntMe.SharedComponents.States;
 
-namespace AntMe.SharedComponents.AntVideo.Block {
-    internal sealed class Colony : ColonyState, IUpdateable<ColonyUpdate, ColonyState>, ISerializable {
+namespace AntMe.SharedComponents.AntVideo.Block
+{
+    internal sealed class Colony : ColonyState, IUpdateable<ColonyUpdate, ColonyState>, ISerializable
+    {
         #region Basisinformation
 
         public int TeamId;
@@ -22,7 +24,8 @@ namespace AntMe.SharedComponents.AntVideo.Block {
 
         #endregion
 
-        public Colony(ColonyState state, int teamId) : base(state.Id) {
+        public Colony(ColonyState state, int teamId) : base(state.Id)
+        {
             Guid = state.Guid;
             TeamId = teamId;
             PlayerName = state.PlayerName;
@@ -39,7 +42,8 @@ namespace AntMe.SharedComponents.AntVideo.Block {
         }
 
         public Colony(Serializer serializer)
-            : base(0) {
+            : base(0)
+        {
             Deserialize(serializer);
 
             Reset();
@@ -48,7 +52,8 @@ namespace AntMe.SharedComponents.AntVideo.Block {
         /// <summary>
         /// Setzt die Updatedaten auf erwartete Werte
         /// </summary>
-        private void Reset() {
+        private void Reset()
+        {
             aStarvedAnts = StarvedAnts;
             aBeatenAnts = BeatenAnts;
             aEatenAnts = EatenAnts;
@@ -60,7 +65,8 @@ namespace AntMe.SharedComponents.AntVideo.Block {
 
         #region IUpdateable<ColonyUpdate,ColonyState> Member
 
-        public void Interpolate() {
+        public void Interpolate()
+        {
             StarvedAnts = aStarvedAnts;
             BeatenAnts = aBeatenAnts;
             EatenAnts = aEatenAnts;
@@ -70,84 +76,102 @@ namespace AntMe.SharedComponents.AntVideo.Block {
             Points = aPoints;
         }
 
-        public void Update(ColonyUpdate update) {
-            if (update.HasChanged(ColonyFields.StarvedAnts)) {
+        public void Update(ColonyUpdate update)
+        {
+            if (update.HasChanged(ColonyFields.StarvedAnts))
+            {
                 aStarvedAnts = update.aStarvedAnts;
             }
-            if (update.HasChanged(ColonyFields.EatenAnts)) {
+            if (update.HasChanged(ColonyFields.EatenAnts))
+            {
                 aEatenAnts = update.aEatenAnts;
             }
-            if (update.HasChanged(ColonyFields.BeatenAnts)) {
+            if (update.HasChanged(ColonyFields.BeatenAnts))
+            {
                 aBeatenAnts = update.aBeatenAnts;
             }
-            if (update.HasChanged(ColonyFields.KilledBugs)) {
+            if (update.HasChanged(ColonyFields.KilledBugs))
+            {
                 aKilledBugs = update.aKilledBugs;
             }
-            if (update.HasChanged(ColonyFields.KilledEnemies)) {
+            if (update.HasChanged(ColonyFields.KilledEnemies))
+            {
                 aKilledEnemies = update.aKilledEnemies;
             }
-            if (update.HasChanged(ColonyFields.CollectedFood)) {
+            if (update.HasChanged(ColonyFields.CollectedFood))
+            {
                 aCollectedFood = update.aCollectedFood;
             }
-            if (update.HasChanged(ColonyFields.Points)) {
+            if (update.HasChanged(ColonyFields.Points))
+            {
                 aPoints = update.aPoints;
             }
         }
 
-        public ColonyUpdate GenerateUpdate(ColonyState state) {
+        public ColonyUpdate GenerateUpdate(ColonyState state)
+        {
             ColonyUpdate update = new ColonyUpdate();
             update.Id = Id;
             update.TeamId = TeamId;
             bool changed = false;
 
-            if (state.StarvedAnts != aStarvedAnts) {
+            if (state.StarvedAnts != aStarvedAnts)
+            {
                 update.Change(ColonyFields.StarvedAnts);
                 update.aStarvedAnts = state.StarvedAnts;
                 changed = true;
             }
-            if (state.EatenAnts != aEatenAnts) {
+            if (state.EatenAnts != aEatenAnts)
+            {
                 update.Change(ColonyFields.EatenAnts);
                 update.aEatenAnts = state.EatenAnts;
                 changed = true;
             }
 
-            if (state.BeatenAnts != aBeatenAnts) {
+            if (state.BeatenAnts != aBeatenAnts)
+            {
                 update.Change(ColonyFields.BeatenAnts);
                 update.aBeatenAnts = state.BeatenAnts;
                 changed = true;
             }
 
-            if (state.KilledBugs != aKilledBugs) {
+            if (state.KilledBugs != aKilledBugs)
+            {
                 update.Change(ColonyFields.KilledBugs);
                 update.aKilledBugs = state.KilledBugs;
                 changed = true;
             }
-            if (state.KilledEnemies != aKilledEnemies) {
+            if (state.KilledEnemies != aKilledEnemies)
+            {
                 update.Change(ColonyFields.KilledEnemies);
                 update.aKilledEnemies = state.KilledEnemies;
                 changed = true;
             }
 
-            if (state.CollectedFood != aCollectedFood) {
+            if (state.CollectedFood != aCollectedFood)
+            {
                 update.Change(ColonyFields.CollectedFood);
                 update.aCollectedFood = state.CollectedFood;
                 changed = true;
             }
 
-            if (state.Points != aPoints) {
+            if (state.Points != aPoints)
+            {
                 update.Change(ColonyFields.Points);
                 update.aPoints = state.Points;
                 changed = true;
             }
 
-            if (changed) {
+            if (changed)
+            {
                 Update(update);
                 return update;
             }
             return null;
         }
 
-        public ColonyState GenerateState() {
+        public ColonyState GenerateState()
+        {
             ColonyState state = new ColonyState(Id);
             state.Guid = Guid;
             state.PlayerName = PlayerName;
@@ -162,7 +186,8 @@ namespace AntMe.SharedComponents.AntVideo.Block {
             return state;
         }
 
-        public bool IsAlive {
+        public bool IsAlive
+        {
             get { return isAlive; }
             set { isAlive = value; }
         }
@@ -185,22 +210,24 @@ namespace AntMe.SharedComponents.AntVideo.Block {
         // - ushort CollectedFood
         // - int Points
 
-        public void Serialize(Serializer serializer) {
-            serializer.SendUshort((ushort) Id);
+        public void Serialize(Serializer serializer)
+        {
+            serializer.SendUshort((ushort)Id);
             serializer.SendGuid(Guid);
-            serializer.SendUshort((ushort) TeamId);
+            serializer.SendUshort((ushort)TeamId);
             serializer.SendString(PlayerName);
             serializer.SendString(ColonyName);
-            serializer.SendUshort((ushort) StarvedAnts);
-            serializer.SendUshort((ushort) EatenAnts);
-            serializer.SendUshort((ushort) BeatenAnts);
-            serializer.SendUshort((ushort) KilledBugs);
-            serializer.SendUshort((ushort) KilledEnemies);
-            serializer.SendUshort((ushort) CollectedFood);
+            serializer.SendUshort((ushort)StarvedAnts);
+            serializer.SendUshort((ushort)EatenAnts);
+            serializer.SendUshort((ushort)BeatenAnts);
+            serializer.SendUshort((ushort)KilledBugs);
+            serializer.SendUshort((ushort)KilledEnemies);
+            serializer.SendUshort((ushort)CollectedFood);
             serializer.SendInt(Points);
         }
 
-        public void Deserialize(Serializer serializer) {
+        public void Deserialize(Serializer serializer)
+        {
             Id = serializer.ReadUShort();
             Guid = serializer.ReadGuid();
             TeamId = serializer.ReadUShort();

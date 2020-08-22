@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.Drawing.Drawing2D;
+﻿using AntMe.PlayerManagement;
 using AntMe.Simulation;
-using AntMe.PlayerManagement;
+using System;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace AntMe.Plugin.Simulation
 {
@@ -202,32 +196,32 @@ namespace AntMe.Plugin.Simulation
         {
             info(setup.Slot2.PlayerInfo);
         }
-        
+
         private void info3_Click(object sender, EventArgs e)
         {
             info(setup.Slot3.PlayerInfo);
         }
-        
+
         private void info4_Click(object sender, EventArgs e)
         {
             info(setup.Slot4.PlayerInfo);
         }
-        
+
         private void info5_Click(object sender, EventArgs e)
         {
             info(setup.Slot5.PlayerInfo);
         }
-        
+
         private void info6_Click(object sender, EventArgs e)
         {
             info(setup.Slot6.PlayerInfo);
         }
-        
+
         private void info7_Click(object sender, EventArgs e)
         {
             info(setup.Slot7.PlayerInfo);
         }
-        
+
         private void info8_Click(object sender, EventArgs e)
         {
             info(setup.Slot8.PlayerInfo);

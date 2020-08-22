@@ -1,10 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using System.Security;
-using System.Security.Permissions;
-using System.Security.Policy;
 
 namespace AntMe.Simulation
 {

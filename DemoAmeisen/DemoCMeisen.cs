@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using AntMe.Deutsch;
+using System.Collections.Generic;
 
 namespace AntMe.Spieler.WolfgangGallo
 {
