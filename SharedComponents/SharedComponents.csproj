@@ -12,7 +12,8 @@
     <AssemblyName>AntMe.SharedComponents</AssemblyName>
     <SignAssembly>false</SignAssembly>
     <PlatformTarget>x86</PlatformTarget>
-    <AssemblyOriginatorKeyFile>AntMe.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
@@ -205,7 +206,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="AntMe.snk" />
     <None Include="Resources\FemaleNames.txt" />
   </ItemGroup>
   <ItemGroup>

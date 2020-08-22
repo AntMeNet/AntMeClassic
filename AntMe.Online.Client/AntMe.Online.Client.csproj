@@ -21,7 +21,8 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>AntMe.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -113,7 +114,6 @@
     <EmbeddedResource Include="Properties\Resources.de.resx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="AntMe.snk" />
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
