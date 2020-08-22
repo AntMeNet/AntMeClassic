@@ -2,7 +2,6 @@
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
-using AntMe.Plugin.Xna;
 using AntMe.SharedComponents.Plugin;
 using AntMe.SharedComponents.States;
 

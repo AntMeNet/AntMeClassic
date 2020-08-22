@@ -507,7 +507,7 @@ namespace AntMe.Plugin.Fna
                         eff.TextureEnabled = true;
                         eff.Texture = borderTexture;
 
-                        eff.LightingEnabled = true;
+                        eff.LightingEnabled = false;
 
                         eff.DirectionalLight0.Enabled = true;
                         eff.DirectionalLight0.Direction = LIGHT_0_DIRECTION;
