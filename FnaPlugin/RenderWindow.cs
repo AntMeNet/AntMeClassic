@@ -155,8 +155,8 @@ namespace AntMe.Plugin.Fna
 
 
             // Create Player Color
-            playerColors = new Vector3[] 
-            { 
+            playerColors = new Vector3[]
+            {
                 new Vector3(0f, 0f, 0f),
                 new Vector3(1f, 0f, 0f),
                 new Vector3(0f, 0f, 1f),
@@ -510,12 +510,15 @@ namespace AntMe.Plugin.Fna
                         eff.LightingEnabled = false;
 
                         eff.DirectionalLight0.Enabled = true;
+                        eff.DirectionalLight0.DiffuseColor = new Vector3(1, 1, 1);
                         eff.DirectionalLight0.Direction = LIGHT_0_DIRECTION;
 
                         eff.DirectionalLight1.Enabled = true;
+                        eff.DirectionalLight0.DiffuseColor = new Vector3(1, 1, 1);
                         eff.DirectionalLight1.Direction = LIGHT_1_DIRECTION;
 
                         eff.DirectionalLight2.Enabled = true;
+                        eff.DirectionalLight0.DiffuseColor = new Vector3(1, 1, 1);
                         eff.DirectionalLight2.Direction = LIGHT_2_DIRECTION;
                     }
                     mesh.Draw();
@@ -556,6 +559,7 @@ namespace AntMe.Plugin.Fna
                         eff.PreferPerPixelLighting = true;
                         eff.DirectionalLight0.Enabled = true;
                         eff.DirectionalLight0.Direction = LIGHT_0_DIRECTION;
+                        eff.DirectionalLight0.DiffuseColor = new Vector3(1, 1, 1);
                         eff.DirectionalLight0.SpecularColor = new Vector3(0.6f, 1f, 1f);//new Vector3(0.7f, 0.3f, 0f);//
 
                         eff.DirectionalLight1.Enabled = false;
@@ -623,12 +627,15 @@ namespace AntMe.Plugin.Fna
 
                     eff.DirectionalLight0.Enabled = true;
                     eff.DirectionalLight0.Direction = LIGHT_0_DIRECTION;
+                    eff.DirectionalLight0.DiffuseColor = new Vector3(1, 1, 1);
                     eff.DirectionalLight0.SpecularColor = new Vector3(1f, 1f, 1f);// + playerColors[colony];
 
                     eff.DirectionalLight1.Enabled = true;
+                    eff.DirectionalLight1.DiffuseColor = new Vector3(1, 1, 1);
                     eff.DirectionalLight1.Direction = LIGHT_1_DIRECTION;
 
                     eff.DirectionalLight2.Enabled = true;
+                    eff.DirectionalLight2.DiffuseColor = new Vector3(1, 1, 1);
                     eff.DirectionalLight2.Direction = LIGHT_2_DIRECTION;
                 }
                 mesh.Draw();
@@ -702,12 +709,15 @@ namespace AntMe.Plugin.Fna
                     eff.EmissiveColor = new Vector3(0.3f, 0.3f, 0.25f);
 
                     eff.DirectionalLight0.Enabled = true;
+                    eff.DirectionalLight0.DiffuseColor = new Vector3(1, 1, 1);
                     eff.DirectionalLight0.Direction = LIGHT_0_DIRECTION;
 
                     eff.DirectionalLight1.Enabled = true;
+                    eff.DirectionalLight1.DiffuseColor = new Vector3(1, 1, 1);
                     eff.DirectionalLight1.Direction = LIGHT_1_DIRECTION;
 
                     eff.DirectionalLight2.Enabled = true;
+                    eff.DirectionalLight2.DiffuseColor = new Vector3(1, 1, 1);
                     eff.DirectionalLight2.Direction = LIGHT_2_DIRECTION;
                 }
                 mesh.Draw();
