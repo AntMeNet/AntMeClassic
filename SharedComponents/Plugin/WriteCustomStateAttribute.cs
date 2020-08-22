@@ -1,11 +1,13 @@
 ﻿using System;
 
-namespace AntMe.SharedComponents.Plugin {
+namespace AntMe.SharedComponents.Plugin
+{
     /// <summary>
     /// Attribute, to signal, that the marked plugin writes the custom field.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-    public sealed class WriteCustomStateAttribute : Attribute {
+    public sealed class WriteCustomStateAttribute : Attribute
+    {
         /// <summary>
         /// The name of the custom field.
         /// </summary>

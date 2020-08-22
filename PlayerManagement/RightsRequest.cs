@@ -1,9 +1,7 @@
-﻿using System;
+﻿using AntMe.Simulation;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-
-using AntMe.Simulation;
-using AntMe.PlayerManagement;
 
 namespace AntMe.PlayerManagement
 {

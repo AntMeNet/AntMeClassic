@@ -1,9 +1,8 @@
-﻿using System;
-using System.Windows.Forms;
-
-using AntMe.Simulation;
+﻿using AntMe.Simulation;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows.Forms;
 
 namespace AntMe.Plugin.Simulation
 {

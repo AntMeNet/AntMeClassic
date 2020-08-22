@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace AntMe.PlayerManagement
+﻿namespace AntMe.PlayerManagement
 {
     internal sealed class EnglishCSharpGenerator : VsGenerator, IGenerator
     {
@@ -19,11 +14,11 @@ namespace AntMe.PlayerManagement
 
         public string Generate(string name, string path)
         {
-            return GenerateCS(name, "Class", path, 
-                GeneratorFiles.solution, 
-                GeneratorFiles.project, 
-                GeneratorFiles.user, 
-                GeneratorFiles.class_cs_en_docu, 
+            return GenerateCS(name, "Class", path,
+                GeneratorFiles.solution,
+                GeneratorFiles.project,
+                GeneratorFiles.user,
+                GeneratorFiles.class_cs_en_docu,
                 GeneratorFiles.properties);
         }
     }

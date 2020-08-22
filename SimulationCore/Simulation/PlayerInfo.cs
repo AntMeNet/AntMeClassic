@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 
-namespace AntMe.Simulation {
+namespace AntMe.Simulation
+{
     /// <summary>
     /// Holds all meta-information about a player.
     /// </summary>
     [Serializable]
-    public class PlayerInfo : ICloneable {
+    public class PlayerInfo : ICloneable
+    {
         #region lokale Variablen
 
         /// <summary>
@@ -103,7 +105,8 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Creates a new instance of PlayerInfo.
         /// </summary>
-        public PlayerInfo() {
+        public PlayerInfo()
+        {
             // Init default-values
             Guid = System.Guid.NewGuid();
             ColonyName = string.Empty;
@@ -127,7 +130,8 @@ namespace AntMe.Simulation {
         /// Creates a new instance of PlayerInfo.
         /// </summary>
         /// <param name="info">Base-info</param>
-        public PlayerInfo(PlayerInfo info) {
+        public PlayerInfo(PlayerInfo info)
+        {
             // Daten kopieren
             Guid = info.Guid;
             ColonyName = info.ColonyName;
@@ -185,10 +189,12 @@ namespace AntMe.Simulation {
             string requestInformation)
         {
             // Ameisenkasten überprüfen
-            if (castes == null) {
+            if (castes == null)
+            {
                 this.castes = new List<CasteInfo>();
             }
-            else {
+            else
+            {
                 this.castes = castes;
             }
 
@@ -218,16 +224,19 @@ namespace AntMe.Simulation {
         /// Checks the rules.
         /// </summary>
         /// <throws><see cref="RuleViolationException"/></throws>
-        public void RuleCheck() {
-            
+        public void RuleCheck()
+        {
+
             // Invalidate colonies without a name
-            if (string.IsNullOrEmpty(ColonyName)) {
+            if (string.IsNullOrEmpty(ColonyName))
+            {
                 throw new RuleViolationException(
                     string.Format(Resource.SimulationCorePlayerRuleNoName, ClassName));
             }
 
             // Check included castes
-            foreach (CasteInfo caste in castes) {
+            foreach (CasteInfo caste in castes)
+            {
                 caste.Rulecheck(ClassName);
             }
         }
@@ -239,7 +248,8 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Delivers the list of castes.
         /// </summary>
-        public List<CasteInfo> Castes {
+        public List<CasteInfo> Castes
+        {
             get { return castes; }
         }
 
@@ -251,7 +261,8 @@ namespace AntMe.Simulation {
         /// Clones the whole object
         /// </summary>
         /// <returns>clone</returns>
-        public object Clone() {
+        public object Clone()
+        {
             return MemberwiseClone();
         }
 
@@ -259,7 +270,7 @@ namespace AntMe.Simulation {
 
         public override string ToString()
         {
-            
+
             if (!string.IsNullOrEmpty(ColonyName))
             {
                 StringBuilder sb = new StringBuilder();

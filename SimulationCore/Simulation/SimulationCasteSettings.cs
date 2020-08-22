@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Configuration;
 
-namespace AntMe.Simulation {
+namespace AntMe.Simulation
+{
     /// <summary>
     /// Holds the set of caste-Settings.
     /// </summary>
     [Serializable]
-    public struct SimulationCasteSettings {
+    public struct SimulationCasteSettings
+    {
         /// <summary>
         /// Offset to shift the array-index.
         /// </summary>
@@ -25,15 +27,17 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Gives the lowest Column-Index.
         /// </summary>
-        public int MinIndex {
+        public int MinIndex
+        {
             get { return Offset; }
         }
 
         /// <summary>
         /// Gives the highest Column-Index.
         /// </summary>
-        public int MaxIndex {
-            get { return Offset + Columns.Length -1; }
+        public int MaxIndex
+        {
+            get { return Offset + Columns.Length - 1; }
         }
 
         /// <summary>
@@ -41,12 +45,16 @@ namespace AntMe.Simulation {
         /// </summary>
         /// <param name="index">index of column</param>
         /// <returns>caste-Column</returns>
-        public SimulationCasteSettingsColumn this[int index] {
-            get {
-                if (index < Offset) {
+        public SimulationCasteSettingsColumn this[int index]
+        {
+            get
+            {
+                if (index < Offset)
+                {
                     throw new IndexOutOfRangeException(Resource.SimulationCoreSettingsCasteColumnToSmall);
                 }
-                else if (index > MaxIndex) {
+                else if (index > MaxIndex)
+                {
                     throw new IndexOutOfRangeException(Resource.SimulationCoreSettingsCasteColumnToBig);
                 }
 
@@ -58,8 +66,9 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Checks the value-ranges of all properties.
         /// </summary>
-        public void RuleCheck() {
-            
+        public void RuleCheck()
+        {
+
             if (Offset > 0)
             {
                 throw new ConfigurationErrorsException("Ein Kasten-Offset darf nicht größer als 0 sein");

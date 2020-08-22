@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AntMe.SharedComponents.States {
+namespace AntMe.SharedComponents.States
+{
     /// <summary>
     /// Holds custom <c>Plugin</c>-Information
     /// </summary>
     [Serializable]
-    public sealed class CustomState {
+    public sealed class CustomState
+    {
         private readonly List<string> keys = new List<string>();
         private readonly List<object> values = new List<object>();
 
@@ -14,7 +16,8 @@ namespace AntMe.SharedComponents.States {
         /// Gets a value indicating whether this instance has value.
         /// </summary>
         /// <value><c>true</c> if this instance has value; otherwise, <c>false</c>.</value>
-        public bool HasValue {
+        public bool HasValue
+        {
             get { return keys != null && keys.Count > 0; }
         }
 
@@ -23,19 +26,24 @@ namespace AntMe.SharedComponents.States {
         /// </summary>
         /// <param name="key">The key.</param>
         /// <param name="value">The value.</param>
-        public void Add(string key, object value) {
-            if (key == null) {
+        public void Add(string key, object value)
+        {
+            if (key == null)
+            {
                 throw new ArgumentNullException("key");
             }
-            if (value == null) {
+            if (value == null)
+            {
                 throw new ArgumentNullException("value");
             }
 
-            if (keys.Contains(key)) {
+            if (keys.Contains(key))
+            {
                 int index = keys.IndexOf(key);
                 values[index] = value;
             }
-            else {
+            else
+            {
                 keys.Add(key);
                 values.Add(value);
             }
@@ -48,13 +56,16 @@ namespace AntMe.SharedComponents.States {
         /// </summary>
         /// <param name="key">The key.</param>
         /// <returns></returns>
-        public bool Remove(string key) {
-            if (key == null) {
+        public bool Remove(string key)
+        {
+            if (key == null)
+            {
                 return false;
             }
 
             int index = keys.IndexOf(key);
-            if (index == -1) {
+            if (index == -1)
+            {
                 return false;
             }
             keys.Remove(key);
@@ -69,12 +80,15 @@ namespace AntMe.SharedComponents.States {
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns></returns>
-        public bool Remove(object value) {
-            if (value == null) {
+        public bool Remove(object value)
+        {
+            if (value == null)
+            {
                 return false;
             }
             int index = values.IndexOf(value);
-            if (index == -1) {
+            if (index == -1)
+            {
                 return false;
             }
             values.Remove(value);
@@ -88,9 +102,12 @@ namespace AntMe.SharedComponents.States {
         /// Gets or sets the <see cref="System.Object"/> with the specified key.
         /// </summary>
         /// <value></value>
-        public object this[string key] {
-            get {
-                if (!keys.Contains(key)) {
+        public object this[string key]
+        {
+            get
+            {
+                if (!keys.Contains(key))
+                {
                     return null;
                 }
                 int index = keys.IndexOf(key);
@@ -102,7 +119,8 @@ namespace AntMe.SharedComponents.States {
         /// <summary>
         /// Gets a list of available keys.
         /// </summary>
-        public string[] Keys {
+        public string[] Keys
+        {
             get { return keys.ToArray(); }
         }
     }

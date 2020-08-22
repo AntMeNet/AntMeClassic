@@ -1,11 +1,13 @@
 using System;
 
-namespace AntMe.Simulation {
+namespace AntMe.Simulation
+{
     /// <summary>
     /// Klasse zur Weiterleitung von Debug-Information mit Kontextinformationen
     /// </summary>
     [Serializable]
-    public sealed class DebugMessage {
+    public sealed class DebugMessage
+    {
         #region interne Variablen
 
         private readonly int ameise;
@@ -23,7 +25,8 @@ namespace AntMe.Simulation {
         /// <param name="spieler">ID des spielers</param>
         /// <param name="ameise">ID der Ameise</param>
         /// <param name="nachricht">Nachricht</param>
-        public DebugMessage(int spieler, int ameise, string nachricht) {
+        public DebugMessage(int spieler, int ameise, string nachricht)
+        {
             zeit = DateTime.Now;
             this.spieler = spieler;
             this.ameise = ameise;
@@ -37,28 +40,32 @@ namespace AntMe.Simulation {
         /// <summary>
         /// Zeitpunkt der Nachricht
         /// </summary>
-        public DateTime Zeit {
+        public DateTime Zeit
+        {
             get { return zeit; }
         }
 
         /// <summary>
         /// Assoziierter Spieler
         /// </summary>
-        public int Spieler {
+        public int Spieler
+        {
             get { return spieler; }
         }
 
         /// <summary>
         /// ID der betroffenen Ameise
         /// </summary>
-        public int Ameise {
+        public int Ameise
+        {
             get { return ameise; }
         }
 
         /// <summary>
         /// Die Debugnachricht
         /// </summary>
-        public string Nachricht {
+        public string Nachricht
+        {
             get { return nachricht; }
         }
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using AntMe.Deutsch;
 using System.Threading;
 
 // (Debuging) Referenzen Hinzufügen bei Bedarf!!!
@@ -30,9 +29,9 @@ namespace AntMe.Simulation
         private List<Cell> CellSpawnList;
 
         private float AntHillRandomdisplacement = SimulationSettings.Default.AntHillRandomDisplacement;
-        private int SpawnCellSize= SimulationSettings.Default.SpawnCellSize;
+        private int SpawnCellSize = SimulationSettings.Default.SpawnCellSize;
         private int RestrictedZoneRadius = SimulationSettings.Default.RestrictedZoneRadius;
-        private int FarZoneRadius= SimulationSettings.Default.FarZoneRadius;
+        private int FarZoneRadius = SimulationSettings.Default.FarZoneRadius;
         private float DecreasValue = SimulationSettings.Default.DecreaseValue;
         private float RegenerationValue = SimulationSettings.Default.RegenerationValue;
 
@@ -113,7 +112,7 @@ namespace AntMe.Simulation
             for (int i = 0; i < playercount; i++)
             {
                 int attempts = 5;
-            Again:
+                Again:
                 Vector2D punkt = new Vector2D(mapRandom.Next(width), mapRandom.Next(height));
                 Vector2D targetPoint = new Vector2D((int)((punkt.X * AntHillRandomdisplacement) + (AntHillPoints[i].X * (1 - AntHillRandomdisplacement))), (int)(((punkt.Y * AntHillRandomdisplacement) + (AntHillPoints[i].Y * (1 - AntHillRandomdisplacement)))));
 

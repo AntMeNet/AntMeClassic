@@ -1,6 +1,5 @@
-using System;
-
 using AntMe.SharedComponents.States;
+using System;
 
 namespace AntMe.Simulation
 {

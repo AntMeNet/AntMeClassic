@@ -1,13 +1,15 @@
+using AntMe.SharedComponents;
 using System;
 using System.Runtime.Serialization;
-using AntMe.SharedComponents;
 
-namespace AntMe.Simulation {
+namespace AntMe.Simulation
+{
     /// <summary>
     /// Wird bei einer Regelverletzung der AntMe-Spielregeln geworfen
     /// </summary>
     [Serializable]
-    public sealed class RuleViolationException : AntMeException {
+    public sealed class RuleViolationException : AntMeException
+    {
         /// <summary>
         /// KOnstruktor der Regelverletzung ohne weitere Angaben
         /// </summary>

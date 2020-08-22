@@ -1,17 +1,20 @@
 ﻿using AntMe.Simulation;
 
-namespace AntMe.Deutsch {
+namespace AntMe.Deutsch
+{
     /// <summary>
     /// Hilfsklasse für Entfernungs- und Richtungsberechnungen
     /// </summary>
-    public static class Koordinate {
+    public static class Koordinate
+    {
         /// <summary>
         /// Bestimmt die Entfernung zwischen zwei Spielelementen
         /// </summary>
         /// <param name="objekt1">Element 1</param>
         /// <param name="objekt2">Element 2</param>
         /// <returns>Entfernung in Schritten</returns>
-        public static int BestimmeEntfernung(Spielobjekt objekt1, Spielobjekt objekt2) {
+        public static int BestimmeEntfernung(Spielobjekt objekt1, Spielobjekt objekt2)
+        {
             return CoreCoordinate.BestimmeEntfernung(objekt1.Element, objekt2.Element);
         }
 
@@ -21,7 +24,8 @@ namespace AntMe.Deutsch {
         /// <param name="objekt1">Element 1</param>
         /// <param name="objekt2">Element 2</param>
         /// <returns>Entfernung in Schritten</returns>
-        public static int BestimmeEntfernung(CoreAnt objekt1, Spielobjekt objekt2) {
+        public static int BestimmeEntfernung(CoreAnt objekt1, Spielobjekt objekt2)
+        {
             return CoreCoordinate.BestimmeEntfernung(objekt1, objekt2.Element);
         }
 
@@ -31,7 +35,8 @@ namespace AntMe.Deutsch {
         /// <param name="objekt1">Element 1</param>
         /// <param name="objekt2">Element 2</param>
         /// <returns>Entfernung in Schritten</returns>
-        public static int BestimmeEntfernung(Spielobjekt objekt1, CoreAnt objekt2) {
+        public static int BestimmeEntfernung(Spielobjekt objekt1, CoreAnt objekt2)
+        {
             return CoreCoordinate.BestimmeEntfernung(objekt1.Element, objekt2);
         }
 
@@ -41,7 +46,8 @@ namespace AntMe.Deutsch {
         /// <param name="objekt1">Element 1</param>
         /// <param name="objekt2">Element 2</param>
         /// <returns>Entfernung in Schritten</returns>
-        public static int BestimmeEntfernung(CoreAnt objekt1, CoreAnt objekt2) {
+        public static int BestimmeEntfernung(CoreAnt objekt1, CoreAnt objekt2)
+        {
             return CoreCoordinate.BestimmeEntfernung(objekt1, objekt2);
         }
 
@@ -51,7 +57,8 @@ namespace AntMe.Deutsch {
         /// <param name="objekt1">Element 1</param>
         /// <param name="objekt2">Element 2</param>
         /// <returns>Entfernung in Gradschritten</returns>
-        public static int BestimmeRichtung(Spielobjekt objekt1, Spielobjekt objekt2) {
+        public static int BestimmeRichtung(Spielobjekt objekt1, Spielobjekt objekt2)
+        {
             return CoreCoordinate.BestimmeRichtung(objekt1.Element, objekt2.Element);
         }
 
@@ -61,7 +68,8 @@ namespace AntMe.Deutsch {
         /// <param name="objekt1">Element 1</param>
         /// <param name="objekt2">Element 2</param>
         /// <returns>Entfernung in Gradschritten</returns>
-        public static int BestimmeRichtung(CoreAnt objekt1, Spielobjekt objekt2) {
+        public static int BestimmeRichtung(CoreAnt objekt1, Spielobjekt objekt2)
+        {
             return CoreCoordinate.BestimmeRichtung(objekt1, objekt2.Element);
         }
 
@@ -71,7 +79,8 @@ namespace AntMe.Deutsch {
         /// <param name="objekt1">Element 1</param>
         /// <param name="objekt2">Element 2</param>
         /// <returns>Entfernung in Gradschritten</returns>
-        public static int BestimmeRichtung(Spielobjekt objekt1, CoreAnt objekt2) {
+        public static int BestimmeRichtung(Spielobjekt objekt1, CoreAnt objekt2)
+        {
             return CoreCoordinate.BestimmeRichtung(objekt1.Element, objekt2);
         }
 
@@ -81,7 +90,8 @@ namespace AntMe.Deutsch {
         /// <param name="objekt1">Element 1</param>
         /// <param name="objekt2">Element 2</param>
         /// <returns>Entfernung in Gradschritten</returns>
-        public static int BestimmeRichtung(CoreAnt objekt1, CoreAnt objekt2) {
+        public static int BestimmeRichtung(CoreAnt objekt1, CoreAnt objekt2)
+        {
             return CoreCoordinate.BestimmeRichtung(objekt1, objekt2);
         }
     }

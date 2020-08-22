@@ -1,9 +1,6 @@
-﻿using System;
+﻿using AntMe.SharedComponents;
+using System;
 using System.Runtime.Serialization;
-
-using AntMe.SharedComponents;
-using System.Security.Permissions;
-using System.Security;
 
 namespace AntMe.Simulation
 {

@@ -1,8 +1,10 @@
-﻿namespace AntMe.English {
+﻿namespace AntMe.English
+{
     /// <summary>
     /// List of possible kinds of death
     /// </summary>
-    public enum KindOfDeath {
+    public enum KindOfDeath
+    {
         /// <summary>
         /// The ant was running out of food
         /// </summary>

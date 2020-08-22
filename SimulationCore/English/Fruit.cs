@@ -1,10 +1,12 @@
 ﻿using AntMe.Simulation;
 
-namespace AntMe.English {
+namespace AntMe.English
+{
     /// <summary>
     /// Represents Fruit
     /// </summary>
-    public sealed class Fruit : Food {
-        internal Fruit(CoreFruit fruit) : base(fruit) {}
+    public sealed class Fruit : Food
+    {
+        internal Fruit(CoreFruit fruit) : base(fruit) { }
     }
 }
