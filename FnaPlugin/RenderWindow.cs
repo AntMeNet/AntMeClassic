@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using AntMe.Plugin.Xna;
 using AntMe.SharedComponents.States;
 using AntMe.SharedComponents.Tools;
 using Microsoft.Xna.Framework;
