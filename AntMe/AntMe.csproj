@@ -71,7 +71,7 @@
     <ErrorReport>prompt</ErrorReport>
     <DocumentationFile>
     </DocumentationFile>
-    <CodeAnalysisRuleSet>Migrated rules for AntMe.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
