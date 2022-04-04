@@ -436,25 +436,6 @@ namespace AntMe.Gui
             updatePanel();
         }
 
-        private void button_offlineHelp(object sender, EventArgs e)
-        {
-            // Es wurde Hilfe angefordert. Hier wird geprüft ob eine Hilfe verfügbar ist
-            if (File.Exists(Resource.MainTutorialPath))
-            {
-                Help.ShowHelp(this, Resource.MainTutorialPath);
-            }
-            else
-            {
-                MessageBox.Show(
-                    this,
-                    Resource.MainMessageBoxNoHelpMessage,
-                    Resource.MainMessageBoxNoHelpTitle,
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error,
-                    MessageBoxDefaultButton.Button1);
-            }
-        }
-
         private void button_website(object sender, EventArgs e)
         {
             Help.ShowHelp(this, Resource.MainWebsiteLink);
