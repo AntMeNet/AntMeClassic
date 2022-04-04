@@ -51,7 +51,6 @@
     <Feature Id="MainComponents" Title="AntMe! 1.7" Level="1">
       <ComponentRef Id="SharedComponents" />
       <ComponentRef Id="AntMeSimulation" />
-      <ComponentRef Id="AntMeOnlineClient" />
       <ComponentRef Id="AntMePlayerManagement" />
       <ComponentRef Id="SimulationPlugin" />
       <ComponentRef Id="DemoAmeisen" />
@@ -125,12 +124,6 @@
         <File Source="$(var.XnaPlugin.TargetPath)" KeyPath="yes" Checksum="yes" />
       </Component>
 
-      <!-- AntMe.Online.Client -->
-      <Component Id="AntMeOnlineClient" Guid="{6FFB45B8-FDBD-4590-B26E-16070C347C88}">
-        <File Source="$(var.AntMe.Online.Client.TargetPath)" KeyPath="yes" Checksum="yes" />
-        <File Source="$(var.AntMe.Online.Client.TargetDir)/Newtonsoft.Json.dll" Checksum="yes" />
-      </Component>
-      
       <!-- AntMe.PlayerManagement -->
       <Component Id="AntMePlayerManagement" Guid="{E20CC850-09DF-403F-80C7-DE1E6BE16997}">
         <File Source="$(var.PlayerManagement.TargetPath)" KeyPath="yes" Checksum="yes" />
