@@ -37,11 +37,9 @@
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
-            this.uploadButton = new System.Windows.Forms.Button();
             this.recorderLabel = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.uploadTextbox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // titelLabel
@@ -58,6 +56,7 @@
             this.dateColumn,
             this.playerColumn});
             this.simulationsListView.FullRowSelect = true;
+            this.simulationsListView.HideSelection = false;
             this.simulationsListView.MultiSelect = false;
             this.simulationsListView.Name = "simulationsListView";
             this.simulationsListView.SmallImageList = this.imageList;
@@ -90,13 +89,6 @@
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
-            // uploadButton
-            // 
-            resources.ApplyResources(this.uploadButton, "uploadButton");
-            this.uploadButton.Name = "uploadButton";
-            this.uploadButton.UseVisualStyleBackColor = true;
-            this.uploadButton.Click += new System.EventHandler(this.uploadButton_Click);
-            // 
             // recorderLabel
             // 
             resources.ApplyResources(this.recorderLabel, "recorderLabel");
@@ -113,20 +105,12 @@
             this.saveFileDialog.DefaultExt = "antvi";
             resources.ApplyResources(this.saveFileDialog, "saveFileDialog");
             // 
-            // uploadTextbox
-            // 
-            resources.ApplyResources(this.uploadTextbox, "uploadTextbox");
-            this.uploadTextbox.Name = "uploadTextbox";
-            this.uploadTextbox.ReadOnly = true;
-            // 
             // VideoRecorderControl
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.uploadTextbox);
             this.Controls.Add(this.recorderLabel);
-            this.Controls.Add(this.uploadButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.simulationsListView);
@@ -144,12 +128,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ColumnHeader dateColumn;
         private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.Button uploadButton;
         private System.Windows.Forms.Label recorderLabel;
         private System.Windows.Forms.ColumnHeader playerColumn;
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.ImageList imageList;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
-        private System.Windows.Forms.TextBox uploadTextbox;
     }
 }
