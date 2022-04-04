@@ -256,11 +256,6 @@
     <None Include="Resources\downarrow.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AntMe.Online.Client\AntMe.Online.Client.csproj">
-      <Project>{43e44b6c-78f6-4515-88f2-c238b51886c5}</Project>
-      <Name>AntMe.Online.Client</Name>
-      <Private>False</Private>
-    </ProjectReference>
     <ProjectReference Include="..\PlayerManagement\PlayerManagement.csproj">
       <Project>{5d566a2a-c112-4543-95ea-f3e81a53cde9}</Project>
       <Name>PlayerManagement</Name>
