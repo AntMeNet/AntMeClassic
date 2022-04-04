@@ -44,7 +44,8 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>AntMe.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Azure|x86'">
     <OutputPath>bin\x86\Azure\</OutputPath>
@@ -122,7 +123,6 @@
     <EmbeddedResource Include="Properties\Resources.de.resx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="AntMe.snk" />
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>

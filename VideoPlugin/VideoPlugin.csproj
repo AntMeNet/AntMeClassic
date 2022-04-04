@@ -21,7 +21,8 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>AntMe.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -83,7 +84,6 @@
     <Compile Include="VideoRecorderPlugin.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="AntMe.snk" />
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>

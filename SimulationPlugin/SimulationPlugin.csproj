@@ -248,7 +248,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="AntMe.snk" />
     <None Include="Resources\add.png" />
     <None Include="Resources\captureTheApple.ant.config" />
     <None Include="Resources\debugging.ant.config" />
