@@ -43,9 +43,9 @@
     <Property Id="Check_DirectX_Xna_4.0">1</Property>
     <Property Id="Check_DotNet_4.0_Full">1</Property>
 
-    <PropertyRef Id="NETFRAMEWORK40FULL"/>
-    <Condition Message="AntMe! 1.7 requires .NET Framework 4.0. Please install the .NET Framework then run this installer again.">
-      <![CDATA[Installed OR NETFRAMEWORK40FULL]]>
+    <PropertyRef Id="WIX_IS_NETFRAMEWORK_462_OR_LATER_INSTALLED"/>
+    <Condition Message="AntMe! 1.7 requires .NET Framework 4.6.2. Please install the .NET Framework then run this installer again.">
+      <![CDATA[Installed OR WIX_IS_NETFRAMEWORK_462_OR_LATER_INSTALLED]]>
     </Condition>
 
     <Feature Id="MainComponents" Title="AntMe! 1.7" Level="1">
