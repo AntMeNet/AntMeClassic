@@ -37,12 +37,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoPlugin", "VideoPlugin\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayerManagement", "PlayerManagement\PlayerManagement.csproj", "{5D566A2A-C112-4543-95EA-F3E81A53CDE9}"
 EndProject
-Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "Help.English", "Help.English\Help.English.shfbproj", "{BB67687E-A69B-4F7B-88B0-1DBBFDF74203}"
-EndProject
-Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "Help.Deutsch", "Help.Deutsch\Help.Deutsch.shfbproj", "{70390B5E-0CE3-4F2D-9BA7-68F948D9D5F3}"
-EndProject
-Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "Help.SDK", "Help.SDK\Help.SDK.shfbproj", "{DBC732ED-CB38-41F5-BE5A-EC4E6AEE39D0}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -98,15 +92,6 @@ Global
 		{5D566A2A-C112-4543-95EA-F3E81A53CDE9}.Debug|x86.Build.0 = Debug|x86
 		{5D566A2A-C112-4543-95EA-F3E81A53CDE9}.Release|x86.ActiveCfg = Release|x86
 		{5D566A2A-C112-4543-95EA-F3E81A53CDE9}.Release|x86.Build.0 = Release|x86
-		{BB67687E-A69B-4F7B-88B0-1DBBFDF74203}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{BB67687E-A69B-4F7B-88B0-1DBBFDF74203}.Release|x86.ActiveCfg = Release|Any CPU
-		{BB67687E-A69B-4F7B-88B0-1DBBFDF74203}.Release|x86.Build.0 = Release|Any CPU
-		{70390B5E-0CE3-4F2D-9BA7-68F948D9D5F3}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{70390B5E-0CE3-4F2D-9BA7-68F948D9D5F3}.Release|x86.ActiveCfg = Release|Any CPU
-		{70390B5E-0CE3-4F2D-9BA7-68F948D9D5F3}.Release|x86.Build.0 = Release|Any CPU
-		{DBC732ED-CB38-41F5-BE5A-EC4E6AEE39D0}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{DBC732ED-CB38-41F5-BE5A-EC4E6AEE39D0}.Release|x86.ActiveCfg = Release|Any CPU
-		{DBC732ED-CB38-41F5-BE5A-EC4E6AEE39D0}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

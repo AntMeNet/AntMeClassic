@@ -19,7 +19,7 @@ namespace AntMe.Gui {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resource {
@@ -66,24 +66,6 @@ namespace AntMe.Gui {
         internal static string MainFramesPerSecond {
             get {
                 return ResourceManager.GetString("MainFramesPerSecond", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No help available..
-        /// </summary>
-        internal static string MainMessageBoxNoHelpMessage {
-            get {
-                return ResourceManager.GetString("MainMessageBoxNoHelpMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Help.
-        /// </summary>
-        internal static string MainMessageBoxNoHelpTitle {
-            get {
-                return ResourceManager.GetString("MainMessageBoxNoHelpTitle", resourceCulture);
             }
         }
         
@@ -156,15 +138,6 @@ namespace AntMe.Gui {
         internal static string MainStateRunning {
             get {
                 return ResourceManager.GetString("MainStateRunning", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .\\english\\Help.chm.
-        /// </summary>
-        internal static string MainTutorialPath {
-            get {
-                return ResourceManager.GetString("MainTutorialPath", resourceCulture);
             }
         }
         

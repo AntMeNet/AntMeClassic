@@ -53,7 +53,6 @@ namespace AntMe.Gui {
             this.englishMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.offlineHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.websiteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wikiMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.group2MenuItem = new System.Windows.Forms.ToolStripSeparator();
@@ -102,6 +101,8 @@ namespace AntMe.Gui {
             // 
             // menuStrip
             // 
+            this.menuStrip.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
+            this.menuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.programMenuItem,
             this.settingsMenuItem,
@@ -267,19 +268,12 @@ namespace AntMe.Gui {
             // helpMenuItem
             // 
             this.helpMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.offlineHelpMenuItem,
             this.websiteMenuItem,
             this.wikiMenuItem,
             this.group2MenuItem,
             this.infoBoxMenuItem});
             this.helpMenuItem.Name = "helpMenuItem";
             resources.ApplyResources(this.helpMenuItem, "helpMenuItem");
-            // 
-            // offlineHelpMenuItem
-            // 
-            this.offlineHelpMenuItem.Name = "offlineHelpMenuItem";
-            resources.ApplyResources(this.offlineHelpMenuItem, "offlineHelpMenuItem");
-            this.offlineHelpMenuItem.Click += new System.EventHandler(this.button_offlineHelp);
             // 
             // websiteMenuItem
             // 
@@ -306,6 +300,7 @@ namespace AntMe.Gui {
             // 
             // statusStrip
             // 
+            this.statusStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stateLabelBarItem,
             this.progressBarItem,
@@ -339,6 +334,7 @@ namespace AntMe.Gui {
             // 
             // toolStrip
             // 
+            this.toolStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.startToolItem,
             this.stopToolItem,
@@ -606,7 +602,6 @@ namespace AntMe.Gui {
         private System.Windows.Forms.ToolStripMenuItem pauseMenuItem;
         private System.Windows.Forms.ToolStripSeparator group1MenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem offlineHelpMenuItem;
         private System.Windows.Forms.ToolStripMenuItem websiteMenuItem;
         private System.Windows.Forms.ToolStripSeparator group2MenuItem;
         private System.Windows.Forms.ToolStripMenuItem infoBoxMenuItem;
