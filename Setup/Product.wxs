@@ -43,9 +43,9 @@
     <Property Id="Check_DirectX_Xna_4.0">1</Property>
     <Property Id="Check_DotNet_4.0_Full">1</Property>
 
-    <PropertyRef Id="NETFRAMEWORK40FULL"/>
-    <Condition Message="AntMe! 1.7 requires .NET Framework 4.0. Please install the .NET Framework then run this installer again.">
-      <![CDATA[Installed OR NETFRAMEWORK40FULL]]>
+    <PropertyRef Id="WIX_IS_NETFRAMEWORK_462_OR_LATER_INSTALLED"/>
+    <Condition Message="AntMe! 1.7 requires .NET Framework 4.6.2. Please install the .NET Framework then run this installer again.">
+      <![CDATA[Installed OR WIX_IS_NETFRAMEWORK_462_OR_LATER_INSTALLED]]>
     </Condition>
 
     <Feature Id="MainComponents" Title="AntMe! 1.7" Level="1">
@@ -98,13 +98,11 @@
       <!-- Shared Components -->
       <Component Id="SharedComponents" Guid="{5BB01468-0E09-4006-8DA8-A8CC01BD2051}">
         <File Source="$(var.SharedComponents.TargetPath)" KeyPath="yes" Checksum="yes" />
-        <File Source="$(var.SharedComponents.TargetDir)/AntMe.SharedComponents.XML" />
       </Component>
 
       <!-- AntMe.Simulation -->
       <Component Id="AntMeSimulation" Guid="{D2F2E32D-7A23-4C31-BC5A-9CC1562F701F}">
         <File Source="$(var.SimulationCore.TargetPath)" KeyPath="yes" Checksum="yes" />
-        <File Source="$(var.SimulationCore.TargetDir)/AntMe.Simulation.XML" />
       </Component>
 
       <!-- Simulation Plugin -->
@@ -130,14 +128,12 @@
       <!-- AntMe.Online.Client -->
       <Component Id="AntMeOnlineClient" Guid="{6FFB45B8-FDBD-4590-B26E-16070C347C88}">
         <File Source="$(var.AntMe.Online.Client.TargetPath)" KeyPath="yes" Checksum="yes" />
-        <File Source="$(var.AntMe.Online.Client.TargetDir)/AntMe.Online.Client.XML" />
         <File Source="$(var.AntMe.Online.Client.TargetDir)/Newtonsoft.Json.dll" Checksum="yes" />
       </Component>
       
       <!-- AntMe.PlayerManagement -->
       <Component Id="AntMePlayerManagement" Guid="{E20CC850-09DF-403F-80C7-DE1E6BE16997}">
         <File Source="$(var.PlayerManagement.TargetPath)" KeyPath="yes" Checksum="yes" />
-        <File Source="$(var.PlayerManagement.TargetDir)/AntMe.PlayerManagement.XML" />
       </Component>
 
       <!-- AntMe.exe -->
