@@ -1,5 +1,4 @@
-﻿using AntMe.Online.Client;
-using System;
+﻿using System;
 using System.IO;
 using System.Windows.Forms;
 
@@ -47,7 +46,6 @@ namespace AntMe.Plugin.Video
         {
             recorderLabel.Visible = (DateTime.Now.Second % 2 == 0) && Recording;
             saveButton.Enabled = simulationsListView.SelectedItems.Count > 0;
-            uploadButton.Enabled = simulationsListView.SelectedItems.Count > 0 && Connection.Instance.IsLoggedIn;
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -77,32 +75,6 @@ namespace AntMe.Plugin.Video
                     {
                         MessageBox.Show(ex.Message);
                     }
-                }
-            }
-        }
-
-        private void uploadButton_Click(object sender, EventArgs e)
-        {
-            if (simulationsListView.SelectedItems.Count > 0)
-            {
-                try
-                {
-                    Stream file = simulationsListView.SelectedItems[0].Tag as Stream;
-                    file.Seek(0, SeekOrigin.Begin);
-
-                    byte[] clone = new byte[file.Length];
-                    file.Read(clone, 0, clone.Length);
-                    using (MemoryStream cloneStream = new MemoryStream(clone))
-                    {
-                        Replay replay = Connection.Instance.Replays.CreatePrivateReplay(cloneStream);
-                        uploadTextbox.Text = replay.Id.ToString();
-                        uploadTextbox.Visible = true;
-                        MessageBox.Show("Upload erfolgreich. Verschicke die unten angezeigte ID an alle, die das Video sehen sollen.");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Fehler beim Upload der Datei. " + ex.Message);
                 }
             }
         }

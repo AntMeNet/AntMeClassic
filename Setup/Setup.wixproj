@@ -40,14 +40,6 @@
     <Compile Include="Product.wxs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AntMe.Online.Client\AntMe.Online.Client.csproj">
-      <Name>AntMe.Online.Client</Name>
-      <Project>{43e44b6c-78f6-4515-88f2-c238b51886c5}</Project>
-      <Private>True</Private>
-      <DoNotHarvest>True</DoNotHarvest>
-      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
-      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
-    </ProjectReference>
     <ProjectReference Include="..\AntMe\AntMe.csproj">
       <Name>AntMe</Name>
       <Project>{931d5011-ae62-420d-8503-f5441136876a}</Project>

@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AntMe.Plugin.Video</RootNamespace>
     <AssemblyName>AntMe.Plugin.Video</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
@@ -77,11 +77,6 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AntMe.Online.Client\AntMe.Online.Client.csproj">
-      <Project>{43e44b6c-78f6-4515-88f2-c238b51886c5}</Project>
-      <Name>AntMe.Online.Client</Name>
-      <Private>False</Private>
-    </ProjectReference>
     <ProjectReference Include="..\SharedComponents\SharedComponents.csproj">
       <Project>{415f50c3-bd70-4634-b1f7-a15b42f0b0c6}</Project>
       <Name>SharedComponents</Name>

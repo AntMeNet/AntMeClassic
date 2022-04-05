@@ -19,7 +19,7 @@ namespace AntMe.Gui {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resource {
@@ -66,24 +66,6 @@ namespace AntMe.Gui {
         internal static string MainFramesPerSecond {
             get {
                 return ResourceManager.GetString("MainFramesPerSecond", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No help available..
-        /// </summary>
-        internal static string MainMessageBoxNoHelpMessage {
-            get {
-                return ResourceManager.GetString("MainMessageBoxNoHelpMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Help.
-        /// </summary>
-        internal static string MainMessageBoxNoHelpTitle {
-            get {
-                return ResourceManager.GetString("MainMessageBoxNoHelpTitle", resourceCulture);
             }
         }
         
@@ -156,15 +138,6 @@ namespace AntMe.Gui {
         internal static string MainStateRunning {
             get {
                 return ResourceManager.GetString("MainStateRunning", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .\\english\\Help.chm.
-        /// </summary>
-        internal static string MainTutorialPath {
-            get {
-                return ResourceManager.GetString("MainTutorialPath", resourceCulture);
             }
         }
         
@@ -444,60 +417,6 @@ namespace AntMe.Gui {
         internal static string PluginManagerSettingsLoadFailed {
             get {
                 return ResourceManager.GetString("PluginManagerSettingsLoadFailed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to There are problems to reach the AntMe! Update Service. Please check your internet connection.
-        /// </summary>
-        internal static string UpdateErrorMessage {
-            get {
-                return ResourceManager.GetString("UpdateErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to There is a newer Version of AntMe! available. Do you want to download it?.
-        /// </summary>
-        internal static string UpdateNewerMessage {
-            get {
-                return ResourceManager.GetString("UpdateNewerMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You are using the newest Version of AntMe!.
-        /// </summary>
-        internal static string UpdateNewestMessage {
-            get {
-                return ResourceManager.GetString("UpdateNewestMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No internet connection.
-        /// </summary>
-        internal static string UpdateNoConnection {
-            get {
-                return ResourceManager.GetString("UpdateNoConnection", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to AntMe! Update.
-        /// </summary>
-        internal static string UpdateTitle {
-            get {
-                return ResourceManager.GetString("UpdateTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Need to Login again.
-        /// </summary>
-        internal static string UpdateTokenInvalid {
-            get {
-                return ResourceManager.GetString("UpdateTokenInvalid", resourceCulture);
             }
         }
     }

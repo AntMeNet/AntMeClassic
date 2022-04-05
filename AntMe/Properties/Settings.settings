@@ -14,11 +14,5 @@
     <Setting Name="windowState" Type="System.Windows.Forms.FormWindowState" Scope="User">
       <Value Profile="(Default)">Normal</Value>
     </Setting>
-    <Setting Name="lastUpdateCheck" Type="System.DateTime" Scope="User">
-      <Value Profile="(Default)">2008-01-01</Value>
-    </Setting>
-    <Setting Name="updateLink" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
   </Settings>
 </SettingsFile>

@@ -43,15 +43,14 @@
     <Property Id="Check_DirectX_Xna_4.0">1</Property>
     <Property Id="Check_DotNet_4.0_Full">1</Property>
 
-    <PropertyRef Id="NETFRAMEWORK40FULL"/>
-    <Condition Message="AntMe! 1.7 requires .NET Framework 4.0. Please install the .NET Framework then run this installer again.">
-      <![CDATA[Installed OR NETFRAMEWORK40FULL]]>
+    <PropertyRef Id="WIX_IS_NETFRAMEWORK_462_OR_LATER_INSTALLED"/>
+    <Condition Message="AntMe! 1.7 requires .NET Framework 4.6.2. Please install the .NET Framework then run this installer again.">
+      <![CDATA[Installed OR WIX_IS_NETFRAMEWORK_462_OR_LATER_INSTALLED]]>
     </Condition>
 
     <Feature Id="MainComponents" Title="AntMe! 1.7" Level="1">
       <ComponentRef Id="SharedComponents" />
       <ComponentRef Id="AntMeSimulation" />
-      <ComponentRef Id="AntMeOnlineClient" />
       <ComponentRef Id="AntMePlayerManagement" />
       <ComponentRef Id="SimulationPlugin" />
       <ComponentRef Id="DemoAmeisen" />
@@ -64,7 +63,6 @@
       <ComponentRef Id="GermanDocumentationImages" />
       <ComponentRef Id="EnglishDocumentation" />
       <ComponentRef Id="EnglishDocumentationImages" />
-      <ComponentRef Id="SDKDocumentation" />
       <ComponentRef Id="Loca" />
     </Feature>
 
@@ -98,13 +96,11 @@
       <!-- Shared Components -->
       <Component Id="SharedComponents" Guid="{5BB01468-0E09-4006-8DA8-A8CC01BD2051}">
         <File Source="$(var.SharedComponents.TargetPath)" KeyPath="yes" Checksum="yes" />
-        <File Source="$(var.SharedComponents.TargetDir)/AntMe.SharedComponents.XML" />
       </Component>
 
       <!-- AntMe.Simulation -->
       <Component Id="AntMeSimulation" Guid="{D2F2E32D-7A23-4C31-BC5A-9CC1562F701F}">
         <File Source="$(var.SimulationCore.TargetPath)" KeyPath="yes" Checksum="yes" />
-        <File Source="$(var.SimulationCore.TargetDir)/AntMe.Simulation.XML" />
       </Component>
 
       <!-- Simulation Plugin -->
@@ -127,17 +123,9 @@
         <File Source="$(var.XnaPlugin.TargetPath)" KeyPath="yes" Checksum="yes" />
       </Component>
 
-      <!-- AntMe.Online.Client -->
-      <Component Id="AntMeOnlineClient" Guid="{6FFB45B8-FDBD-4590-B26E-16070C347C88}">
-        <File Source="$(var.AntMe.Online.Client.TargetPath)" KeyPath="yes" Checksum="yes" />
-        <File Source="$(var.AntMe.Online.Client.TargetDir)/AntMe.Online.Client.XML" />
-        <File Source="$(var.AntMe.Online.Client.TargetDir)/Newtonsoft.Json.dll" Checksum="yes" />
-      </Component>
-      
       <!-- AntMe.PlayerManagement -->
       <Component Id="AntMePlayerManagement" Guid="{E20CC850-09DF-403F-80C7-DE1E6BE16997}">
         <File Source="$(var.PlayerManagement.TargetPath)" KeyPath="yes" Checksum="yes" />
-        <File Source="$(var.PlayerManagement.TargetDir)/AntMe.PlayerManagement.XML" />
       </Component>
 
       <!-- AntMe.exe -->
@@ -150,10 +138,6 @@
         <RegistryValue Root='HKCU' Key='Software\AntMe\AntMe1exe' Type='string' Value='' KeyPath='yes' />
       </Component>
 
-      <!-- SDK Docu -->
-      <Component Id="SDKDocumentation" Guid="{96451A4C-1E42-4776-BA7D-D6EA4B2C6889}" >
-        <File Source="$(var.AntMe.TargetDir)/SDK.chm" KeyPath="yes" Checksum="yes" />
-      </Component>
     </DirectoryRef>
 
     <!-- Uninstall -->
@@ -167,7 +151,6 @@
       <File Source="$(var.AntMe.TargetDir)/de/AntMe.resources.dll" KeyPath="yes" />
       <File Source="$(var.SharedComponents.TargetDir)/de/AntMe.SharedComponents.resources.dll" />
       <File Source="$(var.SimulationCore.TargetDir)/de/AntMe.Simulation.resources.dll" />
-      <File Source="$(var.AntMe.Online.Client.TargetDir)/de/AntMe.Online.Client.resources.dll" />
       <File Source="$(var.PlayerManagement.TargetDir)/de/AntMe.PlayerManagement.resources.dll" />
       <File Source="$(var.SimulationPlugin.TargetDir)/de/AntMe.Plugin.Simulation.resources.dll" />
       <File Source="$(var.GdiPlusPlugin.TargetDir)/de/AntMe.Plugin.GdiPlusPlugin.resources.dll" />
@@ -194,7 +177,6 @@
 
     <!-- Deutsche Doku -->
     <Component Id="GermanDocumentation" Guid="223CC377-14F5-4500-A37C-01BFB71B5AB6" Directory="GermanDocumentationPath">
-      <File Source="$(var.AntMe.TargetDir)/deutsch/Hilfe.chm" />
       <File Source="$(var.AntMe.TargetDir)/deutsch/Willkommen.htm" />
       <RegistryValue Root='HKCU' Key='Software\AntMe\AntMe1doku' Type='string' Value='' KeyPath='yes' />
     </Component>
@@ -211,7 +193,6 @@
 
     <!-- Engische Doku -->
     <Component Id="EnglishDocumentation" Guid="7163589B-B444-48D2-8D7C-3C877BE4F6AE" Directory="EnglishDocumentationPath">
-      <File Source="$(var.AntMe.TargetDir)/english/Help.chm" />
       <File Source="$(var.AntMe.TargetDir)/english/Welcome.htm" KeyPath="yes" />
     </Component>
 

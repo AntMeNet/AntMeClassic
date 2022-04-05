@@ -51,9 +51,7 @@ namespace AntMe.Gui {
             this.languageMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.germanMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.englishMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.offlineHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.websiteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wikiMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.group2MenuItem = new System.Windows.Forms.ToolStripSeparator();
@@ -84,11 +82,6 @@ namespace AntMe.Gui {
             this.speed2fpmToolItem = new System.Windows.Forms.ToolStripMenuItem();
             this.slowerToolItem = new System.Windows.Forms.ToolStripButton();
             this.fasterToolItem = new System.Windows.Forms.ToolStripButton();
-            this.onlineButton = new System.Windows.Forms.ToolStripDropDownButton();
-            this.profileButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.logoutButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.loginButton = new System.Windows.Forms.ToolStripButton();
-            this.versionButton = new System.Windows.Forms.ToolStripButton();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.welcomeTab = new System.Windows.Forms.TabPage();
             this.infoWebBrowser = new AntMe.Gui.WebBrowserEx();
@@ -102,6 +95,8 @@ namespace AntMe.Gui {
             // 
             // menuStrip
             // 
+            this.menuStrip.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
+            this.menuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.programMenuItem,
             this.settingsMenuItem,
@@ -157,8 +152,7 @@ namespace AntMe.Gui {
             this.settingsMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.pluginSettingsMenuItem,
             this.speedMenuItem,
-            this.languageMenuItem,
-            this.updateMenuItem});
+            this.languageMenuItem});
             this.settingsMenuItem.Name = "settingsMenuItem";
             resources.ApplyResources(this.settingsMenuItem, "settingsMenuItem");
             // 
@@ -258,28 +252,15 @@ namespace AntMe.Gui {
             resources.ApplyResources(this.englishMenuItem, "englishMenuItem");
             this.englishMenuItem.Click += new System.EventHandler(this.button_english);
             // 
-            // updateMenuItem
-            // 
-            this.updateMenuItem.Name = "updateMenuItem";
-            resources.ApplyResources(this.updateMenuItem, "updateMenuItem");
-            this.updateMenuItem.Click += new System.EventHandler(this.button_switchAutoupdate);
-            // 
             // helpMenuItem
             // 
             this.helpMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.offlineHelpMenuItem,
             this.websiteMenuItem,
             this.wikiMenuItem,
             this.group2MenuItem,
             this.infoBoxMenuItem});
             this.helpMenuItem.Name = "helpMenuItem";
             resources.ApplyResources(this.helpMenuItem, "helpMenuItem");
-            // 
-            // offlineHelpMenuItem
-            // 
-            this.offlineHelpMenuItem.Name = "offlineHelpMenuItem";
-            resources.ApplyResources(this.offlineHelpMenuItem, "offlineHelpMenuItem");
-            this.offlineHelpMenuItem.Click += new System.EventHandler(this.button_offlineHelp);
             // 
             // websiteMenuItem
             // 
@@ -306,6 +287,7 @@ namespace AntMe.Gui {
             // 
             // statusStrip
             // 
+            this.statusStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stateLabelBarItem,
             this.progressBarItem,
@@ -339,6 +321,7 @@ namespace AntMe.Gui {
             // 
             // toolStrip
             // 
+            this.toolStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.startToolItem,
             this.stopToolItem,
@@ -350,10 +333,7 @@ namespace AntMe.Gui {
             this.speedLabelToolItem,
             this.speedDropDownToolItem,
             this.slowerToolItem,
-            this.fasterToolItem,
-            this.onlineButton,
-            this.loginButton,
-            this.versionButton});
+            this.fasterToolItem});
             resources.ApplyResources(this.toolStrip, "toolStrip");
             this.toolStrip.Name = "toolStrip";
             // 
@@ -494,46 +474,6 @@ namespace AntMe.Gui {
             this.fasterToolItem.Name = "fasterToolItem";
             this.fasterToolItem.Click += new System.EventHandler(this.button_limitFaster);
             // 
-            // onlineButton
-            // 
-            this.onlineButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.onlineButton.AutoToolTip = false;
-            this.onlineButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.profileButton,
-            this.logoutButton});
-            this.onlineButton.Image = global::AntMe.Gui.Properties.Resources.online;
-            resources.ApplyResources(this.onlineButton, "onlineButton");
-            this.onlineButton.Name = "onlineButton";
-            // 
-            // profileButton
-            // 
-            this.profileButton.Name = "profileButton";
-            resources.ApplyResources(this.profileButton, "profileButton");
-            this.profileButton.Click += new System.EventHandler(this.profileButton_Click);
-            // 
-            // logoutButton
-            // 
-            this.logoutButton.Name = "logoutButton";
-            resources.ApplyResources(this.logoutButton, "logoutButton");
-            this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
-            // 
-            // loginButton
-            // 
-            this.loginButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.loginButton.Image = global::AntMe.Gui.Properties.Resources.offline;
-            resources.ApplyResources(this.loginButton, "loginButton");
-            this.loginButton.Name = "loginButton";
-            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
-            // 
-            // versionButton
-            // 
-            this.versionButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.versionButton.AutoToolTip = false;
-            this.versionButton.Image = global::AntMe.Gui.Properties.Resources.warning;
-            resources.ApplyResources(this.versionButton, "versionButton");
-            this.versionButton.Name = "versionButton";
-            this.versionButton.Click += new System.EventHandler(this.versionButton_Click);
-            // 
             // tabControl
             // 
             this.tabControl.Controls.Add(this.welcomeTab);
@@ -606,7 +546,6 @@ namespace AntMe.Gui {
         private System.Windows.Forms.ToolStripMenuItem pauseMenuItem;
         private System.Windows.Forms.ToolStripSeparator group1MenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem offlineHelpMenuItem;
         private System.Windows.Forms.ToolStripMenuItem websiteMenuItem;
         private System.Windows.Forms.ToolStripSeparator group2MenuItem;
         private System.Windows.Forms.ToolStripMenuItem infoBoxMenuItem;
@@ -647,12 +586,6 @@ namespace AntMe.Gui {
         private System.Windows.Forms.ToolStripMenuItem languageMenuItem;
         private System.Windows.Forms.ToolStripMenuItem germanMenuItem;
         private System.Windows.Forms.ToolStripMenuItem englishMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem updateMenuItem;
-        private System.Windows.Forms.ToolStripDropDownButton onlineButton;
-        private System.Windows.Forms.ToolStripMenuItem profileButton;
-        private System.Windows.Forms.ToolStripMenuItem logoutButton;
-        private System.Windows.Forms.ToolStripButton loginButton;
-        private System.Windows.Forms.ToolStripButton versionButton;
         private System.Windows.Forms.ToolStripDropDownButton producerButton;
         private System.Windows.Forms.ToolStripMenuItem wikiMenuItem;
     }
