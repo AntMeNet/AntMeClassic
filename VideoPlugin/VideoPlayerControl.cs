@@ -1,8 +1,6 @@
-﻿using AntMe.Online.Client;
-using AntMe.SharedComponents.AntVideo;
+﻿using AntMe.SharedComponents.AntVideo;
 using AntMe.SharedComponents.States;
 using System;
-using System.Data;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -82,32 +80,6 @@ namespace AntMe.Plugin.Video
                 infoPanel.Visible = false;
                 loadingProgressBar.Visible = false;
 
-            }
-        }
-
-        private void downloadButton_Click(object sender, EventArgs e)
-        {
-            if (!Connection.Instance.IsLoggedIn)
-            {
-                MessageBox.Show("Leider nicht angemeldet");
-                return;
-            }
-
-            Guid id;
-            if (!Guid.TryParse(replayTextBox.Text, out id))
-            {
-                MessageBox.Show("Leider keine gültige Replay ID");
-                return;
-            }
-
-            try
-            {
-                Stream = Connection.Instance.Replays.DownloadReplay(id);
-                UpdateUi();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
         }
     }

@@ -35,21 +35,22 @@
             this.treeContext = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.summaryListView = new System.Windows.Forms.ListView();
-            this.playerColumn = new System.Windows.Forms.ColumnHeader();
-            this.collectedFoodColumn = new System.Windows.Forms.ColumnHeader(resources.GetString("summaryListView.Columns"));
-            this.collectedFruitColumn = new System.Windows.Forms.ColumnHeader(resources.GetString("summaryListView.Columns1"));
-            this.killedAntsColumn = new System.Windows.Forms.ColumnHeader(resources.GetString("summaryListView.Columns2"));
-            this.killedBugsColumn = new System.Windows.Forms.ColumnHeader(resources.GetString("summaryListView.Columns3"));
-            this.starvedAntsColumn = new System.Windows.Forms.ColumnHeader(resources.GetString("summaryListView.Columns4"));
-            this.beatenAntsColumn = new System.Windows.Forms.ColumnHeader(resources.GetString("summaryListView.Columns5"));
-            this.eatenAntsColumn = new System.Windows.Forms.ColumnHeader(resources.GetString("summaryListView.Columns6"));
-            this.pointsColumn = new System.Windows.Forms.ColumnHeader(resources.GetString("summaryListView.Columns7"));
+            this.playerColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.collectedFoodColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.collectedFruitColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.killedAntsColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.killedBugsColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.starvedAntsColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.beatenAntsColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.eatenAntsColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pointsColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.loadButton = new System.Windows.Forms.ToolStripButton();
             this.deleteButton = new System.Windows.Forms.ToolStripButton();
             this.saveButton = new System.Windows.Forms.ToolStripButton();
             this.titelLabel = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -81,6 +82,7 @@
             // 
             // treeContext
             // 
+            this.treeContext.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.treeContext.Name = "treeContext";
             resources.ApplyResources(this.treeContext, "treeContext");
             // 
@@ -129,6 +131,7 @@
             ((System.Windows.Forms.ListViewGroup)(resources.GetObject("summaryListView.Groups6"))),
             ((System.Windows.Forms.ListViewGroup)(resources.GetObject("summaryListView.Groups7")))});
             this.summaryListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.summaryListView.HideSelection = false;
             this.summaryListView.Name = "summaryListView";
             this.summaryListView.SmallImageList = this.imageList;
             this.summaryListView.UseCompatibleStateImageBehavior = false;
@@ -172,6 +175,7 @@
             // 
             // toolStrip
             // 
+            this.toolStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loadButton,
             this.deleteButton,
@@ -222,6 +226,7 @@
             this.Name = "StatisticControl";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();

@@ -317,22 +317,4 @@
     <value>The configuration could not be loaded. This is likely due to an old version.</value>
     <comment>global settings-file couldn't been deserialized (PluginManager.cs)</comment>
   </data>
-  <data name="UpdateErrorMessage" xml:space="preserve">
-    <value>There are problems to reach the AntMe! Update Service. Please check your internet connection</value>
-  </data>
-  <data name="UpdateNewerMessage" xml:space="preserve">
-    <value>There is a newer Version of AntMe! available. Do you want to download it?</value>
-  </data>
-  <data name="UpdateNewestMessage" xml:space="preserve">
-    <value>You are using the newest Version of AntMe!</value>
-  </data>
-  <data name="UpdateNoConnection" xml:space="preserve">
-    <value>No internet connection</value>
-  </data>
-  <data name="UpdateTitle" xml:space="preserve">
-    <value>AntMe! Update</value>
-  </data>
-  <data name="UpdateTokenInvalid" xml:space="preserve">
-    <value>Need to Login again</value>
-  </data>
 </root>

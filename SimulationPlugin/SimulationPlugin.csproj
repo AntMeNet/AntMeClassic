@@ -72,28 +72,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AchievementControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="AchievementControl.Designer.cs">
-      <DependentUpon>AchievementControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Challenge.cs" />
-    <Compile Include="ChallengeButton.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ChallengeButton.Designer.cs">
-      <DependentUpon>ChallengeButton.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ChallengesControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ChallengesControl.Designer.cs">
-      <DependentUpon>ChallengesControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ChallengesPlugin.cs" />
-    <Compile Include="ChallengesSettings.cs" />
-    <Compile Include="Constants.cs" />
     <Compile Include="FreeGameControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -111,20 +89,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="SinglePlayerControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="SinglePlayerControl.Designer.cs">
-      <DependentUpon>SinglePlayerControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SinglePlayerPlugin.cs" />
-    <Compile Include="SinglePlayerSetup.cs" />
-    <Compile Include="SinglePlayerSummaryForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SinglePlayerSummaryForm.Designer.cs">
-      <DependentUpon>SinglePlayerSummaryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SummaryLoop.cs" />
     <Compile Include="PlayerItem.cs" />
@@ -159,15 +123,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AchievementControl.resx">
-      <DependentUpon>AchievementControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ChallengeButton.resx">
-      <DependentUpon>ChallengeButton.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ChallengesControl.resx">
-      <DependentUpon>ChallengesControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FreeGameControl.de.resx">
       <DependentUpon>FreeGameControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -197,12 +152,6 @@
       <DependentUpon>SimulationProperties.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="SinglePlayerControl.resx">
-      <DependentUpon>SinglePlayerControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SinglePlayerSummaryForm.resx">
-      <DependentUpon>SinglePlayerSummaryForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="StatisticControl.de.resx">
       <DependentUpon>StatisticControl.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -217,10 +166,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AntMe.Online.Client\AntMe.Online.Client.csproj">
-      <Project>{43e44b6c-78f6-4515-88f2-c238b51886c5}</Project>
-      <Name>AntMe.Online.Client</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PlayerManagement\PlayerManagement.csproj">
       <Project>{5d566a2a-c112-4543-95ea-f3e81a53cde9}</Project>
       <Name>PlayerManagement</Name>
