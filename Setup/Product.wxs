@@ -151,7 +151,6 @@
       <File Source="$(var.AntMe.TargetDir)/de/AntMe.resources.dll" KeyPath="yes" />
       <File Source="$(var.SharedComponents.TargetDir)/de/AntMe.SharedComponents.resources.dll" />
       <File Source="$(var.SimulationCore.TargetDir)/de/AntMe.Simulation.resources.dll" />
-      <File Source="$(var.AntMe.Online.Client.TargetDir)/de/AntMe.Online.Client.resources.dll" />
       <File Source="$(var.PlayerManagement.TargetDir)/de/AntMe.PlayerManagement.resources.dll" />
       <File Source="$(var.SimulationPlugin.TargetDir)/de/AntMe.Plugin.Simulation.resources.dll" />
       <File Source="$(var.GdiPlusPlugin.TargetDir)/de/AntMe.Plugin.GdiPlusPlugin.resources.dll" />
