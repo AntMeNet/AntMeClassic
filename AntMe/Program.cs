@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -31,6 +32,10 @@ namespace AntMe.Gui
             {
                 try
                 {
+                    // This is a stupid workaround of loading fonts from the system
+                    // The method will end up in problems right after the "SetDefaultDllDirectories" on OS lower than Windows 8 
+                    _ = SystemFonts.DefaultFont;
+
                     SetDefaultDllDirectories(LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
                     AddDllDirectory(Path.Combine(
                         AppDomain.CurrentDomain.BaseDirectory,
