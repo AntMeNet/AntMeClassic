@@ -115,12 +115,12 @@ namespace AntMe.Gui
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://service.antme.net/License1");
+            Process.Start("https://github.com/AntMeNet/AntMeClassic/blob/main/LICENSE");
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("http://www.antme.net");
+            Process.Start("https://github.com/AntMeNet/AntMeClassic");
         }
 
     }

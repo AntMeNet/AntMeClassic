@@ -81,7 +81,6 @@ namespace AntMe.Gui {
             // 
             // panel1
             // 
-            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.linkLabel2);
             this.panel1.Controls.Add(this.versionLabel);
@@ -90,6 +89,7 @@ namespace AntMe.Gui {
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label3);
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             // 
             // linkLabel2
@@ -130,13 +130,13 @@ namespace AntMe.Gui {
             // 
             // panel2
             // 
-            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.okButton);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.pictureBox1);
+            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
             // 
             // panel3
@@ -149,7 +149,6 @@ namespace AntMe.Gui {
             // 
             // panel4
             // 
-            resources.ApplyResources(this.panel4, "panel4");
             this.panel4.Controls.Add(this.label27);
             this.panel4.Controls.Add(this.label26);
             this.panel4.Controls.Add(this.label25);
@@ -172,6 +171,7 @@ namespace AntMe.Gui {
             this.panel4.Controls.Add(this.label9);
             this.panel4.Controls.Add(this.label8);
             this.panel4.Controls.Add(this.label7);
+            resources.ApplyResources(this.panel4, "panel4");
             this.panel4.Name = "panel4";
             // 
             // label27
