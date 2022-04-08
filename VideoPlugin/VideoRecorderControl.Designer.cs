@@ -44,8 +44,8 @@
             // 
             // titelLabel
             // 
-            this.titelLabel.BackColor = System.Drawing.SystemColors.AppWorkspace;
             resources.ApplyResources(this.titelLabel, "titelLabel");
+            this.titelLabel.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.titelLabel.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.titelLabel.Name = "titelLabel";
             // 

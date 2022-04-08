@@ -97,6 +97,9 @@
     <EmbeddedResource Include="VideoPlayerControl.resx">
       <DependentUpon>VideoPlayerControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VideoRecorderControl.de.resx">
+      <DependentUpon>VideoRecorderControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VideoRecorderControl.resx">
       <DependentUpon>VideoRecorderControl.cs</DependentUpon>
     </EmbeddedResource>
