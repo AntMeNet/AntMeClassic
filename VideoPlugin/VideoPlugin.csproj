@@ -94,6 +94,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="VideoPlayerControl.de.resx">
+      <DependentUpon>VideoPlayerControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VideoPlayerControl.resx">
       <DependentUpon>VideoPlayerControl.cs</DependentUpon>
     </EmbeddedResource>

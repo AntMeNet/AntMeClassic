@@ -117,22 +117,36 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="PlayerPluginDescription" xml:space="preserve">
-    <value>Allows to play recorded simulations</value>
+  <data name="titelLabel.Text" xml:space="preserve">
+    <value>Videoplayer</value>
   </data>
-  <data name="PlayerPluginName" xml:space="preserve">
-    <value>Video player</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Der Videoplayer erlaubt das Abspielern vorher aufgezeichneter Simulationen.
+Die entsprechende Datei einfach per Öffnenknopf auswählen und die Simulation wie gewohnt starten.</value>
   </data>
-  <data name="PlayerPluginStateFinished" xml:space="preserve">
-    <value>Finished</value>
+  <data name="openButton.Text" xml:space="preserve">
+    <value>Öffnen...</value>
   </data>
-  <data name="PlayerPluginStateUnfinished" xml:space="preserve">
-    <value>Not finished</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>93, 30</value>
   </data>
-  <data name="RecorderPluginDescription" xml:space="preserve">
-    <value>Allows to record simulations and replay it again later</value>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Spieler:</value>
   </data>
-  <data name="RecorderPluginName" xml:space="preserve">
-    <value>Video recorder</value>
+  <data name="stateLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 20</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 30</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Zustand:</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>105, 30</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Runden:</value>
   </data>
 </root>

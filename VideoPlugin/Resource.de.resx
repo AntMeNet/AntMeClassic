@@ -123,6 +123,12 @@
   <data name="PlayerPluginName" xml:space="preserve">
     <value>Videoplayer</value>
   </data>
+  <data name="PlayerPluginStateFinished" xml:space="preserve">
+    <value>Abgeschlossen</value>
+  </data>
+  <data name="PlayerPluginStateUnfinished" xml:space="preserve">
+    <value>Unvollständig</value>
+  </data>
   <data name="RecorderPluginDescription" xml:space="preserve">
     <value>Erlaubt das Aufzeichnen von Simulationen</value>
   </data>

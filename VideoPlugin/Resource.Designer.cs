@@ -79,6 +79,24 @@ namespace AntMe.Plugin.Video {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Finished.
+        /// </summary>
+        internal static string PlayerPluginStateFinished {
+            get {
+                return ResourceManager.GetString("PlayerPluginStateFinished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not finished.
+        /// </summary>
+        internal static string PlayerPluginStateUnfinished {
+            get {
+                return ResourceManager.GetString("PlayerPluginStateUnfinished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Allows to record simulations and replay it again later.
         /// </summary>
         internal static string RecorderPluginDescription {
