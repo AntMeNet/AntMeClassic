@@ -8,25 +8,26 @@ using System.Windows.Forms;
 
 namespace AntMe.Plugin.Video
 {
+    /// <summary>
+    /// Plugin class of the video plugin
+    /// </summary>
     public sealed class VideoPlayerPlugin : IProducerPlugin
     {
-        private readonly Version version = Assembly.GetExecutingAssembly().GetName().Version;
-
-        private VideoPlayerControl control = new VideoPlayerControl();
+        private readonly VideoPlayerControl control = new VideoPlayerControl();
 
         private PluginState state = PluginState.Ready;
 
         private AntVideoReader reader;
 
-        public Guid Guid { get { return Guid.Parse("{F715DF3B-507E-49FB-9D9A-D303457A6491}"); } }
+        public Guid Guid => Guid.Parse("{F715DF3B-507E-49FB-9D9A-D303457A6491}");
 
-        public string Name { get { return "Video Player"; } }
+        public string Name => Resource.PlayerPluginName;
 
-        public string Description { get { return "Das ist der Video Player"; } }
+        public string Description => Resource.PlayerPluginDescription;
 
-        public Version Version { get { return version; } }
+        public Version Version { get; } = Assembly.GetExecutingAssembly().GetName().Version;
 
-        public Control Control { get { return control; } }
+        public Control Control => control;
 
         public PluginState State
         {
@@ -39,26 +40,22 @@ namespace AntMe.Plugin.Video
             }
         }
 
-        public void CreateState(ref SimulationState state)
+        public void CreateState(ref SimulationState simulationState)
         {
             if (reader != null)
-                state = reader.Read();
-
-            if (reader.Complete)
             {
-                control.Invoke((MethodInvoker)(() =>
+                simulationState = reader.Read();
+
+                if (reader.Complete)
                 {
-                    Stop();
-                }));
+                    control.Invoke((MethodInvoker) Stop);
+                }
             }
         }
 
         public byte[] Settings
         {
-            get
-            {
-                return null;
-            }
+            get => null;
             set
             {
             }
@@ -103,7 +100,7 @@ namespace AntMe.Plugin.Video
         {
         }
 
-        public void UpdateUI(SimulationState state)
+        public void UpdateUI(SimulationState simulationState)
         {
         }
     }
