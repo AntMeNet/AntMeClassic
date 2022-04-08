@@ -39,10 +39,6 @@
     <Media Id="1" Cabinet="AntMe.cab" EmbedCab="yes" DiskPrompt="File #1" />
     <Property Id="DiskPrompt" Value="[1]" />
 
-    <Property Id="Check_Xna_4.0">1</Property>
-    <Property Id="Check_DirectX_Xna_4.0">1</Property>
-    <Property Id="Check_DotNet_4.0_Full">1</Property>
-
     <PropertyRef Id="WIX_IS_NETFRAMEWORK_462_OR_LATER_INSTALLED"/>
     <Condition Message="AntMe! 1.7 requires .NET Framework 4.6.2. Please install the .NET Framework then run this installer again.">
       <![CDATA[Installed OR WIX_IS_NETFRAMEWORK_462_OR_LATER_INSTALLED]]>
