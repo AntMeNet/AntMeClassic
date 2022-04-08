@@ -49,6 +49,7 @@
       <ComponentRef Id="AntMeSimulation" />
       <ComponentRef Id="AntMePlayerManagement" />
       <ComponentRef Id="SimulationPlugin" />
+      <ComponentRef Id="VideoPlugin" />
       <ComponentRef Id="DemoAmeisen" />
       <ComponentRef Id="GdiPlusPlugin" />
       <ComponentRef Id="FnaPlugin" />
@@ -109,6 +110,11 @@
         <File Source="$(var.SimulationPlugin.TargetPath)" KeyPath="yes" Checksum="yes" />
       </Component>
 
+      <!-- Video Plugin -->
+      <Component Id="VideoPlugin" Guid="{DA743BBC-CC7C-4378-8262-5505B0FB6D80}">
+        <File Source="$(var.VideoPlugin.TargetPath)" KeyPath="yes" Checksum="yes" />
+      </Component>
+
       <!-- Demo Ameisen -->
       <Component Id="DemoAmeisen" Guid="{572A74EF-ED55-48A8-8076-8CB113E1BC64}">
         <File Source="$(var.DemoAmeisen.TargetPath)" KeyPath="yes" Checksum="yes" />
@@ -156,6 +162,7 @@
       <File Source="$(var.PlayerManagement.TargetDir)/de/AntMe.PlayerManagement.resources.dll" />
       <File Source="$(var.SimulationPlugin.TargetDir)/de/AntMe.Plugin.Simulation.resources.dll" />
       <File Source="$(var.GdiPlusPlugin.TargetDir)/de/AntMe.Plugin.GdiPlusPlugin.resources.dll" />
+      <File Source="$(var.VideoPlugin.TargetDir)/de/AntMe.Plugin.Video.resources.dll" />
       <File Source="$(var.FnaPlugin.TargetDir)/de/AntMe.Plugin.Fna.resources.dll" />
     </Component>
 
