@@ -56,6 +56,14 @@
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
       <RefTargetDir>INSTALLFOLDER</RefTargetDir>
     </ProjectReference>
+    <ProjectReference Include="..\FnaPlugin\FnaPlugin.csproj">
+      <Name>FnaPlugin</Name>
+      <Project>{b82cb28b-7468-47da-939d-e21834c1aee0}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
     <ProjectReference Include="..\GdiPlusPlugin\GdiPlusPlugin.csproj">
       <Name>GdiPlusPlugin</Name>
       <Project>{4083b1e6-5eb5-4e51-bb09-eec4b489f355}</Project>
@@ -91,14 +99,6 @@
     <ProjectReference Include="..\SimulationPlugin\SimulationPlugin.csproj">
       <Name>SimulationPlugin</Name>
       <Project>{d622f308-35a9-4a86-8f2c-4e68ceca7c11}</Project>
-      <Private>True</Private>
-      <DoNotHarvest>True</DoNotHarvest>
-      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
-      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
-    </ProjectReference>
-    <ProjectReference Include="..\XnaPlugin\XnaPlugin\XnaPlugin.csproj">
-      <Name>XnaPlugin</Name>
-      <Project>{4fdd2b0d-c481-401e-a794-2111bf15f39e}</Project>
       <Private>True</Private>
       <DoNotHarvest>True</DoNotHarvest>
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
