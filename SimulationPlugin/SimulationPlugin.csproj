@@ -34,11 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-   <Compile Update="Generators\GeneratorFiles.Designer.cs">
-     <DesignTime>True</DesignTime>
-     <AutoGen>True</AutoGen>
-     <DependentUpon>GeneratorFiles.resx</DependentUpon>
-   </Compile>
    <Compile Update="Presets.Designer.cs">
      <DesignTime>True</DesignTime>
      <AutoGen>True</AutoGen>
@@ -57,10 +52,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Generators\GeneratorFiles.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>GeneratorFiles.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
