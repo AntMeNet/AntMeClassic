@@ -1,209 +1,39 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{35753E72-07F3-4F18-916C-479850EC375F}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFramework>net462</TargetFramework>
     <RootNamespace>AntMe</RootNamespace>
     <AssemblyName>AntMe.Simulation</AssemblyName>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
-    <SignAssembly>false</SignAssembly>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <OldToolsVersion>3.5</OldToolsVersion>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
     <OutputPath>..\bin\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DocumentationFile>
-    </DocumentationFile>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+
+    <Version>1.7.4.163</Version>
+    <AssemblyTitle>AntMe! Simulation Core</AssemblyTitle>
+    <Product>AntMe!</Product>
+    <Company>AntMe! GmbH</Company>
+    <Copyright>Copyright © 2015 AntMe! GmbH</Copyright>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-    <OutputPath>..\bin\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <DocumentationFile>
-    </DocumentationFile>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
+
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Deutsch\Ameise.cs" />
-    <Compile Include="Deutsch\Basisameise.cs" />
-    <Compile Include="Deutsch\Bau.cs" />
-    <Compile Include="Deutsch\DateizugriffAttribute.cs" />
-    <Compile Include="Deutsch\DatenbankzugriffAttribute.cs" />
-    <Compile Include="Deutsch\FensterzugriffAttribute.cs" />
-    <Compile Include="Deutsch\Insekt.cs" />
-    <Compile Include="Deutsch\KasteAttribute.cs" />
-    <Compile Include="Deutsch\Koordinate.cs" />
-    <Compile Include="Deutsch\Markierung.cs" />
-    <Compile Include="Deutsch\Nahrung.cs" />
-    <Compile Include="Deutsch\NamespaceDoc.cs" />
-    <Compile Include="Deutsch\NetzwerkzugriffAttribute.cs" />
-    <Compile Include="Deutsch\Obst.cs" />
-    <Compile Include="Deutsch\SpielerAttribute.cs" />
-    <Compile Include="Deutsch\Spielobjekt.cs" />
-    <Compile Include="Deutsch\Todesart.cs" />
-    <Compile Include="Deutsch\Volk.cs" />
-    <Compile Include="Deutsch\Wanze.cs" />
-    <Compile Include="Deutsch\Zucker.cs" />
-    <Compile Include="Deutsch\Zufall.cs" />
-    <Compile Include="Deutsch\ZugriffAttribute.cs" />
-    <Compile Include="English\AccessAttribute.cs" />
-    <Compile Include="English\Ant.cs" />
-    <Compile Include="English\Anthill.cs" />
-    <Compile Include="English\BaseAnt.cs" />
-    <Compile Include="English\Bug.cs" />
-    <Compile Include="English\CasteAttribute.cs" />
-    <Compile Include="English\Coordinate.cs" />
-    <Compile Include="English\Colony.cs" />
-    <Compile Include="English\DatabaseAccessAttribute.cs" />
-    <Compile Include="English\FileAccessAttribute.cs" />
-    <Compile Include="English\Food.cs" />
-    <Compile Include="English\Fruit.cs" />
-    <Compile Include="English\Insect.cs" />
-    <Compile Include="English\Item.cs" />
-    <Compile Include="English\KindOfDeath.cs" />
-    <Compile Include="English\Marker.cs" />
-    <Compile Include="English\NamespaceDoc.cs" />
-    <Compile Include="English\NetworkAccessAttribute.cs" />
-    <Compile Include="English\PlayerAttribute.cs" />
-    <Compile Include="English\RandomNumber.cs" />
-    <Compile Include="English\Sugar.cs" />
-    <Compile Include="English\UserinterfaceAccessAttribute.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="Resource.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resource.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Simulation\AiException.cs" />
-    <Compile Include="Simulation\CoreAnt.cs" />
-    <Compile Include="Simulation\CasteInfo.cs" />
-    <Compile Include="Simulation\PlayerAnalysis.cs" />
-    <Compile Include="Simulation\CoreAnthill.cs" />
-    <Compile Include="Simulation\Grid.cs" />
-    <Compile Include="Simulation\CoreFruit.cs" />
-    <Compile Include="Simulation\CoreKindOfDeath.cs" />
-    <Compile Include="Simulation\CoreSugar.cs" />
-    <Compile Include="Simulation\CoreTeam.cs" />
-    <Compile Include="Simulation\DebugMessage.cs" />
-    <Compile Include="Simulation\AreaChange.cs" />
-    <Compile Include="Simulation\NamespaceDoc.cs" />
-    <Compile Include="Simulation\RuleViolationException.cs" />
-    <Compile Include="Simulation\CoreInsect.cs" />
-    <Compile Include="Simulation\AiAnalysis.cs" />
-    <Compile Include="Simulation\CoreCoordinate.cs" />
-    <Compile Include="Simulation\CoreMarker.cs" />
-    <Compile Include="Simulation\CoreFood.cs" />
-    <Compile Include="Simulation\ICoordinate.cs" />
-    <Compile Include="Simulation\PlayerSimulationVersion.cs" />
-    <Compile Include="Simulation\SimulationCasteSettings.cs" />
-    <Compile Include="Simulation\SimulationCasteSettingsColumn.cs" />
-    <Compile Include="Simulation\SimulationSettings.cs" />
-    <Compile Include="Simulation\Simulator.cs" />
-    <Compile Include="Simulation\SimulatorHost.cs" />
-    <Compile Include="Simulation\SimulatorHostState.cs" />
-    <Compile Include="Simulation\SimulatorConfiguration.cs" />
-    <Compile Include="Simulation\SimulatorProxy.cs" />
-    <Compile Include="Simulation\SimulatorState.cs" />
-    <Compile Include="Simulation\PlayerCall.cs" />
-    <Compile Include="Simulation\PlayerInfo.cs" />
-    <Compile Include="Simulation\PlayerInfoFiledump.cs" />
-    <Compile Include="Simulation\PlayerInfoFilename.cs" />
-    <Compile Include="Simulation\PlayerLanguage.cs" />
-    <Compile Include="Simulation\PlayerStatistics.cs" />
-    <Compile Include="Simulation\CorePlayground.cs" />
-    <Compile Include="Simulation\SimulationEnvironment.cs" />
-    <Compile Include="Simulation\SimulationEnvironmentHelper.cs" />
-    <Compile Include="Simulation\TeamInfo.cs" />
-    <Compile Include="Simulation\CoreColony.cs" />
-    <Compile Include="Simulation\CoreBug.cs" />
-  </ItemGroup>
+
   <ItemGroup>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\SharedComponents\SharedComponents.csproj">
-      <Project>{415F50C3-BD70-4634-B1F7-A15B42F0B0C6}</Project>
-      <Name>SharedComponents</Name>
-      <Private>False</Private>
-    </ProjectReference>
+    <ProjectReference Include="..\SharedComponents\SharedComponents.csproj" />
   </ItemGroup>
+
   <ItemGroup>
-    <EmbeddedResource Include="Resource.de.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resource.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+    <PackageReference Include="Mono.Cecil" Version="0.11.2" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Mono.Cecil">
-      <Version>0.11.2</Version>
-    </PackageReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

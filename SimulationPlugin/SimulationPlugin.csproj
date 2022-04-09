@@ -1,63 +1,20 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D622F308-35A9-4A86-8F2C-4E68CECA7C11}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFramework>net462</TargetFramework>
     <RootNamespace>AntMe.Plugin.Simulation</RootNamespace>
     <AssemblyName>AntMe.Plugin.Simulation</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <OldToolsVersion>3.5</OldToolsVersion>
-    <UpgradeBackupLocation />
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
     <OutputPath>..\bin\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+
+    <Version>1.7.1.22</Version>
+    <AssemblyTitle>AntMe! Video Plugin</AssemblyTitle>
+    <Product>AntMe!</Product>
+    <Company>AntMe! GmbH</Company>
+    <Copyright>Copyright © 2015 AntMe! GmbH</Copyright>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-    <OutputPath>..\bin\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
+
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
@@ -65,176 +22,20 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="FreeGameControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FreeGameControl.Designer.cs">
-      <DependentUpon>FreeGameControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FreeGamePlugin.cs" />
-    <Compile Include="FreeGameSetup.cs" />
-    <Compile Include="Presets.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Presets.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="SummaryLoop.cs" />
-    <Compile Include="PlayerItem.cs" />
-    <Compile Include="Resource.de.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resource.de.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resource.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resource.resx</DependentUpon>
-    </Compile>
-    <Compile Include="SummarySimulation.cs" />
-    <Compile Include="StatisticControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="StatisticControl.Designer.cs">
-      <DependentUpon>StatisticControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="StatisticPlugin.cs" />
-    <Compile Include="SummaryRoot.cs" />
-    <Compile Include="SummaryPlayer.cs" />
-    <Compile Include="SummaryTeam.cs" />
-    <Compile Include="SummaryValueSet.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SimulationProperties.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SimulationProperties.Designer.cs">
-      <DependentUpon>SimulationProperties.cs</DependentUpon>
-    </Compile>
+    <ProjectReference Include="..\PlayerManagement\PlayerManagement.csproj" />
+    <ProjectReference Include="..\SharedComponents\SharedComponents.csproj" />
+    <ProjectReference Include="..\SimulationCore\SimulationCore.csproj" />
   </ItemGroup>
+
   <ItemGroup>
-    <EmbeddedResource Include="FreeGameControl.de.resx">
-      <DependentUpon>FreeGameControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FreeGameControl.resx">
-      <DependentUpon>FreeGameControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presets.resx">
+    <None Include="Resources\**\*.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resource.de.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Presets.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resource.de.resx">
-      <SubType>Designer</SubType>
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource.de.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resource.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SimulationProperties.de.resx">
-      <DependentUpon>SimulationProperties.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="StatisticControl.de.resx">
-      <DependentUpon>StatisticControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="StatisticControl.resx">
-      <DependentUpon>StatisticControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SimulationProperties.resx">
-      <DependentUpon>SimulationProperties.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PlayerManagement\PlayerManagement.csproj">
-      <Project>{5d566a2a-c112-4543-95ea-f3e81a53cde9}</Project>
-      <Name>PlayerManagement</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\SharedComponents\SharedComponents.csproj">
-      <Project>{415F50C3-BD70-4634-B1F7-A15B42F0B0C6}</Project>
-      <Name>SharedComponents</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\SimulationCore\SimulationCore.csproj">
-      <Project>{35753E72-07F3-4F18-916C-479850EC375F}</Project>
-      <Name>SimulationCore</Name>
-      <Private>False</Private>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\add.png" />
-    <None Include="Resources\captureTheApple.ant.config" />
-    <None Include="Resources\debugging.ant.config" />
-    <None Include="Resources\delete_16x16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\heros.ant.config" />
-    <None Include="Resources\load_16x16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\properties_16x16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\resetteams.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\settings_16x16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\colony_nonstatic_32x32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\debug_messages_32x32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\duration_32x32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\map_generation_32x32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\security_32x32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\settings_32x32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\settings_new.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\sugarRun.ant.config" />
-    <None Include="Resources\SurvivalOfTheFittest.ant.config" />
-    <None Include="Resources\timeout_32x32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\save_16x16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Ai.png" />
-    <None Include="Resources\star2.png" />
-    <None Include="Resources\star1.png" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
