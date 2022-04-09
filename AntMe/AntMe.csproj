@@ -7,6 +7,7 @@
     <OutDir>..\bin\</OutDir>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
 
     <Version>1.7.3.369</Version>
     <AssemblyTitle>AntMe!</AssemblyTitle>
@@ -41,6 +42,10 @@
   <ItemGroup>
     <ProjectReference Include="..\PlayerManagement\PlayerManagement.csproj" />
     <ProjectReference Include="..\SharedComponents\SharedComponents.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Resources.Extensions" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
