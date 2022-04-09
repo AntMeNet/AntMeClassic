@@ -7,6 +7,7 @@
     <OutputPath>..\bin\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
 
     <Version>1.0.0.0</Version>
     <AssemblyTitle>AntMe! FnaPlugin</AssemblyTitle>
@@ -18,6 +19,10 @@
   <ItemGroup>
     <ProjectReference Include="..\SimulationCore\SimulationCore.csproj" />
     <ProjectReference Include="..\SharedComponents\SharedComponents.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Resources.Extensions" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
