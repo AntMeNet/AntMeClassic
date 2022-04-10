@@ -143,6 +143,10 @@
           <Shortcut Id="DesktopShortcut" Directory="DesktopFolder" Name="AntMe! 1.7" Icon="antme.ico" IconIndex="0" WorkingDirectory="INSTALLDIR" Advertise="no" />
         </File>
         <File Source="$(var.AntMe.TargetDir)/AntMe.exe.config" />
+        <File Source="$(var.AntMe.TargetDir)/System.Resources.Extensions.dll" />
+        <File Source="$(var.AntMe.TargetDir)/System.Memory.dll" />
+        <File Source="$(var.AntMe.TargetDir)/System.Runtime.CompilerServices.Unsafe.dll" />
+        <File Source="$(var.AntMe.TargetDir)/System.Numerics.Vectors.dll" />
         <RegistryValue Root='HKCU' Key='Software\AntMe\AntMe1exe' Type='string' Value='' KeyPath='yes' />
       </Component>
 
