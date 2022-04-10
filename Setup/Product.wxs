@@ -63,6 +63,7 @@
       <ComponentRef Id="EnglishDocumentation" />
       <ComponentRef Id="EnglishDocumentationImages" />
       <ComponentRef Id="Loca" />
+      <ComponentRef Id="Licenses" />
     </Feature>
 
     <Directory Id="TARGETDIR" Name="SourceDir">
@@ -80,6 +81,7 @@
           <Directory Id="EnglishDocumentationPath" Name="english">
             <Directory Id="EnglishDocumentationImagePath" Name="images" />
           </Directory>
+          <Directory Id="LicensesFolder" Name="licenses" />
         </Directory>
       </Directory>
 
@@ -159,7 +161,7 @@
     </Component>
 
     <!-- Localization Files -->
-    <Component Id="Loca" Guid="A4064295-8588-416F-A93C-4B64591667D0" Directory="LocalizeFolder">
+    <Component Id="Loca" Guid="{A4064295-8588-416F-A93C-4B64591667D0}" Directory="LocalizeFolder">
       <File Source="$(var.AntMe.TargetDir)/de/AntMe.resources.dll" KeyPath="yes" />
       <File Source="$(var.SharedComponents.TargetDir)/de/AntMe.SharedComponents.resources.dll" />
       <File Source="$(var.SimulationCore.TargetDir)/de/AntMe.Simulation.resources.dll" />
@@ -168,6 +170,13 @@
       <File Source="$(var.GdiPlusPlugin.TargetDir)/de/AntMe.Plugin.GdiPlusPlugin.resources.dll" />
       <File Source="$(var.VideoPlugin.TargetDir)/de/AntMe.Plugin.Video.resources.dll" />
       <File Source="$(var.FnaPlugin.TargetDir)/de/AntMe.Plugin.Fna.resources.dll" />
+    </Component>
+
+    <!-- Licenses -->
+    <Component Id="Licenses" Guid="{BA018FE2-EC7F-437A-81A4-E28129881CB8}" Directory="LicensesFolder">
+      <File Source="$(var.AntMe.TargetDir)/licenses/Mono.Cecil.txt" />
+      <File Source="$(var.AntMe.TargetDir)/licenses/FNA.txt" />
+      <File Source="$(var.AntMe.TargetDir)/licenses/AntMe.txt" />
     </Component>
 
     <!-- FNA Dependencies (x86) -->
