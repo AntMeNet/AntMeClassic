@@ -33,10 +33,25 @@
 
   <ItemGroup>
     <Content Include="antme.ico" />
+    <Content Include="licenses\AntMe.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="licenses\FNA.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="licenses\Mono.Cecil.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="deutsch\images\**\*.*" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="deutsch\*.htm" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="english\images\**\*.*" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="english\*.htm" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="licenses\AntMe.txt" />
+    <None Remove="licenses\FNA.txt" />
+    <None Remove="licenses\Mono.Cecil.txt" />
   </ItemGroup>
 
   <ItemGroup>
