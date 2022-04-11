@@ -120,9 +120,10 @@ namespace AntMe.Gui
             {
                 Process.Start(@".\licenses\AntMe.txt");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Could not open license file");
+                var problems = new ExceptionViewer(ex);
+                problems.ShowDialog(this);
             }
         }
 
@@ -147,9 +148,10 @@ namespace AntMe.Gui
             {
                 Process.Start(@".\licenses\Mono.Cecil.txt");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Could not open license file");
+                var problems = new ExceptionViewer(ex);
+                problems.ShowDialog(this);
             }
         }
 
@@ -159,9 +161,10 @@ namespace AntMe.Gui
             {
                 Process.Start(@".\licenses\FNA.txt");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Could not open license file");
+                var problems = new ExceptionViewer(ex);
+                problems.ShowDialog(this);
             }
         }
     }
