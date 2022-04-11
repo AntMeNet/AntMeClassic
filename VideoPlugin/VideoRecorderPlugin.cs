@@ -22,7 +22,7 @@ namespace AntMe.Plugin.Video
         private AntVideoWriter writer;
         private SimulationState lastFrame;
 
-        public Guid Guid => Guid.Parse("{BC6AD88E-F6C6-440F-809A-5A49B66B329F}");
+        public Guid Guid { get; } = Guid.Parse("{BC6AD88E-F6C6-440F-809A-5A49B66B329F}");
 
         public string Name => Resource.RecorderPluginName;
 

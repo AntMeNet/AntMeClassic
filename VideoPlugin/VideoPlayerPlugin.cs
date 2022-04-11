@@ -19,7 +19,7 @@ namespace AntMe.Plugin.Video
 
         private AntVideoReader reader;
 
-        public Guid Guid => Guid.Parse("{F715DF3B-507E-49FB-9D9A-D303457A6491}");
+        public Guid Guid { get; } = Guid.Parse("{F715DF3B-507E-49FB-9D9A-D303457A6491}");
 
         public string Name => Resource.PlayerPluginName;
 
