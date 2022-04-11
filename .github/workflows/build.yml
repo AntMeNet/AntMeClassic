@@ -1,0 +1,39 @@
+name: .NET
+
+# Build everything on each push (for now)
+on: [push]
+
+env:
+  # Required by the setup-msbuild action
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+      - name: Setup MsBuild
+        uses: microsoft/setup-msbuild@v1.0.0 
+      
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.2
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Restore NuGet Packages
+        run: nuget restore AntMe.sln
+
+      - name: build
+        run: msbuild AntMe.sln /p:Configuration=Release
+        
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: Setup
+          path: Setup/bin/Release/AntMe.msi
+
+
