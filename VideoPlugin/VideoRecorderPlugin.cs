@@ -9,11 +9,12 @@ using System.Windows.Forms;
 
 namespace AntMe.Plugin.Video
 {
+    /// <summary>
+    /// Plugin class for the video recorder plugin
+    /// </summary>
     public sealed class VideoRecorderPlugin : IConsumerPlugin
     {
-        private readonly Version version = Assembly.GetExecutingAssembly().GetName().Version;
-
-        private VideoRecorderControl control = new VideoRecorderControl();
+        private readonly VideoRecorderControl control = new VideoRecorderControl();
 
         private PluginState state = PluginState.Ready;
 
@@ -21,56 +22,53 @@ namespace AntMe.Plugin.Video
         private AntVideoWriter writer;
         private SimulationState lastFrame;
 
-        public Guid Guid { get { return Guid.Parse("{BC6AD88E-F6C6-440F-809A-5A49B66B329F}"); } }
+        public Guid Guid { get; } = Guid.Parse("{BC6AD88E-F6C6-440F-809A-5A49B66B329F}");
 
-        public string Name { get { return "Video Recorder"; } }
+        public string Name => Resource.RecorderPluginName;
 
-        public string Description { get { return "Das ist der Video Recorder"; } }
+        public string Description => Resource.RecorderPluginDescription;
 
-        public Version Version { get { return version; } }
+        public Version Version { get; } = Assembly.GetExecutingAssembly().GetName().Version;
 
-        public Control Control { get { return control; } }
+        public Control Control => control;
 
-        public PluginState State { get { return state; } }
+        public PluginState State => state;
 
-        public bool Interrupt { get { return false; } }
+        public bool Interrupt => false;
 
-        public void CreateState(ref SimulationState state)
+        public void CreateState(ref SimulationState simulationState)
         {
         }
 
-        public void CreatingState(ref SimulationState state)
+        public void CreatingState(ref SimulationState simulationState)
         {
         }
 
-        public void CreatedState(ref SimulationState state)
+        public void CreatedState(ref SimulationState simulationState)
         {
-            if (state.CurrentRound == 1)
+            if (simulationState.CurrentRound == 1)
                 CreateAntvideo();
 
             if (writer != null)
             {
-                lastFrame = state;
-                int round = state.CurrentRound;
+                lastFrame = simulationState;
+                int round = simulationState.CurrentRound;
                 control.Invoke((MethodInvoker)(() =>
                 {
                     control.RecordedFrame = round;
                 }));
 
-                writer.Write(state);
+                writer.Write(simulationState);
             }
         }
 
-        public void UpdateUI(SimulationState state)
+        public void UpdateUI(SimulationState simulationState)
         {
         }
 
         public byte[] Settings
         {
-            get
-            {
-                return null;
-            }
+            get => null;
             set
             {
             }
@@ -122,7 +120,7 @@ namespace AntMe.Plugin.Video
                 writer = null;
                 if (lastFrame != null)
                 {
-                    string player = string.Join(", ", lastFrame.ColonyStates.Select(c => c.ColonyName + " (" + c.Points.ToString() + ")"));
+                    var player = string.Join(", ", lastFrame.ColonyStates.Select(c => c.ColonyName + $" ({c.Points})"));
                     control.Invoke((MethodInvoker)(() =>
                     {
                         control.Add(stream, player);

@@ -29,10 +29,12 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Resources\**\*.*" />
+    <None Remove="licenses\**\*.*" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="antme.ico" />
+    <Content Include="licenses\**\*.*" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="deutsch\images\**\*.*" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="deutsch\*.htm" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="english\images\**\*.*" CopyToOutputDirectory="PreserveNewest" />

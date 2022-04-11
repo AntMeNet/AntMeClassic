@@ -39,10 +39,6 @@
     <Media Id="1" Cabinet="AntMe.cab" EmbedCab="yes" DiskPrompt="File #1" />
     <Property Id="DiskPrompt" Value="[1]" />
 
-    <Property Id="Check_Xna_4.0">1</Property>
-    <Property Id="Check_DirectX_Xna_4.0">1</Property>
-    <Property Id="Check_DotNet_4.0_Full">1</Property>
-
     <PropertyRef Id="WIX_IS_NETFRAMEWORK_462_OR_LATER_INSTALLED"/>
     <Condition Message="AntMe! 1.7 requires .NET Framework 4.6.2. Please install the .NET Framework then run this installer again.">
       <![CDATA[Installed OR WIX_IS_NETFRAMEWORK_462_OR_LATER_INSTALLED]]>
@@ -53,6 +49,7 @@
       <ComponentRef Id="AntMeSimulation" />
       <ComponentRef Id="AntMePlayerManagement" />
       <ComponentRef Id="SimulationPlugin" />
+      <ComponentRef Id="VideoPlugin" />
       <ComponentRef Id="DemoAmeisen" />
       <ComponentRef Id="GdiPlusPlugin" />
       <ComponentRef Id="FnaPlugin" />
@@ -66,6 +63,7 @@
       <ComponentRef Id="EnglishDocumentation" />
       <ComponentRef Id="EnglishDocumentationImages" />
       <ComponentRef Id="Loca" />
+      <ComponentRef Id="Licenses" />
     </Feature>
 
     <Directory Id="TARGETDIR" Name="SourceDir">
@@ -83,6 +81,7 @@
           <Directory Id="EnglishDocumentationPath" Name="english">
             <Directory Id="EnglishDocumentationImagePath" Name="images" />
           </Directory>
+          <Directory Id="LicensesFolder" Name="licenses" />
         </Directory>
       </Directory>
 
@@ -113,6 +112,11 @@
         <File Source="$(var.SimulationPlugin.TargetPath)" KeyPath="yes" Checksum="yes" />
       </Component>
 
+      <!-- Video Plugin -->
+      <Component Id="VideoPlugin" Guid="{DA743BBC-CC7C-4378-8262-5505B0FB6D80}">
+        <File Source="$(var.VideoPlugin.TargetPath)" KeyPath="yes" Checksum="yes" />
+      </Component>
+
       <!-- Demo Ameisen -->
       <Component Id="DemoAmeisen" Guid="{572A74EF-ED55-48A8-8076-8CB113E1BC64}">
         <File Source="$(var.DemoAmeisen.TargetPath)" KeyPath="yes" Checksum="yes" />
@@ -141,6 +145,10 @@
           <Shortcut Id="DesktopShortcut" Directory="DesktopFolder" Name="AntMe! 1.7" Icon="antme.ico" IconIndex="0" WorkingDirectory="INSTALLDIR" Advertise="no" />
         </File>
         <File Source="$(var.AntMe.TargetDir)/AntMe.exe.config" />
+        <File Source="$(var.AntMe.TargetDir)/System.Resources.Extensions.dll" />
+        <File Source="$(var.AntMe.TargetDir)/System.Memory.dll" />
+        <File Source="$(var.AntMe.TargetDir)/System.Runtime.CompilerServices.Unsafe.dll" />
+        <File Source="$(var.AntMe.TargetDir)/System.Numerics.Vectors.dll" />
         <RegistryValue Root='HKCU' Key='Software\AntMe\AntMe1exe' Type='string' Value='' KeyPath='yes' />
       </Component>
 
@@ -153,14 +161,22 @@
     </Component>
 
     <!-- Localization Files -->
-    <Component Id="Loca" Guid="A4064295-8588-416F-A93C-4B64591667D0" Directory="LocalizeFolder">
+    <Component Id="Loca" Guid="{A4064295-8588-416F-A93C-4B64591667D0}" Directory="LocalizeFolder">
       <File Source="$(var.AntMe.TargetDir)/de/AntMe.resources.dll" KeyPath="yes" />
       <File Source="$(var.SharedComponents.TargetDir)/de/AntMe.SharedComponents.resources.dll" />
       <File Source="$(var.SimulationCore.TargetDir)/de/AntMe.Simulation.resources.dll" />
       <File Source="$(var.PlayerManagement.TargetDir)/de/AntMe.PlayerManagement.resources.dll" />
       <File Source="$(var.SimulationPlugin.TargetDir)/de/AntMe.Plugin.Simulation.resources.dll" />
       <File Source="$(var.GdiPlusPlugin.TargetDir)/de/AntMe.Plugin.GdiPlusPlugin.resources.dll" />
+      <File Source="$(var.VideoPlugin.TargetDir)/de/AntMe.Plugin.Video.resources.dll" />
       <File Source="$(var.FnaPlugin.TargetDir)/de/AntMe.Plugin.Fna.resources.dll" />
+    </Component>
+
+    <!-- Licenses -->
+    <Component Id="Licenses" Guid="{BA018FE2-EC7F-437A-81A4-E28129881CB8}" Directory="LicensesFolder">
+      <File Source="$(var.AntMe.TargetDir)/licenses/Mono.Cecil.txt" />
+      <File Source="$(var.AntMe.TargetDir)/licenses/FNA.txt" />
+      <File Source="$(var.AntMe.TargetDir)/licenses/AntMe.txt" />
     </Component>
 
     <!-- FNA Dependencies (x86) -->

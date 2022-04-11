@@ -28,6 +28,8 @@ namespace AntMe.Gui
         [STAThread]
         public static void Main(string[] parameter)
         {
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
+
             if (Environment.OSVersion.Platform == PlatformID.Win32NT)
             {
                 try
@@ -80,6 +82,11 @@ namespace AntMe.Gui
                     restart = form.Restart;
                 }
             }
+        }
+
+        private static void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show(e.ExceptionObject.ToString());
         }
     }
 }

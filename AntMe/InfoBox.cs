@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
@@ -115,13 +116,56 @@ namespace AntMe.Gui
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://service.antme.net/License1");
+            try
+            {
+                Process.Start(@".\licenses\AntMe.txt");
+            }
+            catch (Exception ex)
+            {
+                var problems = new ExceptionViewer(ex);
+                problems.ShowDialog(this);
+            }
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("http://www.antme.net");
+            Process.Start("https://github.com/AntMeNet/AntMeClassic");
         }
 
+        private void lnkCecilWeb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://www.mono-project.com/docs/tools+libraries/libraries/Mono.Cecil/");
+        }
+
+        private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://fna-xna.github.io/");
+        }
+
+        private void lnkCecilLicense_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                Process.Start(@".\licenses\Mono.Cecil.txt");
+            }
+            catch (Exception ex)
+            {
+                var problems = new ExceptionViewer(ex);
+                problems.ShowDialog(this);
+            }
+        }
+
+        private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                Process.Start(@".\licenses\FNA.txt");
+            }
+            catch (Exception ex)
+            {
+                var problems = new ExceptionViewer(ex);
+                problems.ShowDialog(this);
+            }
+        }
     }
 }
