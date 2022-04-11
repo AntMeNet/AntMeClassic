@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedComponents", "SharedComponents\SharedComponents.csproj", "{415F50C3-BD70-4634-B1F7-A15B42F0B0C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedComponents", "SharedComponents\SharedComponents.csproj", "{415F50C3-BD70-4634-B1F7-A15B42F0B0C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntMe", "AntMe\AntMe.csproj", "{931D5011-AE62-420D-8503-F5441136876A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AntMe", "AntMe\AntMe.csproj", "{931D5011-AE62-420D-8503-F5441136876A}"
 	ProjectSection(ProjectDependencies) = postProject
 		{D622F308-35A9-4A86-8F2C-4E68CECA7C11} = {D622F308-35A9-4A86-8F2C-4E68CECA7C11}
 		{C2758F41-87EC-4355-AC1A-EB8704D5D799} = {C2758F41-87EC-4355-AC1A-EB8704D5D799}
@@ -13,21 +13,21 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntMe", "AntMe\AntMe.csproj
 		{4083B1E6-5EB5-4E51-BB09-EEC4B489F355} = {4083B1E6-5EB5-4E51-BB09-EEC4B489F355}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoAmeisen", "DemoAmeisen\DemoAmeisen.csproj", "{B53ECAD8-961B-4179-BB46-993DA25DA6DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoAmeisen", "DemoAmeisen\DemoAmeisen.csproj", "{B53ECAD8-961B-4179-BB46-993DA25DA6DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GdiPlusPlugin", "GdiPlusPlugin\GdiPlusPlugin.csproj", "{4083B1E6-5EB5-4E51-BB09-EEC4B489F355}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GdiPlusPlugin", "GdiPlusPlugin\GdiPlusPlugin.csproj", "{4083B1E6-5EB5-4E51-BB09-EEC4B489F355}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimulationCore", "SimulationCore\SimulationCore.csproj", "{35753E72-07F3-4F18-916C-479850EC375F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimulationCore", "SimulationCore\SimulationCore.csproj", "{35753E72-07F3-4F18-916C-479850EC375F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimulationPlugin", "SimulationPlugin\SimulationPlugin.csproj", "{D622F308-35A9-4A86-8F2C-4E68CECA7C11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimulationPlugin", "SimulationPlugin\SimulationPlugin.csproj", "{D622F308-35A9-4A86-8F2C-4E68CECA7C11}"
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Setup", "Setup\Setup.wixproj", "{EC7AA916-0218-436F-B4DC-510BDB769260}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoPlugin", "VideoPlugin\VideoPlugin.csproj", "{C2758F41-87EC-4355-AC1A-EB8704D5D799}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VideoPlugin", "VideoPlugin\VideoPlugin.csproj", "{C2758F41-87EC-4355-AC1A-EB8704D5D799}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FnaPlugin", "FnaPlugin\FnaPlugin.csproj", "{B82CB28B-7468-47DA-939D-E21834C1AEE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FnaPlugin", "FnaPlugin\FnaPlugin.csproj", "{B82CB28B-7468-47DA-939D-E21834C1AEE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayerManagement", "PlayerManagement\PlayerManagement.csproj", "{5D566A2A-C112-4543-95EA-F3E81A53CDE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlayerManagement", "PlayerManagement\PlayerManagement.csproj", "{5D566A2A-C112-4543-95EA-F3E81A53CDE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -9,7 +9,6 @@
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
 
-    <Version>1.7.3.13</Version>
     <AssemblyTitle>AntMe! Player Management</AssemblyTitle>
     <Product>AntMe!</Product>
     <Company>AntMe! GmbH</Company>
@@ -34,6 +33,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="GitVersion.MsBuild" Version="5.9.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="System.Resources.Extensions" Version="6.0.0" />
   </ItemGroup>
 
