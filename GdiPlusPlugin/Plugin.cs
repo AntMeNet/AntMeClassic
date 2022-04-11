@@ -1,6 +1,7 @@
 using AntMe.SharedComponents.Plugin;
 using AntMe.SharedComponents.States;
 using System;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace AntMe.Plugin.GdiPlusPlugin
@@ -12,6 +13,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
     /// <author>Wolfgang Gallo (wolfgang@antme.net)</author>
     public class Plugin : IConsumerPlugin
     {
+        private readonly Version version = Assembly.GetExecutingAssembly().GetName().Version;
 
         private Window window;
 
@@ -72,10 +74,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
         /// <summary>
         /// Gibt die Versionsnummer dieses Plugins zurück.
         /// </summary>
-        public Version Version
-        {
-            get { return new Version(1, 7); }
-        }
+        public Version Version => version;
 
         /// <summary>
         /// Gibt die GUID dieses Plugins zurück.

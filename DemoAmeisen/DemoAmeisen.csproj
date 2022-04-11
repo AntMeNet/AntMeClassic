@@ -8,12 +8,17 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
 
-    <Version>1.7.3.44</Version>
     <AssemblyTitle>AntMe! Demoants</AssemblyTitle>
     <Product>AntMe!</Product>
     <Company>AntMe! GmbH</Company>
     <Copyright>Copyright © 2015 AntMe! GmbH</Copyright>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="GitVersion.MsBuild" Version="5.9.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 
   <ItemGroup>
     <Reference Include="System" />

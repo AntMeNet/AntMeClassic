@@ -1,0 +1,9 @@
+assembly-versioning-format: '{Major}.{Minor}.{Patch}.{CommitsSinceVersionSource}'
+assembly-file-versioning-format: '{Major}.{Minor}.{Patch}.{CommitsSinceVersionSource}-{ShortSha}'
+assembly-informational-format: '{Major}.{Minor}.{Patch}.{CommitsSinceVersionSource}-{ShortSha}'
+mode: ContinuousDelivery
+increment: None
+branches: {}
+ignore:
+  sha: []
+merge-message-formats: {}
