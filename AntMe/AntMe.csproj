@@ -29,6 +29,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Resources\**\*.*" />
+    <None Remove="licenses\**\*.*" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,12 +39,6 @@
     <Content Include="deutsch\*.htm" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="english\images\**\*.*" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="english\*.htm" CopyToOutputDirectory="PreserveNewest" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="licenses\AntMe.txt" />
-    <None Remove="licenses\FNA.txt" />
-    <None Remove="licenses\Mono.Cecil.txt" />
   </ItemGroup>
 
   <ItemGroup>
