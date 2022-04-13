@@ -11,7 +11,7 @@
     <AssemblyTitle>AntMe! Demoants</AssemblyTitle>
     <Product>AntMe!</Product>
     <Company>AntMe! GmbH</Company>
-    <Copyright>Copyright © 2015 AntMe! GmbH</Copyright>
+    <Copyright>Copyright © 2022 AntMe! GmbH</Copyright>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="GitVersion.MsBuild" Version="5.9.0">
