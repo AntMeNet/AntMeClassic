@@ -9,7 +9,7 @@
     Id="*"
     Name="AntMe! 1.7"
     Language="1033"
-    Version="1.7.3"
+    Version="!(bind.FileVersion.MainExe)"
     Manufacturer="$(var.Manufactor)"
     UpgradeCode="$(var.UpgradeGuid)">
 
@@ -140,7 +140,7 @@
 
       <!-- AntMe.exe -->
       <Component Id="AntMe" Guid="DECBC6BD-E889-4079-9465-BC0B70439C4A">
-        <File Source="$(var.AntMe.TargetPath)" Checksum="yes">
+        <File Id="MainExe" Source="$(var.AntMe.TargetPath)" Checksum="yes">
           <Shortcut Id="StartmenuShortcut" Directory="ProgramMenuDir" Name="AntMe! 1.7" Icon="antme.ico" IconIndex="0" WorkingDirectory="INSTALLDIR" Advertise="no" />
           <Shortcut Id="DesktopShortcut" Directory="DesktopFolder" Name="AntMe! 1.7" Icon="antme.ico" IconIndex="0" WorkingDirectory="INSTALLDIR" Advertise="no" />
         </File>
