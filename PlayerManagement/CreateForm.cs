@@ -44,11 +44,9 @@ namespace AntMe.PlayerManagement
             if (codeComboBox.Items.Count > 0)
                 codeComboBox.SelectedIndex = 0;
 
-            // Identify Visual Studio Folder
-            DirectoryInfo root = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
-            DirectoryInfo hit = root.GetDirectories("Visual Studio *").OrderByDescending(d => d.Name).FirstOrDefault();
-            if (hit != null)
-                folderTextBox.Text = hit.FullName + @"\Projects";
+            // Setup default folder for new projects
+            var personalFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            folderTextBox.Text = Path.Combine(personalFolder, "source", "repos");
         }
 
         private void browseButton_Click(object sender, EventArgs e)
