@@ -45,7 +45,7 @@ namespace AntMe.PlayerManagement
                 codeComboBox.SelectedIndex = 0;
 
             // Setup default folder for new projects
-            var personalFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            var personalFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             folderTextBox.Text = Path.Combine(personalFolder, "source", "repos");
         }
 
