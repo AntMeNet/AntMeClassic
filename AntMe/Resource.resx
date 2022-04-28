@@ -122,14 +122,6 @@
     <comment>Short string for frames per second (Main.cs)
 0: Number of frames</comment>
   </data>
-  <data name="MainMessageBoxNoHelpMessage" xml:space="preserve">
-    <value>No help available.</value>
-    <comment>Message of messagebox to inform about missing tutorials (Main.cs)</comment>
-  </data>
-  <data name="MainMessageBoxNoHelpTitle" xml:space="preserve">
-    <value>Help</value>
-    <comment>Title of messagebox to inform about missing tutorials (Main.cs)</comment>
-  </data>
   <data name="MainNoModeSelected" xml:space="preserve">
     <value>No Mode selected</value>
   </data>
@@ -162,10 +154,6 @@
   <data name="MainStateRunning" xml:space="preserve">
     <value>Simulating</value>
     <comment>State-string for running in status-bar (Main.cs)</comment>
-  </data>
-  <data name="MainTutorialPath" xml:space="preserve">
-    <value>.\\english\\Help.chm</value>
-    <comment>Path to Tutorial-file</comment>
   </data>
   <data name="MainWebsiteLink" xml:space="preserve">
     <value>http://www.antme.net/en</value>
@@ -328,23 +316,5 @@
   <data name="PluginManagerSettingsLoadFailed" xml:space="preserve">
     <value>The configuration could not be loaded. This is likely due to an old version.</value>
     <comment>global settings-file couldn't been deserialized (PluginManager.cs)</comment>
-  </data>
-  <data name="UpdateErrorMessage" xml:space="preserve">
-    <value>There are problems to reach the AntMe! Update Service. Please check your internet connection</value>
-  </data>
-  <data name="UpdateNewerMessage" xml:space="preserve">
-    <value>There is a newer Version of AntMe! available. Do you want to download it?</value>
-  </data>
-  <data name="UpdateNewestMessage" xml:space="preserve">
-    <value>You are using the newest Version of AntMe!</value>
-  </data>
-  <data name="UpdateNoConnection" xml:space="preserve">
-    <value>No internet connection</value>
-  </data>
-  <data name="UpdateTitle" xml:space="preserve">
-    <value>AntMe! Update</value>
-  </data>
-  <data name="UpdateTokenInvalid" xml:space="preserve">
-    <value>Need to Login again</value>
   </data>
 </root>

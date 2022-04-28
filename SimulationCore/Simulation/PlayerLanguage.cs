@@ -1,10 +1,12 @@
 ﻿using System;
-namespace AntMe.Simulation {
+namespace AntMe.Simulation
+{
     /// <summary>
     /// List of possible player-languages.
     /// </summary>
     [Flags]
-    public enum PlayerLanguages {
+    public enum PlayerLanguages
+    {
         /// <summary>
         /// Unknown language
         /// </summary>

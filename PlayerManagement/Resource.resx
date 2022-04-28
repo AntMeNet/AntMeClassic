@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AntColonyLanguageNotValid" xml:space="preserve">
+    <value>Wrong setting for languages.</value>
+    <comment>Error message when ant colony language has not been set properly.</comment>
+  </data>
+  <data name="AntColonyNameNotValid" xml:space="preserve">
+    <value>The name can only contain letters and numbers, is not allowed to begin with a number and needs to be between 2 and 20 characters long.</value>
+    <comment>Error message when ant colony name contains non valid characters or does not satisfy length requirements.</comment>
+  </data>
+  <data name="AntColonyOutputFolderDoesNotExist" xml:space="preserve">
+    <value>Output folder does not exist.</value>
+    <comment>Error message when ant colony should be saved in directory that does not exist.</comment>
+  </data>
   <data name="AntPropertiesAuthorFormat" xml:space="preserve">
     <value>{0} {1}</value>
     <comment>Format of author-tag (AntProperties.cs)
@@ -163,6 +175,14 @@
   <data name="No" xml:space="preserve">
     <value>no</value>
     <comment>Various uses of no (AntProperties.cs)</comment>
+  </data>
+  <data name="PlayerSelectorOpenIde" xml:space="preserve">
+    <value>A new ant template has been created. To see your new ant in the game however it has to be first opened and compiled in an integrated development environment. Should the integrated development environment be opened now?</value>
+    <comment>Message displayed asking whether IDE should be launched.</comment>
+  </data>
+  <data name="PlayerSelectorOpenIdeTitle" xml:space="preserve">
+    <value>Edit ant</value>
+    <comment>Message title displayed asking whether IDE should be launched.</comment>
   </data>
   <data name="SimulationPluginRightsLocked" xml:space="preserve">
     <value>Following rights are not granted in the settings:</value>

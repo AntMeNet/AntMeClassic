@@ -1,18 +1,12 @@
+using AntMe.Gui.Properties;
+using AntMe.PlayerManagement;
+using AntMe.SharedComponents.Plugin;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Threading;
-using System.Windows.Forms;
 using System.Linq;
-
-using AntMe.Gui.Properties;
-using AntMe.SharedComponents.Plugin;
-using System.Reflection;
-using AntMe.Online.Client;
-using System.Diagnostics;
-using System.Drawing;
+using System.Threading;
 using System.Threading.Tasks;
-using AntMe.PlayerManagement;
+using System.Windows.Forms;
 
 namespace AntMe.Gui
 {
@@ -39,7 +33,6 @@ namespace AntMe.Gui
             initPhase = true;
 
             InitializeComponent();
-            onlineButton.Tag = ConnectionState.Connected;
             CreateHandle();
 
             // check Language-buttons
@@ -55,10 +48,6 @@ namespace AntMe.Gui
 
             // Load Player
             Task t = new Task(() => { PlayerStore.Instance.ToString(); });
-            t.Start();
-
-            // Prüfe auf Updates
-            t = new Task(BackgroundUpdateCheck);
             t.Start();
 
             // Load welcomepage
@@ -308,35 +297,6 @@ namespace AntMe.Gui
                 fpsBarItem.Visible = false;
             }
 
-            // Online Connector
-            onlineButton.Text = Connection.Instance.Username;
-            onlineButton.Visible = Connection.Instance.IsLoggedIn;
-            onlineButton.Enabled = !Connection.Instance.IsBusy;
-            if ((ConnectionState)onlineButton.Tag != Connection.Instance.State)
-            {
-                switch (Connection.Instance.State)
-                {
-                    case ConnectionState.NoConnection:
-                        onlineButton .Image = Resources.connection;
-                        onlineButton.ToolTipText = Resource.UpdateNoConnection;
-                        break;
-                    case ConnectionState.TokenInvalid:
-                        onlineButton.Image = Resources.warning;
-                        onlineButton.ToolTipText = Resource.UpdateTokenInvalid;
-                        break;
-                    default:
-                        onlineButton.Image = Resources.online;
-                        onlineButton.ToolTipText = string.Empty;
-                        break;
-                }
-                onlineButton.Tag = Connection.Instance.State;
-            }
-
-            loginButton.Visible = !Connection.Instance.IsLoggedIn;
-            loginButton.Enabled = !Connection.Instance.IsBusy;
-
-            versionButton.Visible = !string.IsNullOrEmpty(Properties.Settings.Default.updateLink);
-
             ignoreTimerEvents = false;
         }
 
@@ -436,25 +396,6 @@ namespace AntMe.Gui
             manager.SaveSettings();
             ignoreTimerEvents = false;
             updatePanel();
-        }
-
-        private void button_offlineHelp(object sender, EventArgs e)
-        {
-            // Es wurde Hilfe angefordert. Hier wird geprüft ob eine Hilfe verfügbar ist
-            if (File.Exists(Resource.MainTutorialPath))
-            {
-                Help.ShowHelp(this, Resource.MainTutorialPath);
-            }
-            else
-            {
-                MessageBox.Show(
-                    this,
-                    Resource.MainMessageBoxNoHelpMessage,
-                    Resource.MainMessageBoxNoHelpTitle,
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error,
-                    MessageBoxDefaultButton.Button1);
-            }
         }
 
         private void button_website(object sender, EventArgs e)
@@ -557,34 +498,6 @@ namespace AntMe.Gui
             Close();
         }
 
-        private void button_switchAutoupdate(object sender, EventArgs e)
-        {
-            try
-            {
-                Uri download = Connection.Instance.CheckForUpdates(
-                    Assembly.GetExecutingAssembly().GetName().Version);
-                
-                if (download != null)
-                {
-                    if (MessageBox.Show(this, Resource.UpdateNewerMessage, 
-                        Resource.UpdateTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.Yes)
-                    {
-                        Process.Start(download.ToString());
-                    }
-                }
-                else
-                {
-                    MessageBox.Show(this, Resource.UpdateNewestMessage, Resource.UpdateTitle, 
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show(this, Resource.UpdateErrorMessage, Resource.UpdateTitle, 
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
         private void button_producer(object sender, EventArgs e)
         {
             if (ignoreTimerEvents)
@@ -655,63 +568,9 @@ namespace AntMe.Gui
             get { return restart; }
         }
 
-
-        private void logoutButton_Click(object sender, EventArgs e)
-        {
-            if (Connection.Instance.IsLoggedIn)
-                Connection.Instance.Close();
-        }
-
-        private void profileButton_Click(object sender, EventArgs e)
-        {
-            Process.Start("https://service.antme.net/Account");
-        }
-
-        private void loginButton_Click(object sender, EventArgs e)
-        {
-            if (!Connection.Instance.IsLoggedIn)
-                Connection.Instance.Open(this);
-        }
-
-        private void BackgroundUpdateCheck()
-        {
-            // Check every day
-            if (Settings.Default.lastUpdateCheck < DateTime.Now.Date)
-            {
-                try
-                {
-                    Uri download = Connection.Instance.CheckForUpdates(
-                        Assembly.GetExecutingAssembly().GetName().Version);
-
-                    if (download != null)
-                        Settings.Default.updateLink = download.ToString();
-                    else
-                        Settings.Default.updateLink = string.Empty;
-                }
-                catch (Exception) {}
-
-                Settings.Default.lastUpdateCheck = DateTime.Now.Date;
-                Settings.Default.Save();
-            }
-        }
-
         private void infoWebBrowser_NavigateError(object sender, WebBrowserNavigateErrorEventArgs e)
         {
             infoWebBrowser.Navigate("file://" + Application.StartupPath + Resource.MainWelcomePagePath);
-        }
-
-        private void versionButton_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show(this, Resource.UpdateNewerMessage, Resource.UpdateTitle, 
-                MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.Yes)
-            {
-                // Open Link
-                Process.Start(Settings.Default.updateLink);
-
-                // Clear Update Link
-                Settings.Default.updateLink = string.Empty;
-                Settings.Default.Save();
-            }
         }
     }
 }

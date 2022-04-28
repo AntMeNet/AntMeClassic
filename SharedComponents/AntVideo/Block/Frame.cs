@@ -1,12 +1,13 @@
-﻿using System;
+﻿using AntMe.SharedComponents.States;
+using System;
 
-using AntMe.SharedComponents.States;
-
-namespace AntMe.SharedComponents.AntVideo.Block {
+namespace AntMe.SharedComponents.AntVideo.Block
+{
     /// <summary>
     /// Repräsentiert den Zustandsblock
     /// </summary>
-    internal sealed class Frame : SimulationState, IUpdateable<FrameUpdate, SimulationState>, ISerializable {
+    internal sealed class Frame : SimulationState, IUpdateable<FrameUpdate, SimulationState>, ISerializable
+    {
         #region Updateinformation
 
         private int aCurrentRound;
@@ -15,7 +16,8 @@ namespace AntMe.SharedComponents.AntVideo.Block {
 
         #endregion
 
-        public Frame(SimulationState state) {
+        public Frame(SimulationState state)
+        {
             TotalRounds = state.TotalRounds;
             PlaygroundHeight = state.PlaygroundHeight;
             PlaygroundWidth = state.PlaygroundWidth;
@@ -25,30 +27,35 @@ namespace AntMe.SharedComponents.AntVideo.Block {
             Reset();
         }
 
-        public Frame(Serializer serializer) {
+        public Frame(Serializer serializer)
+        {
             Deserialize(serializer);
 
             Reset();
         }
 
-        private void Reset() {
+        private void Reset()
+        {
             aTimestamp = TimeStamp;
             aCurrentRound = CurrentRound;
         }
 
         #region IUpdateable<FrameUpdate,SimulationState> Member
 
-        public void Interpolate() {
+        public void Interpolate()
+        {
             TimeStamp = aTimestamp;
             CurrentRound = aCurrentRound;
         }
 
-        public void Update(FrameUpdate update) {
+        public void Update(FrameUpdate update)
+        {
             aTimestamp = update.aTimestamp;
             aCurrentRound = update.aCurrentRound;
         }
 
-        public FrameUpdate GenerateUpdate(SimulationState state) {
+        public FrameUpdate GenerateUpdate(SimulationState state)
+        {
             FrameUpdate update = new FrameUpdate();
             update.aTimestamp = state.TimeStamp;
             update.aCurrentRound = state.CurrentRound;
@@ -56,7 +63,8 @@ namespace AntMe.SharedComponents.AntVideo.Block {
             return update;
         }
 
-        public SimulationState GenerateState() {
+        public SimulationState GenerateState()
+        {
             SimulationState state = new SimulationState();
             state.CurrentRound = CurrentRound;
             state.PlaygroundHeight = PlaygroundHeight;
@@ -66,7 +74,8 @@ namespace AntMe.SharedComponents.AntVideo.Block {
             return state;
         }
 
-        public bool IsAlive {
+        public bool IsAlive
+        {
             get { return isAlive; }
             set { isAlive = value; }
         }
@@ -82,15 +91,17 @@ namespace AntMe.SharedComponents.AntVideo.Block {
         // timestamp Timestamp
         // ushort CurrentRound
 
-        public void Serialize(Serializer serializer) {
-            serializer.SendUshort((ushort) TotalRounds);
-            serializer.SendUshort((ushort) PlaygroundHeight);
-            serializer.SendUshort((ushort) PlaygroundWidth);
+        public void Serialize(Serializer serializer)
+        {
+            serializer.SendUshort((ushort)TotalRounds);
+            serializer.SendUshort((ushort)PlaygroundHeight);
+            serializer.SendUshort((ushort)PlaygroundWidth);
             serializer.SendDateTime(TimeStamp);
-            serializer.SendUshort((ushort) CurrentRound);
+            serializer.SendUshort((ushort)CurrentRound);
         }
 
-        public void Deserialize(Serializer serializer) {
+        public void Deserialize(Serializer serializer)
+        {
             TotalRounds = serializer.ReadUShort();
             PlaygroundHeight = serializer.ReadUShort();
             PlaygroundWidth = serializer.ReadUShort();

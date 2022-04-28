@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -47,11 +44,9 @@ namespace AntMe.PlayerManagement
             if (codeComboBox.Items.Count > 0)
                 codeComboBox.SelectedIndex = 0;
 
-            // Identify Visual Studio Folder
-            DirectoryInfo root = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
-            DirectoryInfo hit = root.GetDirectories("Visual Studio *").OrderByDescending(d => d.Name).FirstOrDefault();
-            if (hit != null)
-                folderTextBox.Text = hit.FullName + @"\Projects";
+            // Setup default folder for new projects
+            var personalFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+            folderTextBox.Text = Path.Combine(personalFolder, "source", "repos");
         }
 
         private void browseButton_Click(object sender, EventArgs e)
@@ -71,7 +66,7 @@ namespace AntMe.PlayerManagement
             // Check den Namen (muss den Namenskonventionen von Klassennamen entsprechen)
             if (!Regex.IsMatch(nameTextBox.Text, @"^[a-zA-Z][a-zA-Z0-9]{1,19}$"))
             {
-                MessageBox.Show("Der Name darf nur Buchstaben und Zahlen enthalten, nicht mit einer Zahl beginnen und zwischen 2 und 20 Zeichen lang sein.");
+                MessageBox.Show(Resource.AntColonyNameNotValid);
                 e.Cancel = true;
                 return;
             }
@@ -80,7 +75,7 @@ namespace AntMe.PlayerManagement
             var generator = generators.Where(g => g.Language.Equals(languageComboBox.Text) && g.ProgrammingLanguage.Equals(codeComboBox.Text)).FirstOrDefault();
             if (generator == null)
             {
-                MessageBox.Show("Falsche Einstellungen bei den Sprachen");
+                MessageBox.Show(Resource.AntColonyLanguageNotValid);
                 e.Cancel = true;
                 return;
             }
@@ -89,7 +84,7 @@ namespace AntMe.PlayerManagement
             DirectoryInfo root = new DirectoryInfo(folderTextBox.Text);
             if (!root.Exists)
             {
-                MessageBox.Show("Ausgabeverzeichnis existiert nicht");
+                MessageBox.Show(Resource.AntColonyOutputFolderDoesNotExist);
                 e.Cancel = true;
                 return;
             }

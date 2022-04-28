@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using AntMe.SharedComponents.AntVideo;
+﻿using AntMe.SharedComponents.AntVideo;
+using System;
 using System.IO;
-using AntMe.SharedComponents.States;
-using AntMe.Online.Client;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace AntMe.Plugin.Video
 {
@@ -56,8 +49,8 @@ namespace AntMe.Plugin.Video
                 try
                 {
                     Stream.Seek(0, SeekOrigin.Begin);
-                    AntVideoReader reader = new AntVideoReader(Stream);
-                    SimulationState lastState = reader.Read();
+                    var reader = new AntVideoReader(Stream);
+                    var lastState = reader.Read();
                     loadingProgressBar.Maximum = lastState.TotalRounds;
                     while (!reader.Complete)
                     {
@@ -65,7 +58,7 @@ namespace AntMe.Plugin.Video
                         loadingProgressBar.Value = lastState.CurrentRound;
                     }
                     roundsLabel.Text = lastState.CurrentRound.ToString();
-                    stateLabel.Text = lastState.CurrentRound == lastState.TotalRounds ? "Finished" : "Not Finished"; 
+                    stateLabel.Text = lastState.CurrentRound == lastState.TotalRounds ? Resource.PlayerPluginStateFinished : Resource.PlayerPluginStateUnfinished;
                     playerLabel.Text = string.Join("\r\n", lastState.ColonyStates.Select(c => c.ColonyName));
                 }
                 catch (Exception ex)
@@ -78,7 +71,7 @@ namespace AntMe.Plugin.Video
                     Stream.Dispose();
                     Stream = null;
                 }
-                
+
                 loadingProgressBar.Visible = false;
             }
             else
@@ -86,32 +79,6 @@ namespace AntMe.Plugin.Video
                 infoPanel.Visible = false;
                 loadingProgressBar.Visible = false;
 
-            }
-        }
-
-        private void downloadButton_Click(object sender, EventArgs e)
-        {
-            if (!Connection.Instance.IsLoggedIn)
-            {
-                MessageBox.Show("Leider nicht angemeldet");
-                return;
-            }
-
-            Guid id;
-            if (!Guid.TryParse(replayTextBox.Text, out id))
-            {
-                MessageBox.Show("Leider keine gültige Replay ID");
-                return;
-            }
-
-            try
-            {
-                Stream = Connection.Instance.Replays.DownloadReplay(id);
-                UpdateUi();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
         }
     }

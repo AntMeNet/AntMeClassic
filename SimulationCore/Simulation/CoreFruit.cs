@@ -1,8 +1,6 @@
-﻿using System;
+﻿using AntMe.SharedComponents.States;
+using System;
 using System.Collections.Generic;
-using System.Text;
-
-using AntMe.SharedComponents.States;
 
 namespace AntMe.Simulation
 {

@@ -1,9 +1,9 @@
+using AntMe.SharedComponents.States;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
 using System.Threading;
-using AntMe.SharedComponents.States;
 
 namespace AntMe.Simulation
 {

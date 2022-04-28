@@ -1,10 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using System.Security;
-using System.Security.Permissions;
-using System.Security.Policy;
 
 namespace AntMe.Simulation
 {
@@ -89,44 +86,10 @@ namespace AntMe.Simulation
         /// <throws><see cref="RuleViolationException"/></throws>
         public static List<PlayerInfo> Analyse(byte[] file, bool checkRules)
         {
-            // setup appdomain
-            AppDomainSetup setup = new AppDomainSetup();
+            PlayerAnalysis analysisHost = new PlayerAnalysis();
+            // analies and return list of PlayerInfo
+            return analysisHost.Analyse(file, checkRules);
 
-            // Base Path for references
-            string applicationBase = AppDomain.CurrentDomain.RelativeSearchPath;
-            if (string.IsNullOrEmpty(applicationBase))
-                applicationBase = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
-            setup.ApplicationBase = applicationBase;
-
-            // setup accessrights for the appdomain
-            PermissionSet rechte = new PermissionSet(PermissionState.None);
-            rechte.AddPermission(new SecurityPermission(SecurityPermissionFlag.Execution));
-            rechte.AddPermission(new ReflectionPermission(ReflectionPermissionFlag.MemberAccess));
-
-            // create appdomain and analyse-host
-            AppDomain app = AppDomain.CreateDomain("AnalysisHost", AppDomain.CurrentDomain.Evidence, setup, rechte);
-            //app.ReflectionOnlyAssemblyResolve +=
-            //    delegate(object sender, ResolveEventArgs args) { return Assembly.ReflectionOnlyLoad(args.Name); };
-
-            AnalysisHost host =
-                (AnalysisHost)
-                app.CreateInstanceAndUnwrap(
-                    Assembly.GetExecutingAssembly().FullName, "AntMe.Simulation.AnalysisHost");
-            List<PlayerInfo> spieler = host.Analyse(file, checkRules);
-
-            // in case of exceptions unload the appdomain and throw the exception
-            if (spieler == null)
-            {
-                Exception ex = host.Exception;
-                AppDomain.Unload(app);
-                throw ex;
-            }
-
-            // unload appdomain
-            AppDomain.Unload(app);
-
-            // return list of PlayerInfo
-            return spieler;
         }
 
         /// <summary>

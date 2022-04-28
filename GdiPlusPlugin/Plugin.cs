@@ -1,19 +1,19 @@
-using System;
-using System.Drawing;
-using System.Windows.Forms;
-
 using AntMe.SharedComponents.Plugin;
 using AntMe.SharedComponents.States;
+using System;
+using System.Reflection;
+using System.Windows.Forms;
 
 namespace AntMe.Plugin.GdiPlusPlugin
 {
 
-	/// <summary>
+    /// <summary>
     /// AntMe! Verbraucher-Plugin das ein Spiel in einer GDI+ basierten 2D-Ansicht darstellt.
     /// </summary>
     /// <author>Wolfgang Gallo (wolfgang@antme.net)</author>
     public class Plugin : IConsumerPlugin
     {
+        private readonly Version version = Assembly.GetExecutingAssembly().GetName().Version;
 
         private Window window;
 
@@ -74,10 +74,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
         /// <summary>
         /// Gibt die Versionsnummer dieses Plugins zurück.
         /// </summary>
-        public Version Version
-        {
-            get { return new Version(1, 7); }
-        }
+        public Version Version => version;
 
         /// <summary>
         /// Gibt die GUID dieses Plugins zurück.
@@ -128,18 +125,18 @@ namespace AntMe.Plugin.GdiPlusPlugin
             }
         }
 
-		public void StartupParameter(string[] parameter)
-		{
-		}
+        public void StartupParameter(string[] parameter)
+        {
+        }
 
-		public void SetVisibility(bool visible)
-		{
-		}
+        public void SetVisibility(bool visible)
+        {
+        }
 
-		public void UpdateUI(SimulationState state)
-		{
-			window.Update(state);
-		}
+        public void UpdateUI(SimulationState state)
+        {
+            window.Update(state);
+        }
 
         #endregion
 
@@ -148,25 +145,25 @@ namespace AntMe.Plugin.GdiPlusPlugin
         public bool Interrupt
         {
             get
-			{ 
-				// Wenn das Spiel läuft oder pausiert ist (also nicht nur bereit)
-				// und das Fenster nicht sichtbar, dann wurde es geschlossen und
-				// die Simulation kann abgebrochen werden.
-				return (pluginStatus != PluginState.Ready && !window.Visible);
-			}
+            {
+                // Wenn das Spiel läuft oder pausiert ist (also nicht nur bereit)
+                // und das Fenster nicht sichtbar, dann wurde es geschlossen und
+                // die Simulation kann abgebrochen werden.
+                return (pluginStatus != PluginState.Ready && !window.Visible);
+            }
         }
 
         public void CreateState(ref SimulationState state)
-		{
-		}
+        {
+        }
 
         public void CreatingState(ref SimulationState state)
-		{
-		}
+        {
+        }
 
         public void CreatedState(ref SimulationState state)
-		{
-		}
+        {
+        }
 
         #endregion
 

@@ -1,11 +1,13 @@
 ﻿using System;
 
-namespace AntMe.Simulation {
+namespace AntMe.Simulation
+{
     /// <summary>
     /// List of possible versions of simulation.
     /// </summary>
     [Flags]
-    public enum PlayerSimulationVersions {
+    public enum PlayerSimulationVersions
+    {
 
         /// <summary>
         /// Version 1.1 - Singleplayer-Variante

@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AntColonyLanguageNotValid" xml:space="preserve">
+    <value>Falsche Einstellungen bei den Sprachen</value>
+    <comment>Error message when ant colony language has not been set properly.</comment>
+  </data>
+  <data name="AntColonyNameNotValid" xml:space="preserve">
+    <value>Der Name darf nur Buchstaben und Zahlen enthalten, nicht mit einer Zahl beginnen und zwischen 2 und 20 Zeichen lang sein.</value>
+    <comment>Error message when ant colony name contains non valid characters or does not satisfy length requirements.</comment>
+  </data>
+  <data name="AntColonyOutputFolderDoesNotExist" xml:space="preserve">
+    <value>Ausgabeverzeichnis existiert nicht</value>
+    <comment>Error message when ant colony should be saved in directory that does not exist.</comment>
+  </data>
   <data name="AntPropertiesAuthorFormat" xml:space="preserve">
     <value>{0} {1}</value>
     <comment>Format of author-tag (AntProperties.cs)
@@ -163,6 +175,14 @@
   <data name="No" xml:space="preserve">
     <value>Nein</value>
     <comment>Various use of no (AntProperties.cs)</comment>
+  </data>
+  <data name="PlayerSelectorOpenIde" xml:space="preserve">
+    <value>Es wurde eine neue Ameisenvorlage erstellt. Um deine neue Ameise aber im Spiel zu sehen, muss sie zuvor mit einer Entwicklungsumgebung geöffnet und kompiliert werden. Soll die Entwicklungsumgebung gleich geöffnet werden?</value>
+    <comment>Message displayed asking whether IDE should be launched.</comment>
+  </data>
+  <data name="PlayerSelectorOpenIdeTitle" xml:space="preserve">
+    <value>Ameise bearbeiten</value>
+    <comment>Message title displayed asking whether IDE should be launched.</comment>
   </data>
   <data name="SimulationPluginRightsLocked" xml:space="preserve">
     <value>Folgende Rechte wurden in den Einstellungen nicht frei geschaltet:</value>

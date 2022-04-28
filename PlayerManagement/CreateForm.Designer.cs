@@ -122,7 +122,6 @@
             // 
             resources.ApplyResources(this.folderTextBox, "folderTextBox");
             this.folderTextBox.Name = "folderTextBox";
-            this.folderTextBox.ReadOnly = true;
             // 
             // nameTextBox
             // 

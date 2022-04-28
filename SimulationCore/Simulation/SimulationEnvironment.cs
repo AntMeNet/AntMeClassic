@@ -1,10 +1,9 @@
-﻿using System;
+﻿using AntMe.SharedComponents.States;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Security;
-
-using AntMe.SharedComponents.States;
 
 namespace AntMe.Simulation
 {
@@ -321,7 +320,7 @@ namespace AntMe.Simulation
                             continue;
                         }
 
-                            // Ameise hat ein Drittel ihrer Reichweite zurückgelegt.
+                        // Ameise hat ein Drittel ihrer Reichweite zurückgelegt.
                         else if (ameise.ZurückgelegteStreckeI > colony.ReichweiteI[ameise.CasteIndexBase] / 3)
                         {
                             if (ameise.IstMüdeBase == false)
@@ -382,7 +381,7 @@ namespace AntMe.Simulation
                             }
                         }
 
-                            // Kampf mit feindlicher Ameise.
+                        // Kampf mit feindlicher Ameise.
                         else if (ameise.ZielBase is CoreAnt)
                         {
                             CoreAnt a = (CoreAnt)ameise.ZielBase;

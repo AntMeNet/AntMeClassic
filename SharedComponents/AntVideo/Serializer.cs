@@ -1,8 +1,8 @@
-﻿using System;
+﻿using AntMe.SharedComponents.AntVideo.Block;
+using System;
+using System.Globalization;
 using System.IO;
 using System.Text;
-using AntMe.SharedComponents.AntVideo.Block;
-using System.Globalization;
 
 namespace AntMe.SharedComponents.AntVideo
 {

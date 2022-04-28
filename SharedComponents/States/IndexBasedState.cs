@@ -1,16 +1,19 @@
 ﻿using System;
-namespace AntMe.SharedComponents.States {
+namespace AntMe.SharedComponents.States
+{
     /// <summary>
     /// Base-class for all index-based states
     /// </summary>
     [Serializable]
-    public abstract class IndexBasedState : IComparable<IndexBasedState> {
+    public abstract class IndexBasedState : IComparable<IndexBasedState>
+    {
 
         /// <summary>
         /// Constructor of this state.
         /// </summary>
         /// <param name="id"></param>
-        public IndexBasedState(int id) {
+        public IndexBasedState(int id)
+        {
             Id = id;
         }
 

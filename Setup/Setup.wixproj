@@ -24,30 +24,10 @@
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Azure|x86' ">
-    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
-    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Azure|AnyCPU' ">
-    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
-    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Azure|Any CPU' ">
-    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
-    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
-  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Product.wxs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AntMe.Online.Client\AntMe.Online.Client.csproj">
-      <Name>AntMe.Online.Client</Name>
-      <Project>{43e44b6c-78f6-4515-88f2-c238b51886c5}</Project>
-      <Private>True</Private>
-      <DoNotHarvest>True</DoNotHarvest>
-      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
-      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
-    </ProjectReference>
     <ProjectReference Include="..\AntMe\AntMe.csproj">
       <Name>AntMe</Name>
       <Project>{931d5011-ae62-420d-8503-f5441136876a}</Project>
@@ -59,6 +39,14 @@
     <ProjectReference Include="..\DemoAmeisen\DemoAmeisen.csproj">
       <Name>DemoAmeisen</Name>
       <Project>{b53ecad8-961b-4179-bb46-993da25da6df}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\FnaPlugin\FnaPlugin.csproj">
+      <Name>FnaPlugin</Name>
+      <Project>{b82cb28b-7468-47da-939d-e21834c1aee0}</Project>
       <Private>True</Private>
       <DoNotHarvest>True</DoNotHarvest>
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
@@ -104,9 +92,9 @@
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
       <RefTargetDir>INSTALLFOLDER</RefTargetDir>
     </ProjectReference>
-    <ProjectReference Include="..\XnaPlugin\XnaPlugin\XnaPlugin.csproj">
-      <Name>XnaPlugin</Name>
-      <Project>{4fdd2b0d-c481-401e-a794-2111bf15f39e}</Project>
+    <ProjectReference Include="..\VideoPlugin\VideoPlugin.csproj">
+      <Name>VideoPlugin</Name>
+      <Project>{c2758f41-87ec-4355-ac1a-eb8704d5d799}</Project>
       <Private>True</Private>
       <DoNotHarvest>True</DoNotHarvest>
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>

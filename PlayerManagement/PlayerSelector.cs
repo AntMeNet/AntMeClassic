@@ -1,12 +1,7 @@
 ﻿using AntMe.Simulation;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace AntMe.PlayerManagement
@@ -103,7 +98,7 @@ namespace AntMe.PlayerManagement
             {
                 if (form.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
                 {
-                    if (MessageBox.Show(this, "Es wurde eine neue Ameisenvorlage erstellt. Um deine neue Ameise aber im Spiel zu sehen, muss du sie zuvor mit einer Entwicklungsumgebung geöffnet und kompiliert werden. Soll die Entwicklungsumgebung gleich geöffnet werden?", "Ameise bearbeiten", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
+                    if (MessageBox.Show(this, Resource.PlayerSelectorOpenIde, Resource.PlayerSelectorOpenIdeTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
                     {
                         // Start Visual Studio
                         Process.Start(form.GeneratedSolutionFile);

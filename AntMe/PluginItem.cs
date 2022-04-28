@@ -1,12 +1,13 @@
-﻿using System;
+﻿using AntMe.SharedComponents.Plugin;
+using System;
 
-using AntMe.SharedComponents.Plugin;
-
-namespace AntMe.Gui {
+namespace AntMe.Gui
+{
     /// <summary>
     /// class, that represents a plugin
     /// </summary>
-    internal sealed class PluginItem {
+    internal sealed class PluginItem
+    {
         private readonly IConsumerPlugin consumer;
         private readonly IProducerPlugin producer;
         private readonly string name;
@@ -24,10 +25,12 @@ namespace AntMe.Gui {
         /// <param name="writeCustomStates">List of custom states for write-access</param>
         /// <param name="readCustomStates">List of custom states for read-access</param>
         public PluginItem(IProducerPlugin plugin, CustomStateItem[] writeCustomStates, CustomStateItem[] readCustomStates)
-            : this(writeCustomStates, readCustomStates, plugin) {
+            : this(writeCustomStates, readCustomStates, plugin)
+        {
 
             // Check for null
-            if (plugin == null) {
+            if (plugin == null)
+            {
                 throw new ArgumentNullException("plugin", Resource.PluginItemConstructorPluginIsNull);
             }
 
@@ -44,7 +47,8 @@ namespace AntMe.Gui {
             : this(writeCustomStates, readCustomStates, plugin)
         {
             // Prüfen, ob Plugin angegeben wurde
-            if (plugin == null) {
+            if (plugin == null)
+            {
                 throw new ArgumentNullException("plugin", Resource.PluginItemConstructorPluginIsNull);
             }
 
@@ -59,14 +63,16 @@ namespace AntMe.Gui {
         /// <param name="readCustomStates">List of custom states for read-access</param>
         private PluginItem(CustomStateItem[] writeCustomStates, CustomStateItem[] readCustomStates, IPlugin plugin)
         {
-            
+
             // Check for null
-            if (plugin == null) {
+            if (plugin == null)
+            {
                 throw new ArgumentNullException("plugin", Resource.PluginItemConstructorPluginIsNull);
             }
 
             // Check for valid name
-            if (plugin.Name == string.Empty) {
+            if (plugin.Name == string.Empty)
+            {
                 throw new ArgumentException(Resource.PluginItemConstructorPluginHasNoName, "plugin");
             }
 
@@ -77,11 +83,13 @@ namespace AntMe.Gui {
 
             // Custom states
             this.writeCustomStates = writeCustomStates;
-            if (this.writeCustomStates == null) {
-                this.writeCustomStates = new CustomStateItem[0]; 
+            if (this.writeCustomStates == null)
+            {
+                this.writeCustomStates = new CustomStateItem[0];
             }
             this.readCustomStates = readCustomStates;
-            if (this.readCustomStates == null) {
+            if (this.readCustomStates == null)
+            {
                 this.readCustomStates = new CustomStateItem[0];
             }
         }
@@ -89,49 +97,56 @@ namespace AntMe.Gui {
         /// <summary>
         /// Gets the consumer-plugin or null, if its a producer-plugin.
         /// </summary>
-        public IConsumerPlugin Consumer {
+        public IConsumerPlugin Consumer
+        {
             get { return consumer; }
         }
 
         /// <summary>
         /// Gets the producer-plugin or null, if its a consumer-plugin.
         /// </summary>
-        public IProducerPlugin Producer {
+        public IProducerPlugin Producer
+        {
             get { return producer; }
         }
 
         /// <summary>
         /// True, if its a consumer-plugin, false in case of a producer-plugin.
         /// </summary>
-        public bool IsConsumer {
+        public bool IsConsumer
+        {
             get { return consumer != null; }
         }
 
         /// <summary>
         /// Gets the name of the Plugin.
         /// </summary>
-        public string Name {
+        public string Name
+        {
             get { return name; }
         }
 
         /// <summary>
         /// Gets a short description of this Plugin.
         /// </summary>
-        public string Description {
+        public string Description
+        {
             get { return description; }
         }
 
         /// <summary>
         /// Gets the plugin-version.
         /// </summary>
-        public Version Version {
+        public Version Version
+        {
             get { return version; }
         }
 
         /// <summary>
         /// Gets the plugin-<see cref="guid"/>.
         /// </summary>
-        public Guid Guid {
+        public Guid Guid
+        {
             get { return guid; }
         }
 
@@ -140,22 +155,26 @@ namespace AntMe.Gui {
         /// </summary>
         /// <param name="obj">other instance of <see cref="PluginItem"/></param>
         /// <returns>true, if equal</returns>
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj)
+        {
 
             // Check for right datatype
-            if (!(obj is PluginItem)) {
+            if (!(obj is PluginItem))
+            {
                 return false;
             }
 
-            PluginItem other = (PluginItem) obj;
+            PluginItem other = (PluginItem)obj;
 
             // compare guid
-            if (other.guid != guid) {
+            if (other.guid != guid)
+            {
                 return false;
             }
 
             // compare version
-            if (other.version != version) {
+            if (other.version != version)
+            {
                 return false;
             }
 
@@ -167,7 +186,8 @@ namespace AntMe.Gui {
         /// Generates a hash for this instance.
         /// </summary>
         /// <returns></returns>
-        public override int GetHashCode() {
+        public override int GetHashCode()
+        {
             return guid.GetHashCode();
         }
 
@@ -175,7 +195,8 @@ namespace AntMe.Gui {
         /// Gives the name of this plugin.
         /// </summary>
         /// <returns>Name of plugin</returns>
-        public override string ToString() {
+        public override string ToString()
+        {
             return Name;
         }
     }

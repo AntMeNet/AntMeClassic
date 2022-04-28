@@ -3,11 +3,9 @@ using AntMe.SharedComponents.Plugin;
 using AntMe.SharedComponents.States;
 using AntMe.Simulation;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
@@ -147,10 +145,10 @@ namespace AntMe.Plugin.Simulation
             {
                 // Create new simulator
                 SimulatorConfiguration config = setup.SimulatorConfiguration.Clone() as SimulatorConfiguration;
-                FreeGameSlot[] slots = new[] { 
-                    setup.Slot1, setup.Slot2, 
-                    setup.Slot3, setup.Slot4, 
-                    setup.Slot5, setup.Slot6, 
+                FreeGameSlot[] slots = new[] {
+                    setup.Slot1, setup.Slot2,
+                    setup.Slot3, setup.Slot4,
+                    setup.Slot5, setup.Slot6,
                     setup.Slot7, setup.Slot8 };
 
                 for (int i = 0; i < 8; i++)

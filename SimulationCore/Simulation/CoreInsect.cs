@@ -287,7 +287,7 @@ namespace AntMe.Simulation
                     }
                 }
 
-                    // Am linken oder rechten Rand platzieren.
+                // Am linken oder rechten Rand platzieren.
                 else
                 {
                     if (RandomBase.Next(2) == 0)
@@ -303,7 +303,7 @@ namespace AntMe.Simulation
                 }
             }
 
-                // In einem zufälligen Bau platzieren.
+            // In einem zufälligen Bau platzieren.
             else
             {
                 int i = RandomBase.Next(colony.AntHills.Count);
@@ -635,14 +635,14 @@ namespace AntMe.Simulation
                     restWinkel = 0;
                 }
 
-                    // Insekt dreht sich nach rechts.
+                // Insekt dreht sich nach rechts.
                 else if (restWinkel >= colony.Drehgeschwindigkeit[CasteIndexBase])
                 {
                     koordinate.Richtung += colony.Drehgeschwindigkeit[CasteIndexBase];
                     RestWinkelBase -= colony.Drehgeschwindigkeit[CasteIndexBase];
                 }
 
-                    // Insekt dreht sich nach links.
+                // Insekt dreht sich nach links.
                 else if (restWinkel <= -colony.Drehgeschwindigkeit[CasteIndexBase])
                 {
                     koordinate.Richtung -= colony.Drehgeschwindigkeit[CasteIndexBase];
@@ -650,7 +650,7 @@ namespace AntMe.Simulation
                 }
             }
 
-                // Insekt geht.
+            // Insekt geht.
             else if (restStreckeI > 0)
             {
                 if (GetragenesObstBase == null)
@@ -664,7 +664,7 @@ namespace AntMe.Simulation
                 }
             }
 
-                // Insekt geht auf Ziel zu.
+            // Insekt geht auf Ziel zu.
             else if (ziel != null)
             {
                 int entfernungI;
@@ -689,7 +689,7 @@ namespace AntMe.Simulation
                         restStreckeI = entfernungI;
                     }
 
-                        // Ansonsten Richtung verfälschen.
+                    // Ansonsten Richtung verfälschen.
                     else
                     {
                         richtung += RandomBase.Next(-18, 18);
@@ -714,7 +714,7 @@ namespace AntMe.Simulation
                 }
             }
 
-                // Koordinaten rechts begrenzen.
+            // Koordinaten rechts begrenzen.
             else if (koordinate.X > colony.BreiteI)
             {
                 koordinate.X = colony.BreiteI2 - koordinate.X;
@@ -738,7 +738,7 @@ namespace AntMe.Simulation
                 }
             }
 
-                // Koordinaten unten begrenzen.
+            // Koordinaten unten begrenzen.
             else if (koordinate.Y > colony.HöheI)
             {
                 koordinate.Y = colony.HöheI2 - koordinate.Y;

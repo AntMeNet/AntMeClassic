@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-
-using AntMe.SharedComponents.States;
 
 namespace AntMe.Simulation
 {

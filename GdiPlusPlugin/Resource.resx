@@ -112,19 +112,43 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AntName" xml:space="preserve">
-    <value>Ameise {0}</value>
+    <value>Ant {0}</value>
     <comment>Name of an ant (AntInfoBox.cs)
 0: Female name</comment>
   </data>
   <data name="BugName" xml:space="preserve">
-    <value>Wanze {0}</value>
+    <value>Bug {0}</value>
     <comment>Name of a bug (BugInfoBox.cs)
 0: Male name</comment>
+  </data>
+  <data name="CollectedFood" xml:space="preserve">
+    <value>Collected Food</value>
+    <comment>Collected food in point view</comment>
+  </data>
+  <data name="ColonyName" xml:space="preserve">
+    <value>Colony</value>
+    <comment>Colony name in point view</comment>
+  </data>
+  <data name="DeadAnts" xml:space="preserve">
+    <value>Dead Ants</value>
+    <comment>Dead ants in point view</comment>
+  </data>
+  <data name="KilledBugs" xml:space="preserve">
+    <value>Killed Bugs</value>
+    <comment>Killed ants in point view</comment>
+  </data>
+  <data name="KilledEnemies" xml:space="preserve">
+    <value>Killed Enemies</value>
+    <comment>Killed enemies in point view</comment>
+  </data>
+  <data name="Points" xml:space="preserve">
+    <value>Points</value>
+    <comment>Total points in point view</comment>
   </data>
 </root>

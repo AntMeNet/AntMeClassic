@@ -1,11 +1,13 @@
 ﻿using System;
 
-namespace AntMe.Deutsch {
+namespace AntMe.Deutsch
+{
     /// <summary>
     /// Attribut für die Beschreibung von verschiedenen Ameisenkasten
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-    public sealed class KasteAttribute : Attribute {
+    public sealed class KasteAttribute : Attribute
+    {
         /// <summary>
         /// Legt die Angriffsstärke der Ameise fest
         /// </summary>

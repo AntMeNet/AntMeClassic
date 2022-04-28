@@ -1,8 +1,10 @@
-﻿namespace AntMe.SharedComponents.AntVideo {
+﻿namespace AntMe.SharedComponents.AntVideo
+{
     /// <summary>
     /// Interface for all updateable item-states
     /// </summary>
-    internal interface IUpdateable<T, V> {
+    internal interface IUpdateable<T, V>
+    {
         /// <summary>
         /// Calculates the next state based on the last update-information
         /// </summary>

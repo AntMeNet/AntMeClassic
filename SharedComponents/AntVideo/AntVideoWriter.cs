@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using System.IO;
-
-using AntMe.SharedComponents.AntVideo.Block;
+﻿using AntMe.SharedComponents.AntVideo.Block;
 using AntMe.SharedComponents.States;
-using System.IO.Compression;
 using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace AntMe.SharedComponents.AntVideo
 {
