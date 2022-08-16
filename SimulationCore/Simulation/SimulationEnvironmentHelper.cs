@@ -422,6 +422,8 @@ namespace AntMe.Simulation
                             dx += Cos[insect.aktuelleGeschwindigkeitI, insect.RichtungBase];
                             dy += Sin[insect.aktuelleGeschwindigkeitI, insect.RichtungBase];
                             last += insect.AktuelleLastBase;
+                            insect.RestStreckeI -= insect.aktuelleGeschwindigkeitI;
+                            insect.ZurückgelegteStreckeI += insect.aktuelleGeschwindigkeitI;
                         }
                     });
 
