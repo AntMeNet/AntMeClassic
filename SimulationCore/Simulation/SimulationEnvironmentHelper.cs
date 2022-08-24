@@ -430,8 +430,15 @@ namespace AntMe.Simulation
                     dy = dy * last / fruit.Menge / fruit.TragendeInsekten.Count;
 
                     fruit.CoordinateBase = new CoreCoordinate(fruit.CoordinateBase, dx, dy);
+
+                    var strecke = (int)Math.Round(Math.Sqrt(Math.Pow(dx, 2) + Math.Pow(dy, 2)));
                     fruit.TragendeInsekten.ForEach(
-                      delegate (CoreInsect insect) { insect.CoordinateBase = new CoreCoordinate(insect.CoordinateBase, dx, dy); });
+                      delegate (CoreInsect insect) 
+                      { 
+                          insect.CoordinateBase = new CoreCoordinate(insect.CoordinateBase, dx, dy);
+                          insect.RestStreckeI -= strecke;
+                          insect.ZurückgelegteStreckeI += strecke;
+                      });
                 }
             });
             //foreach(CoreFruit obst in Playground.Fruits) {
