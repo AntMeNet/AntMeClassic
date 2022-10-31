@@ -178,6 +178,11 @@ namespace AntMe.Plugin.Fna
         }
 
         /// <summary>
+        /// Stores the round id of the latest render cycle
+        /// </summary>
+        private int? latestRenderedRound;
+
+        /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
@@ -189,6 +194,14 @@ namespace AntMe.Plugin.Fna
                 playgroundWidth = CurrentState.PlaygroundWidth / 2;
                 playgroundHeight = CurrentState.PlaygroundHeight / 2;
                 camera.Resize(CurrentState.PlaygroundWidth, CurrentState.PlaygroundHeight);
+
+                // Detect new round to reset debug messages
+                if (!latestRenderedRound.HasValue || latestRenderedRound > CurrentState.CurrentRound)
+                {
+                    debugMessages.Clear();
+                }
+
+                latestRenderedRound = CurrentState.CurrentRound;
             }
 
             var ks = Keyboard.GetState();
