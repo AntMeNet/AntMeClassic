@@ -76,7 +76,7 @@
         /// </summary>
         public int RestWinkel
         {
-            get { return ((Simulation.CoreInsect)element).angleToGo; }
+            get { return ((Simulation.CoreInsect)element).ResidualAngle; }
         }
 
         /// <summary>

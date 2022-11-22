@@ -78,7 +78,7 @@ namespace AntMe.English
         /// </summary>
         public int DegreesToTarget
         {
-            get { return ((CoreInsect)Baseitem).angleToGo; }
+            get { return ((CoreInsect)Baseitem).ResidualAngle; }
         }
 
         /// <summary>

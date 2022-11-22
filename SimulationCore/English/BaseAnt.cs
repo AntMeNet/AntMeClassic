@@ -82,9 +82,9 @@ namespace AntMe.English
         /// <param name="sugar">spotted sugar</param>
         public virtual void Spots(Sugar sugar) { }
 
-        internal override void SpotsEnemyBase(CoreAnt ameise)
+        internal override void SpotsEnemyBase(CoreAnt ant)
         {
-            SpotsEnemy(new Ant(ameise));
+            SpotsEnemy(new Ant(ant));
         }
 
         /// <summary>
@@ -96,9 +96,9 @@ namespace AntMe.English
         /// <param name="ant">spotted ant</param>
         public virtual void SpotsEnemy(Ant ant) { }
 
-        internal override void SpotsEnemyBase(CoreBug wanze)
+        internal override void SpotsEnemyBase(CoreBug bug)
         {
-            SpotsEnemy(new Bug(wanze));
+            SpotsEnemy(new Bug(bug));
         }
 
         /// <summary>
@@ -110,9 +110,9 @@ namespace AntMe.English
         /// <param name="bug">spotted bug</param>
         public virtual void SpotsEnemy(Bug bug) { }
 
-        internal override void SpotsFriendBase(CoreAnt ameise)
+        internal override void SpotsFriendBase(CoreAnt ant)
         {
-            SpotsFriend(new Ant(ameise));
+            SpotsFriend(new Ant(ant));
         }
 
         /// <summary>
@@ -124,9 +124,9 @@ namespace AntMe.English
         /// <param name="ant">spotted ant</param>
         public virtual void SpotsFriend(Ant ant) { }
 
-        internal override void SpotsConfederateBase(CoreAnt ameise)
+        internal override void SpotsTeamMemberBase(CoreAnt ant)
         {
-            SpotsTeammate(new Ant(ameise));
+            SpotsTeammate(new Ant(ant));
         }
 
         /// <summary>
@@ -163,9 +163,9 @@ namespace AntMe.English
         /// </summary>
         public virtual void Waiting() { }
 
-        internal override void IsUnderAttackBase(CoreAnt ameise)
+        internal override void IsUnderAttackBase(CoreAnt ant)
         {
-            UnderAttack(new Ant(ameise));
+            UnderAttack(new Ant(ant));
         }
 
         /// <summary>
@@ -176,9 +176,9 @@ namespace AntMe.English
         /// <param name="ant">attacking ant</param>
         public virtual void UnderAttack(Ant ant) { }
 
-        internal override void IsUnderAttackBase(CoreBug wanze)
+        internal override void UnderAttackBase(CoreBug bug)
         {
-            UnderAttack(new Bug(wanze));
+            UnderAttack(new Bug(bug));
         }
 
         /// <summary>
@@ -200,9 +200,9 @@ namespace AntMe.English
         /// </summary>
         public virtual void GettingTired() { }
 
-        internal override void ArrivedAtTargetBase(CoreFruit obst)
+        internal override void ArrivedAtTargetBase(CoreFruit fruit)
         {
-            DestinationReached(new Fruit(obst));
+            DestinationReached(new Fruit(fruit));
         }
 
         /// <summary>
@@ -214,9 +214,9 @@ namespace AntMe.English
         /// <param name="fruit">reached fruit</param>
         public virtual void DestinationReached(Fruit fruit) { }
 
-        internal override void ArrivedAtTargetBase(CoreSugar zucker)
+        internal override void ArrivedAtTargetBase(CoreSugar sugar)
         {
-            DestinationReached(new Sugar(zucker));
+            DestinationReached(new Sugar(sugar));
         }
 
         /// <summary>
@@ -251,7 +251,7 @@ namespace AntMe.English
         /// <param name="degrees">degrees</param>
         public void TurnByDegrees(int degrees)
         {
-            TurnByAngleBase(degrees);
+            TurnByDegreesBase(degrees);
         }
 
         /// <summary>
@@ -269,7 +269,7 @@ namespace AntMe.English
         /// <see href="http://wiki.antme.net/en/API1:TurnToDestination">Read more</see>
         /// </summary>
         /// <param name="destination">item</param>
-        public void TurnToDetination(Item destination)
+        public void TurnToDestination(Item destination)
         {
             TurnToTargetBase(destination.Baseitem);
         }
@@ -292,7 +292,7 @@ namespace AntMe.English
         /// </summary>
         public void GoForward()
         {
-            GoStraightAheadBase();
+            GoForwardBase();
         }
 
         /// <summary>
@@ -304,7 +304,7 @@ namespace AntMe.English
         /// <param name="steps">steps</param>
         public void GoForward(int steps)
         {
-            GoStraightAheadBase(steps);
+            GoForwardBase(steps);
         }
 
         /// <summary>
@@ -429,7 +429,7 @@ namespace AntMe.English
         /// <param name="message">message</param>
         public void Think(string message)
         {
-            DenkeCore(message);
+            ThinkCore(message);
         }
 
         #endregion
@@ -699,9 +699,9 @@ namespace AntMe.English
         /// forward again. This value is reduced each round by RotationSpeed.
         /// <see href="http://wiki.antme.net/en/API1:DegreesToDestination">Read more</see>
         /// </summary>
-        public int DegreesToDestination
+        public int DegreesToTurnToDestination
         {
-            get { return angleToGo; }
+            get { return ResidualAngle; }
         }
 
         /// <summary>
@@ -729,7 +729,7 @@ namespace AntMe.English
         /// </summary>
         public int WalkedRange
         {
-            get { return WalkedRangeBase; }
+            get { return travelledDistanceBase; }
         }
 
         private RandomNumber randomNumber;

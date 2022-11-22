@@ -127,7 +127,7 @@ namespace AntMe.Deutsch
         /// <param name="ameise">Erspähte befreundete Ameise</param>
         public virtual void SiehtFreund(Ameise ameise) { }
 
-        internal override void SpotsConfederateBase(CoreAnt ameise)
+        internal override void SpotsTeamMemberBase(CoreAnt ameise)
         {
             SiehtVerbündeten(new Ameise(ameise));
         }
@@ -180,7 +180,7 @@ namespace AntMe.Deutsch
         /// <param name="ameise">Angreifende Ameise</param>
         public virtual void WirdAngegriffen(Ameise ameise) { }
 
-        internal override void IsUnderAttackBase(CoreBug wanze)
+        internal override void UnderAttackBase(CoreBug wanze)
         {
             WirdAngegriffen(new Wanze(wanze));
         }
@@ -256,7 +256,7 @@ namespace AntMe.Deutsch
         /// <param name="winkel">Winkel</param>
         public void DreheUmWinkel(int winkel)
         {
-            TurnByAngleBase(winkel);
+            TurnByDegreesBase(winkel);
         }
 
         /// <summary>
@@ -297,7 +297,7 @@ namespace AntMe.Deutsch
         /// </summary>
         public void GeheGeradeaus()
         {
-            GoStraightAheadBase();
+            GoForwardBase();
         }
 
         /// <summary>
@@ -309,7 +309,7 @@ namespace AntMe.Deutsch
         /// <param name="entfernung">Zu laufende Strecke in Ameisenschritten</param>
         public void GeheGeradeaus(int entfernung)
         {
-            GoStraightAheadBase(entfernung);
+            GoForwardBase(entfernung);
         }
 
         /// <summary>
@@ -438,7 +438,7 @@ namespace AntMe.Deutsch
         /// <param name="nachricht">Nachricht</param>
         public void Denke(string nachricht)
         {
-            DenkeCore(nachricht);
+            ThinkCore(nachricht);
         }
 
         #endregion
@@ -713,7 +713,7 @@ namespace AntMe.Deutsch
         /// </summary>
         public int RestWinkel
         {
-            get { return angleToGo; }
+            get { return ResidualAngle; }
         }
 
         /// <summary>
@@ -743,7 +743,7 @@ namespace AntMe.Deutsch
         /// </summary>
         public int ZurückgelegteStrecke
         {
-            get { return WalkedRangeBase; }
+            get { return travelledDistanceBase; }
         }
 
         private Zufall zufall;

@@ -188,7 +188,7 @@ namespace AntMe.Simulation
         /// Völker sieht.
         /// </summary>
         /// <param name="ant"></param>
-        internal virtual void SpotsConfederateBase(CoreAnt ant) { }
+        internal virtual void SpotsTeamMemberBase(CoreAnt ant) { }
 
         #endregion
 
@@ -212,8 +212,8 @@ namespace AntMe.Simulation
         /// Wird wiederholt aufgerufen, wenn die Ameise von einer Wanze angegriffen
         /// wird.
         /// </summary>
-        /// <param name="wanze">Die angreifende Wanze.</param>
-        internal virtual void IsUnderAttackBase(CoreBug wanze) { }
+        /// <param name="bug">Die angreifende Wanze.</param>
+        internal virtual void UnderAttackBase(CoreBug bug) { }
 
         /// <summary>
         /// Wird wiederholt aufgerufen in der die Ameise von einer Ameise eines

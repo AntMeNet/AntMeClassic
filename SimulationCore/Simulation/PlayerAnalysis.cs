@@ -444,7 +444,7 @@ namespace AntMe.Simulation
                     }
                 }
 
-                #region Erkennung älterer KI-Versionen
+                #region Erkennung aelterer KI-Versionen
 
                 // Ältere Versionen
                 else if (exportedTypeDefinition.BaseType.Name == "AntMe.Ameise")

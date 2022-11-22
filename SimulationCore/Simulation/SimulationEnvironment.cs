@@ -38,7 +38,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Weitergabe des Verantwortungswechsels
+        /// Change responsibility player call area
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -48,9 +48,9 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Initialisiert die Simulation um mit Runde 1 zu beginnen
+        /// simulation initialisation and preparation for round one
         /// </summary>
-        /// <param name="configuration">Konfiguration der Simulation</param>
+        /// <param name="configuration">Configuration of simulation</param>
         /// <throws><see cref="ArgumentException"/></throws>
         /// <throws><see cref="ArgumentNullException"/></throws>
         /// <throws><see cref="PathTooLongException"/></throws>
@@ -100,7 +100,7 @@ namespace AntMe.Simulation
             antLimit = (int)(SimulationSettings.Custom.AntSimultaneousCount *
                               (1 + (SimulationSettings.Custom.AntCountPlayerMultiplier * playerCount)));
 
-            // Spielfeld erzeugen
+            // create playground
             float area = SimulationSettings.Custom.PlayGroundBaseSize;
             area *= 1 + (playerCount * SimulationSettings.Custom.PlayGroundSizePlayerMultiplier);
             int playgroundWidth = (int)Math.Round(Math.Sqrt(area * 4 / 3));
@@ -114,7 +114,7 @@ namespace AntMe.Simulation
             bugLimit = (int)(SimulationSettings.Custom.BugSimultaneousCount *
                               (1 + (SimulationSettings.Custom.BugCountPlayerMultiplier * playerCount)));
 
-            // Völker erzeugen
+            // create teams
             Teams = new CoreTeam[configuration.Teams.Count];
             for (int i = 0; i < configuration.Teams.Count; i++)
             {
@@ -122,7 +122,7 @@ namespace AntMe.Simulation
                 Teams[i] = new CoreTeam(i, team.Guid, team.Name);
                 Teams[i].Colonies = new CoreColony[team.Player.Count];
 
-                // Völker erstellen
+                // create colonies
                 for (int j = 0; j < team.Player.Count; j++)
                 {
                     PlayerInfo player = team.Player[j];
@@ -140,9 +140,9 @@ namespace AntMe.Simulation
         #region Public Methods
 
         /// <summary>
-        /// Berechnet einen neuen Spielschritt
+        /// calculations for new step in game
         /// </summary>
-        /// <returns>Zustandskopie des Simulationsstandes nachdem der Schritt ausgeführt wurde</returns>
+        /// <returns>state of simulation after the step</returns>
         /// <throws>RuleViolationException</throws>
         /// <throws>Exception</throws>
         public void Step(SimulationState simulationState)
@@ -168,9 +168,9 @@ namespace AntMe.Simulation
                 }
             }
 
-            // Lasse die Wanzen von der Spiel Befehle entgegen nehmen.
-            //foreach (CoreBug wanze in Bugs.Insects) {
-            //    wanze.NimmBefehleEntgegen = true;
+            // let bugs beeing controled by the game.
+            //foreach (CoreBug bug in Bugs.Insects) {
+            //    bug.NimmBefehleEntgegen = true;
             //}
 
             // Schleife über alle Wanzen.
@@ -230,7 +230,7 @@ namespace AntMe.Simulation
                 if (bug.DistanceToDestinationBase == 0)
                 {
                     bug.TurnIntoDirectionBase(random.Next(360));
-                    bug.GoStraightAheadBase(random.Next(160, 320));
+                    bug.GoForwardBase(random.Next(160, 320));
                 }
                 bug.AwaitingCommands = false;
             }
@@ -313,7 +313,7 @@ namespace AntMe.Simulation
                         #region Range
 
                         // Ameise hat ihre Reichweite überschritten.
-                        if (ant.walkedDistance > colony.RangeI[ant.CasteIndexBase])
+                        if (ant.travelledDistance > colony.RangeI[ant.CasteIndexBase])
                         {
                             ant.currentEnergyBase = 0;
                             colony.StarvedInsects.Add(ant);
@@ -321,7 +321,7 @@ namespace AntMe.Simulation
                         }
 
                         // Ameise hat ein Drittel ihrer Reichweite zurückgelegt.
-                        else if (ant.walkedDistance > colony.RangeI[ant.CasteIndexBase] / 3)
+                        else if (ant.travelledDistance > colony.RangeI[ant.CasteIndexBase] / 3)
                         {
                             if (ant.IsTiredBase == false)
                             {

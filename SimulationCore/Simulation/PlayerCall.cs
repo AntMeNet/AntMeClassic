@@ -197,7 +197,7 @@ namespace AntMe.Simulation
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: KI-Fehler in der RiechtFreund(Markierung)-Methode", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in SpotsFriendBase(marker) method", ant.colony.Player.Guid), ex);
             }
 
             ant.AwaitingCommands = false;
@@ -222,7 +222,7 @@ namespace AntMe.Simulation
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: KI-Fehler in der SiehtFreund(Ameise)-Methode", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in SpotsFriend(marker) method", ant.colony.Player.Guid), ex);
             }
 
             ant.AwaitingCommands = false;
@@ -243,11 +243,11 @@ namespace AntMe.Simulation
             ant.AwaitingCommands = true;
             try
             {
-                ant.SpotsConfederateBase(friend);
+                ant.SpotsTeamMemberBase(friend);
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: KI-Fehler in der SiehtVerbündeten(Ameise)-Methode", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in SpotsTeamMember(ant, ant) method", ant.colony.Player.Guid), ex);
             }
 
             ant.AwaitingCommands = false;
@@ -276,7 +276,7 @@ namespace AntMe.Simulation
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: KI-Fehler in der SiehtFeind(Wanze)-Methode", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in SpotsEnemy(ant, bug) method", ant.colony.Player.Guid), ex);
             }
 
             ant.AwaitingCommands = false;
@@ -301,7 +301,7 @@ namespace AntMe.Simulation
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: KI-Fehler in der SiehtFeind(Ameise)-Methode", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in SpotsEnemy(ant, ant) method", ant.colony.Player.Guid), ex);
             }
 
             ant.AwaitingCommands = false;
@@ -327,7 +327,7 @@ namespace AntMe.Simulation
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: KI-Fehler in der WirdAngegriffen(Ameise)-Methode", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in UnderAttack(ant, ant) method", ant.colony.Player.Guid), ex);
             }
 
             ant.AwaitingCommands = false;
@@ -350,11 +350,11 @@ namespace AntMe.Simulation
             ant.AwaitingCommands = true;
             try
             {
-                ant.IsUnderAttackBase(bug);
+                ant.UnderAttackBase(bug);
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: KI-Fehler in der WirdAngegriffen(Wanze)-Methode", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in UnderAttack(ant, bug) method", ant.colony.Player.Guid), ex);
             }
 
             ant.AwaitingCommands = false;

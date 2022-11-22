@@ -5,19 +5,19 @@ using System.Collections.Generic;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Eine Wanze
+    /// Bug
     /// </summary>
     /// <author>Wolfgang Gallo (wolfgang@antme.net)</author>
     internal sealed class CoreBug : CoreInsect
     {
         /// <summary>
-        /// Gibt an, ob die Wanze sich in der aktuellen Runde noch bewegen kann.
+        /// indicates wheter bug can do movement in this simulation round
         /// </summary>
-        internal bool KannSichNochBewegen = true;
+        internal bool CanMoveInThisRound = true;
 
-        internal override void Init(CoreColony colony, Random random, Dictionary<string, int> vorhandeneInsekten)
+        internal override void Init(CoreColony colony, Random random, Dictionary<string, int> existingInsects)
         {
-            base.Init(colony, random, vorhandeneInsekten);
+            base.Init(colony, random, existingInsects);
             coordinate.Radius = 4;
             currentEnergyBase = colony.EnergyI[0];
             currentSpeedI = colony.SpeedI[0];
@@ -25,7 +25,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Erzeugt ein BugState-Objekt mit dem aktuellen Daten der Wanzen.
+        /// Bug state object with all current data of bug is created.
         /// </summary>
         /// <returns></returns>
         internal BugState GenerateInformation()

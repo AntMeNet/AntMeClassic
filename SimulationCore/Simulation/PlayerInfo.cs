@@ -188,7 +188,7 @@ namespace AntMe.Simulation
             bool requestReferences,
             string requestInformation)
         {
-            // Ameisenkasten überprüfen
+            // check caste
             if (castes == null)
             {
                 this.castes = new List<CasteInfo>();

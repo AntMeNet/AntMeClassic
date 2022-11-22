@@ -198,8 +198,8 @@ namespace AntMe.Simulation
                                 {
                                     insect.CarryingFruitBase = null;
                                     insect.CurrentBurdenBase = 0;
-                                    insect.RestStreckeI = 0;
-                                    insect.angleToGo = 0;
+                                    insect.DistanceToDestination = 0;
+                                    insect.ResidualAngle = 0;
                                     insect.GoToAnthillBase();
                                 }
                             }
@@ -233,7 +233,7 @@ namespace AntMe.Simulation
             {
                 if (ant.CarryingFruitBase == null)
                 {
-                    ant.walkedDistance = 0;
+                    ant.travelledDistance = 0;
                     ant.TargetBase = null;
                     ant.SmelledMarker.Clear();
                     ant.colony.Statistic.CollectedFood += ant.CurrentBurdenBase;
@@ -417,7 +417,7 @@ namespace AntMe.Simulation
 
                     fruit.InsectsCarrying.ForEach(delegate (CoreInsect insect)
                     {
-                        if (insect.TargetBase != fruit && insect.angleToGo == 0)
+                        if (insect.TargetBase != fruit && insect.ResidualAngle == 0)
                         {
                             dx += Cos[insect.currentSpeedI, insect.DirectionBase];
                             dy += Sin[insect.currentSpeedI, insect.DirectionBase];
