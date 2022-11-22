@@ -59,7 +59,7 @@ namespace AntMe.English
         /// <returns>direction</returns>
         public static int GetDegreesBetween(Item a, Item b)
         {
-            return CoreCoordinate.BestimmeRichtung(a.Baseitem, b.Baseitem);
+            return CoreCoordinate.DetermineDirection(a.Baseitem, b.Baseitem);
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace AntMe.English
         /// <returns>direction</returns>
         public static int GetDegreesBetween(CoreAnt a, Item b)
         {
-            return CoreCoordinate.BestimmeRichtung(a, b.Baseitem);
+            return CoreCoordinate.DetermineDirection(a, b.Baseitem);
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace AntMe.English
         /// <returns>direction</returns>
         public static int GetDegreesBetween(Item a, CoreAnt b)
         {
-            return CoreCoordinate.BestimmeRichtung(a.Baseitem, b);
+            return CoreCoordinate.DetermineDirection(a.Baseitem, b);
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace AntMe.English
         /// <returns>direction</returns>
         public static int GetDegreesBetween(CoreAnt a, CoreAnt b)
         {
-            return CoreCoordinate.BestimmeRichtung(a, b);
+            return CoreCoordinate.DetermineDirection(a, b);
         }
     }
 }

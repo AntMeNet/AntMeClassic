@@ -35,13 +35,13 @@ namespace AntMe.Simulation
         {
             Id = neueId++;
             koordinate = new CoreCoordinate(x, y);
-            Menge = menge;
+            Amount = menge;
         }
 
         /// <summary>
         /// Die verbleibende Menge an Nahrungspunkten.
         /// </summary>
-        public virtual int Menge
+        public virtual int Amount
         {
             get { return menge; }
             internal set

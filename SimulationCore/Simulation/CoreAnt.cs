@@ -16,14 +16,14 @@ namespace AntMe.Simulation
         {
             base.Init(colony, random, availableInsects);
 
-            koordinate.Radius = 2;
+            coordinate.Radius = 2;
 
             // Bestimme die Kaste der neuen Ameise.
             int casteIndex = -1;
             string casteName = string.Empty;
             if (availableInsects != null)
             {
-                casteName = BestimmeKasteBase(availableInsects);
+                casteName = DetermineCasteBase(availableInsects);
                 for (int i = 0; i < colony.Player.Castes.Count; i++)
                 {
                     if (colony.Player.Castes[i].Name == casteName)
@@ -42,9 +42,9 @@ namespace AntMe.Simulation
 
             // Setze die von der Kaste abhängigen Werte.
             CasteIndexBase = casteIndex;
-            AktuelleEnergieBase = colony.Energie[casteIndex];
-            aktuelleGeschwindigkeitI = colony.GeschwindigkeitI[casteIndex];
-            AngriffBase = colony.Angriff[casteIndex];
+            currentEnergyBase = colony.EnergyI[casteIndex];
+            currentSpeedI = colony.SpeedI[casteIndex];
+            AttackStrengthBase = colony.AttackI[casteIndex];
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace AntMe.Simulation
         /// </summary>
         /// <param name="anzahl">Die Anzahl der von jeder Klaste bereits vorhandenen Ameisen.</param>
         /// <returns>Der Name der Kaste der Ameise.</returns>
-        internal virtual string BestimmeKasteBase(Dictionary<string, int> anzahl)
+        internal virtual string DetermineCasteBase(Dictionary<string, int> anzahl)
         {
             return "";
         }
@@ -60,167 +60,167 @@ namespace AntMe.Simulation
         /// <summary>
         /// Erzeugt ein AmeiseZustand-Objekt mit den aktuellen Daten der Ameise.
         /// </summary>
-        internal AntState ErzeugeInfo()
+        internal AntState GenerateInformation()
         {
-            AntState zustand = new AntState(colony.Id, id);
+            AntState antState = new AntState(colony.Id, id);
 
-            zustand.CasteId = CasteIndexBase;
-            zustand.PositionX = CoordinateBase.X / SimulationEnvironment.PLAYGROUND_UNIT;
-            zustand.PositionY = CoordinateBase.Y / SimulationEnvironment.PLAYGROUND_UNIT;
-            zustand.ViewRange = SichtweiteBase;
-            zustand.DebugMessage = debugMessage;
+            antState.CasteId = CasteIndexBase;
+            antState.PositionX = CoordinateBase.X / SimulationEnvironment.PLAYGROUND_UNIT;
+            antState.PositionY = CoordinateBase.Y / SimulationEnvironment.PLAYGROUND_UNIT;
+            antState.ViewRange = ViewRangeBase;
+            antState.DebugMessage = debugMessage;
             debugMessage = string.Empty;
-            zustand.Direction = CoordinateBase.Richtung;
-            if (ZielBase != null)
+            antState.Direction = CoordinateBase.Direction;
+            if (TargetBase != null)
             {
-                zustand.TargetPositionX = ZielBase.CoordinateBase.X / SimulationEnvironment.PLAYGROUND_UNIT;
-                zustand.TargetPositionY = ZielBase.CoordinateBase.Y / SimulationEnvironment.PLAYGROUND_UNIT;
+                antState.TargetPositionX = TargetBase.CoordinateBase.X / SimulationEnvironment.PLAYGROUND_UNIT;
+                antState.TargetPositionY = TargetBase.CoordinateBase.Y / SimulationEnvironment.PLAYGROUND_UNIT;
             }
             else
             {
-                zustand.TargetPositionX = 0;
-                zustand.TargetPositionY = 0;
+                antState.TargetPositionX = 0;
+                antState.TargetPositionY = 0;
             }
-            zustand.Load = AktuelleLastBase;
-            if (AktuelleLastBase > 0)
-                if (GetragenesObstBase != null)
-                    zustand.LoadType = LoadType.Fruit;
+            antState.Load = CurrentBurdenBase;
+            if (CurrentBurdenBase > 0)
+                if (CarryingFruitBase != null)
+                    antState.LoadType = LoadType.Fruit;
                 else
-                    zustand.LoadType = LoadType.Sugar;
-            zustand.Vitality = AktuelleEnergieBase;
+                    antState.LoadType = LoadType.Sugar;
+            antState.Vitality = currentEnergyBase;
 
-            if (ZielBase is CoreAnthill)
-                zustand.TargetType = TargetType.Anthill;
-            else if (ZielBase is CoreSugar)
-                zustand.TargetType = TargetType.Sugar;
-            else if (ZielBase is CoreFruit)
-                zustand.TargetType = TargetType.Fruit;
-            else if (ZielBase is CoreBug)
-                zustand.TargetType = TargetType.Bug;
-            else if (ZielBase is CoreMarker)
-                zustand.TargetType = TargetType.Marker;
-            else if (ZielBase is CoreAnt)
-                zustand.TargetType = TargetType.Ant;
+            if (TargetBase is CoreAnthill)
+                antState.TargetType = TargetType.Anthill;
+            else if (TargetBase is CoreSugar)
+                antState.TargetType = TargetType.Sugar;
+            else if (TargetBase is CoreFruit)
+                antState.TargetType = TargetType.Fruit;
+            else if (TargetBase is CoreBug)
+                antState.TargetType = TargetType.Bug;
+            else if (TargetBase is CoreMarker)
+                antState.TargetType = TargetType.Marker;
+            else if (TargetBase is CoreAnt)
+                antState.TargetType = TargetType.Ant;
             else
-                zustand.TargetType = TargetType.None;
+                antState.TargetType = TargetType.None;
 
-            return zustand;
+            return antState;
         }
 
-        #region Fortbewegung
+        #region Movement
 
-        private bool istMüde;
+        private bool isTired;
 
         /// <summary>
         /// Gibt an, ob die Ameise müde ist.
         /// </summary>
-        internal bool IstMüdeBase
+        internal bool IsTiredBase
         {
-            get { return istMüde; }
-            set { istMüde = value; }
+            get { return isTired; }
+            set { isTired = value; }
         }
 
         /// <summary>
         /// Wird wiederholt aufgerufen, wenn der die Ameise nicht weiss wo sie
         /// hingehen soll.
         /// </summary>
-        internal virtual void WartetBase() { }
+        internal virtual void WaitingBase() { }
 
         /// <summary>
         /// Wird einmal aufgerufen, wenn die Ameise ein Drittel ihrer maximalen 
         /// Reichweite überschritten hat.
         /// </summary>
-        internal virtual void WirdMüdeBase() { }
+        internal virtual void IsGettingTiredBase() { }
 
         #endregion
 
-        #region Nahrung
+        #region Food
 
         /// <summary>
         /// Wird wiederholt aufgerufen, wenn die Ameise mindestens einen
         /// Zuckerhaufen sieht.
         /// </summary>
-        /// <param name="zucker">Der nächstgelegene Zuckerhaufen.</param>
-        internal virtual void SiehtBase(CoreSugar zucker) { }
+        /// <param name="sugar">Der nächstgelegene Zuckerhaufen.</param>
+        internal virtual void SpotsBase(CoreSugar sugar) { }
 
         /// <summary>
         /// Wird wiederholt aufgerufen, wenn die Ameise mindstens ein
         /// Obststück sieht.
         /// </summary>
-        /// <param name="obst">Das nächstgelegene Obststück.</param>
-        internal virtual void SiehtBase(CoreFruit obst) { }
+        /// <param name="fruit">Das nächstgelegene Obststück.</param>
+        internal virtual void SiehtBase(CoreFruit fruit) { }
 
         /// <summary>
         /// Wird einmal aufgerufen, wenn die Ameise einen Zuckerhaufen als Ziel
         /// hat und bei diesem ankommt.
         /// </summary>
-        /// <param name="zucker">Der Zuckerhaufen.</param>
-        internal virtual void ZielErreichtBase(CoreSugar zucker) { }
+        /// <param name="sugar">Der Zuckerhaufen.</param>
+        internal virtual void ArrivedAtTargetBase(CoreSugar sugar) { }
 
         /// <summary>
         /// Wird einmal aufgerufen, wenn die Ameise ein Obststück als Ziel hat und
         /// bei diesem ankommt.
         /// </summary>
-        /// <param name="obst">Das Obstück.</param>
-        internal virtual void ZielErreichtBase(CoreFruit obst) { }
+        /// <param name="fruit">Das Obstück.</param>
+        internal virtual void ArrivedAtTargetBase(CoreFruit fruit) { }
 
         #endregion
 
-        #region Kommunikation
+        #region Communication
 
         /// <summary>
         /// Wird einmal aufgerufen, wenn die Ameise eine Markierung des selben
         /// Volkes riecht. Einmal gerochene Markierungen werden nicht erneut
         /// gerochen.
         /// </summary>
-        /// <param name="markierung">Die nächste neue Markierung.</param>
-        internal virtual void RiechtFreundBase(CoreMarker markierung) { }
+        /// <param name="marker">Die nächste neue Markierung.</param>
+        internal virtual void SpotsFriendBase(CoreMarker marker) { }
 
         /// <summary>
         /// Wird wiederholt aufgerufen, wenn die Ameise mindstens eine Ameise des
         /// selben Volkes sieht.
         /// </summary>
-        /// <param name="ameise">Die nächstgelegene befreundete Ameise.</param>
-        internal virtual void SiehtFreundBase(CoreAnt ameise) { }
+        /// <param name="ant">Die nächstgelegene befreundete Ameise.</param>
+        internal virtual void SpotsFriendBase(CoreAnt ant) { }
 
         /// <summary>
         /// Wird wiederholt aufgerufen, wenn die Ameise mindestens eine Ameise verbündeter
         /// Völker sieht.
         /// </summary>
-        /// <param name="ameise"></param>
-        internal virtual void SiehtVerbündetenBase(CoreAnt ameise) { }
+        /// <param name="ant"></param>
+        internal virtual void SpotsConfederateBase(CoreAnt ant) { }
 
         #endregion
 
-        #region Kampf
+        #region Fight
 
         /// <summary>
         /// Wird wiederholt aufgerufen, wenn die Ameise mindestens eine Wanze
         /// sieht.
         /// </summary>
-        /// <param name="wanze">Die nächstgelegene Wanze.</param>
-        internal virtual void SiehtFeindBase(CoreBug wanze) { }
+        /// <param name="bug">Die nächstgelegene Wanze.</param>
+        internal virtual void SpotsEnemyBase(CoreBug bug) { }
 
         /// <summary>
         /// Wird wiederholt aufgerufen, wenn die Ameise mindestens eine Ameise eines
         /// anderen Volkes sieht.
         /// </summary>
-        /// <param name="ameise">Die nächstgelegen feindliche Ameise.</param>
-        internal virtual void SiehtFeindBase(CoreAnt ameise) { }
+        /// <param name="ant">Die nächstgelegen feindliche Ameise.</param>
+        internal virtual void SpotsEnemyBase(CoreAnt ant) { }
 
         /// <summary>
         /// Wird wiederholt aufgerufen, wenn die Ameise von einer Wanze angegriffen
         /// wird.
         /// </summary>
         /// <param name="wanze">Die angreifende Wanze.</param>
-        internal virtual void WirdAngegriffenBase(CoreBug wanze) { }
+        internal virtual void IsUnderAttackBase(CoreBug wanze) { }
 
         /// <summary>
         /// Wird wiederholt aufgerufen in der die Ameise von einer Ameise eines
         /// anderen Volkes Ameise angegriffen wird.
         /// </summary>
-        /// <param name="ameise">Die angreifende feindliche Ameise.</param>
-        internal virtual void WirdAngegriffenBase(CoreAnt ameise) { }
+        /// <param name="ant">Die angreifende feindliche Ameise.</param>
+        internal virtual void IsUnderAttackBase(CoreAnt ant) { }
 
         #endregion
 
@@ -229,8 +229,8 @@ namespace AntMe.Simulation
         /// <summary>
         /// Wird einmal aufgerufen, wenn die Ameise gestorben ist.
         /// </summary>
-        /// <param name="todesArt">Die Todesart der Ameise</param>
-        internal virtual void IstGestorbenBase(CoreKindOfDeath todesArt) { }
+        /// <param name="kindOfDeath">Die Todesart der Ameise</param>
+        internal virtual void HasDiedBase(CoreKindOfDeath kindOfDeath) { }
 
         /// <summary>
         /// Wird unabhängig von äußeren Umständen in jeder Runde aufgerufen.

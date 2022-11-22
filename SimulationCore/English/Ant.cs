@@ -14,7 +14,7 @@ namespace AntMe.English
         /// </summary>
         public int CurrentLoad
         {
-            get { return ((CoreAnt)Baseitem).AktuelleLastBase; }
+            get { return ((CoreAnt)Baseitem).CurrentBurdenBase; }
         }
 
         /// <summary>
@@ -25,13 +25,13 @@ namespace AntMe.English
             get
             {
                 CoreAnt temp = (CoreAnt)Baseitem;
-                if (temp.GetragenesObstBase == null)
+                if (temp.CarryingFruitBase == null)
                 {
                     return null;
                 }
                 else
                 {
-                    return new Fruit(temp.GetragenesObstBase);
+                    return new Fruit(temp.CarryingFruitBase);
                 }
             }
         }
@@ -41,7 +41,7 @@ namespace AntMe.English
         /// </summary>
         public int MaximumLoad
         {
-            get { return ((CoreAnt)Baseitem).MaximaleLastBase; }
+            get { return ((CoreAnt)Baseitem).MaximumBurdenBase; }
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace AntMe.English
         /// </summary>
         public int Range
         {
-            get { return ((CoreAnt)Baseitem).ReichweiteBase; }
+            get { return ((CoreAnt)Baseitem).RangeBase; }
         }
 
         /// <summary>

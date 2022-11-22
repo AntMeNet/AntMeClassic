@@ -97,7 +97,7 @@ namespace AntMe.Simulation
                 CoreSugar zucker = Playground.SugarHills[i];
                 if (zucker != null)
                 {
-                    if (zucker.Menge == 0)
+                    if (zucker.Amount == 0)
                     {
                         //gemerkterZucker.Add(zucker);
                         //Löschen
@@ -182,28 +182,28 @@ namespace AntMe.Simulation
                     CoreAnthill bau = colony.AntHills[i];
                     if (bau != null)
                     {
-                        int entfernung = CoreCoordinate.BestimmeEntfernungI(obst.CoordinateBase, bau.CoordinateBase);
+                        int entfernung = CoreCoordinate.DetermineDistanceI(obst.CoordinateBase, bau.CoordinateBase);
                         if (entfernung <= PLAYGROUND_UNIT)
                         {
                             //gemerktesObst.Add(obst);
 
                             // Löschen
-                            colony.Statistik.CollectedFood += obst.Menge;
-                            colony.Statistik.CollectedFruits++;
-                            obst.Menge = 0;
-                            for (int z = 0; z < obst.TragendeInsekten.Count; z++)
+                            colony.Statistic.CollectedFood += obst.Amount;
+                            colony.Statistic.CollectedFruits++;
+                            obst.Amount = 0;
+                            for (int z = 0; z < obst.InsectsCarrying.Count; z++)
                             {
-                                CoreInsect insect = obst.TragendeInsekten[z];
+                                CoreInsect insect = obst.InsectsCarrying[z];
                                 if (insect != null)
                                 {
-                                    insect.GetragenesObstBase = null;
-                                    insect.AktuelleLastBase = 0;
+                                    insect.CarryingFruitBase = null;
+                                    insect.CurrentBurdenBase = 0;
                                     insect.RestStreckeI = 0;
-                                    insect.RestWinkelBase = 0;
-                                    insect.GeheZuBauBase();
+                                    insect.angleToGo = 0;
+                                    insect.GoToAnthillBase();
                                 }
                             }
-                            obst.TragendeInsekten.Clear();
+                            obst.InsectsCarrying.Clear();
                             Playground.EntferneObst(obst);
                             j--;
                         }
@@ -226,52 +226,52 @@ namespace AntMe.Simulation
         /// Prüft ob eine Ameise an ihrem Ziel angekommen ist.
         /// </summary>
         /// <param name="ant">betroffene Ameise</param>
-        private static void ameiseUndZiel(CoreAnt ant)
+        private static void antAndTarget(CoreAnt ant)
         {
             // Ameisenbau.
-            if (ant.ZielBase is CoreAnthill)
+            if (ant.TargetBase is CoreAnthill)
             {
-                if (ant.GetragenesObstBase == null)
+                if (ant.CarryingFruitBase == null)
                 {
-                    ant.ZurückgelegteStreckeI = 0;
-                    ant.ZielBase = null;
+                    ant.walkedDistance = 0;
+                    ant.TargetBase = null;
                     ant.SmelledMarker.Clear();
-                    ant.colony.Statistik.CollectedFood += ant.AktuelleLastBase;
-                    ant.AktuelleLastBase = 0;
-                    ant.AktuelleEnergieBase = ant.MaximaleEnergieBase;
-                    ant.IstMüdeBase = false;
+                    ant.colony.Statistic.CollectedFood += ant.CurrentBurdenBase;
+                    ant.CurrentBurdenBase = 0;
+                    ant.currentEnergyBase = ant.MaximumEnergyBase;
+                    ant.IsTiredBase = false;
                 }
             }
 
             // Zuckerhaufen.
-            else if (ant.ZielBase is CoreSugar)
+            else if (ant.TargetBase is CoreSugar)
             {
-                CoreSugar zucker = (CoreSugar)ant.ZielBase;
-                ant.ZielBase = null;
-                if (zucker.Menge > 0)
+                CoreSugar zucker = (CoreSugar)ant.TargetBase;
+                ant.TargetBase = null;
+                if (zucker.Amount > 0)
                 {
                     PlayerCall.TargetReached(ant, zucker);
                 }
             }
 
             // Obststück.
-            else if (ant.ZielBase is CoreFruit)
+            else if (ant.TargetBase is CoreFruit)
             {
-                CoreFruit obst = (CoreFruit)ant.ZielBase;
-                ant.ZielBase = null;
-                if (obst.Menge > 0)
+                CoreFruit obst = (CoreFruit)ant.TargetBase;
+                ant.TargetBase = null;
+                if (obst.Amount > 0)
                 {
                     PlayerCall.TargetReached(ant, obst);
                 }
             }
 
             // Insekt.
-            else if (ant.ZielBase is CoreInsect) { }
+            else if (ant.TargetBase is CoreInsect) { }
 
             // Anderes Ziel.
             else
             {
-                ant.ZielBase = null;
+                ant.TargetBase = null;
             }
         }
 
@@ -279,13 +279,13 @@ namespace AntMe.Simulation
         /// Prüft ob eine Ameise einen Zuckerhaufen sieht.
         /// </summary>
         /// <param name="ant">betroffene Ameise</param>
-        private void ameiseUndZucker(CoreAnt ant)
+        private void antAndSugar(CoreAnt ant)
         {
             for (int i = 0; i < Playground.SugarHills.Count; i++)
             {
                 CoreSugar sugar = Playground.SugarHills[i];
-                int entfernung = CoreCoordinate.BestimmeEntfernungI(ant.CoordinateBase, sugar.CoordinateBase);
-                if (ant.ZielBase != sugar && entfernung <= ant.SichtweiteI)
+                int entfernung = CoreCoordinate.DetermineDistanceI(ant.CoordinateBase, sugar.CoordinateBase);
+                if (ant.TargetBase != sugar && entfernung <= ant.ViewRangeI)
                 {
                     PlayerCall.Spots(ant, sugar);
                 }
@@ -296,13 +296,13 @@ namespace AntMe.Simulation
         /// Prüft ob eine Ameise ein Obsstück sieht.
         /// </summary>
         /// <param name="ameise">betroffene Ameise</param>
-        private void ameiseUndObst(CoreAnt ameise)
+        private void antAndFruit(CoreAnt ameise)
         {
             for (int i = 0; i < Playground.Fruits.Count; i++)
             {
                 CoreFruit obst = Playground.Fruits[i];
-                int entfernung = CoreCoordinate.BestimmeEntfernungI(ameise.CoordinateBase, obst.CoordinateBase);
-                if (ameise.ZielBase != obst && entfernung <= ameise.SichtweiteI)
+                int entfernung = CoreCoordinate.DetermineDistanceI(ameise.CoordinateBase, obst.CoordinateBase);
+                if (ameise.TargetBase != obst && entfernung <= ameise.ViewRangeI)
                 {
                     PlayerCall.Spots(ameise, obst);
                 }
@@ -313,7 +313,7 @@ namespace AntMe.Simulation
         /// Prüft ob die Ameise eine Markierung bemerkt.
         /// </summary>
         /// <param name="ameise">betroffene Ameise</param>
-        private static void ameiseUndMarkierungen(CoreAnt ameise)
+        private static void antAndMarkers(CoreAnt ameise)
         {
             CoreMarker marker = ameise.colony.Marker.FindMarker(ameise);
             if (marker != null)
@@ -331,13 +331,13 @@ namespace AntMe.Simulation
         {
             List<CoreAnt> liste = new List<CoreAnt>();
 
-            for (int i = 0; i < colony.VerhungerteInsekten.Count; i++)
+            for (int i = 0; i < colony.StarvedInsects.Count; i++)
             {
-                CoreAnt ant = colony.VerhungerteInsekten[i] as CoreAnt;
+                CoreAnt ant = colony.StarvedInsects[i] as CoreAnt;
                 if (ant != null && !liste.Contains(ant))
                 {
                     liste.Add(ant);
-                    colony.Statistik.StarvedAnts++;
+                    colony.Statistic.StarvedAnts++;
                     PlayerCall.HasDied(ant, CoreKindOfDeath.Starved);
                 }
             }
@@ -348,7 +348,7 @@ namespace AntMe.Simulation
                 if (ant != null && !liste.Contains(ant))
                 {
                     liste.Add(ant);
-                    colony.Statistik.EatenAnts++;
+                    colony.Statistic.EatenAnts++;
                     PlayerCall.HasDied(ant, CoreKindOfDeath.Eaten);
                 }
             }
@@ -361,7 +361,7 @@ namespace AntMe.Simulation
                     if (!liste.Contains(ant))
                     {
                         liste.Add(ant);
-                        colony.Statistik.BeatenAnts++;
+                        colony.Statistic.BeatenAnts++;
                         PlayerCall.HasDied(ant, CoreKindOfDeath.Beaten);
                     }
                 }
@@ -377,12 +377,12 @@ namespace AntMe.Simulation
                     for (int j = 0; j < Playground.Fruits.Count; j++)
                     {
                         CoreFruit fruit = Playground.Fruits[j];
-                        fruit.TragendeInsekten.Remove(ant);
+                        fruit.InsectsCarrying.Remove(ant);
                     }
                 }
             }
 
-            colony.VerhungerteInsekten.Clear();
+            colony.StarvedInsects.Clear();
             colony.EatenInsects.Clear();
             colony.BeatenInsects.Clear();
         }
@@ -405,32 +405,32 @@ namespace AntMe.Simulation
         }
 
         // Bewegt Obsstücke und alle Insekten die das Obsstück tragen.
-        private void bewegeObstUndInsekten()
+        private void MoveFruitsAndInsects()
         {
             Playground.Fruits.ForEach(delegate (CoreFruit fruit)
             {
-                if (fruit.TragendeInsekten.Count > 0)
+                if (fruit.InsectsCarrying.Count > 0)
                 {
                     int dx = 0;
                     int dy = 0;
                     int last = 0;
 
-                    fruit.TragendeInsekten.ForEach(delegate (CoreInsect insect)
+                    fruit.InsectsCarrying.ForEach(delegate (CoreInsect insect)
                     {
-                        if (insect.ZielBase != fruit && insect.RestWinkelBase == 0)
+                        if (insect.TargetBase != fruit && insect.angleToGo == 0)
                         {
-                            dx += Cos[insect.aktuelleGeschwindigkeitI, insect.RichtungBase];
-                            dy += Sin[insect.aktuelleGeschwindigkeitI, insect.RichtungBase];
-                            last += insect.AktuelleLastBase;
+                            dx += Cos[insect.currentSpeedI, insect.DirectionBase];
+                            dy += Sin[insect.currentSpeedI, insect.DirectionBase];
+                            last += insect.CurrentBurdenBase;
                         }
                     });
 
-                    last = Math.Min((int)(last * SimulationSettings.Custom.FruitLoadMultiplier), fruit.Menge);
-                    dx = dx * last / fruit.Menge / fruit.TragendeInsekten.Count;
-                    dy = dy * last / fruit.Menge / fruit.TragendeInsekten.Count;
+                    last = Math.Min((int)(last * SimulationSettings.Custom.FruitLoadMultiplier), fruit.Amount);
+                    dx = dx * last / fruit.Amount / fruit.InsectsCarrying.Count;
+                    dy = dy * last / fruit.Amount / fruit.InsectsCarrying.Count;
 
                     fruit.CoordinateBase = new CoreCoordinate(fruit.CoordinateBase, dx, dy);
-                    fruit.TragendeInsekten.ForEach(
+                    fruit.InsectsCarrying.ForEach(
                       delegate (CoreInsect insect) { insect.CoordinateBase = new CoreCoordinate(insect.CoordinateBase, dx, dy); });
                 }
             });
@@ -470,7 +470,7 @@ namespace AntMe.Simulation
         /// Entfernt abgelaufene Markierungen und erzeugt neue Markierungen.
         /// </summary>
         /// <param name="colony">betroffenes Volk</param>
-        private static void aktualisiereMarkierungen(CoreColony colony)
+        private static void updateMarkers(CoreColony colony)
         {
             // TODO: Settings berücksichtigen
             // Markierungen aktualisieren und inaktive Markierungen löschen.
@@ -508,7 +508,7 @@ namespace AntMe.Simulation
                 foreach (CoreMarker markierung in colony.Marker)
                 {
                     int entfernung =
-                      CoreCoordinate.BestimmeEntfernungDerMittelpunkteI
+                      CoreCoordinate.DetermineDistanceToCenter
                         (markierung.CoordinateBase, newMarker.CoordinateBase);
                     if (entfernung < SimulationSettings.Custom.MarkerDistance * PLAYGROUND_UNIT)
                     {
@@ -562,9 +562,9 @@ namespace AntMe.Simulation
                     CoreBug bug = Bugs.Insects[i] as CoreBug;
                     if (bug != null)
                     {
-                        if (bug.AktuelleEnergieBase < bug.MaximaleEnergieBase)
+                        if (bug.currentEnergyBase < bug.MaximumEnergyBase)
                         {
-                            bug.AktuelleEnergieBase += SimulationSettings.Custom.BugRegenerationValue;
+                            bug.currentEnergyBase += SimulationSettings.Custom.BugRegenerationValue;
                         }
                     }
                 }

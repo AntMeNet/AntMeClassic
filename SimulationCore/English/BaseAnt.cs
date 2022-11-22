@@ -11,7 +11,7 @@ namespace AntMe.English
     {
         #region Eventwrapper
 
-        internal override string BestimmeKasteBase(Dictionary<string, int> anzahl)
+        internal override string DetermineCasteBase(Dictionary<string, int> anzahl)
         {
             return ChooseCaste(anzahl);
         }
@@ -28,7 +28,7 @@ namespace AntMe.English
             return string.Empty;
         }
 
-        internal override void IstGestorbenBase(CoreKindOfDeath todesArt)
+        internal override void HasDiedBase(CoreKindOfDeath todesArt)
         {
             HasDied((KindOfDeath)(int)todesArt);
         }
@@ -41,7 +41,7 @@ namespace AntMe.English
         /// <param name="kindOfDeath">Kind of Death</param>
         public virtual void HasDied(KindOfDeath kindOfDeath) { }
 
-        internal override void RiechtFreundBase(CoreMarker markierung)
+        internal override void SpotsFriendBase(CoreMarker markierung)
         {
             DetectedScentFriend(new Marker(markierung));
         }
@@ -68,7 +68,7 @@ namespace AntMe.English
         /// <param name="fruit">spotted fruit</param>
         public virtual void Spots(Fruit fruit) { }
 
-        internal override void SiehtBase(CoreSugar zucker)
+        internal override void SpotsBase(CoreSugar zucker)
         {
             Spots(new Sugar(zucker));
         }
@@ -82,7 +82,7 @@ namespace AntMe.English
         /// <param name="sugar">spotted sugar</param>
         public virtual void Spots(Sugar sugar) { }
 
-        internal override void SiehtFeindBase(CoreAnt ameise)
+        internal override void SpotsEnemyBase(CoreAnt ameise)
         {
             SpotsEnemy(new Ant(ameise));
         }
@@ -96,7 +96,7 @@ namespace AntMe.English
         /// <param name="ant">spotted ant</param>
         public virtual void SpotsEnemy(Ant ant) { }
 
-        internal override void SiehtFeindBase(CoreBug wanze)
+        internal override void SpotsEnemyBase(CoreBug wanze)
         {
             SpotsEnemy(new Bug(wanze));
         }
@@ -110,7 +110,7 @@ namespace AntMe.English
         /// <param name="bug">spotted bug</param>
         public virtual void SpotsEnemy(Bug bug) { }
 
-        internal override void SiehtFreundBase(CoreAnt ameise)
+        internal override void SpotsFriendBase(CoreAnt ameise)
         {
             SpotsFriend(new Ant(ameise));
         }
@@ -124,7 +124,7 @@ namespace AntMe.English
         /// <param name="ant">spotted ant</param>
         public virtual void SpotsFriend(Ant ant) { }
 
-        internal override void SiehtVerbündetenBase(CoreAnt ameise)
+        internal override void SpotsConfederateBase(CoreAnt ameise)
         {
             SpotsTeammate(new Ant(ameise));
         }
@@ -151,7 +151,7 @@ namespace AntMe.English
         /// </summary>
         public virtual void Tick() { }
 
-        internal override void WartetBase()
+        internal override void WaitingBase()
         {
             Waiting();
         }
@@ -163,7 +163,7 @@ namespace AntMe.English
         /// </summary>
         public virtual void Waiting() { }
 
-        internal override void WirdAngegriffenBase(CoreAnt ameise)
+        internal override void IsUnderAttackBase(CoreAnt ameise)
         {
             UnderAttack(new Ant(ameise));
         }
@@ -176,7 +176,7 @@ namespace AntMe.English
         /// <param name="ant">attacking ant</param>
         public virtual void UnderAttack(Ant ant) { }
 
-        internal override void WirdAngegriffenBase(CoreBug wanze)
+        internal override void IsUnderAttackBase(CoreBug wanze)
         {
             UnderAttack(new Bug(wanze));
         }
@@ -189,7 +189,7 @@ namespace AntMe.English
         /// <param name="bug">attacking bug</param>
         public virtual void UnderAttack(Bug bug) { }
 
-        internal override void WirdMüdeBase()
+        internal override void IsGettingTiredBase()
         {
             GettingTired();
         }
@@ -200,7 +200,7 @@ namespace AntMe.English
         /// </summary>
         public virtual void GettingTired() { }
 
-        internal override void ZielErreichtBase(CoreFruit obst)
+        internal override void ArrivedAtTargetBase(CoreFruit obst)
         {
             DestinationReached(new Fruit(obst));
         }
@@ -214,7 +214,7 @@ namespace AntMe.English
         /// <param name="fruit">reached fruit</param>
         public virtual void DestinationReached(Fruit fruit) { }
 
-        internal override void ZielErreichtBase(CoreSugar zucker)
+        internal override void ArrivedAtTargetBase(CoreSugar zucker)
         {
             DestinationReached(new Sugar(zucker));
         }
@@ -240,7 +240,7 @@ namespace AntMe.English
         /// <param name="direction">direction</param>
         public void TurnToDirection(int direction)
         {
-            DreheInRichtungBase(direction);
+            TurnIntoDirectionBase(direction);
         }
 
         /// <summary>
@@ -251,7 +251,7 @@ namespace AntMe.English
         /// <param name="degrees">degrees</param>
         public void TurnByDegrees(int degrees)
         {
-            DreheUmWinkelBase(degrees);
+            TurnByAngleBase(degrees);
         }
 
         /// <summary>
@@ -261,7 +261,7 @@ namespace AntMe.English
         /// </summary>
         public void TurnAround()
         {
-            DreheUmBase();
+            TurnAroundBase();
         }
 
         /// <summary>
@@ -271,7 +271,7 @@ namespace AntMe.English
         /// <param name="destination">item</param>
         public void TurnToDetination(Item destination)
         {
-            DreheZuZielBase(destination.Baseitem);
+            TurnToTargetBase(destination.Baseitem);
         }
 
         /// <summary>
@@ -281,7 +281,7 @@ namespace AntMe.English
         /// </summary>
         public void Stop()
         {
-            BleibStehenBase();
+            StopMovementBase();
         }
 
         /// <summary>
@@ -292,7 +292,7 @@ namespace AntMe.English
         /// </summary>
         public void GoForward()
         {
-            GeheGeradeausBase();
+            GoStraightAheadBase();
         }
 
         /// <summary>
@@ -304,7 +304,7 @@ namespace AntMe.English
         /// <param name="steps">steps</param>
         public void GoForward(int steps)
         {
-            GeheGeradeausBase(steps);
+            GoStraightAheadBase(steps);
         }
 
         /// <summary>
@@ -316,7 +316,7 @@ namespace AntMe.English
         /// <param name="item">item</param>
         public void GoAwayFrom(Item item)
         {
-            GeheWegVonBase(item.Baseitem);
+            GoAwayFromBase(item.Baseitem);
         }
 
         /// <summary>
@@ -329,7 +329,7 @@ namespace AntMe.English
         /// <param name="steps">steps</param>
         public void GoAwayFrom(Item item, int steps)
         {
-            GeheWegVonBase(item.Baseitem, steps);
+            GoAwayFromBase(item.Baseitem, steps);
         }
 
         /// <summary>
@@ -339,7 +339,7 @@ namespace AntMe.English
         /// <param name="destination">destination</param>
         public void GoToDestination(Item destination)
         {
-            GeheZuZielBase(destination.Baseitem);
+            GoToTargetBase(destination.Baseitem);
         }
 
         /// <summary>
@@ -348,7 +348,7 @@ namespace AntMe.English
         /// </summary>
         public void GoToAnthill()
         {
-            GeheZuBauBase();
+            GoToAnthillBase();
         }
 
         /// <summary>
@@ -360,7 +360,7 @@ namespace AntMe.English
         /// <param name="target">target</param>
         public void Attack(Insect target)
         {
-            GreifeAnBase((CoreInsect)target.Baseitem);
+            AttackBase((CoreInsect)target.Baseitem);
         }
 
         /// <summary>
@@ -375,11 +375,11 @@ namespace AntMe.English
         {
             if (food is Sugar)
             {
-                NimmBase((CoreSugar)food.Baseitem);
+                TakeBase((CoreSugar)food.Baseitem);
             }
             else if (food is Fruit)
             {
-                NimmBase((CoreFruit)food.Baseitem);
+                TakeBase((CoreFruit)food.Baseitem);
             }
         }
 
@@ -391,7 +391,7 @@ namespace AntMe.English
         /// </summary>
         public void Drop()
         {
-            LasseNahrungFallenBase();
+            DropFoodBase();
         }
 
         /// <summary>
@@ -404,7 +404,7 @@ namespace AntMe.English
         /// <param name="information">information</param>
         public void MakeMark(int information)
         {
-            SprüheMarkierungBase(information);
+            MakeMarkerBase(information);
         }
 
         /// <summary>
@@ -418,7 +418,7 @@ namespace AntMe.English
         /// <param name="range">range</param>
         public void MakeMark(int information, int range)
         {
-            SprüheMarkierungBase(information, range);
+            MakeMarkerBase(information, range);
         }
 
         /// <summary>
@@ -442,7 +442,7 @@ namespace AntMe.English
         /// </summary>
         public int MaximumEnergy
         {
-            get { return MaximaleEnergieBase; }
+            get { return MaximumEnergyBase; }
         }
 
         /// <summary>
@@ -451,7 +451,7 @@ namespace AntMe.English
         /// </summary>
         public int MaximumSpeed
         {
-            get { return MaximaleGeschwindigkeitBase; }
+            get { return MaximumSpeedBase; }
         }
 
         /// <summary>
@@ -462,7 +462,7 @@ namespace AntMe.English
         /// </summary>
         public int MaximumLoad
         {
-            get { return MaximaleLastBase; }
+            get { return MaximumBurdenBase; }
         }
 
         /// <summary>
@@ -473,7 +473,7 @@ namespace AntMe.English
         /// </summary>
         public int Range
         {
-            get { return ReichweiteBase; }
+            get { return RangeBase; }
         }
 
         /// <summary>
@@ -484,7 +484,7 @@ namespace AntMe.English
         /// </summary>
         public int Strength
         {
-            get { return AngriffBase; }
+            get { return AttackStrengthBase; }
         }
 
         /// <summary>
@@ -496,7 +496,7 @@ namespace AntMe.English
         /// </summary>
         public int Viewrange
         {
-            get { return SichtweiteBase; }
+            get { return ViewRangeBase; }
         }
 
         /// <summary>
@@ -506,7 +506,7 @@ namespace AntMe.English
         /// </summary>
         public int RotationSpeed
         {
-            get { return DrehgeschwindigkeitBase; }
+            get { return RotationSpeedBase; }
         }
 
         /// <summary>
@@ -517,7 +517,7 @@ namespace AntMe.English
         /// </summary>
         public int CurrentEnergy
         {
-            get { return AktuelleEnergieBase; }
+            get { return currentEnergyBase; }
         }
 
         /// <summary>
@@ -530,7 +530,7 @@ namespace AntMe.English
         /// </summary>
         public int CurrentSpeed
         {
-            get { return AktuelleGeschwindigkeitBase; }
+            get { return CurrentSpeedBase; }
         }
 
         /// <summary>
@@ -540,7 +540,7 @@ namespace AntMe.English
         /// </summary>
         public int CurrentLoad
         {
-            get { return AktuelleLastBase; }
+            get { return CurrentBurdenBase; }
         }
 
         /// <summary>
@@ -589,7 +589,7 @@ namespace AntMe.English
         /// calculation depends on the ant’s visual range.
         /// <see href="http://wiki.antme.net/en/API1:BugsInViewrange">Read more</see>
         /// </summary>
-        public int BugsInViewrange
+        public new int BugsInViewrange
         {
             get { return base.BugsInViewrange; }
         }
@@ -600,7 +600,7 @@ namespace AntMe.English
         /// </summary>
         public int DistanceToAnthill
         {
-            get { return EntfernungZuBauBase; }
+            get { return DistanceToAnthillBase; }
         }
 
         /// <summary>
@@ -612,9 +612,9 @@ namespace AntMe.English
         {
             get
             {
-                if (GetragenesObstBase != null)
+                if (CarryingFruitBase != null)
                 {
-                    return new Fruit(GetragenesObstBase);
+                    return new Fruit(CarryingFruitBase);
                 }
                 else
                 {
@@ -629,7 +629,7 @@ namespace AntMe.English
         /// </summary>
         public string Caste
         {
-            get { return KasteBase; }
+            get { return CasteBase; }
         }
 
         /// <summary>
@@ -641,29 +641,29 @@ namespace AntMe.English
         {
             get
             {
-                if (ZielBase is CoreSugar)
+                if (TargetBase is CoreSugar)
                 {
-                    return new Sugar((CoreSugar)ZielBase);
+                    return new Sugar((CoreSugar)TargetBase);
                 }
-                else if (ZielBase is CoreFruit)
+                else if (TargetBase is CoreFruit)
                 {
-                    return new Fruit((CoreFruit)ZielBase);
+                    return new Fruit((CoreFruit)TargetBase);
                 }
-                else if (ZielBase is CoreAnt)
+                else if (TargetBase is CoreAnt)
                 {
-                    return new Ant((CoreAnt)ZielBase);
+                    return new Ant((CoreAnt)TargetBase);
                 }
-                else if (ZielBase is CoreBug)
+                else if (TargetBase is CoreBug)
                 {
-                    return new Bug((CoreBug)ZielBase);
+                    return new Bug((CoreBug)TargetBase);
                 }
-                else if (ZielBase is CoreMarker)
+                else if (TargetBase is CoreMarker)
                 {
-                    return new Marker((CoreMarker)ZielBase);
+                    return new Marker((CoreMarker)TargetBase);
                 }
-                else if (ZielBase is CoreAnthill)
+                else if (TargetBase is CoreAnthill)
                 {
-                    return new Anthill((CoreAnthill)ZielBase);
+                    return new Anthill((CoreAnthill)TargetBase);
                 }
                 else
                 {
@@ -681,7 +681,7 @@ namespace AntMe.English
         /// </summary>
         public bool IsTired
         {
-            get { return IstMüdeBase; }
+            get { return IsTiredBase; }
         }
 
         /// <summary>
@@ -691,7 +691,7 @@ namespace AntMe.English
         /// </summary>
         public int DistanceToDestination
         {
-            get { return RestStreckeBase; }
+            get { return DistanceToDestinationBase; }
         }
 
         /// <summary>
@@ -701,7 +701,7 @@ namespace AntMe.English
         /// </summary>
         public int DegreesToDestination
         {
-            get { return RestWinkelBase; }
+            get { return angleToGo; }
         }
 
         /// <summary>
@@ -710,7 +710,7 @@ namespace AntMe.English
         /// </summary>
         public int Direction
         {
-            get { return RichtungBase; }
+            get { return DirectionBase; }
         }
 
         /// <summary>
@@ -719,7 +719,7 @@ namespace AntMe.English
         /// </summary>
         public bool ReachedDestination
         {
-            get { return AngekommenBase; }
+            get { return ReachedBase; }
         }
 
         /// <summary>
@@ -729,7 +729,7 @@ namespace AntMe.English
         /// </summary>
         public int WalkedRange
         {
-            get { return ZurückgelegteStreckeBase; }
+            get { return WalkedRangeBase; }
         }
 
         private RandomNumber randomNumber;
@@ -763,7 +763,7 @@ namespace AntMe.English
         /// <returns>more ants required</returns>
         public bool NeedsCarrier(Fruit fruit)
         {
-            return ((CoreFruit)fruit.Baseitem).BrauchtNochTräger(colony);
+            return ((CoreFruit)fruit.Baseitem).NeedSupport(colony);
         }
 
         #endregion

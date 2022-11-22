@@ -18,23 +18,23 @@ namespace AntMe.Simulation
         internal override void Init(CoreColony colony, Random random, Dictionary<string, int> vorhandeneInsekten)
         {
             base.Init(colony, random, vorhandeneInsekten);
-            koordinate.Radius = 4;
-            AktuelleEnergieBase = colony.Energie[0];
-            aktuelleGeschwindigkeitI = colony.GeschwindigkeitI[0];
-            AngriffBase = colony.Angriff[0];
+            coordinate.Radius = 4;
+            currentEnergyBase = colony.EnergyI[0];
+            currentSpeedI = colony.SpeedI[0];
+            AttackStrengthBase = colony.AttackI[0];
         }
 
         /// <summary>
         /// Erzeugt ein BugState-Objekt mit dem aktuellen Daten der Wanzen.
         /// </summary>
         /// <returns></returns>
-        internal BugState ErzeugeInfo()
+        internal BugState GenerateInformation()
         {
             BugState info = new BugState((ushort)id);
             info.PositionX = (ushort)(CoordinateBase.X / SimulationEnvironment.PLAYGROUND_UNIT);
             info.PositionY = (ushort)(CoordinateBase.Y / SimulationEnvironment.PLAYGROUND_UNIT);
-            info.Direction = (ushort)CoordinateBase.Richtung;
-            info.Vitality = (ushort)AktuelleEnergieBase;
+            info.Direction = (ushort)CoordinateBase.Direction;
+            info.Vitality = (ushort)currentEnergyBase;
             return info;
         }
     }

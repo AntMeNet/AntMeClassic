@@ -289,7 +289,7 @@ namespace AntMe.Simulation
                                 if (cell[i].Equals(coordinate))
                                     continue;
 
-                                int distance = CoreCoordinate.BestimmeEntfernungI(coordinate.CoordinateBase, cell[i].CoordinateBase);
+                                int distance = CoreCoordinate.DetermineDistanceI(coordinate.CoordinateBase, cell[i].CoordinateBase);
                                 if (distance <= maximumDistance)
                                     tupels.Add(new Tupel(cell[i], distance));
                             }
@@ -331,7 +331,7 @@ namespace AntMe.Simulation
                             List<T> cell = cells[col + c, row + r];
                             for (int i = 0; i < cell.Count; i++)
                             {
-                                int distance = CoreCoordinate.BestimmeEntfernungI(bug.CoordinateBase, cell[i].CoordinateBase);
+                                int distance = CoreCoordinate.DetermineDistanceI(bug.CoordinateBase, cell[i].CoordinateBase);
                                 if (distance <= sideLength)
                                     ants.Add(cell[i]);
                             }
@@ -375,7 +375,7 @@ namespace AntMe.Simulation
                                 Debug.Assert(marker != null);
 
                                 // Bestimme die Entfernung der Mittelpunkte und der Kreise.
-                                int distance = CoreCoordinate.BestimmeEntfernungDerMittelpunkteI(ant.CoordinateBase, marker.CoordinateBase);
+                                int distance = CoreCoordinate.DetermineDistanceToCenter(ant.CoordinateBase, marker.CoordinateBase);
                                 int circleDistance = distance - ant.CoordinateBase.Radius - marker.CoordinateBase.Radius;
 
                                 // Die neue Markierung wurde noch nicht gerochen und
@@ -458,7 +458,7 @@ namespace AntMe.Simulation
 
                                 // Vergleiche die Entfernung zum aktuellen Insekt mit der
                                 // Sichtweite der Ameise bzw. der Seitenlänge des Gitters.
-                                int distance = CoreCoordinate.BestimmeEntfernungI(ant.CoordinateBase, insect.CoordinateBase);
+                                int distance = CoreCoordinate.DetermineDistanceI(ant.CoordinateBase, insect.CoordinateBase);
                                 if (distance > sideLength)
                                     continue;
 

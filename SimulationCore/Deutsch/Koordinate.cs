@@ -59,7 +59,7 @@ namespace AntMe.Deutsch
         /// <returns>Entfernung in Gradschritten</returns>
         public static int BestimmeRichtung(Spielobjekt objekt1, Spielobjekt objekt2)
         {
-            return CoreCoordinate.BestimmeRichtung(objekt1.Element, objekt2.Element);
+            return CoreCoordinate.DetermineDirection(objekt1.Element, objekt2.Element);
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace AntMe.Deutsch
         /// <returns>Entfernung in Gradschritten</returns>
         public static int BestimmeRichtung(CoreAnt objekt1, Spielobjekt objekt2)
         {
-            return CoreCoordinate.BestimmeRichtung(objekt1, objekt2.Element);
+            return CoreCoordinate.DetermineDirection(objekt1, objekt2.Element);
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace AntMe.Deutsch
         /// <returns>Entfernung in Gradschritten</returns>
         public static int BestimmeRichtung(Spielobjekt objekt1, CoreAnt objekt2)
         {
-            return CoreCoordinate.BestimmeRichtung(objekt1.Element, objekt2);
+            return CoreCoordinate.DetermineDirection(objekt1.Element, objekt2);
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace AntMe.Deutsch
         /// <returns>Entfernung in Gradschritten</returns>
         public static int BestimmeRichtung(CoreAnt objekt1, CoreAnt objekt2)
         {
-            return CoreCoordinate.BestimmeRichtung(objekt1, objekt2);
+            return CoreCoordinate.DetermineDirection(objekt1, objekt2);
         }
     }
 }

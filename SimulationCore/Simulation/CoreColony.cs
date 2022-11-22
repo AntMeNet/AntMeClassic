@@ -39,15 +39,15 @@ namespace AntMe.Simulation
         /// </summary>
         internal readonly PlayerInfo Player;
 
-        internal readonly List<CoreInsect> VerhungerteInsekten = new List<CoreInsect>();
+        internal readonly List<CoreInsect> StarvedInsects = new List<CoreInsect>();
 
-        internal int BreiteI;
-        internal int BreiteI2;
-        internal int HöheI;
-        internal int HöheI2;
+        internal int WidthI;
+        internal int WidthI2;
+        internal int HightI;
+        internal int HightI2;
         internal CorePlayground Playground;
 
-        internal PlayerStatistics Statistik = new PlayerStatistics();
+        internal PlayerStatistics Statistic = new PlayerStatistics();
         internal PlayerStatistics StatistikDurchschnitt = new PlayerStatistics();
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace AntMe.Simulation
         /// <summary>
         /// Die Angriffswerte aller Kasten des Volkes.
         /// </summary>
-        internal readonly int[] Angriff;
+        internal readonly int[] AttackI;
 
         /// <summary>
         /// Gitter für die verschiedenen Sichtweiten.
@@ -73,32 +73,32 @@ namespace AntMe.Simulation
         /// <summary>
         /// Die Drehgeschwindigkeiten aller Kasten des Volkes in Grad pro Runde.
         /// </summary>
-        internal readonly int[] Drehgeschwindigkeit;
+        internal readonly int[] RotationSpeed;
 
         /// <summary>
         /// Die Lebenspunkte aller Kasten des Volkes.
         /// </summary>
-        internal readonly int[] Energie;
+        internal readonly int[] EnergyI;
 
         /// <summary>
         /// Die Geschwindigkeiten aller Kasten des Volkes in der internen Einheit.
         /// </summary>
-        internal readonly int[] GeschwindigkeitI;
+        internal readonly int[] SpeedI;
 
         /// <summary>
         /// Die maximalen Lastwerte aller Kasten des Volkes.
         /// </summary>
-        internal readonly int[] Last;
+        internal readonly int[] Burden;
 
         /// <summary>
         /// Die Reichweiten aller Kasten des Volkes in der internen Einheit.
         /// </summary>
-        internal readonly int[] ReichweiteI;
+        internal readonly int[] RangeI;
 
         /// <summary>
         /// Die Sichtweiten aller Kasten des Volkes in der internen Einheit.
         /// </summary>
-        internal readonly int[] SichtweiteI;
+        internal readonly int[] ViewRangeI;
 
         #endregion
 
@@ -117,13 +117,13 @@ namespace AntMe.Simulation
             Klasse = typeof(CoreBug);
 
             //TODO: Werte überprüfen.
-            GeschwindigkeitI = new int[1] { SimulationSettings.Custom.BugSpeed * SimulationEnvironment.PLAYGROUND_UNIT };
-            Drehgeschwindigkeit = new int[1] { SimulationSettings.Custom.BugRotationSpeed };
-            ReichweiteI = new int[1] { int.MaxValue };
-            SichtweiteI = new int[1] { 0 };
-            Last = new int[1] { 0 };
-            Energie = new int[1] { SimulationSettings.Custom.BugEnergy };
-            Angriff = new int[1] { SimulationSettings.Custom.BugAttack };
+            SpeedI = new int[1] { SimulationSettings.Custom.BugSpeed * SimulationEnvironment.PLAYGROUND_UNIT };
+            RotationSpeed = new int[1] { SimulationSettings.Custom.BugRotationSpeed };
+            RangeI = new int[1] { int.MaxValue };
+            ViewRangeI = new int[1] { 0 };
+            Burden = new int[1] { 0 };
+            EnergyI = new int[1] { SimulationSettings.Custom.BugEnergy };
+            AttackI = new int[1] { SimulationSettings.Custom.BugAttack };
 
             Grids = new Grid<CoreInsect>[1];
             Grids[0] =
@@ -156,36 +156,36 @@ namespace AntMe.Simulation
                 spieler.Castes.Add(new CasteInfo());
             }
 
-            GeschwindigkeitI = new int[spieler.Castes.Count];
-            Drehgeschwindigkeit = new int[spieler.Castes.Count];
-            Last = new int[spieler.Castes.Count];
-            SichtweiteI = new int[spieler.Castes.Count];
+            SpeedI = new int[spieler.Castes.Count];
+            RotationSpeed = new int[spieler.Castes.Count];
+            Burden = new int[spieler.Castes.Count];
+            ViewRangeI = new int[spieler.Castes.Count];
             Grids = new Grid<CoreInsect>[spieler.Castes.Count];
-            ReichweiteI = new int[spieler.Castes.Count];
-            Energie = new int[spieler.Castes.Count];
-            Angriff = new int[spieler.Castes.Count];
+            RangeI = new int[spieler.Castes.Count];
+            EnergyI = new int[spieler.Castes.Count];
+            AttackI = new int[spieler.Castes.Count];
             antsInCaste = new int[spieler.Castes.Count];
 
             int index = 0;
             foreach (CasteInfo caste in spieler.Castes)
             {
-                GeschwindigkeitI[index] = SimulationEnvironment.PLAYGROUND_UNIT;
-                GeschwindigkeitI[index] *= SimulationSettings.Custom.CasteSettings[caste.Speed].Speed;
-                Drehgeschwindigkeit[index] = SimulationSettings.Custom.CasteSettings[caste.RotationSpeed].RotationSpeed;
-                Last[index] = SimulationSettings.Custom.CasteSettings[caste.Load].Load;
-                SichtweiteI[index] = SimulationEnvironment.PLAYGROUND_UNIT;
-                SichtweiteI[index] *= SimulationSettings.Custom.CasteSettings[caste.ViewRange].ViewRange;
-                ReichweiteI[index] = SimulationEnvironment.PLAYGROUND_UNIT;
-                ReichweiteI[index] *= SimulationSettings.Custom.CasteSettings[caste.Range].Range;
-                Energie[index] = SimulationSettings.Custom.CasteSettings[caste.Energy].Energy;
-                Angriff[index] = SimulationSettings.Custom.CasteSettings[caste.Attack].Attack;
+                SpeedI[index] = SimulationEnvironment.PLAYGROUND_UNIT;
+                SpeedI[index] *= SimulationSettings.Custom.CasteSettings[caste.Speed].Speed;
+                RotationSpeed[index] = SimulationSettings.Custom.CasteSettings[caste.RotationSpeed].RotationSpeed;
+                Burden[index] = SimulationSettings.Custom.CasteSettings[caste.Load].Load;
+                ViewRangeI[index] = SimulationEnvironment.PLAYGROUND_UNIT;
+                ViewRangeI[index] *= SimulationSettings.Custom.CasteSettings[caste.ViewRange].ViewRange;
+                RangeI[index] = SimulationEnvironment.PLAYGROUND_UNIT;
+                RangeI[index] *= SimulationSettings.Custom.CasteSettings[caste.Range].Range;
+                EnergyI[index] = SimulationSettings.Custom.CasteSettings[caste.Energy].Energy;
+                AttackI[index] = SimulationSettings.Custom.CasteSettings[caste.Attack].Attack;
 
                 Grids[index] =
                     Grid<CoreInsect>.Create
                         (
                         spielfeld.Width * SimulationEnvironment.PLAYGROUND_UNIT,
                         spielfeld.Height * SimulationEnvironment.PLAYGROUND_UNIT,
-                        SichtweiteI[index]);
+                        ViewRangeI[index]);
 
                 index++;
             }
@@ -194,10 +194,10 @@ namespace AntMe.Simulation
         private void InitPlayground(CorePlayground spielfeld)
         {
             Playground = spielfeld;
-            BreiteI = spielfeld.Width * SimulationEnvironment.PLAYGROUND_UNIT;
-            HöheI = spielfeld.Height * SimulationEnvironment.PLAYGROUND_UNIT;
-            BreiteI2 = BreiteI * 2;
-            HöheI2 = HöheI * 2;
+            WidthI = spielfeld.Width * SimulationEnvironment.PLAYGROUND_UNIT;
+            HightI = spielfeld.Height * SimulationEnvironment.PLAYGROUND_UNIT;
+            WidthI2 = WidthI * 2;
+            HightI2 = HightI * 2;
 
 
 
@@ -215,7 +215,7 @@ namespace AntMe.Simulation
         /// <summary>
         /// Die Anzahl von Insektenkasten in diesem Volk.
         /// </summary>
-        public int AnzahlKasten
+        public int CasteCount
         {
             get { return Player.Castes.Count; }
         }
@@ -272,14 +272,14 @@ namespace AntMe.Simulation
         {
             ColonyState info = new ColonyState(Id, Player.Guid, Player.ColonyName, Player.FirstName + " " + Player.LastName);
 
-            info.CollectedFood = Statistik.CollectedFood;
-            info.CollectedFruits = Statistik.CollectedFruits;
-            info.StarvedAnts = Statistik.StarvedAnts;
-            info.EatenAnts = Statistik.EatenAnts;
-            info.BeatenAnts = Statistik.BeatenAnts;
-            info.KilledBugs = Statistik.KilledBugs;
-            info.KilledEnemies = Statistik.KilledAnts;
-            info.Points = Statistik.Points;
+            info.CollectedFood = Statistic.CollectedFood;
+            info.CollectedFruits = Statistic.CollectedFruits;
+            info.StarvedAnts = Statistic.StarvedAnts;
+            info.EatenAnts = Statistic.EatenAnts;
+            info.BeatenAnts = Statistic.BeatenAnts;
+            info.KilledBugs = Statistic.KilledBugs;
+            info.KilledEnemies = Statistic.KilledAnts;
+            info.Points = Statistic.Points;
 
             int index;
 
@@ -295,7 +295,7 @@ namespace AntMe.Simulation
 
             for (index = 0; index < Insects.Count; index++)
             {
-                info.AntStates.Add(((CoreAnt)Insects[index]).ErzeugeInfo());
+                info.AntStates.Add(((CoreAnt)Insects[index]).GenerateInformation());
             }
 
             // Markierungen ist ein Bucket und die Bucket Klasse enthält keinen

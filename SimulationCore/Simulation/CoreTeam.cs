@@ -23,7 +23,7 @@ namespace AntMe.Simulation
 
             for (int i = 0; i < Colonies.Length; i++)
             {
-                Colonies[i].Statistik.CurrentAntCount = Colonies[i].Insects.Count;
+                Colonies[i].Statistic.CurrentAntCount = Colonies[i].Insects.Count;
                 state.ColonyStates.Add(Colonies[i].ErzeugeInfo());
             }
 

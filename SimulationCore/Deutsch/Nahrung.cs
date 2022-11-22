@@ -12,7 +12,7 @@
         /// </summary>
         public int Menge
         {
-            get { return ((Simulation.CoreFood)element).Menge; }
+            get { return ((Simulation.CoreFood)element).Amount; }
         }
 
         /// <summary>

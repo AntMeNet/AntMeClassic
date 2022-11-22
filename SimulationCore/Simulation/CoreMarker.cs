@@ -117,7 +117,7 @@ namespace AntMe.Simulation
             info.PositionX = koordinate.X / SimulationEnvironment.PLAYGROUND_UNIT;
             info.PositionY = koordinate.Y / SimulationEnvironment.PLAYGROUND_UNIT;
             info.Radius = koordinate.Radius / SimulationEnvironment.PLAYGROUND_UNIT;
-            info.Direction = koordinate.Richtung;
+            info.Direction = koordinate.Direction;
             return info;
         }
     }

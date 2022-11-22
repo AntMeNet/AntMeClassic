@@ -12,7 +12,7 @@ namespace AntMe.Simulation
         /// <summary>
         /// Liste der tragenden Ameisen.
         /// </summary>
-        internal readonly List<CoreInsect> TragendeInsekten = new List<CoreInsect>();
+        internal readonly List<CoreInsect> InsectsCarrying = new List<CoreInsect>();
 
         /// <summary>
         /// Erzeugt eine neue Instanz der Obst-Klasse.
@@ -26,7 +26,7 @@ namespace AntMe.Simulation
         /// <summary>
         /// Die verbleibende Menge an Nahrungspunkten.
         /// </summary>
-        public override int Menge
+        public override int Amount
         {
             internal set
             {
@@ -42,30 +42,30 @@ namespace AntMe.Simulation
         /// erreichen.
         /// </summary>
         /// <param name="colony">Das Volk.</param>
-        internal bool BrauchtNochTräger(CoreColony colony)
+        internal bool NeedSupport(CoreColony colony)
         {
             int last = 0;
-            foreach (CoreInsect insekt in TragendeInsekten)
+            foreach (CoreInsect insekt in InsectsCarrying)
             {
                 if (insekt.colony == colony)
                 {
-                    last += insekt.AktuelleLastBase;
+                    last += insekt.CurrentBurdenBase;
                 }
             }
-            return last * SimulationSettings.Custom.FruitLoadMultiplier < Menge;
+            return last * SimulationSettings.Custom.FruitLoadMultiplier < Amount;
         }
 
         /// <summary>
         /// Erzeugt ein ObstZustand-Objekt mit dem Daten Zustand des Obststücks.
         /// </summary>
-        internal FruitState ErzeugeInfo()
+        internal FruitState GenerateInformation()
         {
             FruitState info = new FruitState((ushort)Id);
             info.PositionX = (ushort)(koordinate.X / SimulationEnvironment.PLAYGROUND_UNIT);
             info.PositionY = (ushort)(koordinate.Y / SimulationEnvironment.PLAYGROUND_UNIT);
             info.Radius = (ushort)(koordinate.Radius / SimulationEnvironment.PLAYGROUND_UNIT);
             info.Amount = (ushort)menge;
-            info.CarryingAnts = (byte)TragendeInsekten.Count;
+            info.CarryingAnts = (byte)InsectsCarrying.Count;
             return info;
         }
     }

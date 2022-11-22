@@ -12,7 +12,7 @@
         /// </summary>
         public int AktuelleLast
         {
-            get { return ((Simulation.CoreAnt)element).AktuelleLastBase; }
+            get { return ((Simulation.CoreAnt)element).CurrentBurdenBase; }
         }
 
         /// <summary>
@@ -23,13 +23,13 @@
             get
             {
                 Simulation.CoreAnt temp = (Simulation.CoreAnt)element;
-                if (temp.GetragenesObstBase == null)
+                if (temp.CarryingFruitBase == null)
                 {
                     return null;
                 }
                 else
                 {
-                    return new Obst(temp.GetragenesObstBase);
+                    return new Obst(temp.CarryingFruitBase);
                 }
             }
         }
@@ -39,7 +39,7 @@
         /// </summary>
         public int MaximaleLast
         {
-            get { return ((Simulation.CoreAnt)element).MaximaleLastBase; }
+            get { return ((Simulation.CoreAnt)element).MaximumBurdenBase; }
         }
 
         /// <summary>
@@ -47,7 +47,7 @@
         /// </summary>
         public int Reichweite
         {
-            get { return ((Simulation.CoreAnt)element).ReichweiteBase; }
+            get { return ((Simulation.CoreAnt)element).RangeBase; }
         }
 
         /// <summary>

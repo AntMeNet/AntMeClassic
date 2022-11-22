@@ -34,7 +34,7 @@ namespace AntMe.Simulation
             this.richtung = 0;
 
             Radius = radius * SimulationEnvironment.PLAYGROUND_UNIT;
-            Richtung = richtung;
+            Direction = richtung;
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace AntMe.Simulation
         /// haben benötigen die Richtung, aber die IKoordinate-Struktur ist der
         /// beste Platz um auch die Richtung eines Objektes zu speichern.
         /// </summary>
-        internal int Richtung
+        internal int Direction
         {
             get { return richtung; }
             set
@@ -140,7 +140,7 @@ namespace AntMe.Simulation
         /// <returns>Die Entfernung.</returns>
         internal static int BestimmeEntfernung(ICoordinate o1, ICoordinate o2)
         {
-            return BestimmeEntfernungI(o1.CoordinateBase, o2.CoordinateBase) / SimulationEnvironment.PLAYGROUND_UNIT;
+            return DetermineDistanceI(o1.CoordinateBase, o2.CoordinateBase) / SimulationEnvironment.PLAYGROUND_UNIT;
         }
 
         /// <summary>
@@ -150,9 +150,9 @@ namespace AntMe.Simulation
         /// <param name="o1">Das Start Objekt.</param>
         /// <param name="o2">Das Ziel Objekt.</param>
         /// <returns>Die Richtung.</returns>
-        internal static int BestimmeRichtung(ICoordinate o1, ICoordinate o2)
+        internal static int DetermineDirection(ICoordinate o1, ICoordinate o2)
         {
-            return BestimmeRichtung(o1.CoordinateBase, o2.CoordinateBase);
+            return DetermineDirection(o1.CoordinateBase, o2.CoordinateBase);
         }
 
         /// <summary>
@@ -162,7 +162,7 @@ namespace AntMe.Simulation
         /// <param name="k1">Koordinate 1.</param>
         /// <param name="k2">Koordinate 2.</param>
         /// <returns>Die Entfernung.</returns>
-        internal static int BestimmeEntfernungI(CoreCoordinate k1, CoreCoordinate k2)
+        internal static int DetermineDistanceI(CoreCoordinate k1, CoreCoordinate k2)
         {
             double deltaX = k1.x - k2.x;
             double deltaY = k1.y - k2.y;
@@ -182,7 +182,7 @@ namespace AntMe.Simulation
         /// <param name="k1">Koordinate 1.</param>
         /// <param name="k2">Koordinate 2.</param>
         /// <returns>Die Entfernung.</returns>
-        internal static int BestimmeEntfernungDerMittelpunkteI(CoreCoordinate k1, CoreCoordinate k2)
+        internal static int DetermineDistanceToCenter(CoreCoordinate k1, CoreCoordinate k2)
         {
             double deltaX = k1.x - k2.x;
             double deltaY = k1.y - k2.y;
@@ -196,7 +196,7 @@ namespace AntMe.Simulation
         /// <param name="k1">Die Start Koordinate.</param>
         /// <param name="k2">Die Ziel Koordinate.</param>
         /// <returns>Die Richtung.</returns>
-        internal static int BestimmeRichtung(CoreCoordinate k1, CoreCoordinate k2)
+        internal static int DetermineDirection(CoreCoordinate k1, CoreCoordinate k2)
         {
             int richtung = (int)Math.Round(Math.Atan2(k2.Y - k1.Y, k2.X - k1.X) * 180d / Math.PI);
             if (richtung < 0)

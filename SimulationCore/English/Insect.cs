@@ -22,7 +22,7 @@ namespace AntMe.English
         /// </summary>
         public int CurrentEnergy
         {
-            get { return ((CoreInsect)Baseitem).AktuelleEnergieBase; }
+            get { return ((CoreInsect)Baseitem).currentEnergyBase; }
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace AntMe.English
         /// </summary>
         public int CurrentSpeed
         {
-            get { return ((CoreInsect)Baseitem).AktuelleGeschwindigkeitBase; }
+            get { return ((CoreInsect)Baseitem).CurrentSpeedBase; }
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace AntMe.English
         /// </summary>
         public int AttackStrength
         {
-            get { return ((CoreInsect)Baseitem).AngriffBase; }
+            get { return ((CoreInsect)Baseitem).AttackStrengthBase; }
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace AntMe.English
         /// </summary>
         public int RotationSpeed
         {
-            get { return ((CoreInsect)Baseitem).DrehgeschwindigkeitBase; }
+            get { return ((CoreInsect)Baseitem).RotationSpeedBase; }
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace AntMe.English
         /// </summary>
         public int MaximumEnergy
         {
-            get { return ((CoreInsect)Baseitem).MaximaleEnergieBase; }
+            get { return ((CoreInsect)Baseitem).MaximumEnergyBase; }
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace AntMe.English
         /// </summary>
         public int MaximumSpeed
         {
-            get { return ((CoreInsect)Baseitem).MaximaleGeschwindigkeitBase; }
+            get { return ((CoreInsect)Baseitem).MaximumSpeedBase; }
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace AntMe.English
         /// </summary>
         public int Viewrange
         {
-            get { return ((CoreInsect)Baseitem).SichtweiteBase; }
+            get { return ((CoreInsect)Baseitem).ViewRangeBase; }
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace AntMe.English
         /// </summary>
         public int DegreesToTarget
         {
-            get { return ((CoreInsect)Baseitem).RestWinkelBase; }
+            get { return ((CoreInsect)Baseitem).angleToGo; }
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace AntMe.English
         /// </summary>
         public int Direction
         {
-            get { return ((CoreInsect)Baseitem).RichtungBase; }
+            get { return ((CoreInsect)Baseitem).DirectionBase; }
         }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace AntMe.English
         /// </summary>
         public int DistanceToTarget
         {
-            get { return ((CoreInsect)Baseitem).RestStreckeBase; }
+            get { return ((CoreInsect)Baseitem).DistanceToDestinationBase; }
         }
     }
 }
