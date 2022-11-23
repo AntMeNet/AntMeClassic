@@ -410,7 +410,7 @@ namespace AntMe.Simulation
                         #endregion
 
                         // Prüfe ob die Ameise an ihrem Ziel angekommen ist.
-                        if (ant.ReachedBase)
+                        if (ant.ArrivedBase)
                         {
                             antAndTarget(ant);
                         }

@@ -5,14 +5,15 @@ using System.Configuration;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Klasse zur Haltung aller relevanten Konfigurationsdaten einer Simulation.
+    /// simulator configuration class
+    /// holds all relevant configuration data of the simulation
     /// </summary>
     [Serializable]
     public sealed class SimulatorConfiguration : ICloneable
     {
 
         /// <summary>
-        /// Maximum count of players per Simulation.
+        /// Maximum count of players per simulation.
         /// </summary>
         public const int PLAYERLIMIT = 8;
 
@@ -46,15 +47,15 @@ namespace AntMe.Simulation
         /// </summary>
         public const int LOOPTIMEOUTMIN = 1;
 
-        #region lokale Variablen
+        #region private attributes
 
-        // Runden- und Spielereinstellungen
+        // loop, round and player configuration
         private int loopCount;
         private int roundCount;
         private bool allowDebuginformation;
         private int loopTimeout;
 
-        // Zusätzliche Rechte anforderbar
+        // attributes to allow access to database, filesystem, reference, user interface and network
         private bool allowDatabaseAccess;
         private bool allowFileAccess;
         private bool allowReferences;
@@ -62,23 +63,23 @@ namespace AntMe.Simulation
         private bool allowNetworkAccess;
 
         /// <summary>
-        /// Timeout-Handling
+        /// timeouts can be ignored
         /// </summary>
         private bool ignoreTimeouts;
-
         private int roundTimeout;
+
         private List<TeamInfo> teams;
 
-        // Sonstiges
+        // other settings
         private int mapInitialValue;
         private SimulationSettings settings;
 
         #endregion
 
-        #region Initialisierung und Konstruktoren
+        #region constructors and initialization
 
         /// <summary>
-        /// Initialisiert eine leere Spielerliste
+        /// initalization with an empty list of players
         /// </summary>
         public SimulatorConfiguration()
         {
@@ -103,11 +104,11 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Initialsiert mit den übergebenen Werten
+        /// initalization with given values (loops, rounds, lists with teams)
         /// </summary>
-        /// <param name="loops">Anzahl Durchläufe</param>
-        /// <param name="rounds">Anzahl Runden</param>
-        /// <param name="teams">Teamliste</param>
+        /// <param name="loops">number of loops</param>
+        /// <param name="rounds">number of rounds</param>
+        /// <param name="teams">list of teams</param>
         public SimulatorConfiguration(int loops, int rounds, List<TeamInfo> teams)
             : this()
         {
@@ -122,15 +123,15 @@ namespace AntMe.Simulation
 
         #endregion
 
-        #region öffentliche Methoden
+        #region public methods
 
         /// <summary>
-        /// Ermittelt, ob die Angaben der Konfiguration simulationsfähig sind
+        /// Check the configuration against simulation rules
         /// </summary>
-        /// <returns>Regelkonformer Konfigurationsinhalt</returns>
+        /// <returns>valid configuration</returns>
         public void Rulecheck()
         {
-            // Rundenanzahl prüfen
+            // number of rounds
             if (roundCount < ROUNDSMIN)
             {
                 throw new ConfigurationErrorsException(Resource.SimulationCoreConfigurationRoundCountTooSmall);
@@ -141,7 +142,7 @@ namespace AntMe.Simulation
                     string.Format(Resource.SimulationCoreConfigurationRoundCountTooBig, ROUNDSMAX));
             }
 
-            // Durchlaufmenge prüfen
+            // number of loops
             if (loopCount < LOOPSMIN)
             {
                 throw new ConfigurationErrorsException(Resource.SimulationCoreConfigurationLoopCountTooSmall);
@@ -152,7 +153,7 @@ namespace AntMe.Simulation
                     string.Format(Resource.SimulationCoreConfigurationLoopCountTooBig, LOOPSMAX));
             }
 
-            // Timeoutwerte
+            // timeout values
             if (!ignoreTimeouts)
             {
                 if (loopTimeout < LOOPTIMEOUTMIN)
@@ -167,14 +168,14 @@ namespace AntMe.Simulation
                 }
             }
 
-            // Teams checken
+            // check teams
             if (teams == null || teams.Count < 0)
             {
                 throw new ConfigurationErrorsException(
                     Resource.SimulationCoreConfigurationNoTeams);
             }
 
-            // Regelcheck der Teams
+            // check teams against rule base
             int playerCount = 0;
             foreach (TeamInfo team in teams)
             {
@@ -188,16 +189,16 @@ namespace AntMe.Simulation
                 throw new ConfigurationErrorsException("Too many players");
             }
 
-            // Regeln für die kern-Einstellungen
+            // Checks all properties against valid ranges of values
             Settings.RuleCheck();
         }
 
         #endregion
 
-        #region Eigenschaften
+        #region properties
 
         /// <summary>
-        /// Gibt die Anzahl der Runden insgesamt an, die in der Simulation durchlaufen werden sollen oder legt diese fest.
+        /// number of rounds for the hole simulation
         /// </summary>
         public int RoundCount
         {
@@ -206,7 +207,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Gibt die Anzahl Durchläufe insgesamt an, die in der Simulation durchlaufen werden sollen oder legt diese fest.
+        /// number of loops for the hole simulation
         /// </summary>
         public int LoopCount
         {
@@ -215,7 +216,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Legt fest, ob die Simulation zu debugzwecken Timeouts ignorieren soll.
+        /// timeout can be ignored (for debugging purpose)
         /// </summary>
         public bool IgnoreTimeouts
         {
@@ -224,7 +225,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Legt die Timeout-Zeit von Runden in ms fest
+        /// timeout for rounds in ms
         /// </summary>
         public int RoundTimeout
         {
@@ -233,7 +234,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Legt die Timeout-Zeit von Durchläufen in ms fest
+        /// timeout for loops in ms
         /// </summary>
         public int LoopTimeout
         {
@@ -242,7 +243,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Liefert die Liste der Mitspieler in dieser Simulation.
+        /// list of players in the team in the simulation
         /// </summary>
         public List<TeamInfo> Teams
         {
@@ -250,7 +251,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Legt fest, ob es den Spielern erlaubt ist auf das Userinterface zuzugreifen
+        /// grant players access to the user interface 
         /// </summary>
         public bool AllowUserinterfaceAccess
         {
@@ -259,7 +260,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Legt fest, ob es den Spielern erlaubt ist auf das Dateisystem zuzugreifen
+        /// grant players access to the file system
         /// </summary>
         public bool AllowFileAccess
         {
@@ -268,7 +269,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Legt fest, ob es den Spielern erlaubt ist auf fremde Bibliotheken zuzugreifen
+        /// grant players access to foreign libraries
         /// </summary>
         public bool AllowReferences
         {
@@ -277,7 +278,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Legt fest, ob es den Spielern erlaubt ist Datenbankverbindungen zu öffnen
+        /// grant players access to databases
         /// </summary>
         public bool AllowDatabaseAccess
         {
@@ -286,7 +287,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Legt fest, ob es den Spielern erlaubt ist eine Netzwerkverbindung zu öffnen
+        /// grant players access to network connections
         /// </summary>
         public bool AllowNetworkAccess
         {
@@ -295,7 +296,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Gibt an, ob die Simulation Debuginformationen ausgeben soll
+        /// simulation will print out debug informaiton
         /// </summary>
         public bool AllowDebuginformation
         {
@@ -304,8 +305,8 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Gibt einen Startwert für die Initialisierung des Zufallsgenerators an. Durch einen gleichen
-        /// Startwert werden gleiche Startbedingungen garantiert.
+        /// a map initial value will be generated for the initalization of the random number generator
+        /// equal map initial values will result in identical start conditions for the simulation
         /// </summary>
         public int MapInitialValue
         {
@@ -314,7 +315,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Gets or sets the simulation-settings for this simulation.
+        /// simulation settings for this simulation.
         /// </summary>
         public SimulationSettings Settings
         {
@@ -327,12 +328,12 @@ namespace AntMe.Simulation
         #region ICloneable Member
 
         /// <summary>
-        /// Erstellt eine Kopie der Konfiguration
+        /// clones the configuration
         /// </summary>
-        /// <returns>Kopie der aktuellen Konfiguration</returns>
+        /// <returns>clone of the simulation configuration</returns>
         public object Clone()
         {
-            // Kopie erstellen und Spielerliste kopieren
+            // clone configuration memberwise and copy the teams of players
             SimulatorConfiguration output = (SimulatorConfiguration)MemberwiseClone();
             output.teams = new List<TeamInfo>(teams.Count);
             foreach (TeamInfo team in teams)

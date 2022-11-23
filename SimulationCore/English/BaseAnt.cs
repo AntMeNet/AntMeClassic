@@ -299,7 +299,7 @@ namespace AntMe.English
         /// The ant moves forward. The ant’s destination remains unaltered. If a 
         /// value is specified, the ant will aim for its destination again as soon 
         /// as it has travelled the specified distance.
-        /// <see href="http://wiki.antme.net/en/API1:GoForward">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#movement">Read more</see>
         /// </summary>
         /// <param name="steps">steps</param>
         public void GoForward(int steps)
@@ -311,7 +311,7 @@ namespace AntMe.English
         /// The ant turns in the direction opposite the specified destination and 
         /// then walks straight ahead. The ant’s destination remains unaltered and 
         /// the walking distance can be specified.
-        /// <see href="http://wiki.antme.net/en/API1:GoAwayFrom">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#movement">Read more</see>
         /// </summary>
         /// <param name="item">item</param>
         public void GoAwayFrom(Item item)
@@ -323,7 +323,7 @@ namespace AntMe.English
         /// The ant turns in the direction opposite the specified destination and 
         /// then walks straight ahead. The ant’s destination remains unaltered and 
         /// the walking distance can be specified.
-        /// <see href="http://wiki.antme.net/en/API1:GoAwayFrom">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#movement">Read more</see>
         /// </summary>
         /// <param name="item">item</param>
         /// <param name="steps">steps</param>
@@ -334,7 +334,7 @@ namespace AntMe.English
 
         /// <summary>
         /// The ant saves the specified destination and walks to it.
-        /// <see href="http://wiki.antme.net/en/API1:GoToDestination">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#movementn">Read more</see>
         /// </summary>
         /// <param name="destination">destination</param>
         public void GoToDestination(Item destination)
@@ -344,7 +344,7 @@ namespace AntMe.English
 
         /// <summary>
         /// The ant saves the nearest anthill as its destination and walks towards it.
-        /// <see href="http://wiki.antme.net/en/API1:GoToAnthill">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#movement">Read more</see>
         /// </summary>
         public void GoToAnthill()
         {
@@ -355,7 +355,7 @@ namespace AntMe.English
         /// The ant saves the specified bug or the specified enemy ant as its 
         /// destination and walks toward it. When the ant arrives at its destination, 
         /// it begins to fight.
-        /// <see href="http://wiki.antme.net/en/API1:Attack">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#combat">Read more</see>
         /// </summary>
         /// <param name="target">target</param>
         public void Attack(Insect target)
@@ -368,7 +368,7 @@ namespace AntMe.English
         /// it takes as much as possible until it reaches its maximum load (see 
         /// CurrentLoad and MaximumLoad). In the case of a piece of fruit, the ant 
         /// begins carrying the fruit (see CarryingFruit).
-        /// <see href="http://wiki.antme.net/en/API1:Take">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#food">Read more</see>
         /// </summary>
         /// <param name="food">food</param>
         public void Take(Food food)
@@ -387,7 +387,7 @@ namespace AntMe.English
         /// The ant drops the food that it is currently carrying. Sugar is lost while 
         /// apples remain where they fall and can be picked up again later. The command 
         /// is not necessary when delivering food to an anthill—that occurs automatically.
-        /// <see href="http://wiki.antme.net/en/API1:Drop">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#food">Read more</see>
         /// </summary>
         public void Drop()
         {
@@ -399,7 +399,7 @@ namespace AntMe.English
         /// parameters are data contained in the marker (these can be read out of the 
         /// result of Spots(Marker) via marker.Information) and how far the maker 
         /// spreads out. The farther the marker spreads out, the faster it will disappear.
-        /// <see href="http://wiki.antme.net/en/API1:MakeMark">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#communication">Read more</see>
         /// </summary>
         /// <param name="information">information</param>
         public void MakeMark(int information)
@@ -412,7 +412,7 @@ namespace AntMe.English
         /// are data contained in the marker (these can be read out of the result of 
         /// Spots(Marker) via marker.Information) and how far the maker spreads out. 
         /// The farther the marker spreads out, the faster it will disappear.
-        /// <see href="http://wiki.antme.net/en/API1:MakeMark">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#communication">Read more</see>
         /// </summary>
         /// <param name="information">information</param>
         /// <param name="range">range</param>
@@ -424,7 +424,7 @@ namespace AntMe.English
         /// <summary>
         /// This command causes the ant to display thought bubbles that can be used for 
         /// troubleshooting and debugging.
-        /// <see href="http://wiki.antme.net/en/API1:Think">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#debug">Read more</see>
         /// </summary>
         /// <param name="message">message</param>
         public void Think(string message)
@@ -438,7 +438,7 @@ namespace AntMe.English
 
         /// <summary>
         /// Returns the ant’s maximum energy. The unit is hit points.
-        /// <see href="http://wiki.antme.net/en/API1:MaximumEnergy">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#caste-related">Read more</see>
         /// </summary>
         public int MaximumEnergy
         {
@@ -447,7 +447,7 @@ namespace AntMe.English
 
         /// <summary>
         /// Returns the ant’s maximum speed. The unit is steps per round.
-        /// <see href="http://wiki.antme.net/en/API1:MaximumSpeed">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#caste-related">Read more</see>
         /// </summary>
         public int MaximumSpeed
         {
@@ -458,7 +458,7 @@ namespace AntMe.English
         /// Returns the maximum load that the ant can bear. The unit is food points. 
         /// This value determines how much sugar the ant can carry at once and how 
         /// fast it can carry an apple without the help of other ants.
-        /// <see href="http://wiki.antme.net/en/API1:MaximumLoad">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#caste-related">Read more</see>
         /// </summary>
         public int MaximumLoad
         {
@@ -469,7 +469,7 @@ namespace AntMe.English
         /// Specifies the distance in steps that the ant can travel before it dies of 
         /// hunger. After the ant has travelled a third of the value, the event 
         /// GettingTired() is called and the value of IsTired is set to "true". (See WalkedRange).
-        /// <see href="http://wiki.antme.net/en/API1:Range">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#caste-related">Read more</see>
         /// </summary>
         public int Range
         {
@@ -480,7 +480,7 @@ namespace AntMe.English
         /// Specifies the ant’s attack value. The attack value determines how 
         /// many hit points the ant deducts from an enemy in each round. The 
         /// unit is hit points.
-        /// <see href="http://wiki.antme.net/en/API1:Strength">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#caste-related">Read more</see>
         /// </summary>
         public int Strength
         {
@@ -492,7 +492,7 @@ namespace AntMe.English
         /// far the ant must be from game elements like sugar in order for the ant 
         /// to see them. The direction that the ant is facing does not play a role 
         /// (ants have 360 vision in this game).
-        /// <see href="http://wiki.antme.net/en/API1:Viewrange">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#caste-related">Read more</see>
         /// </summary>
         public int Viewrange
         {
@@ -502,7 +502,7 @@ namespace AntMe.English
         /// <summary>
         /// Specifies the speed with which an ant can turn. The unit is degrees per 
         /// round.
-        /// <see href="http://wiki.antme.net/en/API1:RotationSpeed">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#caste-related">Read more</see>
         /// </summary>
         public int RotationSpeed
         {
@@ -513,7 +513,7 @@ namespace AntMe.English
         /// Returns the ant’s current energy. The unit is hit points. If an ant has 0 
         /// hit points or fewer, it dies. This value is always less than or equal to 
         /// MaximumEnergy.
-        /// <see href="http://wiki.antme.net/en/API1:CurrentEnergy">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#misc">Read more</see>
         /// </summary>
         public int CurrentEnergy
         {
@@ -526,7 +526,7 @@ namespace AntMe.English
         /// load can only travel at half of their maximum speed. The property always 
         /// returns a value greater than 0, even if the ant is standing still. This value 
         /// is always less than or equal to MaximumSpeed.
-        /// <see href="http://wiki.antme.net/en/API1:CurrentSpeed">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#misc">Read more</see>
         /// </summary>
         public int CurrentSpeed
         {
@@ -536,7 +536,7 @@ namespace AntMe.English
         /// <summary>
         /// Returns the weight of the load that the ant is currently carrying. The unit 
         /// is food points. This value is always smaller than or equal to MaximumLoad.
-        /// <see href="http://wiki.antme.net/en/API1:CurrentLoad">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#misc">Read more</see>
         /// </summary>
         public int CurrentLoad
         {
@@ -546,7 +546,7 @@ namespace AntMe.English
         /// <summary>
         /// Returns the number of friendly ants from the same colony in the ant’s 360° visual 
         /// range. The result of the calculation depends on the ant’s visual range.
-        /// <see href="http://wiki.antme.net/en/API1:FriendlyAntsInViewrange">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#misc">Read more</see>
         /// </summary>
         public new int FriendlyAntsInViewrange
         {
@@ -557,7 +557,7 @@ namespace AntMe.English
         /// Returns the number of friendly ants from the same colony and the same caste in 
         /// the ant’s 360° visual range. The result of this calculation depends on the ant’s 
         /// visual range.
-        /// <see href="http://wiki.antme.net/en/API1:FriendlyAntsFromSameCasteInViewrange">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#misc">Read more</see>
         /// </summary>
         public new int FriendlyAntsFromSameCasteInViewrange
         {
@@ -567,7 +567,7 @@ namespace AntMe.English
         /// <summary>
         /// Returns the number of friendly ants from the same team in the ant’s 360° visual 
         /// range. The result of this calculation depends on the ant’s visual range.
-        /// <see href="http://wiki.antme.net/en/API1:TeamAntsInViewrange">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#misc">Read more</see>
         /// </summary>
         public new int TeamAntsInViewrange
         {
@@ -577,7 +577,7 @@ namespace AntMe.English
         /// <summary>
         /// Returns the number of enemy ants in the ant’s 360° visual range. The result of 
         /// this calculation depends on the ant’s visual range.
-        /// <see href="http://wiki.antme.net/en/API1:ForeignAntsInViewrange">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#misc">Read more</see>
         /// </summary>
         public new int ForeignAntsInViewrange
         {
@@ -587,7 +587,7 @@ namespace AntMe.English
         /// <summary>
         /// Returns the number of bugs in the ant’s 360° visual range. The result of this 
         /// calculation depends on the ant’s visual range.
-        /// <see href="http://wiki.antme.net/en/API1:BugsInViewrange">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#misc">Read more</see>
         /// </summary>
         public new int BugsInViewrange
         {
@@ -596,7 +596,7 @@ namespace AntMe.English
 
         /// <summary>
         /// Returns the distance in steps to the nearest friendly anthill.
-        /// <see href="http://wiki.antme.net/en/API1:DistanceToAnthill">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#misc">Read more</see>
         /// </summary>
         public int DistanceToAnthill
         {
@@ -606,7 +606,7 @@ namespace AntMe.English
         /// <summary>
         /// Returns the piece of fruit the ant is currently carrying. If the ant is not 
         /// carrying a piece of fruit, the value returned is null.
-        /// <see href="http://wiki.antme.net/en/API1:CarryingFruit">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#misc">Read more</see>
         /// </summary>
         public Fruit CarryingFruit
         {
@@ -625,7 +625,7 @@ namespace AntMe.English
 
         /// <summary>
         /// Returns the name of the ant's caste.
-        /// <see href="http://wiki.antme.net/en/API1:Caste">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#misc">Read more</see>
         /// </summary>
         public string Caste
         {
@@ -635,7 +635,7 @@ namespace AntMe.English
         /// <summary>
         /// Returns the ant's current destination. If the ant currently has no 
         /// destination, the value returned is null.
-        /// <see href="http://wiki.antme.net/en/API1:Destination">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#misc">Read more</see>
         /// </summary>
         public Item Destination
         {
@@ -677,7 +677,7 @@ namespace AntMe.English
         /// as it has travelled a third of its maximum range. Once this value 
         /// has been exceeded, this property changes from false to true and 
         /// the event GettingTired() is called.
-        /// <see href="http://wiki.antme.net/en/API1:IsTired">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#misc">Read more</see>
         /// </summary>
         public bool IsTired
         {
@@ -687,9 +687,9 @@ namespace AntMe.English
         /// <summary>
         /// Returns how many steps forward the ant must go before it reaches 
         /// its destination. This value is reduced each round by CurrentSpeed.
-        /// <see href="http://wiki.antme.net/en/API1:DistanceToDestination">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#misc">Read more</see>
         /// </summary>
-        public int DistanceToDestination
+        public new int DistanceToDestination
         {
             get { return DistanceToDestinationBase; }
         }
@@ -697,7 +697,7 @@ namespace AntMe.English
         /// <summary>
         /// Returns how many degrees the ant still has to turn before it moves 
         /// forward again. This value is reduced each round by RotationSpeed.
-        /// <see href="http://wiki.antme.net/en/API1:DegreesToDestination">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#misc">Read more</see>
         /// </summary>
         public int DegreesToTurnToDestination
         {
@@ -706,7 +706,7 @@ namespace AntMe.English
 
         /// <summary>
         /// Returns the direction that the ant is facing on the map.
-        /// <see href="http://wiki.antme.net/en/API1:Direction">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#misc">Read more</see>
         /// </summary>
         public int Direction
         {
@@ -715,17 +715,17 @@ namespace AntMe.English
 
         /// <summary>
         /// Returns whether the ant has reached its destination or not.
-        /// <see href="http://wiki.antme.net/en/API1:ReachedDestination">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#misc">Read more</see>
         /// </summary>
         public bool ReachedDestination
         {
-            get { return ReachedBase; }
+            get { return ArrivedBase; }
         }
 
         /// <summary>
         /// This property returns the total number of steps that the ant has 
         /// travelled since its last visit to an anthill. See Range.
-        /// <see href="http://wiki.antme.net/en/API1:WalkedRange">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#misc">Read more</see>
         /// </summary>
         public int WalkedRange
         {
@@ -739,7 +739,7 @@ namespace AntMe.English
         /// is specified, a random number will be generated between 0 and the specified 
         /// limit -1. If two parameters are specified, a number between will be generated 
         /// between the lower limit and the upper limit -1.
-        /// <see href="http://wiki.antme.net/en/API1:RandomNumber.Number"></see>
+        /// <see href="https://wiki.antme.net/docs/commands#random-numbers"></see>
         /// </summary>
         public RandomNumber RandomNumber
         {
@@ -757,7 +757,7 @@ namespace AntMe.English
 
         /// <summary>
         /// Evaluates if the specified fruit needs more ants to carry it.
-        /// <see href="http://wiki.antme.net/en/API1:NeedsCarrier">Read more</see>
+        /// <see href="https://wiki.antme.net/docs/commands#food-1">Read more</see>
         /// </summary>
         /// <param name="fruit">fruit</param>
         /// <returns>more ants required</returns>

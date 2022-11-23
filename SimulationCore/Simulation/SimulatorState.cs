@@ -1,22 +1,22 @@
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Liste der möglichen Stati eines Simulators
+    /// all possibilities of states the simulation can be
     /// </summary>
     public enum SimulatorState
     {
         /// <summary>
-        /// Der Simulator ist initialisiert, aber noch nicht gestartet worden
+        /// ready, initialized, but not started yet
         /// </summary>
         Ready,
 
         /// <summary>
-        /// Der Simulator simuliert gerade
+        /// running simulation
         /// </summary>
         Simulating,
 
         /// <summary>
-        /// Die Simulation wurde beendet
+        /// finished simulation
         /// </summary>
         Finished
     }

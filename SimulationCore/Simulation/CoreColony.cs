@@ -304,7 +304,7 @@ namespace AntMe.Simulation
             // Schleife für die wir eine extra Laufvariable benötigen.
             foreach (CoreMarker markierung in Marker)
             {
-                info.MarkerStates.Add(markierung.ErzeugeInfo());
+                info.MarkerStates.Add(markierung.PopulateMarkerState());
             }
 
             return info;

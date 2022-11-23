@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Simulation-Settings from application-configuration.
+    /// Simulation settings by application configuration.
     /// </summary>
     [Serializable]
     public struct SimulationSettings
@@ -16,64 +16,64 @@ namespace AntMe.Simulation
         #region internal Varialbes
 
         /// <summary>
-        /// Sets or gets the name of this settings-set.
+        /// Name of this settings.
         /// </summary>
         public string SettingsName;
 
         /// <summary>
-        /// Gets or sets Guid of that settings-set.
+        /// Guid of that settings.
         /// </summary>
         public Guid Guid;
 
         #region Playground
 
         /// <summary>
-        /// Gets the size of the playground in SquareAntSteps.
+        /// Size of the playground in SquareAntSteps.
         /// </summary>
         public int PlayGroundBaseSize;
 
         /// <summary>
-        /// Gets the multiplier of additional playground-size per player.
+        /// Multiplier of additional playground size per player.
         /// </summary>
         public float PlayGroundSizePlayerMultiplier;
 
         /// <summary>
-        /// Gets the radius of anthills.
+        /// Radius of anthills.
         /// </summary>
         public int AntHillRadius;
 
         /// <summary>
-        /// Minimum Battle-Distance in steps between two insects.
+        /// Minimum battle distance between two insects in steps.
         /// </summary>
         public int BattleRange;
 
         /// <summary>
-        /// Displacement of the anthill form the circle point.
+        /// Random displacement circle point of anthill.
         /// </summary>
         public float AntHillRandomDisplacement;
 
         /// <summary>
-        /// Size of the spwancells.
+        /// Size of the spwancell.
         /// </summary>
         public int SpawnCellSize;
 
         /// <summary>
-        /// Radius of the restrictedzone around the anthill.
+        /// Restricted zone radius around anthill.
         /// </summary>
         public int RestrictedZoneRadius;
 
         /// <summary>
-        /// Max. distance from the farthest anthill.
+        /// Maximum distance for the farthest anthill.
         /// </summary>
         public int FarZoneRadius;
 
         /// <summary>
-        /// Decrease value for the neighbor cells if food spawns.
+        /// Decrease value for the neighbor cells if food spawning cells.
         /// </summary>
         public float DecreaseValue;
 
         /// <summary>
-        /// Value to regenerate all cells at a food spawn.
+        /// Value to regenerate all food spawning cells.
         /// </summary>
         public float RegenerationValue;
 
@@ -82,102 +82,102 @@ namespace AntMe.Simulation
         #region Livetime and Respawn
 
         /// <summary>
-        /// Gets the maximum count of ants simultaneous on playground.
+        /// Maximum count of ants simultaneous on playground.
         /// </summary>
         public int AntSimultaneousCount;
 
         /// <summary>
-        /// Gets the maximum count of bugs simultaneous on playground.
+        /// Maximum count of bugs simultaneous on playground.
         /// </summary>
         public int BugSimultaneousCount;
 
         /// <summary>
-        /// Gets the maximum count of sugar simultaneous on playground.
+        /// Maximum count of sugar simultaneous on playground.
         /// </summary>
         public int SugarSimultaneousCount;
 
         /// <summary>
-        /// Gets the maximum count of fruit simultaneous on playground.
+        /// Maximum count of fruit simultaneous on playground.
         /// </summary>
         public int FruitSimultaneousCount;
 
         /// <summary>
-        /// Gets the multiplier for maximum count of bugs simultaneous on playground per player.
+        /// Multiplier for maximum count of bugs simultaneous on playground per player.
         /// </summary>
         public float BugCountPlayerMultiplier;
 
         /// <summary>
-        /// Gets the multiplier for maximum count of sugar simultaneous on playground per player.
+        /// Multiplier for maximum count of sugar simultaneous on playground per player.
         /// </summary>
         public float SugarCountPlayerMultiplier;
 
         /// <summary>
-        /// Gets the multiplier for maximum count of fruit simultaneous on playground per player.
+        /// Multiplier for maximum count of fruits simultaneous on playground per player.
         /// </summary>
         public float FruitCountPlayerMultiplier;
 
         /// <summary>
-        /// Gets the multiplier for maximum count of ants simultaneous on playground per player.
+        /// Multiplier for maximum count of ants simultaneous on playground per player.
         /// </summary>
         public float AntCountPlayerMultiplier;
 
         /// <summary>
-        /// Gets the maximum count of ants in the whole simulation.
+        /// Maximum count of ants in the whole simulation.
         /// </summary>
         public int AntTotalCount;
 
         /// <summary>
-        /// Gets the maximum count of bugs in the whole simulation.
+        /// Maximum count of bugs in the whole simulation.
         /// </summary>
         public int BugTotalCount;
 
         /// <summary>
-        /// Gets the maximum count of sugar in the whole simulation.
+        /// Maximum count of sugar in the whole simulation.
         /// </summary>
         public int SugarTotalCount;
 
         /// <summary>
-        /// Gets the maximum count of fruit in the whole simulation.
+        /// Maximum count of fruita in the whole simulation.
         /// </summary>
         public int FruitTotalCount;
 
         /// <summary>
-        /// Gets the multiplier for maximum count of ants per player in the whole simulation.
+        /// Multiplier for maximum count of ants per player in the whole simulation.
         /// </summary>
         public float AntTotalCountPlayerMultiplier;
 
         /// <summary>
-        /// Gets the multiplier for maximum count of bugs per player in the whole simulation.
+        /// Multiplier for maximum count of bugs per player in the whole simulation.
         /// </summary>
         public float BugTotalCountPlayerMultiplier;
 
         /// <summary>
-        /// Gets the multiplier for maximum count of sugar per player in the whole simulation.
+        /// Multiplier for maximum count of sugar per player in the whole simulation.
         /// </summary>
         public float SugarTotalCountPlayerMultiplier;
 
         /// <summary>
-        /// Gets the multiplier for maximum count of fruit per player in the whole simulation.
+        /// Multiplier for maximum count of fruit per player in the whole simulation.
         /// </summary>
         public float FruitTotalCountPlayerMultiplier;
 
         /// <summary>
-        /// Gets the delay for ant before next respawn in rounds. 
+        /// Delay for ant before next respawn in rounds. 
         /// </summary>
         public int AntRespawnDelay;
 
         /// <summary>
-        /// Gets the delay for bugs before next respawn in rounds. 
+        /// Delay for bugs before next respawn in rounds. 
         /// </summary>
         public int BugRespawnDelay;
 
         /// <summary>
-        /// Gets the delay for sugar before next respawn in rounds. 
+        /// Delay for sugar before next respawn in rounds. 
         /// </summary>
         public int SugarRespawnDelay;
 
         /// <summary>
-        /// Gets the delay for fruits before next respawn in rounds. 
+        /// Delay for fruits before next respawn in rounds. 
         /// </summary>
         public int FruitRespawnDelay;
 
@@ -186,37 +186,37 @@ namespace AntMe.Simulation
         #region Bugsettings
 
         /// <summary>
-        /// Gets the attack-value of bugs.
+        /// Bugs attack value.
         /// </summary>
         public int BugAttack;
 
         /// <summary>
-        /// Gets the rotation speed of bugs.
+        /// Rotation speed of bugs.
         /// </summary>
         public int BugRotationSpeed;
 
         /// <summary>
-        /// Gets the energy of bugs.
+        /// Energy of bugs.
         /// </summary>
         public int BugEnergy;
 
         /// <summary>
-        /// Gets the speed of bugs.
+        /// Speed of bugs.
         /// </summary>
         public int BugSpeed;
 
         /// <summary>
-        /// Gets the attack-range of bugs.
+        /// Bug attack range.
         /// </summary>
         public int BugRadius;
 
         /// <summary>
-        /// Gets the regeneration-value of bugs.
+        /// Bug regeneration value.
         /// </summary>
         public int BugRegenerationValue;
 
         /// <summary>
-        /// Gets the delay in rounds between the regeneration-steps of bugs.
+        /// Delay in rounds between the bug regeneration steps.
         /// </summary>
         public int BugRegenerationDelay;
 
@@ -225,32 +225,32 @@ namespace AntMe.Simulation
         #region Foodstuff
 
         /// <summary>
-        /// Gets the minimal amount of food in sugar-hills.
+        /// Minimal amount of food in sugar-hills.
         /// </summary>
         public int SugarAmountMinimum;
 
         /// <summary>
-        /// Gets the maximum amount of food in sugar-hills.
+        /// Maximum amount of food in sugar-hills.
         /// </summary>
         public int SugarAmountMaximum;
 
         /// <summary>
-        /// Gets the minimal amount of food in fruits.
+        /// Minimal amount of food in fruits.
         /// </summary>
         public int FruitAmountMinimum;
 
         /// <summary>
-        /// Gets the maximum amount of food in fruits.
+        /// Maximum amount of food in fruits.
         /// </summary>
         public int FruitAmountMaximum;
 
         /// <summary>
-        /// Gets the multiplier for fruits between load and amount of food.
+        /// Multiplier for fruits between load and amount of food.
         /// </summary>
         public float FruitLoadMultiplier;
 
         /// <summary>
-        /// Gets the multiplier for fruits between radius and amount of food.
+        /// Multiplier for fruits between radius and amount of food.
         /// </summary>
         public float FruitRadiusMultiplier;
 
@@ -259,17 +259,17 @@ namespace AntMe.Simulation
         #region Marker
 
         /// <summary>
-        /// Gets the minimal size of a marker.
+        /// Minimal size of a marker.
         /// </summary>
         public int MarkerSizeMinimum;
 
         /// <summary>
-        /// Gets the minimal allowed distance between two marker.
+        /// Minimal allowed distance between two marker.
         /// </summary>
         public int MarkerDistance;
 
         /// <summary>
-        /// Gets the maximum age in rounds of a marker.
+        /// Maximum age in rounds of a marker.
         /// </summary>
         public int MarkerMaximumAge;
 
@@ -283,32 +283,32 @@ namespace AntMe.Simulation
         public float PointsForFoodMultiplier;
 
         /// <summary>
-        /// Gets the amount of points for collected fruits.
+        /// Amount of points for collected fruits.
         /// </summary>
         public int PointsForFruits;
 
         /// <summary>
-        /// Gets the amount of points for killed bugs.
+        /// Amount of points for killed bugs.
         /// </summary>
         public int PointsForBug;
 
         /// <summary>
-        /// Gets the amount of points for killed foreign ants.
+        /// Amount of points for killed foreign ants.
         /// </summary>
         public int PointsForForeignAnt;
 
         /// <summary>
-        /// Gets the amount of points for own dead ants killed by bugs.
+        /// Amount of points for own dead ants killed by bugs.
         /// </summary>
         public int PointsForEatenAnts;
 
         /// <summary>
-        /// Gets the amount of points for own dead ants killed by foreign ants.
+        /// Amount of points for own dead ants killed by foreign ants.
         /// </summary>
         public int PointsForBeatenAnts;
 
         /// <summary>
-        /// Gets the amount of points for own dead starved ants.
+        /// Amount of points for own dead starved ants.
         /// </summary>
         public int PointsForStarvedAnts;
 
@@ -335,7 +335,7 @@ namespace AntMe.Simulation
 
 
         /// <summary>
-        /// Gets the default settings.
+        /// Default settings.
         /// </summary>
         public static SimulationSettings Default
         {
@@ -499,7 +499,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Checks the value-ranges of all properties.
+        /// Checks all properties against valid ranges of values
         /// </summary>
         public void RuleCheck()
         {
@@ -563,7 +563,7 @@ namespace AntMe.Simulation
 
             if (RegenerationValue < 0)
             {
-                throw new ConfigurationErrorsException("Der regenerirungs Wert aller Zellen darf nicht kleiner 0 sein");
+                throw new ConfigurationErrorsException("The regeneration value of the cells may not be smaller than 0.");
             }
 
             // Livetime and Respawn
@@ -759,7 +759,7 @@ namespace AntMe.Simulation
         #region Properties
 
         /// <summary>
-        /// Gets the maximal Speed of an insect.
+        /// Maximal Speed of an insect.
         /// </summary>
         public int MaximumSpeed
         {
@@ -775,7 +775,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Gets the maximum size of a Marker.
+        /// Maximum size of a Marker.
         /// </summary>
         public int MaximumMarkerSize
         {

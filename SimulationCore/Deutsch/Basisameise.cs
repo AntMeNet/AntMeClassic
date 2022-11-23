@@ -733,7 +733,7 @@ namespace AntMe.Deutsch
         /// </summary>
         public bool Angekommen
         {
-            get { return ReachedBase; }
+            get { return ArrivedBase; }
         }
 
         /// <summary>

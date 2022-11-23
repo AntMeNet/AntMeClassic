@@ -8,7 +8,7 @@ using System.Threading;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Class, to host an simulation-Environment inside an <see cref="AppDomain"/>.
+    /// Class to host an simulation environment inside an <see cref="AppDomain"/>.
     /// </summary>
     internal sealed class SimulatorHost : MarshalByRefObject
     {
@@ -28,10 +28,10 @@ namespace AntMe.Simulation
 
         #endregion
 
-        #region Constructor and Init
+        #region Constructor and Initialization
 
         /// <summary>
-        /// Initialize the simulation-environment.
+        /// Initialize the simulation environment.
         /// </summary>
         /// <param name="config">configuration</param>
         public bool Init(SimulatorConfiguration config)
@@ -49,14 +49,14 @@ namespace AntMe.Simulation
             // Load Playerfiles
             foreach (TeamInfo team in configuration.Teams)
             {
-                foreach (PlayerInfo spieler in team.Player)
+                foreach (PlayerInfo player in team.Player)
                 {
-                    if (spieler is PlayerInfoFiledump)
+                    if (player is PlayerInfoFiledump)
                     {
                         // Try, to load filedump
                         try
                         {
-                            spieler.assembly = Assembly.Load(((PlayerInfoFiledump)spieler).File);
+                            player.assembly = Assembly.Load(((PlayerInfoFiledump)player).File);
                         }
                         catch (Exception ex)
                         {
@@ -64,12 +64,12 @@ namespace AntMe.Simulation
                             return false;
                         }
                     }
-                    else if (spieler is PlayerInfoFilename)
+                    else if (player is PlayerInfoFilename)
                     {
                         // Try, to load filename
                         try
                         {
-                            spieler.assembly = Assembly.LoadFile(((PlayerInfoFilename)spieler).File);
+                            player.assembly = Assembly.LoadFile(((PlayerInfoFilename)player).File);
                         }
                         catch (Exception ex)
                         {
@@ -95,7 +95,7 @@ namespace AntMe.Simulation
             try
             {
                 environment = new SimulationEnvironment();
-                environment.AreaChange += umgebung_Verantwortungswechsel;
+                environment.AreaChange += switchEnvironmentResponsibility;
                 environment.Init(configuration);
             }
             catch (Exception ex)
@@ -126,8 +126,8 @@ namespace AntMe.Simulation
             // Reset of times
             stepWatch.Reset();
             foreach (TeamInfo team in configuration.Teams)
-                foreach (PlayerInfo spieler in team.Player)
-                    playerTimes[spieler.Guid] = 0;
+                foreach (PlayerInfo player in team.Player)
+                    playerTimes[player.Guid] = 0;
 
             // Init Step-Thread
             exception = null;
@@ -150,7 +150,7 @@ namespace AntMe.Simulation
             }
             stepWatch.Stop();
 
-            // Bei Exceptions null zurück liefern, um Fehler zu signalisieren
+            // returns null for exception to signal an error
             if (exception != null)
             {
                 return null;
@@ -209,9 +209,9 @@ namespace AntMe.Simulation
 
         #region Eventhandler
 
-        private void umgebung_Verantwortungswechsel(object sender, AreaChangeEventArgs e)
+        private void switchEnvironmentResponsibility(object sender, AreaChangeEventArgs e)
         {
-            // Aktuellen Timer stoppen
+            // stop current timer
             if (currentPlayer != e.Player && currentPlayer != null)
             {
                 playerWatch.Stop();
@@ -223,7 +223,7 @@ namespace AntMe.Simulation
                 currentArea = Area.Unknown;
             }
 
-            // Neuen Timer starten
+            // start new timer
             if (e.Player != null)
             {
                 currentPlayer = e.Player;

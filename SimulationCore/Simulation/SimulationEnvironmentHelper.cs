@@ -478,9 +478,9 @@ namespace AntMe.Simulation
 
             foreach (CoreMarker markierung in colony.Marker)
             {
-                if (markierung.IstAktiv)
+                if (markierung.IsActive)
                 {
-                    markierung.Aktualisieren();
+                    markierung.Update();
                 }
                 else
                 {
