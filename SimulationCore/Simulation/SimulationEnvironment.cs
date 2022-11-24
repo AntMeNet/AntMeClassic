@@ -129,7 +129,7 @@ namespace AntMe.Simulation
                     CoreColony colony = new CoreColony(Playground, player, Teams[i]);
                     Teams[i].Colonies[j] = colony;
 
-                    colony.AntHills.Add(Playground.NeuerBau(colony.Id));
+                    colony.AntHills.Add(Playground.NewAnthill(colony.Id));
                     colony.insectCountDown = antCountDown;
                 }
             }
@@ -164,7 +164,7 @@ namespace AntMe.Simulation
             {
                 for (int j = 0; j < Teams[i].Colonies.Length; j++)
                 {
-                    Bugs.Grids[0].Add(Teams[i].Colonies[j].Insects);
+                    Bugs.Grids[0].Add(Teams[i].Colonies[j].InsectsList);
                 }
             }
 
@@ -174,9 +174,9 @@ namespace AntMe.Simulation
             //}
 
             // Schleife über alle Wanzen.
-            for (int bugIndex = 0; bugIndex < Bugs.Insects.Count; bugIndex++)
+            for (int bugIndex = 0; bugIndex < Bugs.InsectsList.Count; bugIndex++)
             {
-                CoreBug bug = Bugs.Insects[bugIndex] as CoreBug;
+                CoreBug bug = Bugs.InsectsList[bugIndex] as CoreBug;
                 Debug.Assert(bug != null);
 
                 bug.AwaitingCommands = true;
@@ -266,22 +266,22 @@ namespace AntMe.Simulation
                     {
                         if (colony.Grids[casteIndex].Count == 0)
                         {
-                            colony.Grids[casteIndex].Add(Bugs.Insects);
+                            colony.Grids[casteIndex].Add(Bugs.InsectsList);
                             for (int j = 0; j < Teams.Length; j++)
                             {
                                 for (int i = 0; i < Teams[j].Colonies.Length; i++)
                                 {
                                     CoreColony v = Teams[j].Colonies[i];
-                                    colony.Grids[casteIndex].Add(v.Insects);
+                                    colony.Grids[casteIndex].Add(v.InsectsList);
                                 }
                             }
                         }
                     }
 
                     // Schleife über alle Ameisen.
-                    for (int antIndex = 0; antIndex < colony.Insects.Count; antIndex++)
+                    for (int antIndex = 0; antIndex < colony.InsectsList.Count; antIndex++)
                     {
-                        CoreAnt ant = colony.Insects[antIndex] as CoreAnt;
+                        CoreAnt ant = colony.InsectsList[antIndex] as CoreAnt;
                         Debug.Assert(ant != null);
 
                         // Finde und Zähle die Insekten im Sichtkreis der Ameise.
@@ -475,19 +475,19 @@ namespace AntMe.Simulation
                 simulationState.TeamStates.Add(Teams[i].CreateState());
             }
 
-            for (int i = 0; i < Bugs.Insects.Count; i++)
+            for (int i = 0; i < Bugs.InsectsList.Count; i++)
             {
-                simulationState.BugStates.Add(((CoreBug)Bugs.Insects[i]).GenerateInformation());
+                simulationState.BugStates.Add(((CoreBug)Bugs.InsectsList[i]).GenerateInformation());
             }
 
-            for (int i = 0; i < Playground.SugarHills.Count; i++)
+            for (int i = 0; i < Playground.SugarHillsList.Count; i++)
             {
-                simulationState.SugarStates.Add(Playground.SugarHills[i].CreateState());
+                simulationState.SugarStates.Add(Playground.SugarHillsList[i].CreateState());
             }
 
-            for (int i = 0; i < Playground.Fruits.Count; i++)
+            for (int i = 0; i < Playground.FruitsList.Count; i++)
             {
-                simulationState.FruitStates.Add(Playground.Fruits[i].GenerateInformation());
+                simulationState.FruitStates.Add(Playground.FruitsList[i].GenerateInformation());
             }
         }
 

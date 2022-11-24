@@ -14,7 +14,7 @@ namespace AntMe.English
         /// </summary>
         public int CurrentLoad
         {
-            get { return ((CoreAnt)Baseitem).CurrentBurdenBase; }
+            get { return ((CoreAnt)Baseitem).CurrentLoadBase; }
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace AntMe.English
         /// </summary>
         public int MaximumLoad
         {
-            get { return ((CoreAnt)Baseitem).MaximumBurdenBase; }
+            get { return ((CoreAnt)Baseitem).MaximumLoadBase; }
         }
 
         /// <summary>

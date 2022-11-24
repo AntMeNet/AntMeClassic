@@ -6,7 +6,7 @@ using System.Security;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Class, to extract PlayerInfos from given Ai-Assembly.
+    /// Class extracting player information from given Ai-Assembly.
     /// </summary>
     /// <author>Tom Wendel (tom@antme.net)</author>
     public static class AiAnalysis
@@ -14,7 +14,7 @@ namespace AntMe.Simulation
         #region public, static Methods
 
         /// <summary>
-        /// Analyzes a Ai-File based on filename.
+        /// Analyze Ai-File based on filename.
         /// </summary>
         /// <param name="filename">Ai-File to analyze.</param>
         /// <returns>List of found PlayerInfos</returns>

@@ -48,7 +48,7 @@ namespace AntMe.Simulation
         private int residualAngle = 0;
 
         /// <summary>
-        /// index of the caste of the insect. depends of caste structure of the players
+        /// depending on the players caste structure, index of the caste
         /// </summary>
         internal int CasteIndexBase;
 
@@ -219,7 +219,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// fruit insect is carrying
+        /// carried fruit
         /// </summary>
         internal CoreFruit CarryingFruitBase
         {
@@ -237,7 +237,7 @@ namespace AntMe.Simulation
 
         internal Random RandomBase { get; private set; }
 
-        #region IKoordinate Members
+        #region ICoordinate
 
         /// <summary>
         /// coordinates of insect on playground
@@ -254,7 +254,7 @@ namespace AntMe.Simulation
         /// abstract insect constructor
         /// </summary>
         /// <param name="colony">new insect will be part of this colony</param>
-        /// <param name="insectsInColony">not used here!</param>
+        /// <param name="insectsInColony">in constructor unused</param>
         internal virtual void Init(CoreColony colony, Random random, Dictionary<string, int> insectsInColony)
         {
             id = newId;
@@ -510,8 +510,8 @@ namespace AntMe.Simulation
             int distance = CoreCoordinate.DetermineDistanceI(CoordinateBase, sugar.CoordinateBase);
             if (distance <= SimulationEnvironment.PLAYGROUND_UNIT)
             {
-                int amount = Math.Min(MaximumBurdenBase - currentBurden, sugar.Amount);
-                CurrentBurdenBase += amount;
+                int amount = Math.Min(MaximumLoadBase - currentBurden, sugar.Amount);
+                CurrentLoadBase += amount;
                 sugar.Amount -= amount;
             }
             else
@@ -544,7 +544,7 @@ namespace AntMe.Simulation
                 StopMovementBase();
                 CarryingFruitBase = fruit;
                 fruit.InsectsCarrying.Add(this);
-                CurrentBurdenBase = colony.Burden[CasteIndexBase];
+                CurrentLoadBase = colony.LoadI[CasteIndexBase];
             }
         }
 
@@ -557,7 +557,7 @@ namespace AntMe.Simulation
             {
                 return;
             }
-            CurrentBurdenBase = 0;
+            CurrentLoadBase = 0;
             TargetBase = null;
             if (CarryingFruitBase != null)
             {
@@ -618,24 +618,24 @@ namespace AntMe.Simulation
             if (residualAngle != 0)
             {
                 // Zielwinkel wird erreicht.
-                if (Math.Abs(residualAngle) < colony.RotationSpeed[CasteIndexBase])
+                if (Math.Abs(residualAngle) < colony.RotationSpeedI[CasteIndexBase])
                 {
                     coordinate.Direction += residualAngle;
                     residualAngle = 0;
                 }
 
                 // Insekt dreht sich nach rechts.
-                else if (residualAngle >= colony.RotationSpeed[CasteIndexBase])
+                else if (residualAngle >= colony.RotationSpeedI[CasteIndexBase])
                 {
-                    coordinate.Direction += colony.RotationSpeed[CasteIndexBase];
-                    ResidualAngle -= colony.RotationSpeed[CasteIndexBase];
+                    coordinate.Direction += colony.RotationSpeedI[CasteIndexBase];
+                    ResidualAngle -= colony.RotationSpeedI[CasteIndexBase];
                 }
 
                 // Insekt dreht sich nach links.
-                else if (residualAngle <= -colony.RotationSpeed[CasteIndexBase])
+                else if (residualAngle <= -colony.RotationSpeedI[CasteIndexBase])
                 {
-                    coordinate.Direction -= colony.RotationSpeed[CasteIndexBase];
-                    ResidualAngle += colony.RotationSpeed[CasteIndexBase];
+                    coordinate.Direction -= colony.RotationSpeedI[CasteIndexBase];
+                    ResidualAngle += colony.RotationSpeedI[CasteIndexBase];
                 }
             }
 
@@ -728,9 +728,9 @@ namespace AntMe.Simulation
             }
 
             // Koordinaten unten begrenzen.
-            else if (coordinate.Y > colony.HightI)
+            else if (coordinate.Y > colony.HeightI)
             {
-                coordinate.Y = colony.HightI2 - coordinate.Y;
+                coordinate.Y = colony.HeightI2 - coordinate.Y;
                 if (coordinate.Direction > 0 && coordinate.Direction < 180)
                 {
                     coordinate.Direction = 360 - coordinate.Direction;
@@ -771,7 +771,7 @@ namespace AntMe.Simulation
         /// </summary>
         internal int RotationSpeedBase
         {
-            get { return colony.RotationSpeed[CasteIndexBase]; }
+            get { return colony.RotationSpeedI[CasteIndexBase]; }
         }
 
         #endregion
@@ -783,23 +783,23 @@ namespace AntMe.Simulation
         /// <summary>
         /// current burden carried by ant
         /// </summary>
-        internal int CurrentBurdenBase
+        internal int CurrentLoadBase
         {
             get { return currentBurden; }
             set
             {
                 currentBurden = value >= 0 ? value : 0;
                 currentSpeedI = colony.SpeedI[CasteIndexBase];
-                currentSpeedI -= currentSpeedI * currentBurden / colony.Burden[CasteIndexBase] / 2;
+                currentSpeedI -= currentSpeedI * currentBurden / colony.LoadI[CasteIndexBase] / 2;
             }
         }
 
         /// <summary>
         /// maximum burden insect can carry.
         /// </summary>
-        internal int MaximumBurdenBase
+        internal int MaximumLoadBase
         {
-            get { return colony.Burden[CasteIndexBase]; }
+            get { return colony.LoadI[CasteIndexBase]; }
         }
 
         #endregion

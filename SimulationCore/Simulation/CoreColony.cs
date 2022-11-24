@@ -5,13 +5,13 @@ using System.Collections.Generic;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Ein Ameisenvolk. Kapselt alle Informationen die zur Laufzeit eines Spiels
-    /// zu einem Spieler anfallen.
+    /// the coreColony holds all information about the colony
+    /// during the entire simulation
     /// </summary>
     /// <author>Wolfgang Gallo (wolfgang@antme.net)</author>
     internal sealed class CoreColony
     {
-        // Die Id des nächsten erzeugten Volkes.
+        // the nextId is the ID of the next colony created
         private static int nextId = 0;
         private readonly int[] antsInCaste;
         internal readonly List<CoreAnthill> AntHills = new List<CoreAnthill>();
@@ -20,22 +20,22 @@ namespace AntMe.Simulation
         internal readonly List<CoreInsect> EatenInsects = new List<CoreInsect>();
 
         /// <summary>
-        /// Die Id die das Volk während eines laufenden Spiels idenzifiziert.
+        /// the ID will be the identifier for the colony in the simulation
         /// </summary>
         public int Id { get; private set; }
 
         /// <summary>
-        /// Die Guid, die das Volk eindeutig identifiziert.
+        /// the GUID will be the identifier for the colony in the simulation
         /// </summary>
         public Guid Guid { get; private set; }
 
-        internal readonly List<CoreInsect> Insects = new List<CoreInsect>();
-        private readonly Type Klasse;
+        internal readonly List<CoreInsect> InsectsList = new List<CoreInsect>();
+        private readonly Type pClass;
         internal Grid<CoreMarker> Marker { get; private set; }
         internal readonly List<CoreMarker> NewMarker = new List<CoreMarker>();
 
         /// <summary>
-        /// Der Spieler der das Verhalten des Volkes steuert.
+        /// the player responisible for the performance of the colony
         /// </summary>
         internal readonly PlayerInfo Player;
 
@@ -43,59 +43,63 @@ namespace AntMe.Simulation
 
         internal int WidthI;
         internal int WidthI2;
-        internal int HightI;
-        internal int HightI2;
+        internal int HeightI;
+        internal int HeightI2;
         internal CorePlayground Playground;
 
         internal PlayerStatistics Statistic = new PlayerStatistics();
-        internal PlayerStatistics StatistikDurchschnitt = new PlayerStatistics();
+        internal PlayerStatistics StatisticMeanAverage = new PlayerStatistics();
 
         /// <summary>
-        /// Zählt die Anzahl an Runden herunter, bis wieder eine neus Insekt erzeugt
-        /// werden kann.
+        /// delay for the creation of a new insect in number of rounds
         /// </summary>
         internal int insectDelay = 0;
 
         internal int insectCountDown;
 
-        #region Fähigkeiten
+        #region Capabilities
 
         /// <summary>
-        /// Die Angriffswerte aller Kasten des Volkes.
+        /// attack value of all castes of the colony
         /// </summary>
         internal readonly int[] AttackI;
 
         /// <summary>
-        /// Gitter für die verschiedenen Sichtweiten.
+        /// grid for the different visibility ranges
         /// </summary>
         internal readonly Grid<CoreInsect>[] Grids;
 
         /// <summary>
-        /// Die Drehgeschwindigkeiten aller Kasten des Volkes in Grad pro Runde.
+        /// rotation speed of all castes of the colony
+        /// in degrees per round
         /// </summary>
-        internal readonly int[] RotationSpeed;
+        internal readonly int[] RotationSpeedI;
 
         /// <summary>
-        /// Die Lebenspunkte aller Kasten des Volkes.
+        /// energy or health points of all castes of the colony
         /// </summary>
         internal readonly int[] EnergyI;
 
         /// <summary>
-        /// Die Geschwindigkeiten aller Kasten des Volkes in der internen Einheit.
+        /// movement speed of all castes of the colony
+        /// in internal unit
         /// </summary>
         internal readonly int[] SpeedI;
 
         /// <summary>
-        /// Die maximalen Lastwerte aller Kasten des Volkes.
+        /// maximum load value of all castes of the colony
         /// </summary>
-        internal readonly int[] Burden;
+        internal readonly int[] LoadI;
 
         /// <summary>
-        /// Die Reichweiten aller Kasten des Volkes in der internen Einheit.
+        /// movement range of all castes of the colony
+        /// in internal unit
         /// </summary>
         internal readonly int[] RangeI;
 
         /// <summary>
+        /// view range of all castes of the colony
+        /// in internal unit
         /// Die Sichtweiten aller Kasten des Volkes in der internen Einheit.
         /// </summary>
         internal readonly int[] ViewRangeI;
@@ -103,25 +107,26 @@ namespace AntMe.Simulation
         #endregion
 
         /// <summary>
-        /// Erzeugt eine neue Instanz der Volk-Klasse. Erzeugt ein Wanzen-Volk.
+        /// Bug constructor for a new instance of the colony class
+        /// this is not an ant class but for the bugs
         /// </summary>
-        /// <param name="spielfeld">Das Spielfeld.</param>
-        internal CoreColony(CorePlayground spielfeld)
+        /// <param name="playground">the playground</param>
+        internal CoreColony(CorePlayground playground)
         {
-            InitPlayground(spielfeld);
+            InitPlayground(playground);
 
-            // Die Wanzen werden vom Spiel gesteuert.
+            // the bugs will not under control of a player
             Player = null;
 
-            // Die Klasse ist in diesem Fall bereits bekannt.
-            Klasse = typeof(CoreBug);
+            // the class is CoreBug
+            pClass = typeof(CoreBug);
 
-            //TODO: Werte überprüfen.
+            // TODO: check values of bugs
             SpeedI = new int[1] { SimulationSettings.Custom.BugSpeed * SimulationEnvironment.PLAYGROUND_UNIT };
-            RotationSpeed = new int[1] { SimulationSettings.Custom.BugRotationSpeed };
+            RotationSpeedI = new int[1] { SimulationSettings.Custom.BugRotationSpeed };
             RangeI = new int[1] { int.MaxValue };
             ViewRangeI = new int[1] { 0 };
-            Burden = new int[1] { 0 };
+            LoadI = new int[1] { 0 };
             EnergyI = new int[1] { SimulationSettings.Custom.BugEnergy };
             AttackI = new int[1] { SimulationSettings.Custom.BugAttack };
 
@@ -129,50 +134,50 @@ namespace AntMe.Simulation
             Grids[0] =
                 Grid<CoreInsect>.Create
                     (
-                    spielfeld.Width * SimulationEnvironment.PLAYGROUND_UNIT,
-                    spielfeld.Height * SimulationEnvironment.PLAYGROUND_UNIT,
+                    playground.Width * SimulationEnvironment.PLAYGROUND_UNIT,
+                    playground.Height * SimulationEnvironment.PLAYGROUND_UNIT,
                     SimulationSettings.Custom.BattleRange * SimulationEnvironment.PLAYGROUND_UNIT);
 
             antsInCaste = new int[1];
         }
 
         /// <summary>
-        /// Erzeugt eine neue Instanz der Volk-Klasse. Erzeugt ein Ameisen-Volk.
+        /// Constructor of a new instance of a ant colony
         /// </summary>
-        /// <param name="spielfeld">Das Spielfeld.</param>
-        /// <param name="spieler">Das Spieler zu dem das Volk gehört.</param>
-        /// <param name="team">Das dazugehörige Team.</param>
-        internal CoreColony(CorePlayground spielfeld, PlayerInfo spieler, CoreTeam team)
+        /// <param name="playground">the playground</param>
+        /// <param name="player">player is owner of the colony</param>
+        /// <param name="team">team the player belongs to</param>
+        internal CoreColony(CorePlayground playground, PlayerInfo player, CoreTeam team)
         {
-            InitPlayground(spielfeld);
+            InitPlayground(playground);
             Team = team;
 
-            Player = spieler;
-            Klasse = spieler.assembly.GetType(spieler.ClassName, true, false);
+            Player = player;
+            pClass = player.assembly.GetType(player.ClassName, true, false);
 
-            // Basisameisenkaste erstellen, falls keine Kasten definiert wurden
-            if (spieler.Castes.Count == 0)
+            // if there is no defintion for the caste, create a new base ant caste
+            if (player.Castes.Count == 0)
             {
-                spieler.Castes.Add(new CasteInfo());
+                player.Castes.Add(new CasteInfo());
             }
 
-            SpeedI = new int[spieler.Castes.Count];
-            RotationSpeed = new int[spieler.Castes.Count];
-            Burden = new int[spieler.Castes.Count];
-            ViewRangeI = new int[spieler.Castes.Count];
-            Grids = new Grid<CoreInsect>[spieler.Castes.Count];
-            RangeI = new int[spieler.Castes.Count];
-            EnergyI = new int[spieler.Castes.Count];
-            AttackI = new int[spieler.Castes.Count];
-            antsInCaste = new int[spieler.Castes.Count];
+            SpeedI = new int[player.Castes.Count];
+            RotationSpeedI = new int[player.Castes.Count];
+            LoadI = new int[player.Castes.Count];
+            ViewRangeI = new int[player.Castes.Count];
+            Grids = new Grid<CoreInsect>[player.Castes.Count];
+            RangeI = new int[player.Castes.Count];
+            EnergyI = new int[player.Castes.Count];
+            AttackI = new int[player.Castes.Count];
+            antsInCaste = new int[player.Castes.Count];
 
             int index = 0;
-            foreach (CasteInfo caste in spieler.Castes)
+            foreach (CasteInfo caste in player.Castes)
             {
                 SpeedI[index] = SimulationEnvironment.PLAYGROUND_UNIT;
                 SpeedI[index] *= SimulationSettings.Custom.CasteSettings[caste.Speed].Speed;
-                RotationSpeed[index] = SimulationSettings.Custom.CasteSettings[caste.RotationSpeed].RotationSpeed;
-                Burden[index] = SimulationSettings.Custom.CasteSettings[caste.Load].Load;
+                RotationSpeedI[index] = SimulationSettings.Custom.CasteSettings[caste.RotationSpeed].RotationSpeed;
+                LoadI[index] = SimulationSettings.Custom.CasteSettings[caste.Load].Load;
                 ViewRangeI[index] = SimulationEnvironment.PLAYGROUND_UNIT;
                 ViewRangeI[index] *= SimulationSettings.Custom.CasteSettings[caste.ViewRange].ViewRange;
                 RangeI[index] = SimulationEnvironment.PLAYGROUND_UNIT;
@@ -183,8 +188,8 @@ namespace AntMe.Simulation
                 Grids[index] =
                     Grid<CoreInsect>.Create
                         (
-                        spielfeld.Width * SimulationEnvironment.PLAYGROUND_UNIT,
-                        spielfeld.Height * SimulationEnvironment.PLAYGROUND_UNIT,
+                        playground.Width * SimulationEnvironment.PLAYGROUND_UNIT,
+                        playground.Height * SimulationEnvironment.PLAYGROUND_UNIT,
                         ViewRangeI[index]);
 
                 index++;
@@ -195,9 +200,9 @@ namespace AntMe.Simulation
         {
             Playground = spielfeld;
             WidthI = spielfeld.Width * SimulationEnvironment.PLAYGROUND_UNIT;
-            HightI = spielfeld.Height * SimulationEnvironment.PLAYGROUND_UNIT;
+            HeightI = spielfeld.Height * SimulationEnvironment.PLAYGROUND_UNIT;
             WidthI2 = WidthI * 2;
-            HightI2 = HightI * 2;
+            HeightI2 = HeightI * 2;
 
 
 
@@ -213,7 +218,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Die Anzahl von Insektenkasten in diesem Volk.
+        /// colonies caste count
         /// </summary>
         public int CasteCount
         {
@@ -221,9 +226,9 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Erstellt eine neues Insekt.
+        /// Constructor for a new insect instance
         /// </summary>
-        internal void NeuesInsekt(Random random)
+        internal void NewInsect(Random random)
         {
             Dictionary<string, int> dictionary = null;
 
@@ -244,31 +249,32 @@ namespace AntMe.Simulation
             //    Klasse.Assembly.CreateInstance
             //        (Klasse.FullName, false, BindingFlags.Default, null, new object[] {this, dictionary}, null,
             //         new object[] {});
-            CoreInsect insekt = (CoreInsect)Klasse.Assembly.CreateInstance(Klasse.FullName);
-            insekt.Init(this, random, dictionary);
+            CoreInsect insect = (CoreInsect)pClass.Assembly.CreateInstance(pClass.FullName);
+            insect.Init(this, random, dictionary);
 
-            // Merke das Insekt.
-            Insects.Add(insekt);
-            antsInCaste[insekt.CasteIndexBase]++;
+            // add insect to the insects list
+            InsectsList.Add(insect);
+            antsInCaste[insect.CasteIndexBase]++;
         }
 
         /// <summary>
-        /// Entfernt ein Insekt.
+        /// remove insect
         /// </summary>
-        /// <param name="insekt">Insekt</param>
-        internal void EntferneInsekt(CoreInsect insekt)
+        /// <param name="insect">insect</param>
+        internal void RemoveInsect(CoreInsect insect)
         {
-            if (Insects.Remove(insekt))
+            if (InsectsList.Remove(insect))
             {
-                antsInCaste[insekt.CasteIndexBase]--;
+                antsInCaste[insect.CasteIndexBase]--;
             }
         }
 
         /// <summary>
-        /// Erzeugt ein VolkZustand Objekt mit dem aktuellen Zustand des Volkes.
+        /// Constructor of a colony state information instance
+        /// holds the current information about the colony
         /// </summary>
         /// <returns></returns>
-        public ColonyState ErzeugeInfo()
+        public ColonyState GenerateColonyStateInfo()
         {
             ColonyState info = new ColonyState(Id, Player.Guid, Player.ColonyName, Player.FirstName + " " + Player.LastName);
 
@@ -285,17 +291,17 @@ namespace AntMe.Simulation
 
             for (index = 0; index < AntHills.Count; index++)
             {
-                info.AnthillStates.Add(AntHills[index].ErzeugeInfo());
+                info.AnthillStates.Add(AntHills[index].GenerateAnthillStateInfo());
             }
 
             for (index = 1; index < Player.Castes.Count; index++)
             {
-                info.CasteStates.Add(Player.Castes[index].CreateState(Id, index));
+                info.CasteStates.Add(Player.Castes[index].CreateCasteStateInfo(Id, index));
             }
 
-            for (index = 0; index < Insects.Count; index++)
+            for (index = 0; index < InsectsList.Count; index++)
             {
-                info.AntStates.Add(((CoreAnt)Insects[index]).GenerateInformation());
+                info.AntStates.Add(((CoreAnt)InsectsList[index]).GenerateAntStateInfo());
             }
 
             // Markierungen ist ein Bucket und die Bucket Klasse enthält keinen

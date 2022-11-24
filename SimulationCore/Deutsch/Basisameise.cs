@@ -471,7 +471,7 @@ namespace AntMe.Deutsch
         /// </summary>
         public int MaximaleLast
         {
-            get { return MaximumBurdenBase; }
+            get { return MaximumLoadBase; }
         }
 
         /// <summary>
@@ -550,7 +550,7 @@ namespace AntMe.Deutsch
         /// </summary>
         public int AktuelleLast
         {
-            get { return CurrentBurdenBase; }
+            get { return CurrentLoadBase; }
         }
 
         /// <summary>

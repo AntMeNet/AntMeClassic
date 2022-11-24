@@ -5,42 +5,40 @@ using System.Runtime.Serialization;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Exception for implementation-Problems in player-ai-files.
+    /// exception for implementation problems in player AI files
     /// </summary>
     [Serializable]
     public sealed class AiException : AntMeException
     {
         /// <summary>
-        /// KOnstruktor der Regelverletzung ohne weitere Angaben
+        /// constructor of AI exception
         /// </summary>
-        /// <param name="player">Player ID</param>
         public AiException()
         {
         }
 
         /// <summary>
-        /// Konsruktor der Regelverletzung mit der Übergabe einer Beschreibung zur Verletzung
+        /// constructor of AI exception corresponding to a rule violation with handover of the description
         /// </summary>
-        /// <param name="player">Player ID</param>
-        /// <param name="message">Beschreibung der Regelverletzung</param>
+        /// <param name="message">description of the rule violation</param>
         public AiException(string message)
             : base(message)
         {
         }
 
         /// <summary>
-        /// Konstruktor zur Regelverletung mit übergabe einer Nachricht sowie einer verursachenden Exception
+        /// constructor of AI exception corresponding to a rule violation with handover of the description
+        /// and the corresponding exception
         /// </summary>
-        /// <param name="player">Player ID</param>
-        /// <param name="message">Beschreibung zum Problem</param>
-        /// <param name="innerException">Verursachende Exception</param>
+        /// <param name="message">description of the rule violation</param>
+        /// <param name="innerException">exception</param>
         public AiException(string message, Exception innerException)
             : base(message, innerException)
         {
         }
 
         /// <summary>
-        /// Konstruktor für die Serialisierung dieser Exception
+        /// constructor for serialization of the AI exception
         /// </summary>
         /// <param name="info"></param>
         /// <param name="context"></param>

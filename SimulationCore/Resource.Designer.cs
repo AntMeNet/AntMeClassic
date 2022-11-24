@@ -358,7 +358,7 @@ namespace AntMe {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The PlayerAttribute of class {0} does not contain a name..
+        ///   Looks up a localized string similar to the player attribute of class {0} does not contain a name..
         /// </summary>
         internal static string SimulationCorePlayerRuleNoName {
             get {

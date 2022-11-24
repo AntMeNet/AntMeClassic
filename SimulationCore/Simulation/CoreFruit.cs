@@ -49,7 +49,7 @@ namespace AntMe.Simulation
             {
                 if (insekt.colony == colony)
                 {
-                    last += insekt.CurrentBurdenBase;
+                    last += insekt.CurrentLoadBase;
                 }
             }
             return last * SimulationSettings.Custom.FruitLoadMultiplier < Amount;

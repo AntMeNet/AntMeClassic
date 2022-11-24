@@ -10,59 +10,59 @@ namespace AntMe.Simulation
     public sealed class CasteInfo
     {
         /// <summary>
-        /// Der Angriffmodifikator der Kaste.
+        /// attack modificator of the caste
         /// </summary>
         public int Attack = 0;
 
         /// <summary>
-        /// Der Drehgeschwindigkeitmodifikator der Kaste.
+        /// rotation speed modificator of the caste
         /// </summary>
         public int RotationSpeed = 0;
 
         /// <summary>
-        /// Der Energiemodifikator der Kaste.
+        /// energy modificator of the caste
         /// </summary>
         public int Energy = 0;
 
         /// <summary>
-        /// Der Geschwindigkeitmodifikator der Kaste.
+        /// movement speed modificator of the caste
         /// </summary>
         public int Speed = 0;
 
         /// <summary>
-        /// Der Lastmodifikator der Kaste.
+        /// load modificator of the caste
         /// </summary>
         public int Load = 0;
 
         /// <summary>
-        /// Der Name der Kaste.
+        /// name of the caste
         /// </summary>
         public string Name = string.Empty;
 
         /// <summary>
-        /// Der Reichweitenmodifikator der Kaste.
+        /// movement range modificator of the caste
         /// </summary>
         public int Range = 0;
 
         /// <summary>
-        /// Der Sichtweitenmodifikator der Kaste.
+        /// view range modificator of the caste
         /// </summary>
         public int ViewRange = 0;
 
         /// <summary>
-        /// Prüft, ob diese Ameisenkaste den Regeln entspricht
+        /// checks caste against rule set
         /// </summary>
         /// <throws>RuleViolationException</throws>
         public void Rulecheck(string aiName)
         {
-            // Ignoriere die Kaste, wenn er keinen Namen hat.
+            // caste is ignored if it has no name
             if (string.IsNullOrEmpty(Name))
             {
                 throw new RuleViolationException(
                     string.Format(Resource.SimulationCoreCasteRuleNoName, aiName));
             }
 
-            // Prüfen, ob der Geschindwigkeitsmodifikator im Rahmen ist
+            // speed modificator check against allowed minimum and maximum
             if (Speed < SimulationSettings.Custom.CasteSettings.MinIndex ||
                 Speed > SimulationSettings.Custom.CasteSettings.MaxIndex)
             {
@@ -71,7 +71,7 @@ namespace AntMe.Simulation
                         Resource.SimulationCoreCasteRuleSpeedFailed, Name, aiName));
             }
 
-            // Prüfen, ob der Drehgeschwindigkeitsmodifikator im Rahmen ist
+            // rotation speed modificator check against allowed minimum and maximum
             if (RotationSpeed < SimulationSettings.Custom.CasteSettings.MinIndex ||
                 RotationSpeed > SimulationSettings.Custom.CasteSettings.MaxIndex)
             {
@@ -82,7 +82,7 @@ namespace AntMe.Simulation
                         aiName));
             }
 
-            // Prüfen, ob der Lastmodifikator im Rahmen ist
+            // load modificator check against allowed minimum and maximum
             if (Load < SimulationSettings.Custom.CasteSettings.MinIndex ||
                 Load > SimulationSettings.Custom.CasteSettings.MaxIndex)
             {
@@ -90,7 +90,7 @@ namespace AntMe.Simulation
                     string.Format(Resource.SimulationCoreCasteRuleLoadFailed, Name, aiName));
             }
 
-            // Prüfen, ob der Sichtweitemodifikator im Rahmen ist
+            // view range modificator check against allowed minimum and maximum
             if (ViewRange < SimulationSettings.Custom.CasteSettings.MinIndex ||
                 ViewRange > SimulationSettings.Custom.CasteSettings.MaxIndex)
             {
@@ -99,6 +99,7 @@ namespace AntMe.Simulation
                         Resource.SimulationCoreCasteRuleViewRangeFailed, Name, aiName));
             }
 
+            // smell range modificator check against allowed minimum and maximum
             // Prüfen, ob der Riechweitemodifikator im Rahmen ist
             if (Range < SimulationSettings.Custom.CasteSettings.MinIndex ||
                 Range > SimulationSettings.Custom.CasteSettings.MaxIndex)
@@ -158,7 +159,7 @@ namespace AntMe.Simulation
         /// Erzeugt ein CasteState-Objekt.
         /// </summary>
         /// <returns></returns>
-        public CasteState CreateState(int colonyId, int id)
+        public CasteState CreateCasteStateInfo(int colonyId, int id)
         {
             CasteState state = new CasteState(colonyId, id);
             state.Name = Name;

@@ -12,7 +12,7 @@
         /// </summary>
         public int AktuelleLast
         {
-            get { return ((Simulation.CoreAnt)element).CurrentBurdenBase; }
+            get { return ((Simulation.CoreAnt)element).CurrentLoadBase; }
         }
 
         /// <summary>
@@ -39,7 +39,7 @@
         /// </summary>
         public int MaximaleLast
         {
-            get { return ((Simulation.CoreAnt)element).MaximumBurdenBase; }
+            get { return ((Simulation.CoreAnt)element).MaximumLoadBase; }
         }
 
         /// <summary>

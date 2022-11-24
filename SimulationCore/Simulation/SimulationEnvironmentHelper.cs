@@ -42,66 +42,66 @@ namespace AntMe.Simulation
             Cos = new int[max + 1, 360];
             Sin = new int[max + 1, 360];
 
-            // Cosinus und Sinus Werte vorberechnen.
+            // precalculation of cosinus and sinus
             for (int amplitude = 0; amplitude <= max; amplitude++)
             {
-                for (int winkel = 0; winkel < 360; winkel++)
+                for (int angle = 0; angle < 360; angle++)
                 {
-                    Cos[amplitude, winkel] =
-                      (int)Math.Round(amplitude * Math.Cos(winkel * Math.PI / 180d));
-                    Sin[amplitude, winkel] =
-                      (int)Math.Round(amplitude * Math.Sin(winkel * Math.PI / 180d));
+                    Cos[amplitude, angle] =
+                      (int)Math.Round(amplitude * Math.Cos(angle * Math.PI / 180d));
+                    Sin[amplitude, angle] =
+                      (int)Math.Round(amplitude * Math.Sin(angle * Math.PI / 180d));
                 }
             }
         }
 
-        public static int Cosinus(int amplitude, int winkel)
+        public static int Cosinus(int amplitude, int angle)
         {
-            return (int)Math.Round(amplitude * Math.Cos(winkel * Math.PI / 180d));
+            return (int)Math.Round(amplitude * Math.Cos(angle * Math.PI / 180d));
         }
 
-        public static int Sinus(int amplitude, int winkel)
+        public static int Sinus(int amplitude, int angle)
         {
-            return (int)Math.Round(amplitude * Math.Sin(winkel * Math.PI / 180d));
+            return (int)Math.Round(amplitude * Math.Sin(angle * Math.PI / 180d));
         }
 
         #endregion
 
 
-        #region sugar-handling
+        #region sugar handling
 
         /// <summary>
-        /// Delay-counter for sugar-respawn.
+        /// sugar respawn delay counter
         /// </summary>
         private int sugarDelay;
 
         /// <summary>
-        /// Counts down the total number of allowed sugar-hills.
+        /// Countdown number of total allowed sugar hills
         /// </summary>
         private int sugarCountDown;
 
         /// <summary>
-        /// Gets the count of simultaneous existing sugar-hills. 
+        /// number of simultaneous existing sugar hills. 
         /// </summary>
         private int sugarLimit;
 
         /// <summary>
-        /// Removes all empty sugar-hills from list.
+        /// Removes all empty sugar hills from list.
         /// </summary>
         private void removeSugar()
         {
             // TODO: speedup
             //List<CoreSugar> gemerkterZucker = new List<CoreSugar>();
-            for (int i = 0; i < Playground.SugarHills.Count; i++)
+            for (int i = 0; i < Playground.SugarHillsList.Count; i++)
             {
-                CoreSugar zucker = Playground.SugarHills[i];
-                if (zucker != null)
+                CoreSugar sugar = Playground.SugarHillsList[i];
+                if (sugar != null)
                 {
-                    if (zucker.Amount == 0)
+                    if (sugar.Amount == 0)
                     {
                         //gemerkterZucker.Add(zucker);
                         //Löschen
-                        Playground.EntferneZucker(zucker);
+                        Playground.RemoveSugar(sugar);
                         i--;
                     }
                 }
@@ -120,13 +120,13 @@ namespace AntMe.Simulation
         /// </summary>
         private void spawnSugar()
         {
-            if (Playground.SugarHills.Count < sugarLimit &&
+            if (Playground.SugarHillsList.Count < sugarLimit &&
                sugarDelay <= 0 &&
                sugarCountDown > 0)
             {
                 sugarDelay = SimulationSettings.Custom.SugarRespawnDelay;
                 sugarCountDown--;
-                Playground.NeuerZucker();
+                Playground.NewSugar();
             }
             sugarDelay--;
         }
@@ -156,13 +156,13 @@ namespace AntMe.Simulation
         /// </summary>
         private void spawnFruit()
         {
-            if (Playground.Fruits.Count < fruitLimit &&
+            if (Playground.FruitsList.Count < fruitLimit &&
                fruitDelay <= 0 &&
                fruitCountDown > 0)
             {
                 fruitDelay = SimulationSettings.Custom.FruitRespawnDelay;
                 fruitCountDown--;
-                Playground.NeuesObst();
+                Playground.NewFruit();
             }
             fruitDelay--;
         }
@@ -174,9 +174,9 @@ namespace AntMe.Simulation
         private void removeFruit(CoreColony colony)
         {
             //List<CoreFruit> gemerktesObst = new List<CoreFruit>();
-            for (int j = 0; j < Playground.Fruits.Count; j++)
+            for (int j = 0; j < Playground.FruitsList.Count; j++)
             {
-                CoreFruit obst = Playground.Fruits[j];
+                CoreFruit obst = Playground.FruitsList[j];
                 for (int i = 0; i < colony.AntHills.Count; i++)
                 {
                     CoreAnthill bau = colony.AntHills[i];
@@ -197,14 +197,14 @@ namespace AntMe.Simulation
                                 if (insect != null)
                                 {
                                     insect.CarryingFruitBase = null;
-                                    insect.CurrentBurdenBase = 0;
+                                    insect.CurrentLoadBase = 0;
                                     insect.DistanceToDestination = 0;
                                     insect.ResidualAngle = 0;
                                     insect.GoToAnthillBase();
                                 }
                             }
                             obst.InsectsCarrying.Clear();
-                            Playground.EntferneObst(obst);
+                            Playground.RemoveFruit(obst);
                             j--;
                         }
                     }
@@ -236,8 +236,8 @@ namespace AntMe.Simulation
                     ant.travelledDistance = 0;
                     ant.TargetBase = null;
                     ant.SmelledMarker.Clear();
-                    ant.colony.Statistic.CollectedFood += ant.CurrentBurdenBase;
-                    ant.CurrentBurdenBase = 0;
+                    ant.colony.Statistic.CollectedFood += ant.CurrentLoadBase;
+                    ant.CurrentLoadBase = 0;
                     ant.currentEnergyBase = ant.MaximumEnergyBase;
                     ant.IsTiredBase = false;
                 }
@@ -281,9 +281,9 @@ namespace AntMe.Simulation
         /// <param name="ant">betroffene Ameise</param>
         private void antAndSugar(CoreAnt ant)
         {
-            for (int i = 0; i < Playground.SugarHills.Count; i++)
+            for (int i = 0; i < Playground.SugarHillsList.Count; i++)
             {
-                CoreSugar sugar = Playground.SugarHills[i];
+                CoreSugar sugar = Playground.SugarHillsList[i];
                 int entfernung = CoreCoordinate.DetermineDistanceI(ant.CoordinateBase, sugar.CoordinateBase);
                 if (ant.TargetBase != sugar && entfernung <= ant.ViewRangeI)
                 {
@@ -298,9 +298,9 @@ namespace AntMe.Simulation
         /// <param name="ameise">betroffene Ameise</param>
         private void antAndFruit(CoreAnt ameise)
         {
-            for (int i = 0; i < Playground.Fruits.Count; i++)
+            for (int i = 0; i < Playground.FruitsList.Count; i++)
             {
-                CoreFruit obst = Playground.Fruits[i];
+                CoreFruit obst = Playground.FruitsList[i];
                 int entfernung = CoreCoordinate.DetermineDistanceI(ameise.CoordinateBase, obst.CoordinateBase);
                 if (ameise.TargetBase != obst && entfernung <= ameise.ViewRangeI)
                 {
@@ -372,11 +372,11 @@ namespace AntMe.Simulation
                 CoreAnt ant = liste[i];
                 if (ant != null)
                 {
-                    colony.EntferneInsekt(ant);
+                    colony.RemoveInsect(ant);
 
-                    for (int j = 0; j < Playground.Fruits.Count; j++)
+                    for (int j = 0; j < Playground.FruitsList.Count; j++)
                     {
-                        CoreFruit fruit = Playground.Fruits[j];
+                        CoreFruit fruit = Playground.FruitsList[j];
                         fruit.InsectsCarrying.Remove(ant);
                     }
                 }
@@ -393,11 +393,11 @@ namespace AntMe.Simulation
         /// <param name="colony">betroffenes Volk</param>
         private void spawnAnt(CoreColony colony)
         {
-            if (colony.Insects.Count < antLimit &&
+            if (colony.InsectsList.Count < antLimit &&
                colony.insectDelay < 0 &&
                colony.insectCountDown > 0)
             {
-                colony.NeuesInsekt(random);
+                colony.NewInsect(random);
                 colony.insectDelay = SimulationSettings.Custom.AntRespawnDelay;
                 colony.insectCountDown--;
             }
@@ -407,7 +407,7 @@ namespace AntMe.Simulation
         // Bewegt Obsstücke und alle Insekten die das Obsstück tragen.
         private void MoveFruitsAndInsects()
         {
-            Playground.Fruits.ForEach(delegate (CoreFruit fruit)
+            Playground.FruitsList.ForEach(delegate (CoreFruit fruit)
             {
                 if (fruit.InsectsCarrying.Count > 0)
                 {
@@ -421,7 +421,7 @@ namespace AntMe.Simulation
                         {
                             dx += Cos[insect.currentSpeedI, insect.DirectionBase];
                             dy += Sin[insect.currentSpeedI, insect.DirectionBase];
-                            last += insect.CurrentBurdenBase;
+                            last += insect.CurrentLoadBase;
                         }
                     });
 
@@ -489,7 +489,7 @@ namespace AntMe.Simulation
             }
             gemerkteMarkierungen.ForEach(delegate (CoreMarker marker)
             {
-                colony.Insects.ForEach(delegate (CoreInsect insect)
+                colony.InsectsList.ForEach(delegate (CoreInsect insect)
                 {
                     CoreAnt ant = insect as CoreAnt;
                     if (ant != null)
@@ -544,7 +544,7 @@ namespace AntMe.Simulation
                 CoreBug bug = Bugs.EatenInsects[i] as CoreBug;
                 if (bug != null)
                 {
-                    Bugs.Insects.Remove(bug);
+                    Bugs.InsectsList.Remove(bug);
                 }
             }
             Bugs.EatenInsects.Clear();
@@ -557,9 +557,9 @@ namespace AntMe.Simulation
         {
             if (currentRound % SimulationSettings.Custom.BugRegenerationDelay == 0)
             {
-                for (int i = 0; i < Bugs.Insects.Count; i++)
+                for (int i = 0; i < Bugs.InsectsList.Count; i++)
                 {
-                    CoreBug bug = Bugs.Insects[i] as CoreBug;
+                    CoreBug bug = Bugs.InsectsList[i] as CoreBug;
                     if (bug != null)
                     {
                         if (bug.currentEnergyBase < bug.MaximumEnergyBase)
@@ -576,11 +576,11 @@ namespace AntMe.Simulation
         /// </summary>
         private void spawnBug()
         {
-            if (Bugs.Insects.Count < bugLimit &&
+            if (Bugs.InsectsList.Count < bugLimit &&
                Bugs.insectDelay < 0 &&
                Bugs.insectCountDown > 0)
             {
-                Bugs.NeuesInsekt(random);
+                Bugs.NewInsect(random);
                 Bugs.insectDelay = SimulationSettings.Custom.BugRespawnDelay;
                 Bugs.insectCountDown--;
             }

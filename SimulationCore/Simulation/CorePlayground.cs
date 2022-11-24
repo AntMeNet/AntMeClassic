@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 
-// (Debuging) Referenzen Hinzufügen bei Bedarf!!!
+// (Debuging) Referenzen Hinzufuegen bei Bedarf!!!
 //using System.Windows.Forms;
 //using System.Drawing;
 
@@ -10,7 +10,7 @@ using System.Threading;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Das Spielfeld.
+    /// Playground
     /// </summary>
     /// <author>Patrick Kirsch</author>
     internal class CorePlayground
@@ -26,7 +26,7 @@ namespace AntMe.Simulation
 
         private List<Vector2D> AntHillPoints;
         private Cell[,] CellArray;
-        private List<Cell> CellSpawnList;
+        private List<Cell> SpawnCellsList;
 
         private float AntHillRandomdisplacement = SimulationSettings.Default.AntHillRandomDisplacement;
         private int SpawnCellSize = SimulationSettings.Default.SpawnCellSize;
@@ -35,25 +35,25 @@ namespace AntMe.Simulation
         private float DecreasValue = SimulationSettings.Default.DecreaseValue;
         private float RegenerationValue = SimulationSettings.Default.RegenerationValue;
 
-        // öffentliche Bestandslisten(werden von Außen gelesen)
-        public readonly List<CoreFruit> Fruits;
-        public readonly List<CoreSugar> SugarHills;
-        public readonly List<CoreAnthill> AntHills;
+        // public readable lists 
+        public readonly List<CoreFruit> FruitsList;
+        public readonly List<CoreSugar> SugarHillsList;
+        public readonly List<CoreAnthill> AntHillsList;
 
         /// <summary>
-        /// Erzeugt eine neue Instanz der Spielfeld-Klasse.
+        /// Constructor for instance of playground
         /// </summary>
-        /// <param name="width">Die Breite in Schritten.</param>
-        /// <param name="height">Die Höhe in Schritten.</param>
-        /// <param name="random">Initialwert für Zufallsgenerator</param>
-        /// /// <param name="playercount">Anzahl der Spieler</param>
+        /// <param name="width">width in steps</param>
+        /// <param name="height">height in steps</param>
+        /// <param name="random">initial value for the random generator</param>
+        /// <param name="playercount">number of players</param>
         public CorePlayground(int width, int height, Random random, int playercount)
         {
             Width = width;
             Height = height;
             mapRandom = random;
 
-            //Überprüfen der Settings
+            // checking the simulation settings
             if (SimulationSettings.Custom.AntHillRandomDisplacement != 0)
                 AntHillRandomdisplacement = SimulationSettings.Custom.AntHillRandomDisplacement;
             if (SimulationSettings.Custom.SpawnCellSize != 0)
@@ -68,14 +68,14 @@ namespace AntMe.Simulation
                 RegenerationValue = SimulationSettings.Custom.RegenerationValue;
 
 
-            // Initialisierungen
-            Fruits = new List<CoreFruit>();
-            SugarHills = new List<CoreSugar>();
-            AntHills = new List<CoreAnthill>();
+            // Initialization of public readable lists
+            FruitsList = new List<CoreFruit>();
+            SugarHillsList = new List<CoreSugar>();
+            AntHillsList = new List<CoreAnthill>();
 
             AntHillPoints = new List<Vector2D>(playercount);
             CellArray = new Cell[(int)Math.Ceiling((float)width / SpawnCellSize), (int)Math.Ceiling((float)height / SpawnCellSize)];
-            CellSpawnList = new List<Cell>(CellArray.Length);
+            SpawnCellsList = new List<Cell>(CellArray.Length);
 
             //if (ENABLE_DEBUGINGSCREEN)
             //{
@@ -85,10 +85,10 @@ namespace AntMe.Simulation
 
             #region AntHills
 
-            // Bestimme zufälligen Rotationswinkel des Spawnkreises.
+            // the start angle gives the direction which the first newly spawned ant is heading to
             int startAngle = mapRandom.Next(359);
 
-            // Fülle die Liste der möglichen Spawnpositionen.
+            // the list of possible anthill spawning positions is populated 
             if (playercount == 1)
             {
                 AntHillPoints.Add(new Vector2D(width / 2, height / 2));
@@ -108,7 +108,7 @@ namespace AntMe.Simulation
                 }
             }
 
-            // Weise jedem Spieler eine zufällige Spawnposition zu.
+            // spawning positions for the players
             for (int i = 0; i < playercount; i++)
             {
                 int attempts = 5;
@@ -137,14 +137,14 @@ namespace AntMe.Simulation
             {
                 for (int cellY = 0; cellY < CellArray.GetLength(1); cellY++)
                 {
-                    // Position der oberen linken Ecke der Zelle
+                    // position of the spawn cells upper left corner
                     Vector2D pos = new Vector2D(cellX * SpawnCellSize, cellY * SpawnCellSize);
 
-                    // Ermittlung ob die Zelle kleiner sein muss, da sie an den Rand stößt.
+                    // spawn cells touching the edge must shrink
                     int cellWidth = Math.Min(SpawnCellSize, Width - (cellX * SpawnCellSize));
                     int cellHeight = Math.Min(SpawnCellSize, Height - (cellY * SpawnCellSize));
 
-                    // Neue Zelle erstellen.
+                    // instantiate a new cell
                     Cell cell = CellArray[cellX, cellY] = new Cell(pos, cellWidth, cellHeight);
 
 
@@ -152,30 +152,31 @@ namespace AntMe.Simulation
 
                     foreach (Vector2D antHill in AntHillPoints)
                     {
-                        // Ermittlung des Zell Mittelpunktes.
+                        // determination of the cells center point
                         int cellMidX = (cellX * SpawnCellSize) + (cellWidth / 2);
                         int cellMidY = (cellY * SpawnCellSize) + (cellHeight / 2);
 
-                        // Berechnung des Abstands Vectors.
+                        // calculation of the displacement vector
                         Vector2D displacmentVector = antHill - cell.Position;
 
                         int distance = (int)displacmentVector.GetLenght();
 
                         if (distance < RestrictedZoneRadius)
                         {
-                            // Zelle liegt im  gesperrten Bereich mindestens eines Ameisenhügels.
+                            // spawn cell is within one or several anthills restricted zone
                             totalDisplacementVector = new Vector2D(0, 0);
                             break;
                         }
 
-                        // Abstands Vectoren aufaddieren.
+                        // adding up displacement vectors
                         totalDisplacementVector += displacmentVector;
                     }
 
-                    // Durchschnittswert berechnen.
+                    // 
+                    // calculation of the average displacement vector value
                     totalDisplacementVector /= playercount;
 
-                    // Sperrung der Zelle, wenn sie in einem gesperrten Bereich sich befindet, oder sich am Spielfeldrand befindet.
+                    // restrict cell if within restricted zone or at the edge of the playground
                     if (totalDisplacementVector.GetLenght() < RestrictedZoneRadius || totalDisplacementVector.GetLenght() > FarZoneRadius || cellX == 0 || cellY == 0 || cellX == CellArray.GetLength(0) - 1 || cellY == CellArray.GetLength(1) - 1)
                     {
                         cell.restricted = true;
@@ -183,11 +184,11 @@ namespace AntMe.Simulation
                 }
             }
 
-            // Nicht gesperrte Zellen der Spawnliste hinzufügen.
+            // unrestricted cells populate the spawn list
             foreach (Cell cell in CellArray)
             {
                 if (!cell.restricted)
-                    CellSpawnList.Add(cell);
+                    SpawnCellsList.Add(cell);
             }
 
             #endregion
@@ -195,24 +196,24 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Wählt eine zufällige Zelle mit einem hohen Spawnwert aus.
+        /// find a random cell with high spawn value
         /// </summary>
-        /// <returns>Gibt die Zielzelle zurück.</returns>
-        private Cell findeRohstoffZelle()
+        /// <returns>returns the cell for the food to spawn</returns>
+        private Cell FindFoodSpawnCell()
         {
-            RegeneriereZellen();
+            RegenerateCellValues();
 
-            // Sortiere die Spawnliste absteigend nach dem SpawnValue.
-            CellSpawnList.Sort((x, y) => y.SpawnValue.CompareTo(x.SpawnValue));
+            // sort cell spawn list descending by spawn value 
+            SpawnCellsList.Sort((x, y) => y.SpawnValue.CompareTo(x.SpawnValue));
 
-            // Wählt alle Zellen aus, welche dem "höchseten Spawnvalue - 0,1" entsprechen.
-            List<Cell> RandomList = CellSpawnList.FindAll((x) => (x.SpawnValue >= CellSpawnList[0].SpawnValue - 0.1f) && (x.SpawnedFood == null));
+            // RandomList of cells with hightest and those -0.1 below highest spawn value
+            List<Cell> RandomList = SpawnCellsList.FindAll((x) => (x.SpawnValue >= SpawnCellsList[0].SpawnValue - 0.1f) && (x.SpawnedFood == null));
 
-            //Sollte es keine Zelle geben, wir auch in schon bespawnten Zellen gesucht
+            // if RandomList is empty and there are no unused spawn cells, the list will be populated with already used spawn cells
             if (RandomList.Count == 0)
-                RandomList = CellSpawnList.FindAll((x) => (x.SpawnValue >= CellSpawnList[0].SpawnValue - 0.1f));
+                RandomList = SpawnCellsList.FindAll((x) => (x.SpawnValue >= SpawnCellsList[0].SpawnValue - 0.1f));
 
-            // Wählt ein zufällige Zelle aus dem Bereich aus.
+            // random cell for spawning is chosen
             Cell cell = RandomList[mapRandom.Next(RandomList.Count - 1)];
 
             cell.SpawnValue = 0f;
@@ -223,9 +224,9 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Regeneriert alle Zellen auf dem Spielfeld
+        /// regenerate values of all cells on the playground
         /// </summary>
-        private void RegeneriereZellen()
+        private void RegenerateCellValues()
         {
             foreach (Cell cell in CellArray)
             {
@@ -239,9 +240,9 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Verringert den Spawnwert aller Zellen, auf basis der entfernugn von der AusgangsZelle. 
+        /// Reduce the spawn value of all cells depending an the distance from the start cell
         /// </summary>
-        /// <param name="startCell">Die Ausgangszelle.</param>
+        /// <param name="startCell">start cell</param>
         private void DecreaseCells(Cell startCell)
         {
             foreach (Cell cell in CellArray)
@@ -249,9 +250,9 @@ namespace AntMe.Simulation
                 if (cell == startCell)
                     continue;
 
-                float abstand = (cell.Position - startCell.Position).GetLenght() / SpawnCellSize;
+                float distance = (cell.Position - startCell.Position).GetLenght() / SpawnCellSize;
 
-                cell.SpawnValue -= DecreasValue / (abstand * abstand);
+                cell.SpawnValue -= DecreasValue / (distance * distance);
 
                 if (cell.SpawnValue < 0)
                     cell.SpawnValue = 0;
@@ -261,72 +262,74 @@ namespace AntMe.Simulation
 
 
         /// <summary>
-        /// Erzeugt einen neuen Zuckerhaufen.
+        /// Create a new sugar hill
         /// </summary>
-        public void NeuerZucker()
+        public void NewSugar()
         {
-            Cell cell = findeRohstoffZelle();
-            int wert = mapRandom.Next(SimulationSettings.Custom.SugarAmountMinimum, SimulationSettings.Custom.SugarAmountMaximum);
-            Vector2D punkt = cell.Position + new Vector2D(mapRandom.Next(cell.Width), mapRandom.Next(cell.Height));
-            CoreSugar zucker = new CoreSugar(punkt.X, punkt.Y, wert);
-            SugarHills.Add(zucker);
-            cell.SpawnedFood = zucker;
+            Cell cell = FindFoodSpawnCell();
+            int value = mapRandom.Next(SimulationSettings.Custom.SugarAmountMinimum, SimulationSettings.Custom.SugarAmountMaximum);
+            Vector2D vector2D = cell.Position + new Vector2D(mapRandom.Next(cell.Width), mapRandom.Next(cell.Height));
+            CoreSugar sugar = new CoreSugar(vector2D.X, vector2D.Y, value);
+            SugarHillsList.Add(sugar);
+            cell.SpawnedFood = sugar;
         }
 
         /// <summary>
-        /// Entfernt Zucker und gibt die Zelle wieder frei.
+        /// Remove sugar and spawn cell from the corresponding lists
+        /// SugarHillList and SpawnCellsList
         /// </summary>
-        /// <param name="nahrung">Den zu entfernenden Zucker</param>
-        public void EntferneZucker(CoreSugar sugar)
+        /// <param name="sugar">sugar to be removed</param>
+        public void RemoveSugar(CoreSugar sugar)
         {
-            SugarHills.Remove(sugar);
-            Cell cell = CellSpawnList.Find((x) => x.SpawnedFood == sugar);
+            SugarHillsList.Remove(sugar);
+            Cell cell = SpawnCellsList.Find((x) => x.SpawnedFood == sugar);
             cell.SpawnedFood = null;
         }
 
         /// <summary>
-        /// Erzeugt ein neues Obsttück.
+        /// create a new piece of fruit
         /// </summary>
-        public void NeuesObst()
+        public void NewFruit()
         {
-            Cell cell = findeRohstoffZelle();
-            int wert = mapRandom.Next(SimulationSettings.Custom.FruitAmountMinimum, SimulationSettings.Custom.FruitAmountMaximum);
-            Vector2D punkt = cell.Position + new Vector2D(mapRandom.Next(cell.Width), mapRandom.Next(cell.Height));
-            CoreFruit Fruit = new CoreFruit(punkt.X, punkt.Y, wert);
-            Fruits.Add(Fruit);
+            Cell cell = FindFoodSpawnCell();
+            int value = mapRandom.Next(SimulationSettings.Custom.FruitAmountMinimum, SimulationSettings.Custom.FruitAmountMaximum);
+            Vector2D vector2D = cell.Position + new Vector2D(mapRandom.Next(cell.Width), mapRandom.Next(cell.Height));
+            CoreFruit Fruit = new CoreFruit(vector2D.X, vector2D.Y, value);
+            FruitsList.Add(Fruit);
             cell.SpawnedFood = Fruit;
         }
 
         /// <summary>
-        /// Entfernt Obst und gibt die Zelle wieder frei.
+        /// Removes the fruits from the corresponding lists
+        /// FruitsList and SpawnCellsList
         /// </summary>
-        /// <param name="nahrung">Das zu entfernenden Obst</param>
-        public void EntferneObst(CoreFruit fruit)
+        /// <param name="fruit">fruit to be removed</param>
+        public void RemoveFruit(CoreFruit fruit)
         {
-            Fruits.Remove(fruit);
-            Cell cell = CellSpawnList.Find((x) => x.SpawnedFood == fruit);
+            FruitsList.Remove(fruit);
+            Cell cell = SpawnCellsList.Find((x) => x.SpawnedFood == fruit);
             cell.SpawnedFood = null;
         }
 
         /// <summary>
-        /// Erzeugt einen neuen Bau.
+        /// create a new anthill
         /// </summary>
-        /// <param name="colony">ID der Kolonie</param>
-        /// <returns>Der neue Bau.</returns>
-        public CoreAnthill NeuerBau(int colony)
+        /// <param name="colony">ID of the colony</param>
+        /// <returns>new anthill</returns>
+        public CoreAnthill NewAnthill(int colony)
         {
-            Vector2D punkt = AntHillPoints[mapRandom.Next(AntHillPoints.Count - 1)];
-            AntHillPoints.Remove(punkt);
-            CoreAnthill bau = new CoreAnthill(punkt.X, punkt.Y, SimulationSettings.Custom.AntHillRadius, colony);
-            AntHills.Add(bau);
-            return bau;
+            Vector2D vector2D = AntHillPoints[mapRandom.Next(AntHillPoints.Count - 1)];
+            AntHillPoints.Remove(vector2D);
+            CoreAnthill anthill = new CoreAnthill(vector2D.X, vector2D.Y, SimulationSettings.Custom.AntHillRadius, colony);
+            AntHillsList.Add(anthill);
+            return anthill;
         }
 
-        #region "Vector2D und Cells"
+        #region Vector2D and Cells
 
 
         /// <summary>
-        /// Vector im 2D Raum
+        /// two-dimensional vector in two-dimensional space
         /// </summary>
         internal struct Vector2D
         {
@@ -335,10 +338,10 @@ namespace AntMe.Simulation
             public int Y;
 
             /// <summary>
-            /// Erzeugt einen neuen 2D Vector.
+            /// Constructor of two-dimensional vector instance
             /// </summary>
-            /// <param name="x">X-Koordinate des Vectors</param>
-            /// <param name="y">Y-Koordinate des Vectors</param>
+            /// <param name="x">X-Coordinate of vector</param>
+            /// <param name="y">Y-Coordinate of vector</param>
             public Vector2D(int x, int y)
             {
                 this.X = x;
@@ -346,9 +349,9 @@ namespace AntMe.Simulation
             }
 
             /// <summary>
-            /// Berechnet die Länge des Vectors.
+            /// Calculate length of vector
             /// </summary>
-            /// <returns>Gibt dei Länge des Vectors als Float zurück.</returns>
+            /// <returns>length of vector as float</returns>
             public float GetLenght()
             {
                 return (float)Math.Sqrt((float)((X * X) + (Y * Y)));
@@ -383,11 +386,11 @@ namespace AntMe.Simulation
             public float SpawnValue = 1f;
 
             /// <summary>
-            /// Erstellt eine Neue Zelle.
+            /// Constructor of a cell instance
             /// </summary>
-            /// <param name="position">Die Position der oberen linken Ecke der Zelle.</param>
-            /// <param name="width">Die Breite der Zelle</param>
-            /// <param name="height">Die Höhe der Zelle</param>
+            /// <param name="position">two-dimensional position of the cells upper left corner</param>
+            /// <param name="width">width of the cell</param>
+            /// <param name="height">height of the cell</param>
             public Cell(Vector2D position, int width, int height)
             {
                 this.Position = position;

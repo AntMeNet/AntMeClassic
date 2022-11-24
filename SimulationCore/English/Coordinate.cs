@@ -15,7 +15,7 @@ namespace AntMe.English
         /// <returns>Distance between</returns>
         public static int GetDistanceBetween(Item a, Item b)
         {
-            return CoreCoordinate.BestimmeEntfernung(a.Baseitem, b.Baseitem);
+            return CoreCoordinate.DetermineDistance(a.Baseitem, b.Baseitem);
         }
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace AntMe.English
         /// <returns>Distance between</returns>
         public static int GetDistanceBetween(CoreAnt a, Item b)
         {
-            return CoreCoordinate.BestimmeEntfernung(a, b.Baseitem);
+            return CoreCoordinate.DetermineDistance(a, b.Baseitem);
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace AntMe.English
         /// <returns>Distance between</returns>
         public static int GetDistanceBetween(Item a, CoreAnt b)
         {
-            return CoreCoordinate.BestimmeEntfernung(a.Baseitem, b);
+            return CoreCoordinate.DetermineDistance(a.Baseitem, b);
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace AntMe.English
         /// <returns>Distance between</returns>
         public static int GetDistanceBetween(CoreAnt a, CoreAnt b)
         {
-            return CoreCoordinate.BestimmeEntfernung(a, b);
+            return CoreCoordinate.DetermineDistance(a, b);
         }
 
         /// <summary>

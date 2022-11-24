@@ -60,7 +60,7 @@ namespace AntMe.Simulation
         /// <summary>
         /// Erzeugt ein AmeiseZustand-Objekt mit den aktuellen Daten der Ameise.
         /// </summary>
-        internal AntState GenerateInformation()
+        internal AntState GenerateAntStateInfo()
         {
             AntState antState = new AntState(colony.Id, id);
 
@@ -81,8 +81,8 @@ namespace AntMe.Simulation
                 antState.TargetPositionX = 0;
                 antState.TargetPositionY = 0;
             }
-            antState.Load = CurrentBurdenBase;
-            if (CurrentBurdenBase > 0)
+            antState.Load = CurrentLoadBase;
+            if (CurrentLoadBase > 0)
                 if (CarryingFruitBase != null)
                     antState.LoadType = LoadType.Fruit;
                 else

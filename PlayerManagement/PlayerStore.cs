@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 namespace AntMe.PlayerManagement
 {
     /// <summary>
-    /// Zentraler Player Speicher
+    /// central player store
     /// </summary>
     public sealed class PlayerStore
     {
@@ -93,7 +93,7 @@ namespace AntMe.PlayerManagement
                 if (scannedFiles.Contains(file.ToLower()))
                     return;
 
-                // Kick den alten
+                // unregister old file
                 if (configuration.KnownFiles.Contains(file.ToLower()))
                     UnregisterFile(file);
 
@@ -114,7 +114,7 @@ namespace AntMe.PlayerManagement
         }
 
         /// <summary>
-        /// Unregisteres a known File from the Storage.
+        /// Unregister a known file from the storage.
         /// </summary>
         /// <param name="file"></param>
         public void UnregisterFile(string file)
@@ -132,7 +132,7 @@ namespace AntMe.PlayerManagement
         }
 
         /// <summary>
-        /// Adds all included Player without adding to the registered files.
+        /// Adds all included players without adding to the registered files.
         /// </summary>
         /// <param name="file"></param>
         private void ScanFile(string file)

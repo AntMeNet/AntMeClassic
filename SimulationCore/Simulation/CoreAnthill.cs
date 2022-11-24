@@ -50,7 +50,7 @@ namespace AntMe.Simulation
         /// <summary>
         /// Erzeugt ein BauZustand-Objekt mit den aktuellen Daten des Bau.
         /// </summary>
-        internal AnthillState ErzeugeInfo()
+        internal AnthillState GenerateAnthillStateInfo()
         {
             AnthillState zustand = new AnthillState(colonyId, Id);
             zustand.PositionX = koordinate.X / SimulationEnvironment.PLAYGROUND_UNIT;

@@ -94,25 +94,25 @@ namespace AntMe.Simulation
                 {
                     case "mscorlib":
                         // Framework-Core
-                        byte[] coreschlüssel = new AssemblyName(typeof(object).Assembly.FullName).GetPublicKeyToken();
-                        byte[] referenzschlüssel = reference.PublicKeyToken;
-                        if (coreschlüssel[0] != referenzschlüssel[0] ||
-                            coreschlüssel[1] != referenzschlüssel[1] ||
-                            coreschlüssel[2] != referenzschlüssel[2] ||
-                            coreschlüssel[3] != referenzschlüssel[3] ||
-                            coreschlüssel[4] != referenzschlüssel[4] ||
-                            coreschlüssel[5] != referenzschlüssel[5] ||
-                            coreschlüssel[6] != referenzschlüssel[6] ||
-                            coreschlüssel[7] != referenzschlüssel[7])
+                        byte[] coreKey = new AssemblyName(typeof(object).Assembly.FullName).GetPublicKeyToken();
+                        byte[] referenceKey = reference.PublicKeyToken;
+                        if (coreKey[0] != referenceKey[0] ||
+                            coreKey[1] != referenceKey[1] ||
+                            coreKey[2] != referenceKey[2] ||
+                            coreKey[3] != referenceKey[3] ||
+                            coreKey[4] != referenceKey[4] ||
+                            coreKey[5] != referenceKey[5] ||
+                            coreKey[6] != referenceKey[6] ||
+                            coreKey[7] != referenceKey[7])
                         {
                             throw new RuleViolationException(Resource.SimulationCoreAnalysisCheatWithFxFake);
                         }
                         break;
                     case "Microsoft.VisualBasic":
-                        // TODO: Prüfen, wie wir damit umgehen
+                        // TODO: figure out how to handle this
                         break;
                     case "System":
-                        // TODO: Prüfen, wie wir damit umgehen
+                        // TODO: figure out how to handle this
                         break;
                     case "AntMe.Simulation":
                         if (Assembly.GetCallingAssembly().FullName != reference.FullName)
@@ -175,50 +175,50 @@ namespace AntMe.Simulation
                 }
             }
 
-            // TODO: Statische Variablen finden
-            // TODO: Statische Konstruktoren finden - immernoch ein Problem?
-            // TODO: Nested Types!
+            // TODO: find static attributes
+            // TODO: find static constructor, still a problem?
+            // TODO: nested types!
 
             foreach (var typeDefinition in module.Types)
             {
-                // Suche nach statischen Variablen und bestimme so, ob der Spieler
-                // ein globales Gedächtnis für seine Ameisen benutzt.
+                // search for static attributes for determination
+                // whether the player uses global memory for their ants
                 staticVariables |= typeDefinition.Fields.Any(f => f.IsStatic);
                 staticVariables |= typeDefinition.Properties.Any(p => (p.SetMethod?.IsStatic ?? false) || (p.GetMethod?.IsStatic ?? false));
             }
 
-            // Gefundene KIs auf Regeln prüfen
-            // Betrachte alle öffentlichen Typen in der Bibliothek.
+            // check AIs against rule set
+            // consider all public types in library
             foreach (var exportedType in module.Types.Where(t => t.IsPublic && !t.IsInterface && !t.IsAbstract))
             {
-                // Prüfe ob der Typ von der Klasse Ameise erbt.
+                // check if the type inherts from class ant
                 var exportedTypeDefinition = exportedType.Resolve();
 
-                // Ameisenversion 1.6
+                // antme version 1.6
                 if (exportedTypeDefinition.IsSubclassOf(_coreAnt))
                 {
-                    // Leerer Spieler-Rumpf
+                    // player defintion is empty
                     int playerDefinitions = 0;
 
                     PlayerInfo player = new PlayerInfo();
                     player.SimulationVersion = PlayerSimulationVersions.Version_1_7;
                     player.ClassName = exportedType.FullName;
 
-                    // Sprache ermitteln
-                    foreach (PlayerLanguages sprache in _languageBases.Keys)
+                    // determine language
+                    foreach (PlayerLanguages language in _languageBases.Keys)
                     {
-                        if (exportedTypeDefinition.IsSubclassOf(_languageBases[sprache]))
+                        if (exportedTypeDefinition.IsSubclassOf(_languageBases[language]))
                         {
-                            player.Language = sprache;
+                            player.Language = language;
                             break;
                         }
                     }
-                    // TODO: Vorgehensweise bei unbekannten Sprachen
+                    // TODO: handling of unknown languages
 
-                    // Attribute auslesen
+                    // read attributes
                     foreach (var attribute in exportedTypeDefinition.CustomAttributes)
                     {
-                        // Player-Attribut auslesen
+                        // read player attributes
                         switch (attribute.AttributeType.FullName)
                         {
                             case "AntMe.Deutsch.SpielerAttribute":
@@ -259,13 +259,13 @@ namespace AntMe.Simulation
                                 break;
                         }
 
-                        // Caste-Attribut auslesen
+                        // read caste attributes
                         CasteInfo caste = new CasteInfo();
                         switch (attribute.AttributeType.FullName)
                         {
                             case "AntMe.English.CasteAttribute":
 
-                                // englische Kasten
+                                // english Castes
                                 foreach (var field in attribute.Fields)
                                 {
                                     switch (field.Name)
@@ -297,7 +297,7 @@ namespace AntMe.Simulation
                                     }
                                 }
 
-                                // Bei Individualkasten zur Liste 
+                                // new castes of the player will be added to list
                                 if (!caste.IsEmpty())
                                 {
                                     player.Castes.Add(caste);
@@ -337,7 +337,7 @@ namespace AntMe.Simulation
                                     }
                                 }
 
-                                // Bei Individualkasten zur Liste 
+                                // new castes of the player will be added to list
                                 if (!caste.IsEmpty())
                                 {
                                     player.Castes.Add(caste);
@@ -347,7 +347,7 @@ namespace AntMe.Simulation
 
                         // Access-Attributes
                         bool isAccessAttribute = false;
-                        // TODO: Request-Infos lokalisieren
+                        // TODO: localize request information
                         switch (attribute.AttributeType.FullName)
                         {
                             case "AntMe.Deutsch.DateizugriffAttribute":
@@ -411,7 +411,7 @@ namespace AntMe.Simulation
                         }
                     }
 
-                    // Prüfe ob die Klasse regelkonform ist
+                    // check class against rule set
                     player.Static = staticVariables;
                     player.RequestReferences = foreignReferences;
                     if (foreignReferences)
@@ -424,7 +424,7 @@ namespace AntMe.Simulation
                     switch (playerDefinitions)
                     {
                         case 0:
-                            // Kein Spielerattribut gefunden
+                            // no player attribute found
                             throw new RuleViolationException(
                                 string.Format(
                                     Resource.SimulationCoreAnalysisNoPlayerAttribute,
@@ -444,29 +444,29 @@ namespace AntMe.Simulation
                     }
                 }
 
-                #region Erkennung aelterer KI-Versionen
+                #region handling of old AIs
 
-                // Ältere Versionen
+                // old AntMe version 
                 else if (exportedTypeDefinition.BaseType.Name == "AntMe.Ameise")
                 {
-                    // Leerer Spieler-Rumpf
+                    // no player definiton
                     int playerDefinitions = 0;
 
                     PlayerInfo player = new PlayerInfo();
                     player.SimulationVersion = PlayerSimulationVersions.Version_1_1;
                     player.ClassName = exportedTypeDefinition.FullName;
 
-                    // Veraltete Version (1.1 oder 1.5)
-                    // TODO: Prüfen
+                    // old versions 1.1 to 1.5
+                    // TODO: Check old versions 1.1 to 1.5
                     if (exportedTypeDefinition.Methods.Any(MethodDefinition => MethodDefinition.Name == "RiechtFreund"))
                     {
                         player.SimulationVersion = PlayerSimulationVersions.Version_1_5;
                     }
 
-                    // Attribute auslesen
+                    // read attributes
                     foreach (var attribute in exportedTypeDefinition.CustomAttributes)
                     {
-                        // Spieler-Attribut auslesen
+                        // read player attribute
                         if (attribute.AttributeType.FullName == "AntMe.SpielerAttribute")
                         {
                             playerDefinitions++;
@@ -488,7 +488,7 @@ namespace AntMe.Simulation
                             break;
                         }
 
-                        // Typ-Attribut auslesen
+                        // read type attributes
                         if (attribute.AttributeType.FullName == "AntMe.TypAttribute")
                         {
                             CasteInfo caste = new CasteInfo();
@@ -523,7 +523,7 @@ namespace AntMe.Simulation
                                 }
                             }
 
-                            // Bei Individualtypen zur Liste 
+                            // new castes of the player will be added to list
                             if (!caste.IsEmpty())
                             {
                                 player.Castes.Add(caste);
@@ -532,12 +532,12 @@ namespace AntMe.Simulation
                         }
                     }
 
-                    // Prüfe ob die Klasse regelkonform ist
+                    // check class against rule set
                     player.Static = staticVariables;
                     switch (playerDefinitions)
                     {
                         case 0:
-                            // Kein Spielerattribut gefunden
+                            // no player attribute found
                             throw new RuleViolationException(
                                 string.Format(
                                     Resource.SimulationCoreAnalysisNoPlayerAttribute,
