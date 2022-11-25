@@ -3,12 +3,13 @@ using AntMe.SharedComponents.Tools;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Color = System.Drawing.Color;
 
 namespace AntMe.Plugin.GdiPlusPlugin
 {
 
     /// <summary>
-    /// Information-Kontrollelement für Ameisen.
+    /// ant information and control box
     /// </summary>
     internal class AntInfoBox : InfoBox
     {
@@ -20,18 +21,18 @@ namespace AntMe.Plugin.GdiPlusPlugin
         private string casteColony;
 
         /// <summary>
-        /// Erzeugt eine AntInfoBox-Instanz.
+        /// Constructor of new ant information box instance
         /// </summary>
-        /// <param name="ant">Die Ameise.</param>
-        /// <param name="brush">Der Pinsel mit dem gezeichnet werden soll.</param>
+        /// <param name="ant">ant</param>
+        /// <param name="brush">brush</param>
         public AntInfoBox(AntState ant, int colonyId, string colonyName, string casteName, Brush brush)
         {
-            // Setze Größe und Randabstand.
+            // set size and margin
             Width = 150;
             Height = 73;
             Margin = new Padding(0);
 
-            // Erzeuge die Hintergrund-Grafik und hole ihre Zeichenfläche.
+            // bitmap image for background
             bitmap = new Bitmap(Width, Height);
             graphics = Graphics.FromImage(bitmap);
 
@@ -52,7 +53,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
         }
 
         /// <summary>
-        /// Die Id der Ameise zu der Informationen dargestellt werden sollen.
+        /// ant id for information box
         /// </summary>
         public override int Id
         {
@@ -60,7 +61,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
         }
 
         /// <summary>
-        /// Die Ameise zu der Informationen dargestellt werden sollen.
+        /// ant state for the information box
         /// </summary>
         public AntState Ant
         {
@@ -72,23 +73,23 @@ namespace AntMe.Plugin.GdiPlusPlugin
         }
 
         /// <summary>
-        /// Zeichnet die Informationen neu.
+        /// redraw ant information box
         /// </summary>
-        /// <param name="e">Ereignisargumente</param>
+        /// <param name="e">event</param>
         protected override void OnPaint(PaintEventArgs e)
         {
-            // Lösche die Zeichenfläche.
+            // Clear drawing area
             graphics.Clear(Color.White);
 
             float y = 0f;
 
-            // Zeichne den Namen, die Kaste und das Volk.
+            // draw name and caste
             graphics.DrawString(name, boldFont, Brushes.Black, 0f, y);
             y += 15f;
             graphics.DrawString(casteColony, defaultFont, Brushes.Black, 0f, y);
             y += 15f;
 
-            // Berechne und zeichne den Richtungspfeil.
+            // calculate and draw direction array
             float xx, yy;
             xx = 5f * (float)Math.Cos(ant.Direction * Math.PI / 180d);
             yy = 5f * (float)Math.Sin(ant.Direction * Math.PI / 180d);
@@ -97,7 +98,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
             arrow[2] = new PointF(15f - 3f * xx - yy, y + 15f - 3f * yy + xx);
             graphics.FillPolygon(brush, arrow);
 
-            // Zeichne Energie und Last.
+            // draw energy and load
             graphics.DrawString(ant.Vitality.ToString(), bigFont, Brushes.Red, 40f, y);
             graphics.DrawString(ant.Load.ToString(), bigFont, Brushes.Green, 100f, y);
 

@@ -3,6 +3,7 @@ using AntMe.SharedComponents.Tools;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Color = System.Drawing.Color;
 
 namespace AntMe.Plugin.GdiPlusPlugin
 {

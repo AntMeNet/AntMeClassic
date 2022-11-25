@@ -58,22 +58,22 @@ namespace AntMe.Plugin.Fna
     //        playgroundMaterial.Ambient = Color.FromArgb(114, 114, 73);
     //        playgroundMaterial.Emissive = Color.FromArgb(90, 90, 58);
     //        playgroundMaterial.Specular = Color.FromArgb(114, 114, 73);
-    //        colorFinder.BelegeFarbe(new Farbe(114, 114, 73));
+    //        colorFinder.AddColorToColorList(new Color(114, 114, 73));
 
     //        sugarMaterial = new Material();
     //        sugarMaterial.Emissive = Color.FromArgb(200, 200, 200);
     //        sugarMaterial.Specular = Color.FromArgb(255, 255, 255);
-    //        colorFinder.BelegeFarbe(new Farbe(200, 200, 200));
+    //        colorFinder.AddColorToColorList(new Color(200, 200, 200));
 
     //        bugMaterial = new Material();
     //        bugMaterial.Emissive = Color.DarkBlue;
     //        bugMaterial.Specular = Color.FromArgb(0, 0, 150);
-    //        colorFinder.BelegeFarbe(new Farbe(Color.DarkBlue.R, Color.DarkBlue.G, Color.DarkBlue.B));
+    //        colorFinder.AddColorToColorList(new Color(Color.DarkBlue.R, Color.DarkBlue.G, Color.DarkBlue.B));
 
     //        fruitMaterial = new Material();
     //        fruitMaterial.Emissive = Color.Green;
     //        fruitMaterial.Specular = Color.FromArgb(0, 255, 0);
-    //        colorFinder.BelegeFarbe(new Farbe(Color.Green.R, Color.Green.G, Color.Green.B));
+    //        colorFinder.AddColorToColorList(new Color(Color.Green.R, Color.Green.G, Color.Green.B));
 
     //        selectionMaterial = new Material();
     //        selectionMaterial.Emissive = Color.FromArgb(120, 0, 0);
@@ -140,39 +140,39 @@ namespace AntMe.Plugin.Fna
     //        if (!antMaterial.ContainsKey(colony))
     //        {
     //            // choose another color
-    //            Farbe color;
+    //            Color color;
     //            switch (colony)
     //            {
     //                case 0:
-    //                    color = new Farbe(0, 0, 0);
+    //                    color = new Color(0, 0, 0);
     //                    break;
     //                case 1:
-    //                    color = new Farbe(255, 0, 0);
+    //                    color = new Color(255, 0, 0);
     //                    break;
     //                case 2:
-    //                    color = new Farbe(0, 0, 255);
+    //                    color = new Color(0, 0, 255);
     //                    break;
     //                case 3:
-    //                    color = new Farbe(255, 255, 0);
+    //                    color = new Color(255, 255, 0);
     //                    break;
     //                default:
-    //                    color = colorFinder.ErzeugeFarbe();
+    //                    color = colorFinder.CreateNewColor();
     //                    break;
     //            }
-    //            colorFinder.BelegeFarbe(color);
+    //            colorFinder.AddColorToColorList(color);
 
     //            // Material for ants and flag
     //            Material material = new Material();
-    //            material.Emissive = Color.FromArgb(color.Rot, color.Grün, color.Blau);
+    //            material.Emissive = Color.FromArgb(color.Red, color.Grï¿½n, color.Blue);
     //            material.Specular = Color.FromArgb(200, 200, 200);
     //            antMaterial.Add(colony, material);
 
     //            // Material for markers
     //            material = new Material();
-    //            material.Ambient = Color.FromArgb(MARKERTRANSPARENCY, color.Rot, color.Grün, color.Blau);
-    //            material.Diffuse = Color.FromArgb(MARKERTRANSPARENCY, color.Rot, color.Grün, color.Blau);
-    //            material.Emissive = Color.FromArgb(MARKERTRANSPARENCY, color.Rot, color.Grün, color.Blau);
-    //            material.Specular = Color.FromArgb(MARKERTRANSPARENCY, color.Rot, color.Grün, color.Blau);
+    //            material.Ambient = Color.FromArgb(MARKERTRANSPARENCY, color.Red, color.Grï¿½n, color.Blue);
+    //            material.Diffuse = Color.FromArgb(MARKERTRANSPARENCY, color.Red, color.Grï¿½n, color.Blue);
+    //            material.Emissive = Color.FromArgb(MARKERTRANSPARENCY, color.Red, color.Grï¿½n, color.Blue);
+    //            material.Specular = Color.FromArgb(MARKERTRANSPARENCY, color.Red, color.Grï¿½n, color.Blue);
     //            markerMaterials.Add(colony, material);
     //        }
     //    }
