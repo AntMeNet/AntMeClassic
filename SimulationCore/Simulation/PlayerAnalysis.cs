@@ -18,12 +18,12 @@ namespace AntMe.Simulation
         /// <summary>
         /// Type of baseAnt from core.
         /// </summary>
-        private TypeDefinition _coreAnt;
+        private TypeDefinition coreAnt;
 
         /// <summary>
         /// List of all Ant-BaseClasses in every known language.
         /// </summary>
-        private Dictionary<PlayerLanguages, TypeDefinition> _languageBases;
+        private Dictionary<PlayerLanguages, TypeDefinition> languageBases;
 
         #endregion
 
@@ -39,24 +39,24 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Searches in the given file for possible PlayerInfos and delivers a list of found Players.
+        /// Analyse given binary file for <see cref="PlayerInfo"/> and returns a list of found <see cref="PlayerInfo"/>
         /// </summary>
-        /// <param name="file">Ai-File as binary file-dump.</param>
-        /// <param name="checkRules">True, if Analyzer should also check player-rules</param>
-        /// <returns>List of found players.</returns>
+        /// <param name="file">AI file as binary file dump.</param>
+        /// <param name="checkRules">true to check player rules</param>
+        /// <returns>List of found <see cref="PlayerInfo"/> from given binary file</returns>
         public List<PlayerInfo> Analyse(byte[] file, bool checkRules)
         {
             // load base-class from Simulation-Core.#     
             ModuleDefinition simulation = ModuleDefinition.ReadModule(Assembly.GetExecutingAssembly().Modules.First().FullyQualifiedName);
-            _coreAnt = simulation.GetType("AntMe.Simulation.CoreAnt");
+            coreAnt = simulation.GetType("AntMe.Simulation.CoreAnt");
             //coreAnt = simulation.GetType("AntMe.Simulation.CoreAnt");
 
             // load all base-classes of different languages
-            _languageBases = new Dictionary<PlayerLanguages, TypeDefinition>();
-            _languageBases.Add(
+            languageBases = new Dictionary<PlayerLanguages, TypeDefinition>();
+            languageBases.Add(
                 PlayerLanguages.Deutsch,
                 simulation.GetType("AntMe.Deutsch.Basisameise"));
-            _languageBases.Add(
+            languageBases.Add(
                 PlayerLanguages.English,
                 simulation.GetType("AntMe.English.BaseAnt"));
 
@@ -75,7 +75,7 @@ namespace AntMe.Simulation
         /// Analyzes the given for any kind of valid player-information.
         /// </summary>
         /// <param name="module">given module.</param>
-        /// <param name="checkRules">true, if the Analyser should also check player-rules</param>
+        /// <param name="checkRules">true for checking player rules with analyseAssembly</param>
         /// <returns>List of valid players.</returns>
         private List<PlayerInfo> analyseAssembly(ModuleDefinition module, bool checkRules)
         {
@@ -195,7 +195,7 @@ namespace AntMe.Simulation
                 var exportedTypeDefinition = exportedType.Resolve();
 
                 // antme version 1.6
-                if (exportedTypeDefinition.IsSubclassOf(_coreAnt))
+                if (exportedTypeDefinition.IsSubclassOf(coreAnt))
                 {
                     // player defintion is empty
                     int playerDefinitions = 0;
@@ -205,9 +205,9 @@ namespace AntMe.Simulation
                     player.ClassName = exportedType.FullName;
 
                     // determine language
-                    foreach (PlayerLanguages language in _languageBases.Keys)
+                    foreach (PlayerLanguages language in languageBases.Keys)
                     {
-                        if (exportedTypeDefinition.IsSubclassOf(_languageBases[language]))
+                        if (exportedTypeDefinition.IsSubclassOf(languageBases[language]))
                         {
                             player.Language = language;
                             break;

@@ -5,32 +5,32 @@ namespace AntMe.Plugin.GdiPlusPlugin
 {
 
     /// <summary>
-    /// Basisklasse für alle Information-Kontrollelemente.
+    /// base class for all info control box
     /// </summary>
     internal abstract class InfoBox : Control
     {
 
         /// <summary>
-        /// Schriftart zur Anzeige der Informationen.
+        /// bold and big fonts 
         /// </summary>
         protected static Font boldFont, bigFont;
 
         /// <summary>
-        /// Schriftart zur Anzeige der Informationen.
+        /// default font for information
         /// </summary>
         protected static Font defaultFont;
 
         /// <summary>
-        /// Der Name des Insekts.
+        /// insects name
         /// </summary>
         protected string name;
 
         /// <summary>
-        /// Der statische Konstruktor.
+        /// static constructor of info box
         /// </summary>
         static InfoBox()
         {
-            // Erzeuge die Schriftarten.
+            // definition of the fonts
             defaultFont = new Font("Microsoft Sans Serif", 8.25f);
             boldFont = new Font(defaultFont, FontStyle.Bold);
             bigFont = new Font("Microsoft Sans Serif", 20f);
@@ -38,23 +38,23 @@ namespace AntMe.Plugin.GdiPlusPlugin
 
         public InfoBox()
         {
-            // Sage Windows, daß wir das Puffern beim Zeichnen selbst übernehmen.
+            // buffering while drawing will be under control by antme
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
             UpdateStyles();
         }
 
         /// <summary>
-        /// Die Id des Insekts zu dem Informationen dargestellt werden sollen.
+        /// public get id of insect
         /// </summary>
         public abstract int Id { get; }
 
-        // Die Hintergrund-Grafik und ihre Zeichenfläche.
+        // bitmap graphics for background and drawing area
         protected Bitmap bitmap;
         protected Graphics graphics;
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            // Zeichne die Hintergrund-Grafik.
+            // draw background bitmap graphics
             e.Graphics.DrawImageUnscaled(bitmap, 0, 0);
         }
 
