@@ -8,19 +8,36 @@ namespace AntMe.English
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public sealed class PlayerAttribute : Attribute
     {
-        /// <summary>
-        /// First name of the player
-        /// </summary>
-        public string FirstName = string.Empty;
+
+        private string colonyName = string.Empty;
+        private string lastName = string.Empty;
+        private string firstName = string.Empty;
 
         /// <summary>
-        /// Name of the colony
+        /// Colony name (obligatory)
         /// </summary>
-        public string ColonyName = string.Empty;
+        public string ColonyName
+        {
+            get { return colonyName; }
+            set { colonyName = value; }
+        }
 
         /// <summary>
-        /// Last name of the player
+        /// Last name (nice to have)
         /// </summary>
-        public string LastName = string.Empty;
+        public string LastName
+        {
+            get { return lastName; }
+            set { lastName = value; }
+        }
+
+        /// <summary>
+        /// First name of the player (nice to have)
+        /// </summary>
+        public string FirstName
+        {
+            get { return firstName; }
+            set { firstName = value; }
+        }
     }
 }

@@ -54,7 +54,7 @@ namespace AntMe.English
         /// <param name="marker">Marker</param>
         public virtual void DetectedScentFriend(Marker marker) { }
 
-        internal override void SiehtBase(CoreFruit obst)
+        internal override void SpotsBase(CoreFruit obst)
         {
             Spots(new Fruit(obst));
         }

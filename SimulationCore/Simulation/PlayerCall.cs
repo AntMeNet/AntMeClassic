@@ -41,7 +41,7 @@ namespace AntMe.Simulation
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: KI-Fehler in der Wartet()-Methode", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in WaitingBase() method", ant.colony.Player.Guid), ex);
             }
             ant.AwaitingCommands = false;
             AreaChanged(
@@ -64,7 +64,7 @@ namespace AntMe.Simulation
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: KI-Fehler in der WirdMüde()-Methode", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in IsGettingTiredBase() method", ant.colony.Player.Guid), ex);
             }
             ant.AwaitingCommands = false;
             AreaChanged(
@@ -92,7 +92,7 @@ namespace AntMe.Simulation
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: KI-Fehler in der Sieht(Zucker)-Methode", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in SpotsBase(sugar) method", ant.colony.Player.Guid), ex);
             }
 
             ant.AwaitingCommands = false;
@@ -113,11 +113,11 @@ namespace AntMe.Simulation
             ant.AwaitingCommands = true;
             try
             {
-                ant.SiehtBase(fruit);
+                ant.SpotsBase(fruit);
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: KI-Fehler in der Sieht(Obst)-Methode", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in SpotsBase(fruit) method", ant.colony.Player.Guid), ex);
             }
 
             ant.AwaitingCommands = false;
@@ -143,7 +143,7 @@ namespace AntMe.Simulation
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: KI-Fehler in der ZielErreicht(Zucker)-Methode", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in ArrivedAtTargetBase(sugar) method", ant.colony.Player.Guid), ex);
             }
 
             ant.AwaitingCommands = false;
@@ -169,7 +169,7 @@ namespace AntMe.Simulation
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: KI-Fehler in der ZielErreicht(Obst)-Methode", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in ArrivedAtTargetBase(fruit) method", ant.colony.Player.Guid), ex);
             }
             ant.AwaitingCommands = false;
             AreaChanged(
@@ -382,7 +382,7 @@ namespace AntMe.Simulation
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: KI-Fehler in der IstGestorben()-Methode", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in HadDiedBase(kindOfDeath) method", ant.colony.Player.Guid), ex);
             }
 
             AreaChanged(
@@ -405,7 +405,7 @@ namespace AntMe.Simulation
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: KI-Fehler in der Tick()-Methode", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in TickBase() method", ant.colony.Player.Guid), ex);
             }
 
             ant.AwaitingCommands = false;

@@ -60,7 +60,7 @@ namespace AntMe.Deutsch
         /// <param name="markierung">Die gerochene Markierung</param>
         public virtual void RiechtFreund(Markierung markierung) { }
 
-        internal override void SiehtBase(CoreFruit obst)
+        internal override void SpotsBase(CoreFruit obst)
         {
             Sieht(new Obst(obst));
         }

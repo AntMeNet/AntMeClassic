@@ -6,12 +6,12 @@ using System.Text;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Holds all meta-information about a player.
+    /// Holds all meta information about a player and the AI.
     /// </summary>
     [Serializable]
     public class PlayerInfo : ICloneable
     {
-        #region lokale Variablen
+        #region local attributes
 
         /// <summary>
         /// List of all castes.
@@ -19,12 +19,12 @@ namespace AntMe.Simulation
         private readonly List<CasteInfo> castes;
 
         /// <summary>
-        /// Reference to the ai-assembly-file.
+        /// Reference to the assembled AI file.
         /// </summary>
         internal Assembly assembly;
 
         /// <summary>
-        /// true, if the Ai gives some debug-information.
+        /// true, if the AI gives some debug information.
         /// </summary>
         public bool HasDebugInformation;
 
@@ -39,7 +39,7 @@ namespace AntMe.Simulation
         public string ColonyName;
 
         /// <summary>
-        /// Complete Class-name of colony-class.
+        /// Complete colony class name.
         /// </summary>
         public string ClassName;
 
@@ -74,12 +74,12 @@ namespace AntMe.Simulation
         public bool RequestUserInterfaceAccess;
 
         /// <summary>
-        /// Last name of colony-author.
+        /// Last name of colony author.
         /// </summary>
         public string LastName;
 
         /// <summary>
-        /// First name of colony-author.
+        /// First name of colony author.
         /// </summary>
         public string FirstName;
 
@@ -100,7 +100,7 @@ namespace AntMe.Simulation
 
         #endregion
 
-        #region Constructor and Initializaion
+        #region Constructor and initialization
 
         /// <summary>
         /// Creates a new instance of PlayerInfo.
@@ -127,9 +127,9 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Creates a new instance of PlayerInfo.
+        /// Creates a new instance of player info.
         /// </summary>
-        /// <param name="info">Base-info</param>
+        /// <param name="info">base info</param>
         public PlayerInfo(PlayerInfo info)
         {
             // Daten kopieren
@@ -198,7 +198,7 @@ namespace AntMe.Simulation
                 this.castes = castes;
             }
 
-            // Restliche Daten übertragen
+            // transfer data
             Guid = guid;
             ColonyName = colonyName;
             FirstName = firstName;
@@ -218,7 +218,7 @@ namespace AntMe.Simulation
 
         #endregion
 
-        #region Hilfsmethoden
+        #region helper methods
 
         /// <summary>
         /// Checks the rules.
@@ -243,7 +243,7 @@ namespace AntMe.Simulation
 
         #endregion
 
-        #region Eigenschaften
+        #region properties
 
         /// <summary>
         /// Delivers the list of castes.

@@ -7,7 +7,7 @@ namespace AntMe.Simulation
 
 
     /// <summary>
-    /// Abstrakte Basisklasse für alle Ameisen.
+    /// abstract base class for all ants
     /// </summary>
     /// <author>Wolfgang Gallo (wolfgang@antme.net)</author>
     public abstract class CoreAnt : CoreInsect
@@ -18,7 +18,7 @@ namespace AntMe.Simulation
 
             coordinate.Radius = 2;
 
-            // Bestimme die Kaste der neuen Ameise.
+            // determine caste of the new ant
             int casteIndex = -1;
             string casteName = string.Empty;
             if (availableInsects != null)
@@ -40,7 +40,7 @@ namespace AntMe.Simulation
                 throw new InvalidOperationException(string.Format(Resource.SimulationCoreChooseWrongCaste, casteName));
             }
 
-            // Setze die von der Kaste abhängigen Werte.
+            // set ants properties depending on its caste
             CasteIndexBase = casteIndex;
             currentEnergyBase = colony.EnergyI[casteIndex];
             currentSpeedI = colony.SpeedI[casteIndex];
@@ -48,17 +48,17 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Bestimmt die Kaste einer neuen Ameise.
+        /// Determine caste for a new ant
         /// </summary>
-        /// <param name="anzahl">Die Anzahl der von jeder Klaste bereits vorhandenen Ameisen.</param>
-        /// <returns>Der Name der Kaste der Ameise.</returns>
-        internal virtual string DetermineCasteBase(Dictionary<string, int> anzahl)
+        /// <param name="existingAntsPerCasteInColony">ants in caste per colony</param>
+        /// <returns>name of the caste for the new ant</returns>
+        internal virtual string DetermineCasteBase(Dictionary<string, int> existingAntsPerCasteInColony)
         {
             return "";
         }
 
         /// <summary>
-        /// Erzeugt ein AmeiseZustand-Objekt mit den aktuellen Daten der Ameise.
+        /// Generate ant state information
         /// </summary>
         internal AntState GenerateAntStateInfo()
         {
@@ -112,7 +112,7 @@ namespace AntMe.Simulation
         private bool isTired;
 
         /// <summary>
-        /// Gibt an, ob die Ameise müde ist.
+        /// true if ant is tired
         /// </summary>
         internal bool IsTiredBase
         {
@@ -121,14 +121,12 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Wird wiederholt aufgerufen, wenn der die Ameise nicht weiss wo sie
-        /// hingehen soll.
+        /// Waiting is the standard action if the ant has no target
         /// </summary>
         internal virtual void WaitingBase() { }
 
         /// <summary>
-        /// Wird einmal aufgerufen, wenn die Ameise ein Drittel ihrer maximalen 
-        /// Reichweite überschritten hat.
+        /// Evoked once when the ant has reached one third of its maximum operational range
         /// </summary>
         internal virtual void IsGettingTiredBase() { }
 
@@ -137,31 +135,27 @@ namespace AntMe.Simulation
         #region Food
 
         /// <summary>
-        /// Wird wiederholt aufgerufen, wenn die Ameise mindestens einen
-        /// Zuckerhaufen sieht.
+        /// Evoked when ant sees a sugar hill
         /// </summary>
-        /// <param name="sugar">Der nächstgelegene Zuckerhaufen.</param>
+        /// <param name="sugar">spotted sugar hill</param>
         internal virtual void SpotsBase(CoreSugar sugar) { }
 
         /// <summary>
-        /// Wird wiederholt aufgerufen, wenn die Ameise mindstens ein
-        /// Obststück sieht.
+        /// Evoked when ant sees a fruit
         /// </summary>
-        /// <param name="fruit">Das nächstgelegene Obststück.</param>
-        internal virtual void SiehtBase(CoreFruit fruit) { }
+        /// <param name="fruit">nearest fruit</param>
+        internal virtual void SpotsBase(CoreFruit fruit) { }
 
         /// <summary>
-        /// Wird einmal aufgerufen, wenn die Ameise einen Zuckerhaufen als Ziel
-        /// hat und bei diesem ankommt.
+        /// Evoked when ant arrived at sugar hill
         /// </summary>
-        /// <param name="sugar">Der Zuckerhaufen.</param>
+        /// <param name="sugar">sugar hill</param>
         internal virtual void ArrivedAtTargetBase(CoreSugar sugar) { }
 
         /// <summary>
-        /// Wird einmal aufgerufen, wenn die Ameise ein Obststück als Ziel hat und
-        /// bei diesem ankommt.
+        /// Evoked when ant arrived at fruit
         /// </summary>
-        /// <param name="fruit">Das Obstück.</param>
+        /// <param name="fruit">fruit</param>
         internal virtual void ArrivedAtTargetBase(CoreFruit fruit) { }
 
         #endregion
@@ -169,25 +163,24 @@ namespace AntMe.Simulation
         #region Communication
 
         /// <summary>
-        /// Wird einmal aufgerufen, wenn die Ameise eine Markierung des selben
-        /// Volkes riecht. Einmal gerochene Markierungen werden nicht erneut
-        /// gerochen.
+        /// Evoked when ant spots marker of a friendly ant from the same colony for the first time
+        /// allready seen marks will be remembered
         /// </summary>
-        /// <param name="marker">Die nächste neue Markierung.</param>
+        /// <param name="marker">marker of a friendly ant</param>
         internal virtual void SpotsFriendBase(CoreMarker marker) { }
 
         /// <summary>
-        /// Wird wiederholt aufgerufen, wenn die Ameise mindstens eine Ameise des
-        /// selben Volkes sieht.
+        /// Evoked when ant spots a friendly ant from the same colony.
+        /// Will be evoked every time.
         /// </summary>
-        /// <param name="ant">Die nächstgelegene befreundete Ameise.</param>
+        /// <param name="ant">friendly ant from same colony</param>
         internal virtual void SpotsFriendBase(CoreAnt ant) { }
 
         /// <summary>
-        /// Wird wiederholt aufgerufen, wenn die Ameise mindestens eine Ameise verbündeter
-        /// Völker sieht.
+        /// Evoked when ant spots a friendly ant from a team colony.
+        /// Will be evoked every time.
         /// </summary>
-        /// <param name="ant"></param>
+        /// <param name="ant">friendly ant from a team colony</param>
         internal virtual void SpotsTeamMemberBase(CoreAnt ant) { }
 
         #endregion
@@ -195,31 +188,31 @@ namespace AntMe.Simulation
         #region Fight
 
         /// <summary>
-        /// Wird wiederholt aufgerufen, wenn die Ameise mindestens eine Wanze
-        /// sieht.
+        /// Evoked when ant spots a bug.
+        /// Will be evoked every time.
         /// </summary>
-        /// <param name="bug">Die nächstgelegene Wanze.</param>
+        /// <param name="bug">bug</param>
         internal virtual void SpotsEnemyBase(CoreBug bug) { }
 
         /// <summary>
-        /// Wird wiederholt aufgerufen, wenn die Ameise mindestens eine Ameise eines
-        /// anderen Volkes sieht.
+        /// Evoked when ant spots an enemy ant.
+        /// Will be evoked every time.
         /// </summary>
-        /// <param name="ant">Die nächstgelegen feindliche Ameise.</param>
+        /// <param name="ant">enemy ant</param>
         internal virtual void SpotsEnemyBase(CoreAnt ant) { }
 
         /// <summary>
-        /// Wird wiederholt aufgerufen, wenn die Ameise von einer Wanze angegriffen
-        /// wird.
+        /// Evoked when ant is attacked by a bug.
+        /// Will be evoked every time.
         /// </summary>
-        /// <param name="bug">Die angreifende Wanze.</param>
+        /// <param name="bug">attacking bug</param>
         internal virtual void UnderAttackBase(CoreBug bug) { }
 
         /// <summary>
-        /// Wird wiederholt aufgerufen in der die Ameise von einer Ameise eines
-        /// anderen Volkes Ameise angegriffen wird.
+        /// Evoked when ant is attacked by an enemy ant.
+        /// Will be evoked every time.
         /// </summary>
-        /// <param name="ant">Die angreifende feindliche Ameise.</param>
+        /// <param name="ant">attacking ant</param>
         internal virtual void IsUnderAttackBase(CoreAnt ant) { }
 
         #endregion
@@ -227,13 +220,13 @@ namespace AntMe.Simulation
         #region Sonstiges
 
         /// <summary>
-        /// Wird einmal aufgerufen, wenn die Ameise gestorben ist.
+        /// Evoked when ant has died.
         /// </summary>
-        /// <param name="kindOfDeath">Die Todesart der Ameise</param>
+        /// <param name="kindOfDeath">ants kind of death</param>
         internal virtual void HasDiedBase(CoreKindOfDeath kindOfDeath) { }
 
         /// <summary>
-        /// Wird unabhängig von äußeren Umständen in jeder Runde aufgerufen.
+        /// Tick will be evoked in every round for every ant regardless of other circumstances.
         /// </summary>
         internal virtual void TickBase() { }
 

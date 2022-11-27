@@ -53,7 +53,7 @@ namespace AntMe.English
         }
 
         /// <summary>
-        /// Delivers the Colony-Name.
+        /// Delivers the colony name.
         /// </summary>
         public string Colony
         {

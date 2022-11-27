@@ -60,7 +60,7 @@ namespace AntMe.Simulation
                 PlayerLanguages.English,
                 simulation.GetType("AntMe.English.BaseAnt"));
 
-            // open Ai-File
+            // open AI file
             using (var filestream = new MemoryStream(file))
             {
                 return analyseAssembly(ModuleDefinition.ReadModule(filestream), checkRules);

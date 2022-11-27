@@ -3,40 +3,41 @@ using System;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Spielerinfo mit zusätzlicher Angabe eines Dateinamens
+    /// player AI file with filename
     /// </summary>
     [Serializable]
     public sealed class PlayerInfoFilename : PlayerInfo
     {
-        #region interne Variablen
+        #region internal attribute
 
         /// <summary>
-        /// Pfad zur KI-Datei
+        /// player AI file with path
         /// </summary>
         public string File;
 
         #endregion
 
-        #region Initialisierung und Konstruktor
+        #region constructor and initialization
 
         /// <summary>
-        /// Creates an instance of PlayerInfoFilename
+        /// Creates an instance of a player AI info file
         /// </summary>
         public PlayerInfoFilename() { }
 
         /// <summary>
-        /// Konstruktor der SpielerInfo mit Dateinamen
+        /// Creates an instance of a player AI info file with given filename
         /// </summary>
+        /// <param name="file">player AI file with path</param>
         public PlayerInfoFilename(string file)
         {
             File = file;
         }
 
         /// <summary>
-        /// Konstruktor der SpielerInfo mit Dateinamen
+        /// Creates an instance of a player AI info file with given filename an AI info
         /// </summary>
-        /// <param name="info"></param>
-        /// <param name="file"></param>
+        /// <param name="info">player AI info</param>
+        /// <param name="file">player AI file with path</param>
         public PlayerInfoFilename(PlayerInfo info, string file)
             : base(info)
         {
@@ -46,10 +47,10 @@ namespace AntMe.Simulation
         #endregion
 
         /// <summary>
-        /// Ermittelt, ob die KIs gleich sind
+        /// determine if this player AI has the same hash code as the given AI
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
+        /// <param name="obj">given player AI</param>
+        /// <returns>true for equal AI</returns>
         public override bool Equals(object obj)
         {
             PlayerInfoFilename other = (PlayerInfoFilename)obj;
@@ -57,9 +58,9 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Erzeugt einen Hash aus den gegebenen Daten
+        /// create a hash for file and class name
         /// </summary>
-        /// <returns>Hashcode</returns>
+        /// <returns>hash code</returns>
         public override int GetHashCode()
         {
             return File.GetHashCode() ^ ClassName.GetHashCode();
