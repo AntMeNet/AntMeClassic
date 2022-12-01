@@ -163,16 +163,16 @@ namespace AntMe.Plugin.Fna
 
     //            // Material for ants and flag
     //            Material material = new Material();
-    //            material.Emissive = Color.FromArgb(color.Red, color.Gr�n, color.Blue);
+    //            material.Emissive = Color.FromArgb(color.Red, color.Green, color.Blue);
     //            material.Specular = Color.FromArgb(200, 200, 200);
     //            antMaterial.Add(colony, material);
 
     //            // Material for markers
     //            material = new Material();
-    //            material.Ambient = Color.FromArgb(MARKERTRANSPARENCY, color.Red, color.Gr�n, color.Blue);
-    //            material.Diffuse = Color.FromArgb(MARKERTRANSPARENCY, color.Red, color.Gr�n, color.Blue);
-    //            material.Emissive = Color.FromArgb(MARKERTRANSPARENCY, color.Red, color.Gr�n, color.Blue);
-    //            material.Specular = Color.FromArgb(MARKERTRANSPARENCY, color.Red, color.Gr�n, color.Blue);
+    //            material.Ambient = Color.FromArgb(MARKERTRANSPARENCY, color.Red, color.Green, color.Blue);
+    //            material.Diffuse = Color.FromArgb(MARKERTRANSPARENCY, color.Red, color.Green, color.Blue);
+    //            material.Emissive = Color.FromArgb(MARKERTRANSPARENCY, color.Red, color.Green, color.Blue);
+    //            material.Specular = Color.FromArgb(MARKERTRANSPARENCY, color.Red, color.Green, color.Blue);
     //            markerMaterials.Add(colony, material);
     //        }
     //    }
