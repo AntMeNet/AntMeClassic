@@ -26,7 +26,7 @@ namespace AntMe.Simulation
             state.PositionX = (ushort)(koordinate.X / SimulationEnvironment.PLAYGROUND_UNIT);
             state.PositionY = (ushort)(koordinate.Y / SimulationEnvironment.PLAYGROUND_UNIT);
             state.Radius = (ushort)(koordinate.Radius / SimulationEnvironment.PLAYGROUND_UNIT);
-            state.Amount = (ushort)menge;
+            state.Amount = (ushort)amount;
             return state;
         }
     }

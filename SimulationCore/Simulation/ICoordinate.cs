@@ -1,13 +1,13 @@
 ﻿namespace AntMe.Simulation
 {
     /// <summary>
-    /// Ermöglicht es, die Koordinate eines Objekts auf dem Spielfeld abzufragen.
+    /// Allows to query the coordinate of an object on the field.
     /// </summary>
     /// <author>Wolfgang Gallo (wolfgang@antme.net)</author>
     public interface ICoordinate
     {
         /// <summary>
-        /// Liest die Koordinate eines Objekts auf dem Spielfeld aus.
+        /// Gets the coordinates of an object on the playground.
         /// </summary>
         CoreCoordinate CoordinateBase { get; }
     }

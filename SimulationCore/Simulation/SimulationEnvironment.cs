@@ -173,7 +173,7 @@ namespace AntMe.Simulation
             //    bug.NimmBefehleEntgegen = true;
             //}
 
-            // Schleife über alle Wanzen.
+            // Loop over all the bugs.
             for (int bugIndex = 0; bugIndex < Bugs.InsectsList.Count; bugIndex++)
             {
                 CoreBug bug = Bugs.InsectsList[bugIndex] as CoreBug;
@@ -181,15 +181,15 @@ namespace AntMe.Simulation
 
                 bug.AwaitingCommands = true;
 
-                // Finde Ameisen in Angriffsreichweite.
+                // Find ants within attack range.
                 List<CoreInsect> ants = Bugs.Grids[0].FindAnts(bug);
 
-                // Bestimme wie der Schaden auf die Ameisen verteilt wird.
+                // Determine how the damage is distributed among the ants.
                 if (ants.Count >= SimulationSettings.Custom.BugAttack)
                 {
-                    // Es sind mehr Ameisen in der SpielUmgebung als die Wanze
-                    // Schadenpunke verteilen kann. Daher werden den Ameisen am
-                    // Anfang der Liste jeweils ein Energiepunkt abgezogen.
+                    // There are more ants in the game environment than the
+                    // bug can distribute damage points. Therefore, ants at
+                    // the top of the list will have one energy point deducted.
                     for (int index = 0; index < SimulationSettings.Custom.BugAttack; index++)
                     {
                         ants[index].currentEnergyBase--;
@@ -203,9 +203,8 @@ namespace AntMe.Simulation
                 }
                 else if (ants.Count > 0)
                 {
-                    // Bestimme die Energie die von jeder Ameise abgezogen wird.
-                    // Hier können natürlich Rundungsfehler auftreten, die die Wanze
-                    // abschwächen, die ignorieren wir aber.
+                    // Determine the energy that is subtracted from each ant.
+                    // Rounding errors that weaken the bug can occur but we ignore them.
                     int damage = SimulationSettings.Custom.BugAttack / ants.Count;
                     for (int index = 0; index < ants.Count; index++)
                     {
@@ -219,13 +218,13 @@ namespace AntMe.Simulation
                     }
                 }
 
-                // Während eines Kampfes kann die Wanze sich nicht bewegen.
+                // The bug cannot move during a fight.
                 if (ants.Count > 0)
                 {
                     continue;
                 }
 
-                // Bewege die Wanze.
+                // Move the bug.
                 bug.Move();
                 if (bug.DistanceToDestinationBase == 0)
                 {
@@ -235,7 +234,7 @@ namespace AntMe.Simulation
                 bug.AwaitingCommands = false;
             }
 
-            // Verhindere, daß ein Spieler einer gesichteten Wanze Befehle gibt.
+            // Prevent a player from giving orders to a sighted bug.
             //for(int i = 0; i < Bugs.Insects.Count; i++) {
             //  CoreBug wanze = Bugs.Insects[i] as CoreBug;
             //  if(wanze != null) {
@@ -255,13 +254,13 @@ namespace AntMe.Simulation
                 {
                     CoreColony colony = Teams[teamIndex].Colonies[colonyIndex];
 
-                    // Leere alle Buckets.
+                    // Empty all buckets.
                     for (int casteIndex = 0; casteIndex < colony.CasteCount; casteIndex++)
                     {
                         colony.Grids[casteIndex].Clear();
                     }
 
-                    // Fülle alle Buckets, aber befülle keinen Bucket doppelt.
+                    // Fill all buckets, but do not fill any bucket twice.
                     for (int casteIndex = 0; casteIndex < colony.CasteCount; casteIndex++)
                     {
                         if (colony.Grids[casteIndex].Count == 0)
@@ -278,13 +277,13 @@ namespace AntMe.Simulation
                         }
                     }
 
-                    // Schleife über alle Ameisen.
+                    // Loop over all ants.
                     for (int antIndex = 0; antIndex < colony.InsectsList.Count; antIndex++)
                     {
                         CoreAnt ant = colony.InsectsList[antIndex] as CoreAnt;
                         Debug.Assert(ant != null);
 
-                        // Finde und Zähle die Insekten im Sichtkreis der Ameise.
+                        // Find and count the insects in the ant's field of vision.
                         CoreBug bug;
                         CoreAnt enemy;
                         CoreAnt friend;
@@ -307,12 +306,12 @@ namespace AntMe.Simulation
                         ant.FriendlyAntsFromSameCasteInViewrange = casteAntCount;
                         ant.TeamAntsInViewrange = teamAntCount;
 
-                        // Bewege die Ameise.
+                        // Move the ant.
                         ant.Move();
 
                         #region Range
 
-                        // Ameise hat ihre Reichweite überschritten.
+                        // Ant has exceeded its range. Ant dies.
                         if (ant.travelledDistance > colony.RangeI[ant.CasteIndexBase])
                         {
                             ant.currentEnergyBase = 0;
@@ -320,7 +319,7 @@ namespace AntMe.Simulation
                             continue;
                         }
 
-                        // Ameise hat ein Drittel ihrer Reichweite zurückgelegt.
+                        // Ant has covered a third of its range.
                         else if (ant.travelledDistance > colony.RangeI[ant.CasteIndexBase] / 3)
                         {
                             if (ant.IsTiredBase == false)
@@ -334,8 +333,7 @@ namespace AntMe.Simulation
 
                         #region Fight
 
-                        // Rufe die Ereignisse auf, falls die Ameise nicht schon ein 
-                        // entsprechendes Ziel hat.
+                        // If the ant does not already have a corresponding target, call the events.
                         if (bug != null && !(ant.TargetBase is CoreBug))
                         {
                             PlayerCall.SpotsEnemy(ant, bug);
@@ -356,7 +354,7 @@ namespace AntMe.Simulation
                             PlayerCall.SpotsTeamMember(ant, teammember);
                         }
 
-                        // Kampf mit Wanze.
+                        // Fight with a bug.
                         if (ant.TargetBase is CoreBug)
                         {
                             CoreBug k = (CoreBug)ant.TargetBase;
@@ -381,7 +379,7 @@ namespace AntMe.Simulation
                             }
                         }
 
-                        // Kampf mit feindlicher Ameise.
+                        // Fight with an enemy ant.
                         else if (ant.TargetBase is CoreAnt)
                         {
                             CoreAnt a = (CoreAnt)ant.TargetBase;
@@ -409,20 +407,20 @@ namespace AntMe.Simulation
 
                         #endregion
 
-                        // Prüfe ob die Ameise an ihrem Ziel angekommen ist.
+                        // Check if the ant has reached its destination.
                         if (ant.ArrivedBase)
                         {
                             antAndTarget(ant);
                         }
 
-                        // Prüfe ob die Ameise einen Zuckerhaufen oder ein Obststück sieht.
+                        // Check if the ant sees a pile of sugar or a fruit.
                         antAndSugar(ant);
                         if (ant.CarryingFruitBase == null)
                         {
                             antAndFruit(ant);
                         }
 
-                        // Prüfe ob die Ameise eine Markierung bemerkt.
+                        // Check whether the ant notices a mark.
                         antAndMarkers(ant);
 
                         if (ant.TargetBase == null && ant.DistanceToDestinationBase == 0)
@@ -461,9 +459,9 @@ namespace AntMe.Simulation
         #region Helpermethods
 
         /// <summary>
-        /// Erzeugt einen Zustand aus dem aktuellen Spielumstand
+        /// Creates a state from the current game state
         /// </summary>
-        /// <returns>aktueller Spielstand</returns>
+        /// <returns>current game state</returns>
         private void GenerateState(SimulationState simulationState)
         {
             simulationState.PlaygroundWidth = Playground.Width;

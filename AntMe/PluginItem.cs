@@ -46,7 +46,7 @@ namespace AntMe.Gui
         public PluginItem(IConsumerPlugin plugin, CustomStateItem[] writeCustomStates, CustomStateItem[] readCustomStates)
             : this(writeCustomStates, readCustomStates, plugin)
         {
-            // Prüfen, ob Plugin angegeben wurde
+            // Check if plugin has been specified
             if (plugin == null)
             {
                 throw new ArgumentNullException("plugin", Resource.PluginItemConstructorPluginIsNull);

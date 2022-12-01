@@ -3,15 +3,15 @@ using System;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Die abstrakte Basisklasse für Nahrung.
+    /// Die abstrakte Basisklasse fï¿½r Nahrung.
     /// </summary>
     internal abstract class CoreFood : ICoordinate
     {
-        // Die Id der nächsten erzeugten Nahrung.
+        // Die Id der nï¿½chsten erzeugten Nahrung.
         private static int neueId = 0;
 
         /// <summary>
-        /// Die Id die die Nahrung während eines Spiels eindeutig identifiziert.
+        /// Die Id die die Nahrung wï¿½hrend eines Spiels eindeutig identifiziert.
         /// </summary>
         public readonly int Id;
 
@@ -23,19 +23,19 @@ namespace AntMe.Simulation
         /// <summary>
         /// Die verbleibende Menge an Nahrungspunkten.
         /// </summary>
-        protected int menge;
+        protected int amount;
 
         /// <summary>
         /// Der abstrakte Nahrung-Basiskonstruktor.
         /// </summary>
         /// <param name="x">Die X-Position der Koordinate auf dem Spielfeld.</param>
         /// <param name="y">Die Y-Position der Koordinate auf dem Spielfeld.</param>
-        /// <param name="menge">Die Anzahl der Nahrungspunkte.</param>
-        internal CoreFood(int x, int y, int menge)
+        /// <param name="amount">Die Anzahl der Nahrungspunkte.</param>
+        internal CoreFood(int x, int y, int amount)
         {
             Id = neueId++;
             koordinate = new CoreCoordinate(x, y);
-            Amount = menge;
+            Amount = amount;
         }
 
         /// <summary>
@@ -43,12 +43,12 @@ namespace AntMe.Simulation
         /// </summary>
         public virtual int Amount
         {
-            get { return menge; }
+            get { return amount; }
             internal set
             {
-                menge = value;
+                amount = value;
                 koordinate.Radius = (int)
-                                    (Math.Round(Math.Sqrt(menge / Math.PI) * SimulationEnvironment.PLAYGROUND_UNIT));
+                                    (Math.Round(Math.Sqrt(amount / Math.PI) * SimulationEnvironment.PLAYGROUND_UNIT));
             }
         }
 

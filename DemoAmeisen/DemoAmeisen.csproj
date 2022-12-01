@@ -27,4 +27,16 @@
   <ItemGroup>
     <ProjectReference Include="..\SimulationCore\SimulationCore.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="aTomApfelmeisen.cs" />
+    <Compile Remove="aTomGruppenmeisen.cs" />
+    <Compile Remove="aTomKampfmeisen.cs" />
+    <Compile Remove="aTomZuckermeisen.cs" />
+    <Compile Remove="DemoAMeisen.cs" />
+    <Compile Remove="DemoBMeisen.cs" />
+    <Compile Remove="DemoCMeisen.cs" />
+    <Compile Remove="DynamischeAmeisen.cs" />
+    <Compile Remove="GruppenAmeisen.cs" />
+  </ItemGroup>
 </Project>

@@ -9,7 +9,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
 {
 
     /// <summary>
-    /// Information-Kontrollelement für Wanze.
+    /// Information control element for bug.
     /// </summary>
     internal class BugInfoBox : InfoBox
     {
@@ -18,17 +18,17 @@ namespace AntMe.Plugin.GdiPlusPlugin
         private PointF[] arrow = new PointF[3];
 
         /// <summary>
-        /// Erzeugt eine BugInfoBox-Instanz.
+        /// Creates a BugInfoBox instance.
         /// </summary>
-        /// <param name="bugState">Die Wanze.</param>
+        /// <param name="bugState">bug state</param>
         public BugInfoBox(BugState bugState)
         {
-            // Setze Größe und Randabstand.
+            // Set size and margin.
             Width = 150;
             Height = 63;
             Margin = new Padding(0);
 
-            // Erzeuge die Hintergrund-Grafik und hole ihre Zeichenfläche.
+            // Create the background graphic and get its drawing area.
             bitmap = new Bitmap(Width, Height);
             graphics = Graphics.FromImage(bitmap);
 
@@ -37,7 +37,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
         }
 
         /// <summary>
-        /// Die Id der Wanze zu der Informationen dargestellt werden sollen.
+        /// The ID of the bug for which information is to be displayed.
         /// </summary>
         public override int Id
         {
@@ -45,7 +45,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
         }
 
         /// <summary>
-        /// Die Wanze deren Werte dargestellt werden sollen.
+        /// The bug whose values are to be displayed.
         /// </summary>
         public BugState Bug
         {
@@ -57,18 +57,18 @@ namespace AntMe.Plugin.GdiPlusPlugin
         }
 
         /// <summary>
-        /// Zeichnet die Informationen neu.
+        /// Draw new information
         /// </summary>
-        /// <param name="e">Ereignisargumente</param>
+        /// <param name="e">paint event argument</param>
         protected override void OnPaint(PaintEventArgs e)
         {
-            // Lösche die Zeichenfläche.
+            // clear
             graphics.Clear(Color.White);
 
-            // Zeichne den Namen.
+            // draw name
             graphics.DrawString(name, boldFont, Brushes.Black, 0f, 0f);
 
-            // Berechne und zeichne den Richtungspfeil.
+            // calculate direction and draw arrow
             float x, y;
             x = 5f * (float)Math.Cos(bug.Direction * Math.PI / 180d);
             y = 5f * (float)Math.Sin(bug.Direction * Math.PI / 180d);
@@ -77,7 +77,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
             arrow[2] = new PointF(15f - 3f * x - y, 30f - 3f * y + x);
             graphics.FillPolygon(Playground.bugBrush, arrow);
 
-            // Zeichne die Energie.
+            // draw bug vitality
             graphics.DrawString(bug.Vitality.ToString(), bigFont, Brushes.Red, 40f, 15f);
 
             base.OnPaint(e);

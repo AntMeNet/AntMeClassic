@@ -121,66 +121,66 @@ namespace AntMe.Simulation
 
             if (Attack < ATTACK_MINIMUM)
             {
-                throw new ConfigurationErrorsException(string.Format("Der Wert bei Attack (Aktuell: {0}) muss größer oder gleich {1} sein", Attack, ATTACK_MINIMUM));
+                throw new ConfigurationErrorsException(string.Format("The value for Attack (Current: {0}) must be greater than or equal to {1}.", Attack, ATTACK_MINIMUM));
             }
             if (Attack > ATTACK_MAXIMUM)
             {
-                throw new ConfigurationErrorsException(string.Format("Der Wert bei Attack (Aktuell: {0}) muss kleiner oder gleich {1} sein", Attack, ATTACK_MINIMUM));
+                throw new ConfigurationErrorsException(string.Format("The value for Attack (Current: {0}) must be less than or equal to {1}.", Attack, ATTACK_MINIMUM));
             }
 
 
             if (RotationSpeed < ROTATIONSPEED_MINIMUM)
             {
-                throw new ConfigurationErrorsException(string.Format("Der Wert bei RotationSpeed (Aktuell: {0}) muss größer oder gleich {1} sein", RotationSpeed, ROTATIONSPEED_MINIMUM));
+                throw new ConfigurationErrorsException(string.Format("The value for RotationSpeed (Current: {0}) must be greater than or equal to {1}.", RotationSpeed, ROTATIONSPEED_MINIMUM));
             }
             if (RotationSpeed > ROTATIONSPEED_MAXIMUM)
             {
-                throw new ConfigurationErrorsException(string.Format("Der Wert bei RotationSpeed (Aktuell: {0}) muss kleiner oder gleich {1} sein", RotationSpeed, ROTATIONSPEED_MAXIMUM));
+                throw new ConfigurationErrorsException(string.Format("The value for RotationSpeed (Current: {0}) must be less than or equal to {1}.", RotationSpeed, ROTATIONSPEED_MAXIMUM));
             }
 
             if (Energy < ENERGY_MINIMUM)
             {
-                throw new ConfigurationErrorsException(string.Format("Der Wert bei Energy (Aktuell: {0}) muss größer oder gleich {1} sein", Energy, ENERGY_MINIMUM));
+                throw new ConfigurationErrorsException(string.Format("The value for Energy (Current: {0}) must be greater than or equal to {1}.", Energy, ENERGY_MINIMUM));
             }
             if (Energy > ENERGY_MAXIMUM)
             {
-                throw new ConfigurationErrorsException(string.Format("Der Wert bei Energy (Aktuell: {0}) muss kleiner oder gleich {1} sein", Energy, ENERGY_MAXIMUM));
+                throw new ConfigurationErrorsException(string.Format("The value for Energy (Current: {0}) must be less than or equal to {1}.", Energy, ENERGY_MAXIMUM));
             }
 
             if (Speed < SPEED_MINIMUM)
             {
-                throw new ConfigurationErrorsException(string.Format("Der Wert bei Speed (Aktuell: {0}) muss größer oder gleich {1} sein", Speed, SPEED_MINIMUM));
+                throw new ConfigurationErrorsException(string.Format("The value for Speed (Current: {0}) must be greater than or equal to {1}.", Speed, SPEED_MINIMUM));
             }
             if (Speed > SPEED_MAXIMUM)
             {
-                throw new ConfigurationErrorsException(string.Format("Der Wert bei Speed (Aktuell: {0}) muss kleiner oder gleich {1} sein", Speed, SPEED_MAXIMUM));
+                throw new ConfigurationErrorsException(string.Format("The value for Speed (Current: {0}) must be less than or equal to {1}.", Speed, SPEED_MAXIMUM));
             }
 
             if (Load < LOAD_MINIMUM)
             {
-                throw new ConfigurationErrorsException(string.Format("Der Wert bei Load (Aktuell: {0}) muss größer oder gleich {1} sein", Load, LOAD_MINIMUM));
+                throw new ConfigurationErrorsException(string.Format("The value for Load (Current: {0}) must be greater than or equal to {1}.", Load, LOAD_MINIMUM));
             }
             if (Load > LOAD_MAXIMUM)
             {
-                throw new ConfigurationErrorsException(string.Format("Der Wert bei Load (Aktuell: {0}) muss kleiner oder gleich {1} sein", Load, LOAD_MAXIMUM));
+                throw new ConfigurationErrorsException(string.Format("The value for Load (Current: {0}) must be less than or equal to {1}.", Load, LOAD_MAXIMUM));
             }
 
             if (Range < RANGE_MINIMUM)
             {
-                throw new ConfigurationErrorsException(string.Format("Der Wert bei Range (Aktuell: {0}) muss größer oder gleich {1} sein", Range, RANGE_MINIMUM));
+                throw new ConfigurationErrorsException(string.Format("The value for Range (Current: {0}) must be greater than or equal to {1}.", Range, RANGE_MINIMUM));
             }
             if (Range > RANGE_MAXIMUM)
             {
-                throw new ConfigurationErrorsException(string.Format("Der Wert bei Range (Aktuell: {0}) muss kleiner oder gleich {1} sein", Range, RANGE_MAXIMUM));
+                throw new ConfigurationErrorsException(string.Format("The value for Range (Current: {0}) must be less than or equal to {1}.", Range, RANGE_MAXIMUM));
             }
 
             if (ViewRange < VIEWRANGE_MINIMUM)
             {
-                throw new ConfigurationErrorsException(string.Format("Der Wert bei ViewRange (Aktuell: {0}) muss größer oder gleich {1} sein", ViewRange, VIEWRANGE_MINIMUM));
+                throw new ConfigurationErrorsException(string.Format("The value for ViewRange (Current: {0}) must be greater than or equal to {1}.", ViewRange, VIEWRANGE_MINIMUM));
             }
             if (ViewRange > VIEWRANGE_MAXIMUM)
             {
-                throw new ConfigurationErrorsException(string.Format("Der Wert bei ViewRange (Aktuell: {0}) muss kleiner oder gleich {1} sein", ViewRange, VIEWRANGE_MINIMUM));
+                throw new ConfigurationErrorsException(string.Format("The value for ViewRange (Current: {0}) must be less than or equal to {1}.", ViewRange, VIEWRANGE_MINIMUM));
             }
         }
     }

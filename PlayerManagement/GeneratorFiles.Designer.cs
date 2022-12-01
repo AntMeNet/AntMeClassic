@@ -73,7 +73,7 @@ namespace AntMe.PlayerManagement {
         ///    /// Diese Datei enthält die Beschreibung für deine Ameise. Die einzelnen Code-Blöcke 
         ///    /// (Beginnend mit &quot;public override void&quot;) fassen zusammen, wie deine Ameise in den 
         ///    /// entsprechenden Situationen reagieren soll. Welche Befehle du hier verwenden kannst, 
-        ///    /// findest du auf der Befehlsübersicht im Wiki (http://wiki.antme.ne [rest of string was truncated]&quot;;.
+        ///    /// findest du auf der Befehlsübersicht im Wiki (https://wiki.antme.net/de/ [rest of string was truncated]&quotquot;;.
         /// </summary>
         internal static string class_cs_de_docu {
             get {
