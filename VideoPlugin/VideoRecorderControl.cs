@@ -40,7 +40,7 @@ namespace AntMe.Plugin.Video
                 {
                     try
                     {
-                        // TODO: Sove with AntMe! reader/writer for anonymization
+                        // TODO: Solve with AntMe! reader/writer for anonymization
                         using (var output = File.Open(saveFileDialog.FileName, FileMode.CreateNew))
                         {
                             byte[] buffer = new byte[1024];
