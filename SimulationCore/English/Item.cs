@@ -3,12 +3,12 @@
 namespace AntMe.English
 {
     /// <summary>
-    /// Baseclass for all items on playground
+    /// Baseclass for all items on playground.
     /// </summary>
     public abstract class Item
     {
         /// <summary>
-        /// Saves the reference to the original simulation-object
+        /// Saves the reference to the original simulation object.
         /// </summary>
         private readonly ICoordinate item;
 
@@ -18,7 +18,7 @@ namespace AntMe.English
         }
 
         /// <summary>
-        /// Delivers the base-item
+        /// Delivers the base item.
         /// </summary>
         internal ICoordinate Baseitem
         {
@@ -26,7 +26,7 @@ namespace AntMe.English
         }
 
         /// <summary>
-        /// Gives the unique ID of this item
+        /// Gives the unique ID of this item.
         /// </summary>
         public abstract int Id { get; }
 
@@ -42,10 +42,10 @@ namespace AntMe.English
         }
 
         /// <summary>
-        /// Vergleich zwischen zwei Objekten
+        /// Comparison between this item object and another.
         /// </summary>
-        /// <param name="obj">Vergleichsobjekt</param>
-        /// <returns>beide meinen das gleiche Element</returns>
+        /// <param name="obj">Item object to compare with.</param>
+        /// <returns>True if both refer to the same element. With check against null objects.</returns>
         public override bool Equals(object obj)
         {
             if (obj == null)
@@ -61,19 +61,15 @@ namespace AntMe.English
         /// <summary>
         /// operator ==
         /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <returns></returns>
+        /// <param name="a">a</param>
+        /// <param name="b">b</param>
+        /// <returns>True if both refer to the same element. With check against null objects.</returns>
         public static bool operator ==(Item a, Item b)
         {
             // check, if both items are null
             if ((object)a == null)
             {
-                if ((object)b == null)
-                {
-                    return true;
-                }
-                return false;
+                return (object)b == null;
             }
 
             // check, if b is null
@@ -89,9 +85,9 @@ namespace AntMe.English
         /// <summary>
         /// operator !=
         /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <returns></returns>
+        /// <param name="a">a</param>
+        /// <param name="b">b</param>
+        /// <returns>True if both refer to different elements. No check against null objects.</returns>
         public static bool operator !=(Item a, Item b)
         {
             return !(a == b);

@@ -4,31 +4,31 @@ using System.Collections.Generic;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// team of colonies
+    /// Team of colonies.
     /// </summary>
     [Serializable]
     public sealed class TeamInfo : ICloneable
     {
 
         /// <summary>
-        /// Guid of Teams
+        /// Guid of Teams.
         /// </summary>
         public Guid Guid;
 
         /// <summary>
-        /// Name of Teams
+        /// Name of Teams.
         /// </summary>
         public string Name;
 
         /// <summary>
-        /// List of team member players 
+        /// List of team member players.
         /// </summary>
         private List<PlayerInfo> player;
 
         #region Constructor and Initialization
 
         /// <summary>
-        /// Team Constructor 
+        /// Team Constructor.
         /// </summary>
         public TeamInfo()
         {
@@ -37,9 +37,9 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Teams Constructor 
+        /// Team Constructor.
         /// </summary>
-        /// <param name="player">list of players</param>
+        /// <param name="player">List of players.</param>
         public TeamInfo(List<PlayerInfo> player)
             : this()
         {
@@ -47,10 +47,10 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Team Constructor
+        /// Team Constructor.
         /// </summary>
-        /// <param name="guid">Guid</param>
-        /// <param name="player">list of players</param>
+        /// <param name="guid">Guid.</param>
+        /// <param name="player">List of players.</param>
         public TeamInfo(Guid guid, List<PlayerInfo> player)
             : this(player)
         {
@@ -58,10 +58,10 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Team Constructor
+        /// Team Constructor.
         /// </summary>
-        /// <param name="name">Name of team</param>
-        /// <param name="player">list of players</param>
+        /// <param name="name">Name of team.</param>
+        /// <param name="player">List of players.</param>
         public TeamInfo(string name, List<PlayerInfo> player)
             : this(player)
         {
@@ -69,11 +69,11 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Team Constructor
+        /// Team Constructor.
         /// </summary>
-        /// <param name="guid">Guid of team</param>
-        /// <param name="name">Name of team</param>
-        /// <param name="player">List of players</param>
+        /// <param name="guid">Guid of team.</param>
+        /// <param name="name">Name of team.</param>
+        /// <param name="player">List of players.</param>
         public TeamInfo(Guid guid, string name, List<PlayerInfo> player)
             : this(player)
         {
@@ -86,7 +86,7 @@ namespace AntMe.Simulation
         #region properties
 
         /// <summary>
-        /// list of team members
+        /// List of team members.
         /// </summary>
         public List<PlayerInfo> Player
         {
@@ -98,18 +98,18 @@ namespace AntMe.Simulation
         #region public methods
 
         /// <summary>
-        /// check team against rule set
+        /// Check team against rule set.
         /// </summary>
         public void Rulecheck()
         {
-            // number of players in team
+            // Number of players in team.
             if (player == null || player.Count < 1)
             {
-                // TODO: ressource needs better name
+                // TODO: resource needs better name
                 throw new InvalidOperationException(Resource.SimulationCoreTeamInfoNoName);
             }
 
-            // check team members against rule set
+            // Check team members against rule set.
             foreach (PlayerInfo info in player)
             {
                 info.RuleCheck();
@@ -121,9 +121,9 @@ namespace AntMe.Simulation
         #region ICloneable Member
 
         /// <summary>
-        /// clones team
+        /// Clones team.
         /// </summary>
-        /// <returns>copy of the team</returns>
+        /// <returns>Copy of the team.</returns>
         public object Clone()
         {
             TeamInfo output = (TeamInfo)MemberwiseClone();

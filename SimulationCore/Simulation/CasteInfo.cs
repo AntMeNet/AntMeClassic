@@ -10,59 +10,59 @@ namespace AntMe.Simulation
     public sealed class CasteInfo
     {
         /// <summary>
-        /// attack modificator of the caste
+        /// Attack modificator of the caste.
         /// </summary>
         public int Attack = 0;
 
         /// <summary>
-        /// rotation speed modificator of the caste
+        /// Rotation speed modificator of the caste.
         /// </summary>
         public int RotationSpeed = 0;
 
         /// <summary>
-        /// energy modificator of the caste
+        /// Energy modificator of the caste.
         /// </summary>
         public int Energy = 0;
 
         /// <summary>
-        /// movement speed modificator of the caste
+        /// Movement speed modificator of the caste.
         /// </summary>
         public int Speed = 0;
 
         /// <summary>
-        /// load modificator of the caste
+        /// Load modificator of the caste.
         /// </summary>
         public int Load = 0;
 
         /// <summary>
-        /// name of the caste
+        /// Name of the caste.
         /// </summary>
         public string Name = string.Empty;
 
         /// <summary>
-        /// movement range modificator of the caste
+        /// Movement range modificator of the caste.
         /// </summary>
         public int Range = 0;
 
         /// <summary>
-        /// view range modificator of the caste
+        /// View range modificator of the caste.
         /// </summary>
         public int ViewRange = 0;
 
         /// <summary>
-        /// checks caste against rule set
+        /// Checks caste against rule set.
         /// </summary>
         /// <throws>RuleViolationException</throws>
         public void Rulecheck(string aiName)
         {
-            // caste is ignored if it has no name
+            // Caste is ignored if it has no name.
             if (string.IsNullOrEmpty(Name))
             {
                 throw new RuleViolationException(
                     string.Format(Resource.SimulationCoreCasteRuleNoName, aiName));
             }
 
-            // speed modificator check against allowed minimum and maximum
+            // Speed modificator check against allowed minimum and maximum.
             if (Speed < SimulationSettings.Custom.CasteSettings.MinIndex ||
                 Speed > SimulationSettings.Custom.CasteSettings.MaxIndex)
             {
@@ -71,7 +71,7 @@ namespace AntMe.Simulation
                         Resource.SimulationCoreCasteRuleSpeedFailed, Name, aiName));
             }
 
-            // rotation speed modificator check against allowed minimum and maximum
+            // Rotation speed modificator check against allowed minimum and maximum.
             if (RotationSpeed < SimulationSettings.Custom.CasteSettings.MinIndex ||
                 RotationSpeed > SimulationSettings.Custom.CasteSettings.MaxIndex)
             {
@@ -82,7 +82,7 @@ namespace AntMe.Simulation
                         aiName));
             }
 
-            // load modificator check against allowed minimum and maximum
+            // Load modificator check against allowed minimum and maximum.
             if (Load < SimulationSettings.Custom.CasteSettings.MinIndex ||
                 Load > SimulationSettings.Custom.CasteSettings.MaxIndex)
             {
@@ -90,7 +90,7 @@ namespace AntMe.Simulation
                     string.Format(Resource.SimulationCoreCasteRuleLoadFailed, Name, aiName));
             }
 
-            // view range modificator check against allowed minimum and maximum
+            // View range modificator check against allowed minimum and maximum.
             if (ViewRange < SimulationSettings.Custom.CasteSettings.MinIndex ||
                 ViewRange > SimulationSettings.Custom.CasteSettings.MaxIndex)
             {
@@ -99,8 +99,7 @@ namespace AntMe.Simulation
                         Resource.SimulationCoreCasteRuleViewRangeFailed, Name, aiName));
             }
 
-            // smell range modificator check against allowed minimum and maximum
-            // Prüfen, ob der Riechweitemodifikator im Rahmen ist
+            // Range modificator check against allowed minimum and maximum.
             if (Range < SimulationSettings.Custom.CasteSettings.MinIndex ||
                 Range > SimulationSettings.Custom.CasteSettings.MaxIndex)
             {
@@ -109,7 +108,7 @@ namespace AntMe.Simulation
                         Resource.SimulationCoreCasteRuleRangeFailed, Name, aiName));
             }
 
-            // Prüfen, ob der Energiemodifikator im Rahmen ist
+            // Energy modificator check against allowed minimum and maximum.
             if (Energy < SimulationSettings.Custom.CasteSettings.MinIndex ||
                 Energy > SimulationSettings.Custom.CasteSettings.MaxIndex)
             {
@@ -117,7 +116,7 @@ namespace AntMe.Simulation
                     string.Format(Resource.SimulationCoreCasteRuleEnergyFailed, Name, aiName));
             }
 
-            // Prüfen, ob der Angriffsmodifikator im Rahmen ist
+            // Attack modificator check against allowed minimum and maximum.
             if (Attack < SimulationSettings.Custom.CasteSettings.MinIndex ||
                 Attack > SimulationSettings.Custom.CasteSettings.MaxIndex)
             {
@@ -125,7 +124,7 @@ namespace AntMe.Simulation
                     string.Format(Resource.SimulationCoreCasteRuleAttackFailed, Name, aiName));
             }
 
-            // Prüfen, ob die Eigenschaftssumme stimmt
+            // Check the sum of all modificator against the allowed sum.
             if (Speed +
                 RotationSpeed +
                 Load +
@@ -140,9 +139,9 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Gibt an, ob es sich bei dieser Ameisenkaste um die Standard-Kaste handelt
+        /// Indicates whether this ant caste is the default caste.
         /// </summary>
-        /// <returns>Standardwert</returns>
+        /// <returns>true for default caste</returns>
         public bool IsEmpty()
         {
             return Name == String.Empty &&
@@ -156,7 +155,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Erzeugt ein CasteState-Objekt.
+        /// Creates a caste state object.
         /// </summary>
         /// <returns></returns>
         public CasteState CreateCasteStateInfo(int colonyId, int id)

@@ -3,7 +3,7 @@
 namespace AntMe.English
 {
     /// <summary>
-    /// Represents a foreign ant
+    /// Represents a foreign ant.
     /// </summary>
     public sealed class Ant : Insect
     {
@@ -18,7 +18,7 @@ namespace AntMe.English
         }
 
         /// <summary>
-        /// delivers the current carried fruit.
+        /// Delivers the current carried fruit.
         /// </summary>
         public Fruit CarriedFruit
         {

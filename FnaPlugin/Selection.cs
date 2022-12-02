@@ -1,7 +1,7 @@
 namespace AntMe.Plugin.Fna
 {
     /// <summary>
-    /// class, to hold selection-information.
+    /// Class, to hold selection information.
     /// </summary>
     internal struct Selection
     {

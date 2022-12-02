@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 namespace AntMe.PlayerManagement
 {
     /// <summary>
-    /// central player store
+    /// Central player store.
     /// </summary>
     public sealed class PlayerStore
     {
@@ -83,7 +83,7 @@ namespace AntMe.PlayerManagement
         public ReadOnlyCollection<PlayerInfoFilename> KnownPlayer { get { return knownPlayer.AsReadOnly(); } }
 
         /// <summary>
-        /// Registeres a new File to the Storage.
+        /// Registers a new File to the Storage.
         /// </summary>
         /// <param name="file"></param>
         public void RegisterFile(string file)
@@ -93,7 +93,7 @@ namespace AntMe.PlayerManagement
                 if (scannedFiles.Contains(file.ToLower()))
                     return;
 
-                // unregister old file
+                // Unregister old file.
                 if (configuration.KnownFiles.Contains(file.ToLower()))
                     UnregisterFile(file);
 

@@ -5,7 +5,7 @@ namespace AntMe.Simulation
 
 
     /// <summary>
-    /// item coordinates on the playground
+    /// Item coordinates on the playground.
     /// </summary>
     /// <author>Wolfgang Gallo (wolfgang@antme.net)</author>
     public struct CoreCoordinate
@@ -16,20 +16,20 @@ namespace AntMe.Simulation
         private int y;
 
         /// <summary>
-        /// Constructor for new instances of a coordinate struct for an item
+        /// Constructor for new instances of a coordinate struct for an item.
         /// </summary>
-        /// <param name="x">x coordinate of the item</param>
-        /// <param name="y">y coordinate of the item</param>
-        /// <param name="radius">radius of the item</param>
-        /// <param name="direction">direction the item is oriented to</param>
+        /// <param name="x">X coordinate of the item.</param>
+        /// <param name="y">Y coordinate of the item.</param>
+        /// <param name="radius">Radius of the item.</param>
+        /// <param name="direction">Direction the item is oriented to.</param>
         internal CoreCoordinate(int x, int y, int radius, int direction)
         {
             this.x = x * SimulationEnvironment.PLAYGROUND_UNIT;
             this.y = y * SimulationEnvironment.PLAYGROUND_UNIT;
 
-            // all parameters of the constructer must be initialized
-            // thats why radius and direction are set 0 now
-            // they will be overwriten afterwards
+            // All parameters of the constructor must be initialized.
+            // That's why radius and direction are set 0 now
+            // they will be overwritten afterwards.
             this.radius = 0;
             this.direction = 0;
 
@@ -39,11 +39,11 @@ namespace AntMe.Simulation
 
         /// <summary>
         /// Constructor for new instances of a coordinate struct
-        /// without direction
+        /// without direction.
         /// </summary>
-        /// <param name="x">x coordinate of the item</param>
-        /// <param name="y">y coordinate of the item</param>
-        /// <param name="radius">radius of the item</param>
+        /// <param name="x">X coordinate of the item.</param>
+        /// <param name="y">Y coordinate of the item.</param>
+        /// <param name="radius">Radius of the item.</param>
         internal CoreCoordinate(int x, int y, int radius)
         {
             this.x = x * SimulationEnvironment.PLAYGROUND_UNIT;
@@ -55,10 +55,10 @@ namespace AntMe.Simulation
 
         /// <summary>
         /// Constructor for new instances of a coordinate struct
-        /// without direction or radius
+        /// without direction or radius.
         /// </summary>
-        /// <param name="x">x coordinate of the item</param>
-        /// <param name="y">y coordinate of the item</param>
+        /// <param name="x">X coordinate of the item.</param>
+        /// <param name="y">Y coordinate of the item.</param>
         internal CoreCoordinate(int x, int y)
         {
             this.x = x * SimulationEnvironment.PLAYGROUND_UNIT;
@@ -69,21 +69,21 @@ namespace AntMe.Simulation
 
         /// <summary>
         /// Constructor for new instances of a coordinate struct
-        /// in relation to the given coordinate
+        /// in relation to the given coordinate.
         /// </summary>
-        /// <param name="k">the given coordinate</param>
-        /// <param name="deltaX">x coordinate of the item in relation to the given coordinate</param>
-        /// <param name="deltaY">y coordinate of the item in relation to the given coordinate</param>
-        internal CoreCoordinate(CoreCoordinate k, int deltaX, int deltaY)
+        /// <param name="c">The given coordinate.</param>
+        /// <param name="deltaX">X coordinate of the item in relation to the given coordinate.</param>
+        /// <param name="deltaY">Y coordinate of the item in relation to the given coordinate.</param>
+        internal CoreCoordinate(CoreCoordinate c, int deltaX, int deltaY)
         {
-            x = k.x + deltaX;
-            y = k.y + deltaY;
-            radius = k.radius;
-            direction = k.direction;
+            x = c.x + deltaX;
+            y = c.y + deltaY;
+            radius = c.radius;
+            direction = c.direction;
         }
 
         /// <summary>
-        /// the x value of an item coordinate
+        /// The x value of an item coordinate.
         /// </summary>
         internal int X
         {
@@ -92,7 +92,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// the y value of an item coordinate 
+        /// The y value of an item coordinate. 
         /// </summary>
         internal int Y
         {
@@ -101,10 +101,10 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// radius of the item coordinate
-        /// all calculations of the the simulation are based on coordinates 
+        /// Radius of the item coordinate.
+        /// All calculations of the the simulation are based on coordinates 
         /// and associated hemispheres like the distance between items
-        /// therefor the radius is part of the coordinate struct
+        /// therefor the radius is part of the coordinate struct.
         /// </summary>
         internal int Radius
         {
@@ -113,9 +113,9 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Direction the item is oriented to, not all items need a direction
-        /// the items needing a direction usually have methods to turn themself
-        /// the direction is not part of conventional coordinate systems
+        /// Direction the item is oriented to, not all items need a direction.
+        /// The items needing a direction usually have methods to turn themself
+        /// to the direction. This is not part of conventional coordinate systems
         /// but the CoreCoordinate struct is good place to store this information
         /// </summary>
         internal int Direction
@@ -136,33 +136,33 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// determine the distance between two items on the playground in steps
+        /// Determine the distance between two items on the playground in steps.
         /// </summary>
-        /// <param name="o1">Object 1</param>
-        /// <param name="o2">Object 2</param>
-        /// <returns>distance in steps</returns>
+        /// <param name="o1">Object 1.</param>
+        /// <param name="o2">Object 2.</param>
+        /// <returns>Distance in steps.</returns>
         internal static int DetermineDistance(ICoordinate o1, ICoordinate o2)
         {
             return DetermineDistanceI(o1.CoordinateBase, o2.CoordinateBase) / SimulationEnvironment.PLAYGROUND_UNIT;
         }
 
         /// <summary>
-        /// determine direction from one item on the playground to another
+        /// Determine direction from one item on the playground to another.
         /// </summary>
-        /// <param name="i1">source item</param>
-        /// <param name="i2">destintation item</param>
-        /// <returns>Die Richtung.</returns>
+        /// <param name="i1">Source item.</param>
+        /// <param name="i2">Destination item.</param>
+        /// <returns>Direction.</returns>
         internal static int DetermineDirection(ICoordinate i1, ICoordinate i2)
         {
             return DetermineDirection(i1.CoordinateBase, i2.CoordinateBase);
         }
 
         /// <summary>
-        /// determine the distance between two item coordinates on the playground in internal unit
+        /// Determine the distance between two item coordinates on the playground in internal unit.
         /// </summary>
-        /// <param name="c1">Coordinate 1</param>
-        /// <param name="c2">Coordinate 2</param>
-        /// <returns>distance between coordinates in internal unit</returns>
+        /// <param name="c1">Coordinate 1.</param>
+        /// <param name="c2">Coordinate 2.</param>
+        /// <returns>Distance between coordinates in internal unit.</returns>
         internal static int DetermineDistanceI(CoreCoordinate c1, CoreCoordinate c2)
         {
             double deltaX = c1.x - c2.x;
@@ -177,12 +177,12 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// determine the distance between two item coordinates on the playground in internal unit
-        /// without considering the radii
+        /// Determine the distance between two item coordinates on the playground in internal unit
+        /// without considering the radii.
         /// </summary>
-        /// <param name="c1">coordinate 1</param>
-        /// <param name="c2">coordinate 2</param>
-        /// <returns>distance in internal unit</returns>
+        /// <param name="c1">Coordinate 1.</param>
+        /// <param name="c2">Coordinate 2.</param>
+        /// <returns>Distance in internal unit.</returns>
         internal static int DetermineDistanceToCenter(CoreCoordinate c1, CoreCoordinate c2)
         {
             double deltaX = c1.x - c2.x;
@@ -191,11 +191,11 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// determine direction from one item coordinate on the playground to another
+        /// Determine direction from one item coordinate on the playground to another.
         /// </summary>
-        /// <param name="c1">source coordinate</param>
-        /// <param name="c2">target coordinate</param>
-        /// <returns>direction</returns>
+        /// <param name="c1">Source coordinate.</param>
+        /// <param name="c2">Target coordinate.</param>
+        /// <returns>Direction.</returns>
         internal static int DetermineDirection(CoreCoordinate c1, CoreCoordinate c2)
         {
             int direction = (int)Math.Round(Math.Atan2(c2.Y - c1.Y, c2.X - c1.X) * 180d / Math.PI);

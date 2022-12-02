@@ -3,7 +3,7 @@ using System;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Klasse zur Weiterleitung von Debug-Information mit Kontextinformationen
+    /// Class for forwarding debug information with context information
     /// </summary>
     [Serializable]
     public sealed class DebugMessage
@@ -20,11 +20,11 @@ namespace AntMe.Simulation
         #region Construktor and Initialization
 
         /// <summary>
-        /// Konstruktor einer Debugnachricht
+        /// Constructor of a debug message.
         /// </summary>
-        /// <param name="player">ID des spielers</param>
-        /// <param name="ant">ID der Ameise</param>
-        /// <param name="message">Nachricht</param>
+        /// <param name="player">ID of player.</param>
+        /// <param name="ant">ID of ant.</param>
+        /// <param name="message">Message.</param>
         public DebugMessage(int player, int ant, string message)
         {
             time = DateTime.Now;
@@ -38,7 +38,7 @@ namespace AntMe.Simulation
         #region Attributes
 
         /// <summary>
-        /// Zeitpunkt der Nachricht
+        /// Message time.
         /// </summary>
         public DateTime Time
         {
@@ -46,7 +46,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Assoziierter Spieler
+        /// Associated player.
         /// </summary>
         public int Player
         {
@@ -54,7 +54,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// ID der betroffenen Ameise
+        /// ID of the affected ant.
         /// </summary>
         public int Ant
         {
@@ -62,7 +62,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Die Debugnachricht
+        /// The debug message.
         /// </summary>
         public string Message
         {

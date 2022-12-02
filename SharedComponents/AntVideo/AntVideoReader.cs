@@ -195,7 +195,7 @@ namespace AntMe.SharedComponents.AntVideo
                 }
             }
 
-            // Detect streamend
+            // Detect end of stream
             if ((BlockType)serializer.Peek() == BlockType.StreamEnd)
             {
                 complete = true;
@@ -269,7 +269,7 @@ namespace AntMe.SharedComponents.AntVideo
         }
 
         /// <summary>
-        /// Gives the current frame-position.
+        /// Gives the current frame position.
         /// </summary>
         public int CurrentFrame
         {
@@ -285,7 +285,7 @@ namespace AntMe.SharedComponents.AntVideo
         }
 
         /// <summary>
-        /// Gibt an, ob der Stream zu Ende gelesen wurde.
+        /// Complete when the stream has been read to the end.
         /// </summary>
         public bool Complete
         {

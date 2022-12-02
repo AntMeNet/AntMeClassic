@@ -4,16 +4,16 @@ using System;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// scent marking with information, age and size
+    /// Scent marking with information, age and size.
     /// </summary>
     /// <author>Wolfgang Gallo (wolfgang@antme.net)</author>
     internal sealed class CoreMarker : ICoordinate
     {
-        // id of the next marker
+        // ID of the next marker.
         private static int newId = 0;
 
         /// <summary>
-        /// id will uniquely identify the marker throughout the simulation
+        /// ID will uniquely identify the marker throughout the simulation.
         /// </summary>
         public readonly int Id;
 
@@ -27,43 +27,43 @@ namespace AntMe.Simulation
 
 
         /// <summary>
-        /// construtor for new instances of marker
+        /// Constructor for new instances of marker
         /// </summary>
-        /// <param name="coordinate">coordinate</param>
-        /// <param name="finalSize">size of marker in steps</param>
-        /// <param name="colonyId">id of colony</param>
+        /// <param name="coordinate">Coordinate.</param>
+        /// <param name="finalSize">Size of marker in steps.</param>
+        /// <param name="colonyId">ID of colony.</param>
         internal CoreMarker(CoreCoordinate coordinate, int finalSize, int colonyId)
         {
             this.colonyId = colonyId;
             Id = newId++;
             this.coordinate = coordinate;
 
-            // calculation of the smallest possible marker volume (r-square * PI/2) for the semi-sphere 
+            // Calculation of the smallest possible marker volume (r-square * PI/2) for the semi-sphere.
             double baseVolume = Math.Pow(SimulationSettings.Custom.MarkerSizeMinimum, 3) * (Math.PI / 2);
 
-            // correction for bigger markers
+            // Correction for bigger markers.
             baseVolume *= 10f;
 
-            // total volume for the hole lifespan
+            // Total volume for the hole lifespan.
             double totalvolume = baseVolume * SimulationSettings.Custom.MarkerMaximumAge;
 
-            // calculation of maximum size
+            // Calculation of maximum size.
             int maxSize = (int)Math.Pow(4 * ((totalvolume - baseVolume) / Math.PI), 1f / 3f);
 
-            // final size limited by minum and maximum markersize
+            // Final size limited by minimum and maximum marker size.
             this.finalSize = Math.Max(SimulationSettings.Custom.MarkerSizeMinimum, Math.Min(maxSize, finalSize));
 
-            // calculation of volume for the maximum marker //// MarkerSizeMinimum?
+            // Calculation of volume for the maximum marker //// MarkerSizeMinimum?
             int diffRadius = this.finalSize - SimulationSettings.Custom.MarkerSizeMinimum;
             double diffVolume = Math.Pow(diffRadius, 3) * (Math.PI / 4);
 
-            // total age of the marker depends on the size
+            // Total age of the marker depends on the size.
             totalAge = (int)Math.Floor(totalvolume / (baseVolume + diffVolume));
             Update();
         }
 
         /// <summary>
-        /// marker information
+        /// Marker information.
         /// </summary>
         public int Information
         {
@@ -72,8 +72,8 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// false means that the marker is not active any more 
-        /// because the age is greater than the total age
+        /// False means that the marker is not active any more 
+        /// because the age is greater than the total age.
         /// </summary>
         public bool IsActive
         {
@@ -83,7 +83,7 @@ namespace AntMe.Simulation
         #region IKoordinate Members
 
         /// <summary>
-        /// Die Position der Markierung auf dem Spielfeld.
+        /// The position of the marker on the playground.
         /// </summary>
         public CoreCoordinate CoordinateBase
         {
@@ -93,7 +93,7 @@ namespace AntMe.Simulation
         #endregion
 
         /// <summary>
-        /// updates age and radius of the marker 
+        /// Update age and radius of the marker. 
         /// </summary>
         internal void Update()
         {
@@ -107,7 +107,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// populates marker state with current informations of the marker
+        /// Populate marker state with current information of the marker.
         /// </summary>
         internal MarkerState PopulateMarkerState()
         {

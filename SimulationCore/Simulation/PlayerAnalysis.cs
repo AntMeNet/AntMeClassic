@@ -9,11 +9,11 @@ using System.Reflection;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Player-Analysis-Class 
+    /// Player analysis class 
     /// </summary>
     internal sealed class PlayerAnalysis
     {
-        #region local Variables
+        #region Local variables
 
         /// <summary>
         /// Type of baseAnt from core.
@@ -21,7 +21,7 @@ namespace AntMe.Simulation
         private TypeDefinition coreAnt;
 
         /// <summary>
-        /// List of all Ant-BaseClasses in every known language.
+        /// List of all ant base classes in every known language.
         /// </summary>
         private Dictionary<PlayerLanguages, TypeDefinition> languageBases;
 
@@ -30,28 +30,28 @@ namespace AntMe.Simulation
         #region public Methods
 
         /// <summary>
-        /// Sets special simulation-settings.
+        /// Sets special simulation settings.
         /// </summary>
-        /// <param name="settings">special settings</param>
+        /// <param name="settings">Special settings.</param>
         public void InitSettings(SimulationSettings settings)
         {
             SimulationSettings.SetCustomSettings(settings);
         }
 
         /// <summary>
-        /// Analyse given binary file for <see cref="PlayerInfo"/> and returns a list of found <see cref="PlayerInfo"/>
+        /// Analyse given binary file for <see cref="PlayerInfo"/> and returns a list of found <see cref="PlayerInfo"/>.
         /// </summary>
         /// <param name="file">AI file as binary file dump.</param>
-        /// <param name="checkRules">true to check player rules</param>
-        /// <returns>List of found <see cref="PlayerInfo"/> from given binary file</returns>
+        /// <param name="checkRules">True to check player rules.</param>
+        /// <returns>List of found <see cref="PlayerInfo"/> from given binary file.</returns>
         public List<PlayerInfo> Analyse(byte[] file, bool checkRules)
         {
-            // load base-class from Simulation-Core.#     
+            // Load base-class from simulation core.#     
             ModuleDefinition simulation = ModuleDefinition.ReadModule(Assembly.GetExecutingAssembly().Modules.First().FullyQualifiedName);
             coreAnt = simulation.GetType("AntMe.Simulation.CoreAnt");
             //coreAnt = simulation.GetType("AntMe.Simulation.CoreAnt");
 
-            // load all base-classes of different languages
+            // Load all base classes of different languages.
             languageBases = new Dictionary<PlayerLanguages, TypeDefinition>();
             languageBases.Add(
                 PlayerLanguages.Deutsch,
@@ -69,13 +69,13 @@ namespace AntMe.Simulation
 
         #endregion
 
-        #region Helpermethods
+        #region Helper methods
 
         /// <summary>
         /// Analyzes the given for any kind of valid player-information.
         /// </summary>
-        /// <param name="module">given module.</param>
-        /// <param name="checkRules">true for checking player rules with analyseAssembly</param>
+        /// <param name="module">Given module.</param>
+        /// <param name="checkRules">True for checking player rules with analyseAssembly</param>
         /// <returns>List of valid players.</returns>
         private List<PlayerInfo> analyseAssembly(ModuleDefinition module, bool checkRules)
         {
@@ -157,7 +157,7 @@ namespace AntMe.Simulation
                         //}
                         break;
                     default:
-                        // load unknown refereneces and add to list
+                        // Load unknown references and add to list.
                         try
                         {
                             //Assembly.ReflectionOnlyLoad(reference.FullName);
@@ -181,30 +181,30 @@ namespace AntMe.Simulation
 
             foreach (var typeDefinition in module.Types)
             {
-                // search for static attributes for determination
-                // whether the player uses global memory for their ants
+                // Search for static attributes for determination
+                // whether the player uses global memory for their ants.
                 staticVariables |= typeDefinition.Fields.Any(f => f.IsStatic);
                 staticVariables |= typeDefinition.Properties.Any(p => (p.SetMethod?.IsStatic ?? false) || (p.GetMethod?.IsStatic ?? false));
             }
 
-            // check AIs against rule set
-            // consider all public types in library
+            // Check AIs against rule set.
+            // Consider all public types in library.
             foreach (var exportedType in module.Types.Where(t => t.IsPublic && !t.IsInterface && !t.IsAbstract))
             {
-                // check if the type inherts from class ant
+                // Check if the type inhert from class ant.
                 var exportedTypeDefinition = exportedType.Resolve();
 
-                // antme version 1.6
+                // AntMe version 1.6
                 if (exportedTypeDefinition.IsSubclassOf(coreAnt))
                 {
-                    // player defintion is empty
+                    // Player definition is empty.
                     int playerDefinitions = 0;
 
                     PlayerInfo player = new PlayerInfo();
                     player.SimulationVersion = PlayerSimulationVersions.Version_1_7;
                     player.ClassName = exportedType.FullName;
 
-                    // determine language
+                    // Determine language.
                     foreach (PlayerLanguages language in languageBases.Keys)
                     {
                         if (exportedTypeDefinition.IsSubclassOf(languageBases[language]))
@@ -215,10 +215,10 @@ namespace AntMe.Simulation
                     }
                     // TODO: handling of unknown languages
 
-                    // read attributes
+                    // Read attributes.
                     foreach (var attribute in exportedTypeDefinition.CustomAttributes)
                     {
-                        // read player attributes
+                        // Read player attributes.
                         switch (attribute.AttributeType.FullName)
                         {
                             case "AntMe.Deutsch.SpielerAttribute":
@@ -259,7 +259,7 @@ namespace AntMe.Simulation
                                 break;
                         }
 
-                        // read caste attributes
+                        // Read caste attributes.
                         CasteInfo caste = new CasteInfo();
                         switch (attribute.AttributeType.FullName)
                         {
@@ -305,7 +305,7 @@ namespace AntMe.Simulation
                                 break;
                             case "AntMe.Deutsch.KasteAttribute":
 
-                                // deutsche Kasten
+                                // Deutsche Kasten.
                                 foreach (var field in attribute.Fields)
                                 {
                                     switch (field.Name)
@@ -337,7 +337,7 @@ namespace AntMe.Simulation
                                     }
                                 }
 
-                                // new castes of the player will be added to list
+                                // New castes of the player will be added to list.
                                 if (!caste.IsEmpty())
                                 {
                                     player.Castes.Add(caste);
@@ -345,7 +345,7 @@ namespace AntMe.Simulation
                                 break;
                         }
 
-                        // Access-Attributes
+                        // Access attributes
                         bool isAccessAttribute = false;
                         // TODO: localize request information
                         switch (attribute.AttributeType.FullName)
@@ -411,7 +411,7 @@ namespace AntMe.Simulation
                         }
                     }
 
-                    // check class against rule set
+                    // Check class against rule set.
                     player.Static = staticVariables;
                     player.RequestReferences = foreignReferences;
                     if (foreignReferences)
@@ -424,7 +424,7 @@ namespace AntMe.Simulation
                     switch (playerDefinitions)
                     {
                         case 0:
-                            // no player attribute found
+                            // No player attribute found.
                             throw new RuleViolationException(
                                 string.Format(
                                     Resource.SimulationCoreAnalysisNoPlayerAttribute,
@@ -446,27 +446,27 @@ namespace AntMe.Simulation
 
                 #region handling of old AIs
 
-                // old AntMe version 
+                // Old AntMe version. 
                 else if (exportedTypeDefinition.BaseType.Name == "AntMe.Ameise")
                 {
-                    // no player definiton
+                    // No player definiton.
                     int playerDefinitions = 0;
 
                     PlayerInfo player = new PlayerInfo();
                     player.SimulationVersion = PlayerSimulationVersions.Version_1_1;
                     player.ClassName = exportedTypeDefinition.FullName;
 
-                    // old versions 1.1 to 1.5
+                    // Old versions 1.1 to 1.5.
                     // TODO: Check old versions 1.1 to 1.5
                     if (exportedTypeDefinition.Methods.Any(MethodDefinition => MethodDefinition.Name == "RiechtFreund"))
                     {
                         player.SimulationVersion = PlayerSimulationVersions.Version_1_5;
                     }
 
-                    // read attributes
+                    // Read attributes.
                     foreach (var attribute in exportedTypeDefinition.CustomAttributes)
                     {
-                        // read player attribute
+                        // Read player attribute.
                         if (attribute.AttributeType.FullName == "AntMe.SpielerAttribute")
                         {
                             playerDefinitions++;
@@ -488,7 +488,7 @@ namespace AntMe.Simulation
                             break;
                         }
 
-                        // read type attributes
+                        // Read type attributes.
                         if (attribute.AttributeType.FullName == "AntMe.TypAttribute")
                         {
                             CasteInfo caste = new CasteInfo();
@@ -523,7 +523,7 @@ namespace AntMe.Simulation
                                 }
                             }
 
-                            // new castes of the player will be added to list
+                            // New castes of the player will be added to list.
                             if (!caste.IsEmpty())
                             {
                                 player.Castes.Add(caste);
@@ -532,12 +532,12 @@ namespace AntMe.Simulation
                         }
                     }
 
-                    // check class against rule set
+                    // Check class against rule set.
                     player.Static = staticVariables;
                     switch (playerDefinitions)
                     {
                         case 0:
-                            // no player attribute found
+                            // No player attribute found.
                             throw new RuleViolationException(
                                 string.Format(
                                     Resource.SimulationCoreAnalysisNoPlayerAttribute,

@@ -8,7 +8,7 @@ using System.Security.Permissions;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Proxy-Class to host an AppDomain für the encapsulated simulation.
+    /// Proxy class to host an AppDomain for the encapsulated simulation.
     /// </summary>
     /// <author>Tom Wendel (tom@antme.net)</author>
     internal sealed class SimulatorProxy

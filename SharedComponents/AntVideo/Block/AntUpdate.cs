@@ -4,7 +4,7 @@ using System;
 namespace AntMe.SharedComponents.AntVideo.Block
 {
     /// <summary>
-    /// Liste der Felder, die sich durch ein Update ändern könnten
+    /// List of fields that could change due to an update.
     /// </summary>
     [Flags]
     internal enum AntFields
@@ -40,7 +40,7 @@ namespace AntMe.SharedComponents.AntVideo.Block
 
         public AntUpdate() { }
 
-        // Blocklayout:
+        // Block layout:
         // - ...
         // - byte TargetType
         // - sbyte PositionX

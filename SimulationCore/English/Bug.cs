@@ -3,7 +3,7 @@
 namespace AntMe.English
 {
     /// <summary>
-    /// Represents a bug
+    /// Represents a bug.
     /// </summary>
     public sealed class Bug : Insect
     {

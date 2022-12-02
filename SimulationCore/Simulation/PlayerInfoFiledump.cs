@@ -3,30 +3,30 @@ using System;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// SpielerInfo Klasse mit der angabe eines zusätzlichen Dumps einer Spieler-KI
+    /// PlayerInfo class with the specification of an additional dump of a player AI.
     /// </summary>
     [Serializable]
     public sealed class PlayerInfoFiledump : PlayerInfo
     {
-        #region interne Variablen
+        #region internal attributes
 
         /// <summary>
-        /// Kopie der KI-Assembly
+        /// Copy of the AI assembly.
         /// </summary>
         public byte[] File;
 
         #endregion
 
-        #region Initialisierung und Konstruktor
+        #region Initialization and constructor
 
         /// <summary>
-        /// Creates an instance of PlayerInfoFiledump
+        /// Creates an instance of player info file dump.
         /// </summary>
         public PlayerInfoFiledump() { }
 
         /// <summary>
-        /// Konstruktor der SpielerInfo mit Dateikopie
-        /// <param name="file">Kopie der Datei in Form eines Byte[]</param>
+        /// Constructor of the PlayerInfo with file copy.
+        /// <param name="file">Copy of the file dump one byte[].</param>
         /// </summary>
         public PlayerInfoFiledump(byte[] file)
         {
@@ -34,10 +34,10 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Konstruktor der SpielerInfo mit Dateikopie
+        /// Constructor of the PlayerInfo with file copy.
         /// </summary>
-        /// <param name="info">Basis SpielerInfo</param>
-        /// <param name="file">Kopie der Datei in Form eines Byte[]</param>
+        /// <param name="info">Base player info.</param>
+        /// <param name="file">Copy of the file dump one byte[].</param>
         public PlayerInfoFiledump(PlayerInfo info, byte[] file)
             : base(info)
         {

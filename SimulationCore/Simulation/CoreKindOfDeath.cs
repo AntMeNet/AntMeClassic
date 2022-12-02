@@ -1,23 +1,23 @@
 ﻿namespace AntMe.Simulation
 {
     /// <summary>
-    /// kind of death
+    /// Kind of death.
     /// </summary>
     /// <author>Wolfgang Gallo (wolfgang@antme.net)</author>
     internal enum CoreKindOfDeath
     {
         /// <summary>
-        /// ant has starved
+        /// Ant has starved.
         /// </summary>
         Starved = 1,
 
         /// <summary>
-        /// bug has eaten the ant 
+        /// Bug has eaten the ant. 
         /// </summary>
         Eaten = 2,
 
         /// <summary>
-        /// enemy ant has beaten the ant
+        /// Enemy ant has beaten the ant.
         /// </summary>
         Beaten = 4
     }

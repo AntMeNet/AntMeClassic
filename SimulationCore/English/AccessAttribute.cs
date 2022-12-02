@@ -3,7 +3,7 @@
 namespace AntMe.English
 {
     /// <summary>
-    /// Baseattribute for all access-requesting attributes.
+    /// Base attribute for all access requesting attributes.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public abstract class AccessAttribute : Attribute

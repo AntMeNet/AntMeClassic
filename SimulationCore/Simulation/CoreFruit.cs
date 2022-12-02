@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Represents fruit.
+    /// CoreFruit represents a fruit.
     /// </summary>
     internal sealed class CoreFruit : CoreFood
     {
@@ -31,7 +31,7 @@ namespace AntMe.Simulation
             internal set
             {
                 amount = value;
-                koordinate.Radius = (int)(SimulationSettings.Custom.FruitRadiusMultiplier *
+                coordinate.Radius = (int)(SimulationSettings.Custom.FruitRadiusMultiplier *
                                            Math.Sqrt(amount / Math.PI) * SimulationEnvironment.PLAYGROUND_UNIT);
             }
         }
@@ -60,9 +60,9 @@ namespace AntMe.Simulation
         internal FruitState GenerateInformation()
         {
             FruitState info = new FruitState((ushort)Id);
-            info.PositionX = (ushort)(koordinate.X / SimulationEnvironment.PLAYGROUND_UNIT);
-            info.PositionY = (ushort)(koordinate.Y / SimulationEnvironment.PLAYGROUND_UNIT);
-            info.Radius = (ushort)(koordinate.Radius / SimulationEnvironment.PLAYGROUND_UNIT);
+            info.PositionX = (ushort)(coordinate.X / SimulationEnvironment.PLAYGROUND_UNIT);
+            info.PositionY = (ushort)(coordinate.Y / SimulationEnvironment.PLAYGROUND_UNIT);
+            info.Radius = (ushort)(coordinate.Radius / SimulationEnvironment.PLAYGROUND_UNIT);
             info.Amount = (ushort)amount;
             info.CarryingAnts = (byte)InsectsCarrying.Count;
             return info;

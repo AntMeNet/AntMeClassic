@@ -9,7 +9,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
 {
 
     /// <summary>
-    /// ant information and control box
+    /// Ant information and control box.
     /// </summary>
     internal class AntInfoBox : InfoBox
     {
@@ -53,7 +53,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
         }
 
         /// <summary>
-        /// ant id for information box
+        /// Ant ID for information box.
         /// </summary>
         public override int Id
         {
@@ -61,7 +61,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
         }
 
         /// <summary>
-        /// ant state for the information box
+        /// Ant state for the information box.
         /// </summary>
         public AntState Ant
         {
@@ -73,7 +73,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
         }
 
         /// <summary>
-        /// redraw ant information box
+        /// Redraw ant information box.
         /// </summary>
         /// <param name="e">event</param>
         protected override void OnPaint(PaintEventArgs e)
@@ -83,13 +83,13 @@ namespace AntMe.Plugin.GdiPlusPlugin
 
             float y = 0f;
 
-            // draw name and caste
+            // Draw name and caste
             graphics.DrawString(name, boldFont, Brushes.Black, 0f, y);
             y += 15f;
             graphics.DrawString(casteColony, defaultFont, Brushes.Black, 0f, y);
             y += 15f;
 
-            // calculate and draw direction array
+            // Calculate and draw direction array
             float xx, yy;
             xx = 5f * (float)Math.Cos(ant.Direction * Math.PI / 180d);
             yy = 5f * (float)Math.Sin(ant.Direction * Math.PI / 180d);
@@ -98,7 +98,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
             arrow[2] = new PointF(15f - 3f * xx - yy, y + 15f - 3f * yy + xx);
             graphics.FillPolygon(brush, arrow);
 
-            // draw energy and load
+            // Draw energy and load
             graphics.DrawString(ant.Vitality.ToString(), bigFont, Brushes.Red, 40f, y);
             graphics.DrawString(ant.Load.ToString(), bigFont, Brushes.Green, 100f, y);
 

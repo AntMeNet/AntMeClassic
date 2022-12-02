@@ -5,19 +5,19 @@ using System.Threading;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// abstract base class of all insects
+    /// Abstract base class of all insects.
     /// </summary>
     /// <author>Wolfgang Gallo (wolfgang@antme.net)</author>
     public abstract class CoreInsect : ICoordinate
     {
         /// <summary>
-        /// id for newly created insect
+        /// ID for newly created insect.
         /// </summary>
         private static int newId = 0;
 
         /// <summary>
-        /// list of all markers the insect has spoted
-        /// prevents insects to run in circles 
+        /// List of all markers the insect has spotted.
+        /// Prevents insects from running in circles. 
         /// </summary>
         internal readonly List<CoreMarker> SmelledMarker = new List<CoreMarker>();
 
@@ -30,17 +30,17 @@ namespace AntMe.Simulation
         private CoreFruit carryingFruit;
 
         /// <summary>
-        /// id of the insect. It will identify the insect throughout the game
+        /// ID of the insect. It will identify the insect throughout the game.
         /// </summary>
         internal int id;
 
         /// <summary>
-        /// coordinates of the insect on the playground
+        /// Coordinates of the insect on the playground.
         /// </summary>
         internal CoreCoordinate coordinate;
 
         /// <summary>
-        /// defines whether the insect is awaiting commands
+        /// Defines whether the insect is awaiting commands.
         /// </summary>
         internal bool AwaitingCommands = false;
 
@@ -48,12 +48,12 @@ namespace AntMe.Simulation
         private int residualAngle = 0;
 
         /// <summary>
-        /// depending on the players caste structure, index of the caste
+        /// Depending on the players caste structure, index of the caste.
         /// </summary>
         internal int CasteIndexBase;
 
         /// <summary>
-        /// colony the insect is belonging to
+        /// Colony the insect is belonging to.
         /// </summary>
         internal CoreColony colony;
 
@@ -63,7 +63,7 @@ namespace AntMe.Simulation
         internal CoreInsect() { }
 
         /// <summary>
-        /// Caste of the insect
+        /// Caste of the insect.
         /// </summary>
         internal string CasteBase
         {
@@ -71,7 +71,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// number of bugs in view range of the insect
+        /// Number of bugs in view range of the insect.
         /// </summary>
         internal int BugsInViewrange
         {
@@ -80,7 +80,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// number of enemy ants in view range of the insect
+        /// Number of enemy ants in view range of the insect.
         /// </summary>
         internal int ForeignAntsInViewrange
         {
@@ -89,7 +89,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// number of friendly ants in view range of the insect
+        /// Number of friendly ants in view range of the insect.
         /// </summary>
         internal int FriendlyAntsInViewrange
         {
@@ -98,7 +98,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// number of friendly ants of same caste in view range of the insect
+        /// Number of friendly ants of same caste in view range of the insect.
         /// </summary>
         internal int FriendlyAntsFromSameCasteInViewrange
         {
@@ -107,7 +107,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// number of team ants in view range
+        /// Number of team ants in view range.
         /// </summary>
         internal int TeamAntsInViewrange
         {
@@ -116,7 +116,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// direction the insect is turned to
+        /// Direction the insect is turned to.
         /// </summary>
         internal int DirectionBase
         {
@@ -124,7 +124,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// travelled distance of ant since last stop in anthill
+        /// Travelled distance of ant since last stop in anthill.
         /// </summary>
         internal int travelledDistanceBase
         {
@@ -132,7 +132,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// in internal units: travelled distance of ant since last stop in anthill
+        /// In internal units: travelled distance of ant since last stop in anthill.
         /// </summary>
         internal int travelledDistance
         {
@@ -141,8 +141,8 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// distance to destination
-        /// after this distance the insect will be turn to target or it will be waiting for commands
+        /// Distance to destination.
+        /// After walking this distance the insect will be turn to target or it will be waiting for commands.
         /// </summary>
         internal int DistanceToDestinationBase
         {
@@ -150,8 +150,8 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// in internal units: distance to destination
-        /// after this distance the insect will be turn to target or it will be waiting for commands
+        /// In internal units: distance to destination
+        /// After walking this distance the insect will be turn to target or it will be waiting for commands.
         /// </summary>
         internal int DistanceToDestination
         {
@@ -160,7 +160,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// residual angle to turn before insect can go forward again
+        /// Residual angle to turn before insect can go forward again.
         /// </summary>
         internal int ResidualAngle
         {
@@ -181,7 +181,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// insects target
+        /// Insects target.
         /// </summary>
         internal ICoordinate TargetBase
         {
@@ -198,7 +198,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// distance to anthill in simulation steps
+        /// Distance to anthill in simulation steps.
         /// </summary>
         internal int DistanceToAnthillBase
         {
@@ -219,7 +219,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// carried fruit
+        /// Carried fruit.
         /// </summary>
         internal CoreFruit CarryingFruitBase
         {
@@ -228,7 +228,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// defines whether the insect has reached the destination
+        /// Defines whether the insect has reached the destination.
         /// </summary>
         internal bool ArrivedBase
         {
@@ -240,7 +240,7 @@ namespace AntMe.Simulation
         #region ICoordinate
 
         /// <summary>
-        /// coordinates of insect on playground
+        /// Coordinates of insect on playground.
         /// </summary>
         public CoreCoordinate CoordinateBase
         {
@@ -251,7 +251,7 @@ namespace AntMe.Simulation
         #endregion
 
         /// <summary>
-        /// abstract insect constructor
+        /// Abstract insect constructor.
         /// </summary>
         /// <param name="colony">new insect will be part of this colony</param>
         /// <param name="insectsInColony">in constructor unused</param>
@@ -265,8 +265,8 @@ namespace AntMe.Simulation
 
             coordinate.Direction = RandomBase.Next(0, 359);
 
-            // Zufällig auf dem Spielfeldrand platzieren.
-            if (colony.AntHills.Count == 0) // Am oberen oder unteren Rand platzieren.
+            // Place randomly on the edge of the playground.
+            if (colony.AntHills.Count == 0) // Place on the upper or lower edge.
             {
                 if (RandomBase.Next(2) == 0)
                 {
@@ -282,7 +282,7 @@ namespace AntMe.Simulation
                     }
                 }
 
-                // Am linken oder rechten Rand platzieren.
+                // Place on left or right edge.
                 else
                 {
                     if (RandomBase.Next(2) == 0)
@@ -298,7 +298,7 @@ namespace AntMe.Simulation
                 }
             }
 
-            // In einem zufälligen Bau platzieren.
+            // Place in a random ant hill.
             else
             {
                 int i = RandomBase.Next(colony.AntHills.Count);
@@ -312,7 +312,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// defines whether the insect needs support to carry fruit
+        /// Defines whether the insect needs support to carry fruit.
         /// </summary>
         /// <param name="fruit">Fruit</param>
         /// <returns></returns>
@@ -322,10 +322,10 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// insect rotates for given degrees
+        /// The insect rotates for given degrees
         /// maximum rotation is 180 degree to the right
         /// this is 180 degrees to the left
-        /// greater values will be cut off
+        /// greater values will be cut off.
         /// </summary>
         /// <param name="angle">angle</param>
         internal void TurnByDegreesBase(int angle)
@@ -338,9 +338,9 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Dreht das Insekt in die angegebene Richtung (Grad).
+        /// Insect rotates into a given direction.
         /// </summary>
-        /// <param name="direction">Richtung</param>
+        /// <param name="direction">Direction</param>
         internal void TurnIntoDirectionBase(int direction)
         {
             if (!AwaitingCommands)
@@ -356,16 +356,16 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Dreht das Insekt in die Richtung des angegebenen Ziels.
+        /// Insect rotates towards a given target.
         /// </summary>
-        /// <param name="target">Ziel</param>
+        /// <param name="target">Target</param>
         internal void TurnToTargetBase(ICoordinate target)
         {
             TurnIntoDirectionBase(CoreCoordinate.DetermineDirection(this, target));
         }
 
         /// <summary>
-        /// Dreht das Insekt um 180 Grad.
+        /// The insect turns for 180 degree. 
         /// </summary>
         internal void TurnAroundBase()
         {
@@ -384,7 +384,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// insect will go forward without delimiter
+        /// Insect will go forward without delimiter.
         /// </summary>
         internal void GoForwardBase()
         {
@@ -396,7 +396,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// insect will go forward for given simulation steps
+        /// Insect will go forward for given simulation steps.
         /// </summary>
         /// <param name="distance">distance in simulation steps</param>
         internal void GoForwardBase(int distance)
@@ -409,8 +409,8 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// insect goes to target, target can be moving
-        /// target will be attacked if it is bug
+        /// Insect goes to target. Target can be moving.
+        /// Target will be attacked if it is a bug.
         /// </summary>
         /// <param name="target">target</param>
         internal void GoToTargetBase(ICoordinate target)
@@ -423,9 +423,8 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// attacks a target
-        /// target can be moving
-        /// only bugs can be the target for this version
+        /// Attacks a target. Target can be moving.
+        /// Only bugs can be the target for this overload.
         /// </summary>
         /// <param name="target">target</param>
         internal void AttackBase(CoreInsect target)
@@ -438,7 +437,8 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// insect goes away from source usually this is used to flee from another insect
+        /// Insect goes away from source. Usually this is used
+        /// to flee from another insect
         /// </summary>
         /// <param name="source">source</param> 
         internal void GoAwayFromBase(ICoordinate source)
@@ -448,8 +448,8 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// insect goes away from source for a given distance in simulation steps
-        /// usually used to flee from another insect
+        /// Insect goes away from source for a given distance in simulation steps.
+        /// Usually used to flee from another insect.
         /// </summary>
         /// <param name="source">source</param> 
         /// <param name="distance">distance in simulation steps</param>
@@ -460,7 +460,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// insect will go to nearest colony anthill
+        /// Insect will go to nearest colony's anthill.
         /// </summary>
         internal void GoToAnthillBase()
         {
@@ -484,7 +484,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// insect stops and forgets target or destination
+        /// Insect stops and forgets target or destination.
         /// </summary>
         internal void StopMovementBase()
         {
@@ -498,7 +498,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// insect takes sugar from sugar pile
+        /// Insect takes sugar from sugar pile.
         /// </summary>
         /// <param name="sugar">sugar</param>
         internal void TakeBase(CoreSugar sugar)
@@ -510,7 +510,7 @@ namespace AntMe.Simulation
             int distance = CoreCoordinate.DetermineDistanceI(CoordinateBase, sugar.CoordinateBase);
             if (distance <= SimulationEnvironment.PLAYGROUND_UNIT)
             {
-                int amount = Math.Min(MaximumLoadBase - currentBurden, sugar.Amount);
+                int amount = Math.Min(MaximumLoadBase - currentLoad, sugar.Amount);
                 CurrentLoadBase += amount;
                 sugar.Amount -= amount;
             }
@@ -521,7 +521,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// insect takes fruit
+        /// Insect takes fruit.
         /// </summary>
         /// <param name="fruit">fruit</param>
         internal void TakeBase(CoreFruit fruit)
@@ -549,7 +549,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// insect drops food and forgets target
+        /// Insect drops food and forgets target.
         /// </summary>
         internal void DropFoodBase()
         {
@@ -567,8 +567,8 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// insect sets marker with given information and size
-        /// bigger marks have shorter lifespan
+        /// Insect sets marker with given information and size.
+        /// Bigger marks have shorter lifespan.
         /// </summary>
         /// <param name="information">information</param>
         /// <param name="size">size in simulation steps</param>
@@ -579,7 +579,7 @@ namespace AntMe.Simulation
                 return;
             }
 
-            // Check for unsupported markersize
+            // Check for unsupported marker size.
             if (size < 0)
             {
                 throw new AiException(string.Format("{0}: {1}", colony.Player.Guid,
@@ -593,11 +593,10 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Lässt die Ameise eine Markierung sprühen. Die Markierung enthält die
-        /// angegebene Information und breitet sich nicht aus. So hat die Markierung
-        /// die maximale Lebensdauer.
+        /// Lets the ant spray a mark. The marker contains the information and does not spread.
+        /// Thus, the mark has the maximum life span.
         /// </summary>
-        /// <param name="information">Die Information.</param>
+        /// <param name="information">The information.</param>
         internal void MakeMarkerBase(int information)
         {
             if (!AwaitingCommands)
@@ -608,30 +607,30 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Berechnet die Bewegung des Insekts.
+        /// Calculates the movement of the insect.
         /// </summary>
         internal void Move()
         {
             arrived = false;
 
-            // Insekt dreht sich.
+            // Insect rotates.
             if (residualAngle != 0)
             {
-                // Zielwinkel wird erreicht.
+                // Target angle is reached.
                 if (Math.Abs(residualAngle) < colony.RotationSpeedI[CasteIndexBase])
                 {
                     coordinate.Direction += residualAngle;
                     residualAngle = 0;
                 }
 
-                // Insekt dreht sich nach rechts.
+                // Insect rotates to the right.
                 else if (residualAngle >= colony.RotationSpeedI[CasteIndexBase])
                 {
                     coordinate.Direction += colony.RotationSpeedI[CasteIndexBase];
                     ResidualAngle -= colony.RotationSpeedI[CasteIndexBase];
                 }
 
-                // Insekt dreht sich nach links.
+                // Insect rotates to the left.
                 else if (residualAngle <= -colony.RotationSpeedI[CasteIndexBase])
                 {
                     coordinate.Direction -= colony.RotationSpeedI[CasteIndexBase];
@@ -639,7 +638,7 @@ namespace AntMe.Simulation
                 }
             }
 
-            // Insekt geht.
+            // Insect walks.
             else if (distanceToDestination > 0)
             {
                 if (CarryingFruitBase == null)
@@ -653,7 +652,7 @@ namespace AntMe.Simulation
                 }
             }
 
-            // Insekt geht auf Ziel zu.
+            // Insect walks towards target.
             else if (target != null)
             {
                 int distanceI;
@@ -672,13 +671,13 @@ namespace AntMe.Simulation
                 {
                     int direction = CoreCoordinate.DetermineDirection(coordinate, target.CoordinateBase);
 
-                    // Ziel ist in Sichtweite oder Insekt trägt Obst.
+                    // Target is in sight or insect is carrying fruit.
                     if (distanceI < colony.ViewRangeI[CasteIndexBase] || carryingFruit != null)
                     {
                         distanceToDestination = distanceI;
                     }
 
-                    // Ansonsten Richtung verfälschen.
+                    // Otherwise randomize direction.
                     else
                     {
                         direction += RandomBase.Next(-18, 18);
@@ -689,7 +688,7 @@ namespace AntMe.Simulation
                 }
             }
 
-            // Koordinaten links begrenzen.
+            // Limit coordinates to the left.
             if (coordinate.X < 0)
             {
                 coordinate.X = -coordinate.X;
@@ -703,7 +702,7 @@ namespace AntMe.Simulation
                 }
             }
 
-            // Koordinaten rechts begrenzen.
+            // Limit coordinates to the right.
             else if (coordinate.X > colony.WidthI)
             {
                 coordinate.X = colony.WidthI2 - coordinate.X;
@@ -717,7 +716,7 @@ namespace AntMe.Simulation
                 }
             }
 
-            // Koordinaten oben begrenzen.
+            // Limit coordinates at the top.
             if (coordinate.Y < 0)
             {
                 coordinate.Y = -coordinate.Y;
@@ -727,7 +726,7 @@ namespace AntMe.Simulation
                 }
             }
 
-            // Koordinaten unten begrenzen.
+            // Limit coordinates below.
             else if (coordinate.Y > colony.HeightI)
             {
                 coordinate.Y = colony.HeightI2 - coordinate.Y;
@@ -741,13 +740,13 @@ namespace AntMe.Simulation
         #region Speed
 
         /// <summary>
-        /// Die aktuelle Geschwindigkeit des Insekts in der internen Einheit.
+        /// The current speed of the insect in the internal unit.
         /// </summary>
         internal int currentSpeedI;
 
         /// <summary>
-        /// Die aktuelle Geschwindigkeit des Insekts in Schritten. Wenn das Insekt
-        /// seine maximale Last trägt, halbiert sich seine Geschwindigkeit.
+        /// The current speed of the insect in steps. When the insect
+        /// carries its maximum load, its speed is halved.
         /// </summary>
         internal int CurrentSpeedBase
         {
@@ -755,7 +754,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Die maximale Geschwindigkeit des Insekts.
+        /// The insect's maximum speed.
         /// </summary>
         internal int MaximumSpeedBase
         {
@@ -767,7 +766,7 @@ namespace AntMe.Simulation
         #region RotationSpeed
 
         /// <summary>
-        /// Die Drehgeschwindigkeit des Insekts in Grad pro Runde.
+        /// The insect's rotation speed in degrees per round.
         /// </summary>
         internal int RotationSpeedBase
         {
@@ -776,26 +775,26 @@ namespace AntMe.Simulation
 
         #endregion
 
-        #region Last
+        #region Load
 
-        private int currentBurden = 0;
+        private int currentLoad = 0;
 
         /// <summary>
-        /// current burden carried by ant
+        /// The insect's current load
         /// </summary>
         internal int CurrentLoadBase
         {
-            get { return currentBurden; }
+            get { return currentLoad; }
             set
             {
-                currentBurden = value >= 0 ? value : 0;
+                currentLoad = value >= 0 ? value : 0;
                 currentSpeedI = colony.SpeedI[CasteIndexBase];
-                currentSpeedI -= currentSpeedI * currentBurden / colony.LoadI[CasteIndexBase] / 2;
+                currentSpeedI -= currentSpeedI * currentLoad / colony.LoadI[CasteIndexBase] / 2;
             }
         }
 
         /// <summary>
-        /// maximum burden insect can carry.
+        /// The insect's maximum load.
         /// </summary>
         internal int MaximumLoadBase
         {
@@ -807,7 +806,7 @@ namespace AntMe.Simulation
         #region ViewRange
 
         /// <summary>
-        /// view range of insect in simulation steps
+        /// Insect's view range in simulation steps.
         /// </summary>
         internal int ViewRangeBase
         {
@@ -815,7 +814,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// view range of insect in internal unit
+        /// The insect's view range in internal unit.
         /// </summary>
         internal int ViewRangeI
         {
@@ -827,7 +826,7 @@ namespace AntMe.Simulation
         #region Range
 
         /// <summary>
-        /// range of insect in simulation steps
+        /// The insect's range in simulation steps.
         /// </summary>
         internal int RangeBase
         {
@@ -835,7 +834,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// range of insect in internal units
+        /// The insect's range in internal units.
         /// </summary>
         internal int RangeI
         {
@@ -849,7 +848,7 @@ namespace AntMe.Simulation
         private int currentEngergy;
 
         /// <summary>
-        /// current energy of insect
+        /// The insect's current energy.
         /// </summary>
         internal int currentEnergyBase
         {
@@ -858,7 +857,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// maximum energy of insect
+        /// The insect's maximum energy.
         /// </summary>
         internal int MaximumEnergyBase
         {
@@ -872,12 +871,12 @@ namespace AntMe.Simulation
         private int attackStrength;
 
         /// <summary>
-        /// attack strength of insect
-        /// zero, if insect carries burden
+        /// The insect's attack strength.
+        /// Zero, if insect carries load.
         /// </summary>
         internal int AttackStrengthBase
         {
-            get { return currentBurden == 0 ? attackStrength : 0; }
+            get { return currentLoad == 0 ? attackStrength : 0; }
             set { attackStrength = value >= 0 ? value : 0; }
         }
 

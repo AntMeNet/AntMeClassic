@@ -7,7 +7,7 @@ namespace AntMe.Simulation
 
 
     /// <summary>
-    /// abstract base class for all ants
+    /// Abstract base class for all ants.
     /// </summary>
     /// <author>Wolfgang Gallo (wolfgang@antme.net)</author>
     public abstract class CoreAnt : CoreInsect
@@ -18,7 +18,7 @@ namespace AntMe.Simulation
 
             coordinate.Radius = 2;
 
-            // determine caste of the new ant
+            // Determine caste of the new ant.
             int casteIndex = -1;
             string casteName = string.Empty;
             if (availableInsects != null)
@@ -34,13 +34,13 @@ namespace AntMe.Simulation
                 }
             }
 
-            // Check, if caste is available
+            // Check, if caste is available.
             if (casteIndex == -1)
             {
                 throw new InvalidOperationException(string.Format(Resource.SimulationCoreChooseWrongCaste, casteName));
             }
 
-            // set ants properties depending on its caste
+            // Set ants properties depending on its caste.
             CasteIndexBase = casteIndex;
             currentEnergyBase = colony.EnergyI[casteIndex];
             currentSpeedI = colony.SpeedI[casteIndex];
@@ -48,10 +48,10 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Determine caste for a new ant
+        /// Determine caste for a new ant.
         /// </summary>
-        /// <param name="existingAntsPerCasteInColony">ants in caste per colony</param>
-        /// <returns>name of the caste for the new ant</returns>
+        /// <param name="existingAntsPerCasteInColony">Ants in caste per colony.</param>
+        /// <returns>Name of the caste for the new ant.</returns>
         internal virtual string DetermineCasteBase(Dictionary<string, int> existingAntsPerCasteInColony)
         {
             return "";
@@ -112,7 +112,7 @@ namespace AntMe.Simulation
         private bool isTired;
 
         /// <summary>
-        /// true if ant is tired
+        /// True if ant is tired.
         /// </summary>
         internal bool IsTiredBase
         {
@@ -121,12 +121,12 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Waiting is the standard action if the ant has no target
+        /// Waiting is the standard action if the ant has no target.
         /// </summary>
         internal virtual void WaitingBase() { }
 
         /// <summary>
-        /// Evoked once when the ant has reached one third of its maximum operational range
+        /// Evoked once when the ant has reached one third of its maximum operational range.
         /// </summary>
         internal virtual void IsGettingTiredBase() { }
 
@@ -135,27 +135,27 @@ namespace AntMe.Simulation
         #region Food
 
         /// <summary>
-        /// Evoked when ant sees a sugar hill
+        /// Evoked when ant sees a sugar hill.
         /// </summary>
-        /// <param name="sugar">spotted sugar hill</param>
+        /// <param name="sugar">Spotted sugar hill.</param>
         internal virtual void SpotsBase(CoreSugar sugar) { }
 
         /// <summary>
-        /// Evoked when ant sees a fruit
+        /// Evoked when ant sees a fruit.
         /// </summary>
-        /// <param name="fruit">nearest fruit</param>
+        /// <param name="fruit">Nearest fruit.</param>
         internal virtual void SpotsBase(CoreFruit fruit) { }
 
         /// <summary>
-        /// Evoked when ant arrived at sugar hill
+        /// Evoked when ant arrived at sugar hill.
         /// </summary>
-        /// <param name="sugar">sugar hill</param>
+        /// <param name="sugar">Sugar hill.</param>
         internal virtual void ArrivedAtTargetBase(CoreSugar sugar) { }
 
         /// <summary>
-        /// Evoked when ant arrived at fruit
+        /// Evoked when ant arrived at fruit.
         /// </summary>
-        /// <param name="fruit">fruit</param>
+        /// <param name="fruit">Fruit.</param>
         internal virtual void ArrivedAtTargetBase(CoreFruit fruit) { }
 
         #endregion
@@ -164,23 +164,23 @@ namespace AntMe.Simulation
 
         /// <summary>
         /// Evoked when ant spots marker of a friendly ant from the same colony for the first time
-        /// allready seen marks will be remembered
+        /// already seen marks will be remembered.
         /// </summary>
-        /// <param name="marker">marker of a friendly ant</param>
+        /// <param name="marker">Marker of a friendly ant.</param>
         internal virtual void SpotsFriendBase(CoreMarker marker) { }
 
         /// <summary>
         /// Evoked when ant spots a friendly ant from the same colony.
         /// Will be evoked every time.
         /// </summary>
-        /// <param name="ant">friendly ant from same colony</param>
+        /// <param name="ant">Friendly ant from same colony.</param>
         internal virtual void SpotsFriendBase(CoreAnt ant) { }
 
         /// <summary>
         /// Evoked when ant spots a friendly ant from a team colony.
         /// Will be evoked every time.
         /// </summary>
-        /// <param name="ant">friendly ant from a team colony</param>
+        /// <param name="ant">Friendly ant from a team colony.</param>
         internal virtual void SpotsTeamMemberBase(CoreAnt ant) { }
 
         #endregion
@@ -191,38 +191,38 @@ namespace AntMe.Simulation
         /// Evoked when ant spots a bug.
         /// Will be evoked every time.
         /// </summary>
-        /// <param name="bug">bug</param>
+        /// <param name="bug">Bug.</param>
         internal virtual void SpotsEnemyBase(CoreBug bug) { }
 
         /// <summary>
         /// Evoked when ant spots an enemy ant.
         /// Will be evoked every time.
         /// </summary>
-        /// <param name="ant">enemy ant</param>
+        /// <param name="ant">Enemy ant.</param>
         internal virtual void SpotsEnemyBase(CoreAnt ant) { }
 
         /// <summary>
         /// Evoked when ant is attacked by a bug.
         /// Will be evoked every time.
         /// </summary>
-        /// <param name="bug">attacking bug</param>
+        /// <param name="bug">attacking Bug.</param>
         internal virtual void UnderAttackBase(CoreBug bug) { }
 
         /// <summary>
         /// Evoked when ant is attacked by an enemy ant.
         /// Will be evoked every time.
         /// </summary>
-        /// <param name="ant">attacking ant</param>
+        /// <param name="ant">Attacking ant.</param>
         internal virtual void IsUnderAttackBase(CoreAnt ant) { }
 
         #endregion
 
-        #region Sonstiges
+        #region other
 
         /// <summary>
         /// Evoked when ant has died.
         /// </summary>
-        /// <param name="kindOfDeath">ants kind of death</param>
+        /// <param name="kindOfDeath">Ants kind of death.</param>
         internal virtual void HasDiedBase(CoreKindOfDeath kindOfDeath) { }
 
         /// <summary>

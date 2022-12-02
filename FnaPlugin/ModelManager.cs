@@ -1,9 +1,9 @@
 namespace AntMe.Plugin.Fna
 {
     /// <summary>
-    /// class, to manage and render all model-resources.
+    /// Class, to manage and render all model resources.
     /// </summary>
-    //internal sealed class ModellManager
+    // internal sealed class ModellManager
     //{
     //    #region Constants
 

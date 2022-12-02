@@ -19,11 +19,11 @@ namespace AntMe.Gui
 
 
         /// <summary>
-        /// Creates an instance of Plugin-Item, based on a producer.
+        /// Creates an instance of plugin item, based on a producer.
         /// </summary>
-        /// <param name="plugin">Producer-Plugin</param>
-        /// <param name="writeCustomStates">List of custom states for write-access</param>
-        /// <param name="readCustomStates">List of custom states for read-access</param>
+        /// <param name="plugin">Producer plugin</param>
+        /// <param name="writeCustomStates">List of custom states for write access</param>
+        /// <param name="readCustomStates">List of custom states for read access</param>
         public PluginItem(IProducerPlugin plugin, CustomStateItem[] writeCustomStates, CustomStateItem[] readCustomStates)
             : this(writeCustomStates, readCustomStates, plugin)
         {
@@ -38,11 +38,11 @@ namespace AntMe.Gui
         }
 
         /// <summary>
-        /// Creates an instance of Plugin-Item, based on a producer.
+        /// Creates an instance of plugin item, based on a producer.
         /// </summary>
-        /// <param name="plugin">Consumer-Plugin</param>
-        /// <param name="writeCustomStates">List of custom states for write-access</param>
-        /// <param name="readCustomStates">List of custom states for read-access</param>
+        /// <param name="plugin">Consumer plugin</param>
+        /// <param name="writeCustomStates">List of custom states for write access</param>
+        /// <param name="readCustomStates">List of custom states for read access</param>
         public PluginItem(IConsumerPlugin plugin, CustomStateItem[] writeCustomStates, CustomStateItem[] readCustomStates)
             : this(writeCustomStates, readCustomStates, plugin)
         {
@@ -59,8 +59,8 @@ namespace AntMe.Gui
         /// Private constructor for a common way to handle attributes.
         /// </summary>
         /// <param name="plugin">Plugin</param>
-        /// <param name="writeCustomStates">List of custom states for write-access</param>
-        /// <param name="readCustomStates">List of custom states for read-access</param>
+        /// <param name="writeCustomStates">List of custom states for write access</param>
+        /// <param name="readCustomStates">List of custom states for read access</param>
         private PluginItem(CustomStateItem[] writeCustomStates, CustomStateItem[] readCustomStates, IPlugin plugin)
         {
 
@@ -95,7 +95,7 @@ namespace AntMe.Gui
         }
 
         /// <summary>
-        /// Gets the consumer-plugin or null, if its a producer-plugin.
+        /// Gets the consumer plugin or null, if its a producer plugin.
         /// </summary>
         public IConsumerPlugin Consumer
         {
@@ -103,7 +103,7 @@ namespace AntMe.Gui
         }
 
         /// <summary>
-        /// Gets the producer-plugin or null, if its a consumer-plugin.
+        /// Gets the producer plugin or null, if its a consumer plugin.
         /// </summary>
         public IProducerPlugin Producer
         {
@@ -111,7 +111,7 @@ namespace AntMe.Gui
         }
 
         /// <summary>
-        /// True, if its a consumer-plugin, false in case of a producer-plugin.
+        /// True, if its a consumer plugin, false in case of a producer plugin.
         /// </summary>
         public bool IsConsumer
         {
@@ -119,7 +119,7 @@ namespace AntMe.Gui
         }
 
         /// <summary>
-        /// Gets the name of the Plugin.
+        /// Gets the name of the plugin.
         /// </summary>
         public string Name
         {
@@ -127,7 +127,7 @@ namespace AntMe.Gui
         }
 
         /// <summary>
-        /// Gets a short description of this Plugin.
+        /// Gets a short description of this plugin.
         /// </summary>
         public string Description
         {
@@ -135,7 +135,7 @@ namespace AntMe.Gui
         }
 
         /// <summary>
-        /// Gets the plugin-version.
+        /// Gets the plugin version.
         /// </summary>
         public Version Version
         {
@@ -143,7 +143,7 @@ namespace AntMe.Gui
         }
 
         /// <summary>
-        /// Gets the plugin-<see cref="guid"/>.
+        /// Gets the plugin <see cref="guid"/>.
         /// </summary>
         public Guid Guid
         {

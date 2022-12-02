@@ -3,7 +3,7 @@
 namespace AntMe.English
 {
     /// <summary>
-    /// Attribute to descripe an ant
+    /// Attribute to describe an ant.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public sealed class PlayerAttribute : Attribute
@@ -14,7 +14,7 @@ namespace AntMe.English
         private string firstName = string.Empty;
 
         /// <summary>
-        /// Colony name (obligatory)
+        /// Colony name (obligatory).
         /// </summary>
         public string ColonyName
         {
@@ -23,7 +23,7 @@ namespace AntMe.English
         }
 
         /// <summary>
-        /// Last name (nice to have)
+        /// Last name (nice to have).
         /// </summary>
         public string LastName
         {
@@ -32,7 +32,7 @@ namespace AntMe.English
         }
 
         /// <summary>
-        /// First name of the player (nice to have)
+        /// First name of the player (nice to have).
         /// </summary>
         public string FirstName
         {

@@ -24,7 +24,7 @@ namespace AntMe.Simulation
         internal Assembly assembly;
 
         /// <summary>
-        /// true, if the AI gives some debug information.
+        /// True, if the AI gives some debug information.
         /// </summary>
         public bool HasDebugInformation;
 
@@ -44,17 +44,17 @@ namespace AntMe.Simulation
         public string ClassName;
 
         /// <summary>
-        /// true, if the colony needs access to a database.
+        /// True, if the colony needs access to a database.
         /// </summary>
         public bool RequestDatabaseAccess;
 
         /// <summary>
-        /// true, if the colony needs access to files.
+        /// True, if the colony needs access to files.
         /// </summary>
         public bool RequestFileAccess;
 
         /// <summary>
-        /// true, if the colony needs access to the network.
+        /// True, if the colony needs access to the network.
         /// </summary>
         public bool RequestNetworkAccess;
 
@@ -64,12 +64,12 @@ namespace AntMe.Simulation
         public string RequestInformation;
 
         /// <summary>
-        /// true, if the colony has references to other assemblies.
+        /// True, if the colony has references to other assemblies.
         /// </summary>
         public bool RequestReferences;
 
         /// <summary>
-        /// true, if the colony needs access to user-interfaces.
+        /// True, if the colony needs access to user-interfaces.
         /// </summary>
         public bool RequestUserInterfaceAccess;
 
@@ -89,7 +89,7 @@ namespace AntMe.Simulation
         public PlayerLanguages Language;
 
         /// <summary>
-        /// true, if the colony uses any static types.
+        /// True, if the colony uses any static types.
         /// </summary>
         public bool Static;
 
@@ -198,7 +198,7 @@ namespace AntMe.Simulation
                 this.castes = castes;
             }
 
-            // transfer data
+            // Transfer data
             Guid = guid;
             ColonyName = colonyName;
             FirstName = firstName;

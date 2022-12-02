@@ -5,34 +5,34 @@ using System.Runtime.Serialization;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Wird bei einer Regelverletzung der AntMe-Spielregeln geworfen
+    /// Is thrown for a violation of the AntMe game rules
     /// </summary>
     [Serializable]
     public sealed class RuleViolationException : AntMeException
     {
         /// <summary>
-        /// KOnstruktor der Regelverletzung ohne weitere Angaben
+        /// Constructor of the rule violation without further details
         /// </summary>
         public RuleViolationException() { }
 
         /// <summary>
-        /// Konsruktor der Regelverletzung mit der Übergabe einer Beschreibung zur Verletzung
+        /// Constructor of the rule violation with the transfer of a description of the violation
         /// </summary>
-        /// <param name="message">Beschreibung der Regelverletzung</param>
+        /// <param name="message">description of the violation</param>
         public RuleViolationException(string message) : base(message) { }
 
         /// <summary>
-        /// Konstruktor zur Regelverletung mit übergabe einer Nachricht sowie einer verursachenden Exception
+        /// Constructor for rule invalidation with passing of a message and the inner exception
         /// </summary>
-        /// <param name="message">Beschreibung zum Problem</param>
-        /// <param name="innerException">Verursachende Exception</param>
+        /// <param name="message">description of the violation</param>
+        /// <param name="innerException">causing exception</param>
         public RuleViolationException(string message, Exception innerException) : base(message, innerException) { }
 
         /// <summary>
-        /// Konstruktor für die Serialisierung dieser Exception
+        /// Constructor for serialization of this exception
         /// </summary>
-        /// <param name="info"></param>
-        /// <param name="context"></param>
+        /// <param name="info">information</param>
+        /// <param name="context">context</param>
         public RuleViolationException(SerializationInfo info, StreamingContext context) : base(info, context) { }
     }
 }

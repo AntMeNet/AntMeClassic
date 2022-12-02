@@ -14,7 +14,7 @@ using System.Xml.Serialization;
 namespace AntMe.Gui
 {
     /// <summary>
-    /// Manager for all plugins and host for central game-loop
+    /// Manager for all plugins and host for central game loop.
     /// </summary>
     /// <author>Tom Wendel (tom@antme.net)</author>
     internal sealed class PluginManager
@@ -37,7 +37,7 @@ namespace AntMe.Gui
         private PluginItem visiblePlugin;
         private readonly List<Exception> exceptions;
         private PluginState lastState = PluginState.NotReady;
-        private bool ignoreStateupdate = false;
+        private bool ignoreStateUpdate = false;
 
         private Thread requestThread;
 
@@ -90,34 +90,34 @@ namespace AntMe.Gui
         /// </summary>
         public void SearchForPlugins()
         {
-            // List dlls from Exe-Path
+            // List dlls from exe path.
             List<FileInfo> files = new List<FileInfo>();
             files.AddRange(applicationPath.GetFiles(Resources.PluginSearchFilter));
 
-            // List dlls from "plugin"-Folder
+            // List dlls from "plugin" folder.
             if (pluginPath != null) files.AddRange(pluginPath.GetFiles(Resources.PluginSearchFilter));
 
-            // Load root Plugins
+            // Load root plugins.
             for (int i = 0; i < files.Count; i++)
                 CheckForPlugin(files[i]);
 
-            // Check known Plugins
+            // Check known plugins.
             foreach (var knownFile in config.knownPluginFiles.ToArray())
             {
                 FileInfo external = new FileInfo(knownFile);
 
-                // Skip some files
-                if (!external.Exists ||
-                    files.Contains(external) ||
-                    external.Directory.FullName.ToLower().Equals(applicationPath.FullName.ToLower()) ||
-                    (pluginPath != null && external.Directory.FullName.ToLower().Equals(pluginPath.FullName.ToLower())))
+                // Skip some files.
+                if (external.Directory != null && (!external.Exists ||
+                                                   files.Contains(external) ||
+                                                   external.Directory.FullName.ToLower().Equals(applicationPath.FullName.ToLower()) ||
+                                                   (pluginPath != null && external.Directory.FullName.ToLower().Equals(pluginPath.FullName.ToLower()))))
                 {
-                    // Drop from list
+                    // Drop from list.
                     config.knownPluginFiles.Remove(knownFile);
                     continue;
                 }
 
-                // Try to load
+                // Try to load.
                 if (!CheckForPlugin(external))
                 {
                     config.knownPluginFiles.Remove(knownFile);
@@ -139,6 +139,7 @@ namespace AntMe.Gui
                 if (addPlugin(assembly))
                 {
                     if (
+                        file.Directory != null &&
                         !file.Directory.FullName.ToLower().Equals(applicationPath.FullName.ToLower()) &&
                         !file.Directory.FullName.ToLower().Equals(pluginPath.FullName.ToLower()) &&
                         !config.knownPluginFiles.Contains(file.FullName.ToLower()))
@@ -151,27 +152,27 @@ namespace AntMe.Gui
             }
             catch (FileLoadException ex)
             {
-                // Problems to open the file
+                // Problems to open the file.
                 exceptions.Add(ex);
             }
             catch (BadImageFormatException ex)
             {
-                // There is a wrong fileformat
+                // There is a wrong fileformat.
                 exceptions.Add(ex);
             }
             catch (SecurityException ex)
             {
-                // no accessrights
+                // no access rights.
                 exceptions.Add(ex);
             }
             catch (MissingMethodException ex)
             {
-                // problems with plugin
+                // problems with plugin.
                 exceptions.Add(ex);
             }
             catch (TargetInvocationException ex)
             {
-                // missing references
+                // missing references.
                 exceptions.Add(
                     new Exception(
                         string.Format(Resource.PluginManagerMissingReferences, file),
@@ -179,7 +180,7 @@ namespace AntMe.Gui
             }
             catch (ReflectionTypeLoadException ex)
             {
-                // missing references
+                // missing references.
                 exceptions.Add(
                     new Exception(
                         string.Format(Resource.PluginManagerMissingReferences, file),
@@ -187,14 +188,14 @@ namespace AntMe.Gui
             }
             catch (Exception ex)
             {
-                // unknown exception
+                // unknown exception.
                 exceptions.Add(ex);
             }
             return false;
         }
 
         /// <summary>
-        /// search in given assembly for a new plugin
+        /// Search in given assembly for a new plugin.
         /// </summary>
         /// <param name="assembly">assembly to search in</param>
         /// <returns>true, if there are valid plugins inside</returns>
@@ -202,10 +203,10 @@ namespace AntMe.Gui
         {
             bool hit = false;
 
-            // Get all includes Types
+            // Get all includes types.
             foreach (Type type in assembly.GetExportedTypes())
             {
-                // Find the attribute
+                // Find the attribute.
                 List<CustomStateItem> readCustomStates = new List<CustomStateItem>();
                 List<CustomStateItem> writeCustomStates = new List<CustomStateItem>();
 
@@ -261,13 +262,13 @@ namespace AntMe.Gui
                     }
                 }
 
-                // If type has an attribute, search for the interfaces
+                // If type has an attribute, search for the interfaces.
                 foreach (Type plugin in type.GetInterfaces())
                 {
-                    // Producer found
+                    // Producer found.
                     if (plugin == typeof(IProducerPlugin))
                     {
-                        // Create an instance of plugin and add to list
+                        // Create an instance of plugin and add to list.
                         PluginItem item = null;
                         try
                         {
@@ -288,7 +289,7 @@ namespace AntMe.Gui
                                     ex));
                         }
 
-                        // Warnings, of there is another Version of that plugin
+                        // Warnings if there is another version of that plugin.
                         if (item != null && producerList.ContainsKey(item.Guid))
                         {
                             if (producerList[item.Guid].Version > item.Version)
@@ -314,15 +315,15 @@ namespace AntMe.Gui
                             }
                             else
                             {
-                                // Samle plugin still loaded
+                                // Same plugin still loaded.
                                 item = null;
                             }
                         }
 
-                        // add to list
+                        // Add to list.
                         if (item != null)
                         {
-                            // Check, if plugin is preselected or saved as selected
+                            // Check, if plugin is preselected or saved as selected.
                             producerList.Add(item.Guid, item);
                             if (config.selectedPlugins.Contains(item.Guid) ||
                                 (!config.loaded &&
@@ -331,7 +332,7 @@ namespace AntMe.Gui
                                 ActivateProducer(item.Guid);
                             }
 
-                            // Load Settings
+                            // Load settings.
                             if (File.Exists(configPath + item.Guid + Resources.PluginSettingsFileExtension))
                             {
                                 try
@@ -354,10 +355,10 @@ namespace AntMe.Gui
                         }
                     }
 
-                    // Consumer found
+                    // Consumer found.
                     else if (plugin == typeof(IConsumerPlugin))
                     {
-                        // Create an instance of plugin and add to list
+                        // Create an instance of plugin and add to list.
                         PluginItem item = null;
                         try
                         {
@@ -378,7 +379,7 @@ namespace AntMe.Gui
                                     ex));
                         }
 
-                        // Warnings, of there is another Version of that plugin
+                        // Warnings if there is another version of that plugin.
                         if (item != null && consumerList.ContainsKey(item.Guid))
                         {
                             if (consumerList[item.Guid].Version > item.Version)
@@ -404,17 +405,17 @@ namespace AntMe.Gui
                             }
                             else
                             {
-                                // Same plugin still loaded
+                                // Same plugin still loaded.
                                 item = null;
                             }
                         }
 
-                        // add to list
+                        // Add to list.
                         if (item != null)
                         {
                             consumerList.Add(item.Guid, item);
 
-                            // Check, if plugin is preselected or saved as selected
+                            // Check, if plugin is preselected or saved as selected.
                             if (config.selectedPlugins.Contains(item.Guid) ||
                                 (!config.loaded &&
                                  type.GetCustomAttributes(typeof(PreselectedAttribute), false).Length > 0))
@@ -422,7 +423,7 @@ namespace AntMe.Gui
                                 ActivateConsumer(item.Guid);
                             }
 
-                            // Load Settings
+                            // Load settings.
                             if (File.Exists(configPath + item.Guid + Resources.PluginSettingsFileExtension))
                             {
                                 try
@@ -454,7 +455,7 @@ namespace AntMe.Gui
         #region Properties
 
         /// <summary>
-        /// Gives a list of available producer-plugins.
+        /// Gives a list of available producer plugins.
         /// </summary>
         public PluginItem[] ProducerPlugins
         {
@@ -467,7 +468,7 @@ namespace AntMe.Gui
         }
 
         /// <summary>
-        /// Gives a list of available consumer-plugins.
+        /// Gives a list of available consumer plugins.
         /// </summary>
         public PluginItem[] ConsumerPlugins
         {
@@ -480,7 +481,7 @@ namespace AntMe.Gui
         }
 
         /// <summary>
-        /// Gives a list of activated consumer-plugins.
+        /// Gives a list of activated consumer plugins.
         /// </summary>
         public PluginItem[] ActiveConsumerPlugins
         {
@@ -493,7 +494,7 @@ namespace AntMe.Gui
         }
 
         /// <summary>
-        /// Returns a list of exceptions that happened during the last call
+        /// Returns a list of exceptions that occured during the last call.
         /// </summary>
         public List<Exception> Exceptions
         {
@@ -501,7 +502,7 @@ namespace AntMe.Gui
         }
 
         /// <summary>
-        /// Gives the active producer-plugin or null, if no plugin is active.
+        /// Gives the active producer plugin or null, if no plugin is active.
         /// </summary>
         public PluginItem ActiveProducerPlugin
         {
@@ -517,7 +518,7 @@ namespace AntMe.Gui
         }
 
         /// <summary>
-        /// Is manger ready for pause-mode.
+        /// Is manger ready for pause mode.
         /// </summary>
         public bool CanPause
         {
@@ -539,17 +540,17 @@ namespace AntMe.Gui
         {
             get
             {
-                if (!ignoreStateupdate)
+                if (!ignoreStateUpdate)
                 {
                     PluginState output = PluginState.NotReady;
 
-                    // capture producerstate
+                    // Capture producerstate.
                     if (activeProducer != null)
                     {
                         output = activeProducer.Producer.State;
                     }
 
-                    // check for changes
+                    // Check for changes.
                     switch (output)
                     {
                         case PluginState.NotReady:
@@ -557,8 +558,8 @@ namespace AntMe.Gui
                             if (lastState == PluginState.Running ||
                                 lastState == PluginState.Paused)
                             {
-                                // Producer switched from running/paused to notReady or ready
-                                // All running consumer have to stop
+                                // Producer switched from running/paused to notReady or ready.
+                                // All running consumer have to stop.
                                 foreach (PluginItem item in activeConsumers.Values)
                                 {
                                     if (item.Consumer.State == PluginState.Running ||
@@ -574,8 +575,8 @@ namespace AntMe.Gui
                                 lastState == PluginState.Ready ||
                                 lastState == PluginState.Paused)
                             {
-                                // Producer switched from somewhere to running
-                                // All ready or paused consumer have to start
+                                // Producer switched from somewhere to running.
+                                // All ready or paused consumer have to start.
                                 foreach (PluginItem item in activeConsumers.Values)
                                 {
                                     if (item.Consumer.State == PluginState.Paused ||
@@ -590,8 +591,8 @@ namespace AntMe.Gui
                             if (lastState == PluginState.Running ||
                                 lastState == PluginState.Ready)
                             {
-                                // Producer switched to pause-mode
-                                // All ready or running consumer have to pause
+                                // Producer switched to pause mode.
+                                // All ready or running consumer have to pause.
                                 foreach (PluginItem item in activeConsumers.Values)
                                 {
                                     if (item.Consumer.State == PluginState.Running ||
@@ -604,7 +605,7 @@ namespace AntMe.Gui
                             break;
                     }
 
-                    // Start requestLoop, if needed
+                    // Start request loop, if needed.
                     if ((output == PluginState.Running || output == PluginState.Paused) && requestThread == null)
                     {
                         requestThread = new Thread(requestLoop);
@@ -625,7 +626,7 @@ namespace AntMe.Gui
         }
 
         /// <summary>
-        /// Gives the number of current simulation-round.
+        /// Gives the number of current simulation round.
         /// </summary>
         public int CurrentRound
         {
@@ -655,13 +656,13 @@ namespace AntMe.Gui
         }
 
         /// <summary>
-        /// Gives the current frame-rate for this simulation.
+        /// Gives the current frame rate for this simulation.
         /// </summary>
         public float FrameRate
         {
             get
             {
-                // calculate new average
+                // Calculate new average.
                 if (frameRateInvalidate)
                 {
                     frameRateAverage = 0;
@@ -678,14 +679,14 @@ namespace AntMe.Gui
             }
             private set
             {
-                // write new value in ringbuffer
+                // Write new value in ringbuffer.
                 frameRateInvalidate = true;
                 frameRateHistory[frameRatePosition++ % FRAMERATE_SPAN] = value;
             }
         }
 
         /// <summary>
-        /// Gives the current frame-rate-limit, if limiter is enabled.
+        /// Gives the current frame rate limit, if limiter is enabled.
         /// </summary>
         public float FrameLimit
         {
@@ -700,7 +701,7 @@ namespace AntMe.Gui
         }
 
         /// <summary>
-        /// Gives the state of the frame-rate-limiter.
+        /// Gives the state of the frame rate limiter.
         /// </summary>
         public bool FrameLimiterEnabled
         {
@@ -720,18 +721,18 @@ namespace AntMe.Gui
         #region Methods
 
         /// <summary>
-        /// drops a consumer from active list.
+        /// Drops a consumer from active list.
         /// </summary>
         /// <param name="guid"><c>guid</c> of plugin to drop</param>
         public void DeactivateConsumer(Guid guid)
         {
-            // Check, if plugin exists
+            // Check, if plugin exists.
             if (!consumerList.ContainsKey(guid))
             {
                 throw new InvalidOperationException(Resource.PluginManagerDeactivateConsumerNotInList);
             }
 
-            // Drop from active list
+            // Drop from active list.
             lock (activeConsumers)
             {
                 if (activeConsumers.ContainsKey(guid))
@@ -741,7 +742,7 @@ namespace AntMe.Gui
                     activeConsumers.Remove(guid);
                     config.selectedPlugins.Remove(guid);
 
-                    // Stop, if still running
+                    // Stop, if still running.
                     if (plugin.Consumer.State == PluginState.Running ||
                         plugin.Consumer.State == PluginState.Paused)
                     {
@@ -752,25 +753,25 @@ namespace AntMe.Gui
         }
 
         /// <summary>
-        /// Adds a plugin to active list
+        /// Adds a plugin to active list.
         /// </summary>
         /// <param name="guid"><c>guid</c> of new plugin</param>
         public void ActivateConsumer(Guid guid)
         {
-            // Check, if plugin exists
+            // Check, if plugin exists.
             if (!consumerList.ContainsKey(guid))
             {
                 throw new InvalidOperationException(Resource.PluginManagerActivateConsumerNotInList);
             }
 
-            // Add to list
+            // Add to list.
             lock (activeConsumers)
             {
                 if (!activeConsumers.ContainsKey(guid))
                 {
                     PluginItem plugin = consumerList[guid];
 
-                    // Activate, if simulation still running
+                    // Activate, if simulation still running.
                     if (State == PluginState.Running)
                     {
                         plugin.Consumer.Start();
@@ -782,7 +783,7 @@ namespace AntMe.Gui
 
                     activeConsumers.Add(guid, plugin);
 
-                    // mark as selected in config
+                    // Mark as selected in config.
                     if (!config.selectedPlugins.Contains(guid))
                     {
                         config.selectedPlugins.Add(guid);
@@ -792,12 +793,12 @@ namespace AntMe.Gui
         }
 
         /// <summary>
-        /// Deactivates the given producer
+        /// Deactivates the given producer.
         /// </summary>
         /// <param name="guid"><c>guid</c> of producer</param>
         public void DeactivateProducer(Guid guid)
         {
-            ignoreStateupdate = true;
+            ignoreStateUpdate = true;
 
             if (activeProducer != null && activeProducer.Guid == guid)
             {
@@ -806,23 +807,23 @@ namespace AntMe.Gui
                 activeProducer = null;
                 config.selectedPlugins.Remove(guid);
             }
-            ignoreStateupdate = false;
+            ignoreStateUpdate = false;
         }
 
         /// <summary>
-        /// Changes the active Producer
+        /// Changes the active Producer.
         /// </summary>
         /// <param name="guid"><c>guid</c> of new producer</param>
         public void ActivateProducer(Guid guid)
         {
-            ignoreStateupdate = true;
-            // check, if plugin with that guid exists
+            ignoreStateUpdate = true;
+            // Check, if plugin with that guid exists.
             if (!producerList.ContainsKey(guid))
             {
                 throw new InvalidOperationException(Resource.PluginManagerActivateProducerNotInList);
             }
 
-            // check, if same plugin is still active
+            // Check, if same plugin is still active.
             if (activeProducer == null || activeProducer.Guid != guid)
             {
                 // unhook old producer 
@@ -839,17 +840,17 @@ namespace AntMe.Gui
                     config.selectedPlugins.Add(guid);
                 }
             }
-            ignoreStateupdate = false;
+            ignoreStateUpdate = false;
         }
 
         /// <summary>
-        /// Starts the manager, of its ready
+        /// Starts the manager, of its ready.
         /// </summary>
         public void Start()
         {
-            ignoreStateupdate = true;
+            ignoreStateUpdate = true;
 
-            // Start the producer
+            // Start the producer.
             lock (activeProducer)
             {
                 if (activeProducer != null &&
@@ -860,17 +861,17 @@ namespace AntMe.Gui
                 }
             }
 
-            ignoreStateupdate = false;
+            ignoreStateUpdate = false;
         }
 
         /// <summary>
-        /// pause the manager
+        /// Pause the manager.
         /// </summary>
         public void Pause()
         {
-            ignoreStateupdate = true;
+            ignoreStateUpdate = true;
 
-            // Suspend the producer
+            // Suspend the producer.
             lock (activeProducer)
             {
                 if (activeProducer != null &&
@@ -881,15 +882,15 @@ namespace AntMe.Gui
                 }
             }
 
-            ignoreStateupdate = false;
+            ignoreStateUpdate = false;
         }
 
         /// <summary>
-        ///  Stops the manager
+        ///  Stops the manager.
         /// </summary>
         public void Stop()
         {
-            ignoreStateupdate = true;
+            ignoreStateUpdate = true;
 
             lock (activeProducer)
             {
@@ -901,19 +902,19 @@ namespace AntMe.Gui
                 }
             }
 
-            ignoreStateupdate = false;
+            ignoreStateUpdate = false;
         }
 
         /// <summary>
-        /// Loads the settings to configuration
+        /// Loads the settings to configuration.
         /// </summary>
         public void LoadSettings()
         {
-            ignoreStateupdate = true;
-            // check, if configfile exists
+            ignoreStateUpdate = true;
+            // Check, if config file exists.
             if (File.Exists(configPath + Resources.GlobalSettingsFileName))
             {
-                // read configfile
+                // Read configfile.
                 FileStream file = File.Open(configPath + Resources.GlobalSettingsFileName, FileMode.Open);
 
                 try
@@ -934,15 +935,15 @@ namespace AntMe.Gui
                     file.Close();
                 }
             }
-            ignoreStateupdate = false;
+            ignoreStateUpdate = false;
         }
 
         /// <summary>
-        /// Saves the settings of plugin-manager to configuration-file.
+        /// Saves the settings of plugin manager to configuration file.
         /// </summary>
         public void SaveSettings()
         {
-            ignoreStateupdate = true;
+            ignoreStateUpdate = true;
             if (!Directory.Exists(configPath))
             {
                 Directory.CreateDirectory(configPath);
@@ -952,10 +953,10 @@ namespace AntMe.Gui
             MemoryStream puffer = new MemoryStream();
             serializer.Serialize(puffer, config);
             File.WriteAllBytes(configPath + Resources.GlobalSettingsFileName, puffer.ToArray());
-            ignoreStateupdate = false;
+            ignoreStateUpdate = false;
 
-            // Save also plugin-Settings
-            // Producer-Stuff
+            // Save also plugin settings.
+            // Producer stuff.
             foreach (PluginItem plugin in producerList.Values)
             {
                 try
@@ -975,7 +976,7 @@ namespace AntMe.Gui
                 }
             }
 
-            // Consumer-Stuff
+            // Consumer stuff.
             foreach (PluginItem plugin in consumerList.Values)
             {
                 try
@@ -997,13 +998,13 @@ namespace AntMe.Gui
         }
 
         /// <summary>
-        /// Sets the current visible plugin
+        /// Sets the current visible plugin.
         /// </summary>
         /// <param name="guid">visible Plugin</param>
         public void SetVisiblePlugin(Guid guid)
         {
-            ignoreStateupdate = true;
-            // Set old plugin to invisible
+            ignoreStateUpdate = true;
+            // Set old plugin to invisible.
             if (visiblePlugin != null)
             {
                 if (visiblePlugin.IsConsumer)
@@ -1042,7 +1043,7 @@ namespace AntMe.Gui
                 }
             }
 
-            // Set new plugin to visible
+            // Set new plugin to visible.
             if (producerList.ContainsKey(guid))
             {
                 visiblePlugin = producerList[guid];
@@ -1083,19 +1084,19 @@ namespace AntMe.Gui
             {
                 visiblePlugin = null;
             }
-            ignoreStateupdate = false;
+            ignoreStateUpdate = false;
         }
 
         /// <summary>
-        /// Sets the speed-limitation for running simulations.
+        /// Sets the speed limitation for running simulations.
         /// </summary>
         /// <param name="enabled">sets the limitation to enabled</param>
-        /// <param name="framesPerSecond">limits the speed to a specific frame-rate</param>
+        /// <param name="framesPerSecond">limits the speed to a specific frame rate</param>
         public void SetSpeedLimit(bool enabled, float framesPerSecond)
         {
             if (enabled)
             {
-                // Check for supported value
+                // Check for supported value.
                 if (framesPerSecond <= 0.0f)
                 {
                     throw new ArgumentOutOfRangeException(
@@ -1125,32 +1126,32 @@ namespace AntMe.Gui
         #region Requestloop
 
         /// <summary>
-        /// The game-loop. Runs, until state is set to Ready or notReady
+        /// The game loop. Runs until state is set to Ready or notReady.
         /// </summary>
         private void requestLoop()
         {
-            // Limiter- and frame-rate-handling
+            // Limiter and frame rate handling.
             Stopwatch watch = new Stopwatch();
 
-            // Interrupt-Handling
+            // Interrupt handling.
             bool interrupt = false;
 
-            // Mainloop
+            // Main loop.
             while (activeProducer != null &&
                    (activeProducer.Producer.State == PluginState.Running ||
                     activeProducer.Producer.State == PluginState.Paused))
             {
 
-                // request Simulationstate, if loop is not paused
+                // Request simulation state, if loop is not paused.
                 if (activeProducer != null && activeProducer.Producer.State == PluginState.Running)
                 {
                     watch.Reset();
                     watch.Start();
 
-                    // Create new Simulationstate
+                    // Create new simulation state.
                     SimulationState simulationState = new SimulationState();
 
-                    // Request all consumers with CreateState-Method
+                    // Request all consumers with create state method.
                     lock (activeConsumers)
                     {
                         foreach (PluginItem item in activeConsumers.Values)
@@ -1178,13 +1179,13 @@ namespace AntMe.Gui
                         }
                     }
 
-                    // Break, if there was an interrupt
+                    // Break, if there was an interrupt.
                     if (interrupt)
                     {
                         break;
                     }
 
-                    // Request producers Simulationstate
+                    // Request producer simulation state.
                     lock (activeProducer)
                     {
                         try
@@ -1208,7 +1209,7 @@ namespace AntMe.Gui
                         }
                     }
 
-                    // Request all consumers with CreatingState-Method
+                    // Request all consumers with creating state method.
                     lock (activeConsumers)
                     {
                         foreach (PluginItem item in activeConsumers.Values)
@@ -1236,13 +1237,13 @@ namespace AntMe.Gui
                         }
                     }
 
-                    // On interrupt stop loop
+                    // On interrupt stop loop.
                     if (interrupt)
                     {
                         break;
                     }
 
-                    // Request all consumers with CreatedState-Method and also check for interrupt-Request
+                    // Request all consumers with created state method and also check for interrupt request.
                     lock (activeConsumers)
                     {
                         foreach (PluginItem item in activeConsumers.Values)
@@ -1270,13 +1271,13 @@ namespace AntMe.Gui
                         }
                     }
 
-                    // On interrupt stop loop
+                    // On interrupt stop loop.
                     if (interrupt)
                     {
                         break;
                     }
 
-                    // Update UI
+                    // Update UI.
                     try
                     {
                         if (activeProducer != null && activeProducer.Producer.State == PluginState.Running)
@@ -1319,16 +1320,16 @@ namespace AntMe.Gui
                         }
                     }
 
-                    // On interrupt stop loop
+                    // On interrupt stop loop.
                     if (interrupt)
                     {
                         break;
                     }
 
-                    // Save state for statistics
+                    // Save state for statistics.
                     lastSimulationState = simulationState;
 
-                    // Framelimiter
+                    // Frame limiter.
                     if (FrameLimiterEnabled)
                     {
                         while (watch.ElapsedMilliseconds < frameLimitMs)
@@ -1337,7 +1338,7 @@ namespace AntMe.Gui
                         }
                     }
 
-                    // calculation of frame-time
+                    // Calculation of frame time.
                     FrameRate = watch.ElapsedMilliseconds > 0 ? 1000 / watch.ElapsedMilliseconds : 0;
                 }
                 else

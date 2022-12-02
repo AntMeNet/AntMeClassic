@@ -1,7 +1,7 @@
 ﻿namespace AntMe.SharedComponents.AntVideo
 {
     /// <summary>
-    /// List of possible block-types in stream.
+    /// List of possible block types in stream.
     /// </summary>
     internal enum BlockType
     {

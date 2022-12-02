@@ -5,11 +5,11 @@ using AntMe.SharedComponents.Properties;
 
 namespace AntMe.SharedComponents.Tools {
     /// <summary>
-    /// RGB colours
+    /// RGB colours.
     /// </summary>
     /// <remarks>
-    /// colours defined independent from Windows forms or managed DirectX
-    /// using this struct colours can be created and mixed
+    /// Colours defined independent from Windows forms or managed DirectX
+    /// using this struct colours can be created and mixed.
     /// </remarks>
     /// <author>Wolfgang Gallo (wolfgang@antme.net)</author>
     public struct Color {
@@ -18,7 +18,7 @@ namespace AntMe.SharedComponents.Tools {
         private int red;
 
         /// <summary>
-        /// Constructor to instantiate a new RGB color
+        /// Constructor to instantiate a new RGB color.
         /// </summary>
         /// <param name="red">RGB value for red</param>
         /// <param name="green">RGB value for green</param>
@@ -30,7 +30,7 @@ namespace AntMe.SharedComponents.Tools {
         }
 
         /// <summary>
-        /// RGB red value minimum 0, maximum 255
+        /// RGB red value minimum 0, maximum 255.
         /// </summary>
         public byte Red {
             get => red < 0 ? (byte) 0 : red > 255 ? (byte) 255 : (byte) red;
@@ -38,7 +38,7 @@ namespace AntMe.SharedComponents.Tools {
         }
 
         /// <summary>
-        /// RGB green value minimum 0, maximum 255
+        /// RGB green value minimum 0, maximum 255.
         /// </summary>
         public byte Green {
             get => green < 0 ? (byte) 0 : green > 255 ? (byte) 255 : (byte) green;
@@ -46,7 +46,7 @@ namespace AntMe.SharedComponents.Tools {
         }
 
         /// <summary>
-        /// RGB blue value minimum 0, maximum 255
+        /// RGB blue value minimum 0, maximum 255.
         /// </summary>
         public byte Blue {
             get => blue < 0 ? (byte) 0 : blue > 255 ? (byte) 255 : (byte) blue;
@@ -54,7 +54,7 @@ namespace AntMe.SharedComponents.Tools {
         }
 
         /// <summary>
-        /// RGB color to string
+        /// RGB color to string.
         /// </summary>
         /// <returns>(Red,Green,Blue)</returns>
         public override string ToString() {
@@ -62,9 +62,9 @@ namespace AntMe.SharedComponents.Tools {
         }
 
         /// <summary>
-        /// adding up two RGB colours
+        /// Adding up two RGB colours.
         /// </summary><remarks>
-        /// newly implemented according to the original remark
+        /// Implemented according to the original remark
         /// to mix two RGB colours the result must be divided by two
         /// (colour1 + colour2) / 2
         /// </remarks>
@@ -72,26 +72,26 @@ namespace AntMe.SharedComponents.Tools {
         /// <param name="c2">Color 2</param>
         /// <returns>Color</returns>
         public static Color operator +(Color c1, Color c2) {
-            // NEW IMPLEMENTATION division by two for each RGB value
+            // Division by two for each RGB value.
             return new Color((c1.red + c2.red)/2, (c1.green + c2.green)/2, (c1.blue + c2.blue)/2);
         }
 
         /// <summary>
         /// RGB color multiplied by an integer value
-        /// all RGB values have a maximum of 255
+        /// all RGB values have a maximum of 255.
         /// </summary>
         /// <param name="c">Color</param>
-        /// <param name="i">integer value</param>
+        /// <param name="i">Integer value</param>
         /// <returns>Color</returns>
         public static Color operator *(Color c, int i) {
             return new Color(c.red*i, c.green*i, c.blue*i);
         }
 
         /// <summary>
-        /// new RGB color by dividing all given RGB values by a given integer value
+        /// New RGB color by dividing all given RGB values by a given integer value.
         /// </summary>
         /// <param name="c">Color</param>
-        /// <param name="i">integer value</param>
+        /// <param name="i">Integer value</param>
         /// <returns>Color</returns>
         public static Color operator /(Color c, int i)
         {
@@ -102,15 +102,15 @@ namespace AntMe.SharedComponents.Tools {
         }
 
         /// <summary>
-        /// distance between two colors in the range 0 - 195075
+        /// Distance between two colors in the range 0 - 195075.
         /// </summary><remarks>
-        /// used by the ColorFinder class
+        /// Used by the ColorFinder class
         /// maximum = (maximum deltaColorX) * (maximum deltaColorX) * number of colors
         /// 255 * 255 * 3 = 195075
         /// </remarks>
         /// <param name="c1">Color 1</param>
         /// <param name="c2">Color 2</param>
-        /// <returns>Color distance as integer value</returns>
+        /// <returns>Color distance as integer value.</returns>
         public static int operator -(Color c1, Color c2) {
             int deltaRed = c1.red - c2.red;
             int deltaGreen = c1.green - c2.green;
@@ -121,7 +121,7 @@ namespace AntMe.SharedComponents.Tools {
     }
 
     /// <summary>
-    /// find Color with maximum difference
+    /// Find Color with maximum difference.
     /// </summary>
     /// <author>Wolfgang Gallo (wolfgang@antme.net)</author>
     public class ColorFinder {
@@ -144,17 +144,17 @@ namespace AntMe.SharedComponents.Tools {
         private readonly List<Color> colorsList = new List<Color>();
 
         /// <summary>
-        /// Marks new Color as already existing
+        /// Marks new Color as already existing.
         /// </summary>
-        /// <param name="color">new Color.</param>
+        /// <param name="color">New Color.</param>
         public void AddColorToColorList(Color color) {
             colorsList.Add(color);
         }
 
         /// <summary>
-        /// Remove Color from ColorList
+        /// Remove Color from ColorList.
         /// </summary>
-        /// <param name="color">existing Color.</param>
+        /// <param name="color">Existing Color.</param>
         public void RemoveColorFromColorList(Color color) {
             colorsList.Remove(color);
         }
@@ -171,9 +171,9 @@ namespace AntMe.SharedComponents.Tools {
         }
 
         /// <summary>
-        /// Create Color with maximum distance
+        /// Create Color with maximum distance.
         /// </summary>
-        /// <returns>new Color.</returns>
+        /// <returns>New Color.</returns>
         public Color CreateNewColor() {
             int bestDistance = 0;
             Color bestColor = new Color(0, 0, 0);
@@ -215,9 +215,9 @@ namespace AntMe.SharedComponents.Tools {
         }
 
         /// <summary>
-        /// Create new Color with maximum distance and randomize the result
+        /// Create new Color with maximum distance and randomize the result.
         /// </summary>
-        /// <param name="scatter">scatter value for the random number generator</param>
+        /// <param name="scatter">Scatter value for the random number generator</param>
         /// <returns>new Color.</returns>
         public Color CreateNewColor(int scatter) {
             Color color = CreateNewColor();
@@ -231,9 +231,9 @@ namespace AntMe.SharedComponents.Tools {
         }
 
         /// <summary>
-        /// Create Color and add it to the colorsList
+        /// Create Color and add it to the colorsList.
         /// </summary>
-        /// <returns>new Color.</returns>
+        /// <returns>New Color.</returns>
         public Color CreateColorAndAddToColorsList() {
             Color color = CreateNewColor();
             AddColorToColorList(color);
@@ -241,10 +241,10 @@ namespace AntMe.SharedComponents.Tools {
         }
 
         /// <summary>
-        /// Create Color, randomize it and add it to the colorsList
+        /// Create Color, randomize it and add it to the colorsList.
         /// </summary>
-        /// <param name="scatter">scatter value for the random number generator</param>
-        /// <returns>new Color.</returns>
+        /// <param name="scatter">Scatter value for the random number generator</param>
+        /// <returns>New Color.</returns>
         public Color CreateColorAndAddToColorsList(int scatter) {
             Color color = CreateNewColor(scatter);
             AddColorToColorList(color);

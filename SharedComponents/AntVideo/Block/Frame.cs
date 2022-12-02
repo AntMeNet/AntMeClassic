@@ -4,11 +4,11 @@ using System;
 namespace AntMe.SharedComponents.AntVideo.Block
 {
     /// <summary>
-    /// Repräsentiert den Zustandsblock
+    /// Represents the state block.
     /// </summary>
     internal sealed class Frame : SimulationState, IUpdateable<FrameUpdate, SimulationState>, ISerializable
     {
-        #region Updateinformation
+        #region Update information
 
         private int aCurrentRound;
         private DateTime aTimestamp;
@@ -84,7 +84,7 @@ namespace AntMe.SharedComponents.AntVideo.Block
 
         #region ISerializable Member
 
-        // Blocklayout:
+        // Block layout:
         // ushort TotalRounds
         // ushort Height
         // ushort Width

@@ -8,7 +8,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
 {
 
     /// <summary>
-    /// AntMe! Verbraucher-Plugin das ein Spiel in einer GDI+ basierten 2D-Ansicht darstellt.
+    /// AntMe! consumer plugin that displays a game in a GDI+ based 2D view.
     /// </summary>
     /// <author>Wolfgang Gallo (wolfgang@antme.net)</author>
     public class Plugin : IConsumerPlugin
@@ -18,7 +18,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
         private Window window;
 
         /// <summary>
-        /// Erzeugt eine neue Instanz der Plugin-Klasse.
+        /// Creates a new instance of the plugin class.
         /// </summary>
         public Plugin()
         {
@@ -30,7 +30,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
         private PluginState pluginStatus = PluginState.Ready;
 
         /// <summary>
-        /// Funktionsaufruf zum Starten des Plugin-Betriebs.
+        /// Function call to start the plugin operation.
         /// </summary>
         public void Start()
         {
@@ -39,7 +39,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
         }
 
         /// <summary>
-        /// Funktionsaufruf zum Stoppen des Plugin-Betriebs.
+        /// Function call to stop the plugin operation.
         /// </summary>
         public void Stop()
         {
@@ -48,7 +48,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
         }
 
         /// <summary>
-        /// Hält den Betrieb des Plugins an.
+        /// Pauses the operation of the plugin.
         /// </summary>
         public void Pause()
         {
@@ -56,28 +56,28 @@ namespace AntMe.Plugin.GdiPlusPlugin
         }
 
         /// <summary>
-        /// Gibt den Namen des Plugins zurück.
+        /// Returns the name of the plugin.
         /// </summary>
         public string Name
         {
-            get { return "2D-Visualisierung"; }
+            get { return "2D visualization"; }
         }
 
         /// <summary>
-        /// Gibt einen Beschreibungstext dieses Plugins zurück.
+        /// Returns a description text of this plugin.
         /// </summary>
         public string Description
         {
-            get { return "Zeigen Sie die Simulation in einer 2D-Welt an"; }
+            get { return "Show the simulation in a 2D world."; }
         }
 
         /// <summary>
-        /// Gibt die Versionsnummer dieses Plugins zurück.
+        /// Returns the version number of this plugin.
         /// </summary>
         public Version Version => version;
 
         /// <summary>
-        /// Gibt die GUID dieses Plugins zurück.
+        /// Returns the GUID of this plugin.
         /// </summary>
         public Guid Guid
         {
@@ -85,7 +85,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
         }
 
         /// <summary>
-        /// Liefert den aktuellen Status des Plugins zurück.
+        /// Returns the current state of the plugin.
         /// </summary>
         public PluginState State
         {
@@ -93,8 +93,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
         }
 
         /// <summary>
-        /// Liefert einen Verweis auf ein UserControl das im Hauptfenster
-        /// angezeigt wird.
+        /// Returns a reference to a UserControl that is displayed in the main window. 
         /// </summary>
         public Control Control
         {
@@ -102,8 +101,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
         }
 
         /// <summary>
-        /// Gibt einen Bytearray aus serialisierten Konfigurationsdaten dieses 
-        /// Plugins zurück oder legt diesen fest.
+        /// Returns or sets a byte array of serialized configuration data from this plugin.
         /// </summary>
         public byte[] Settings
         {
@@ -146,9 +144,9 @@ namespace AntMe.Plugin.GdiPlusPlugin
         {
             get
             {
-                // Wenn das Spiel läuft oder pausiert ist (also nicht nur bereit)
-                // und das Fenster nicht sichtbar, dann wurde es geschlossen und
-                // die Simulation kann abgebrochen werden.
+                // If the game is running or paused (and not just ready)
+                // and the window is not visible, then it has been closed
+                // and the simulation can be stopped.
                 return (pluginStatus != PluginState.Ready && !window.Visible);
             }
         }

@@ -5,13 +5,13 @@ using System.Collections.Generic;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// the coreColony holds all information about the colony
+    /// The CoreColony holds all information about the colony
     /// during the entire simulation
     /// </summary>
     /// <author>Wolfgang Gallo (wolfgang@antme.net)</author>
     internal sealed class CoreColony
     {
-        // the nextId is the ID of the next colony created
+        // The nextID is the ID of the next colony created.
         private static int nextId = 0;
         private readonly int[] antsInCaste;
         internal readonly List<CoreAnthill> AntHills = new List<CoreAnthill>();
@@ -20,12 +20,12 @@ namespace AntMe.Simulation
         internal readonly List<CoreInsect> EatenInsects = new List<CoreInsect>();
 
         /// <summary>
-        /// the ID will be the identifier for the colony in the simulation
+        /// The ID will be the identifier for the colony in the simulation.
         /// </summary>
         public int Id { get; private set; }
 
         /// <summary>
-        /// the GUID will be the identifier for the colony in the simulation
+        /// The GUID will be the identifier for the colony in the simulation.
         /// </summary>
         public Guid Guid { get; private set; }
 
@@ -35,7 +35,7 @@ namespace AntMe.Simulation
         internal readonly List<CoreMarker> NewMarker = new List<CoreMarker>();
 
         /// <summary>
-        /// the player responisible for the performance of the colony
+        /// The player is responsible for the performance of the colony.
         /// </summary>
         internal readonly PlayerInfo Player;
 
@@ -51,7 +51,7 @@ namespace AntMe.Simulation
         internal PlayerStatistics StatisticMeanAverage = new PlayerStatistics();
 
         /// <summary>
-        /// delay for the creation of a new insect in number of rounds
+        /// Delay for the creation of a new insect in number of rounds.
         /// </summary>
         internal int insectDelay = 0;
 
@@ -60,65 +60,64 @@ namespace AntMe.Simulation
         #region Capabilities
 
         /// <summary>
-        /// attack value of all castes of the colony
+        /// Attack value of all castes of the colony.
         /// </summary>
         internal readonly int[] AttackI;
 
         /// <summary>
-        /// grid for the different visibility ranges
+        /// Grid for the different visibility ranges.
         /// </summary>
         internal readonly Grid<CoreInsect>[] Grids;
 
         /// <summary>
-        /// rotation speed of all castes of the colony
-        /// in degrees per round
+        /// Rotation speed of all castes of the colony
+        /// in degrees per round.
         /// </summary>
         internal readonly int[] RotationSpeedI;
 
         /// <summary>
-        /// energy or health points of all castes of the colony
+        /// Energy or health points of all castes of the colony.
         /// </summary>
         internal readonly int[] EnergyI;
 
         /// <summary>
-        /// movement speed of all castes of the colony
-        /// in internal unit
+        /// Movement speed of all castes of the colony
+        /// in internal unit.
         /// </summary>
         internal readonly int[] SpeedI;
 
         /// <summary>
-        /// maximum load value of all castes of the colony
+        /// Maximum load value of all castes of the colony.
         /// </summary>
         internal readonly int[] LoadI;
 
         /// <summary>
-        /// movement range of all castes of the colony
-        /// in internal unit
+        /// Movement range of all castes of the colony
+        /// in internal unit.
         /// </summary>
         internal readonly int[] RangeI;
 
         /// <summary>
-        /// view range of all castes of the colony
-        /// in internal unit
-        /// Die Sichtweiten aller Kasten des Volkes in der internen Einheit.
+        /// View range of all castes of the colony
+        /// in internal unit.
         /// </summary>
         internal readonly int[] ViewRangeI;
 
         #endregion
 
         /// <summary>
-        /// Bug constructor for a new instance of the colony class
-        /// this is not an ant class but for the bugs
+        /// Bug constructor for a new instance of the colony class.
+        /// This is not an ant class but for the bugs.
         /// </summary>
         /// <param name="playground">the playground</param>
         internal CoreColony(CorePlayground playground)
         {
             InitPlayground(playground);
 
-            // the bugs will not under control of a player
+            // The bugs are not under control of a player.
             Player = null;
 
-            // the class is CoreBug
+            // The class is CoreBug.
             pClass = typeof(CoreBug);
 
             // TODO: check values of bugs
@@ -142,7 +141,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Constructor of a new instance of a ant colony
+        /// Constructor of a new instance of a ant colony.
         /// </summary>
         /// <param name="playground">the playground</param>
         /// <param name="player">player is owner of the colony</param>
@@ -155,7 +154,7 @@ namespace AntMe.Simulation
             Player = player;
             pClass = player.assembly.GetType(player.ClassName, true, false);
 
-            // if there is no defintion for the caste, create a new base ant caste
+            // If there is no definition for the caste, create a new base ant caste.
             if (player.Castes.Count == 0)
             {
                 player.Castes.Add(new CasteInfo());
@@ -196,11 +195,11 @@ namespace AntMe.Simulation
             }
         }
 
-        private void InitPlayground(CorePlayground spielfeld)
+        private void InitPlayground(CorePlayground playground)
         {
-            Playground = spielfeld;
-            WidthI = spielfeld.Width * SimulationEnvironment.PLAYGROUND_UNIT;
-            HeightI = spielfeld.Height * SimulationEnvironment.PLAYGROUND_UNIT;
+            Playground = playground;
+            WidthI = playground.Width * SimulationEnvironment.PLAYGROUND_UNIT;
+            HeightI = playground.Height * SimulationEnvironment.PLAYGROUND_UNIT;
             WidthI2 = WidthI * 2;
             HeightI2 = HeightI * 2;
 
@@ -209,8 +208,8 @@ namespace AntMe.Simulation
             Marker =
                 new Grid<CoreMarker>
                     (
-                    spielfeld.Width * SimulationEnvironment.PLAYGROUND_UNIT,
-                    spielfeld.Height * SimulationEnvironment.PLAYGROUND_UNIT,
+                    playground.Width * SimulationEnvironment.PLAYGROUND_UNIT,
+                    playground.Height * SimulationEnvironment.PLAYGROUND_UNIT,
                     SimulationSettings.Custom.MaximumMarkerSize * SimulationEnvironment.PLAYGROUND_UNIT);
 
             Id = nextId++;
@@ -218,7 +217,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// colonies caste count
+        /// Colonies caste count.
         /// </summary>
         public int CasteCount
         {
@@ -226,7 +225,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Constructor for a new insect instance
+        /// Constructor for a new insect instance.
         /// </summary>
         internal void NewInsect(Random random)
         {
@@ -258,7 +257,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// remove insect
+        /// Remove insect.
         /// </summary>
         /// <param name="insect">insect</param>
         internal void RemoveInsect(CoreInsect insect)
@@ -271,7 +270,7 @@ namespace AntMe.Simulation
 
         /// <summary>
         /// Constructor of a colony state information instance
-        /// holds the current information about the colony
+        /// holds the current information about the colony.
         /// </summary>
         /// <returns></returns>
         public ColonyState GenerateColonyStateInfo()
@@ -304,13 +303,13 @@ namespace AntMe.Simulation
                 info.AntStates.Add(((CoreAnt)InsectsList[index]).GenerateAntStateInfo());
             }
 
-            // Markierungen ist ein Bucket und die Bucket Klasse enthält keinen
-            // Indexer. Daher können wir hier keine for Schleife verwenden, wie eben
-            // bei den Bauten und den Ameisen. Daher benutzen wir eine foreach
-            // Schleife für die wir eine extra Laufvariable benötigen.
-            foreach (CoreMarker markierung in Marker)
+            // Markers are buckets and the bucket class does not contain an indexer.
+            // Therefore, we cannot use a for loop here, as we just did with the
+            // ant hills and the ants. Therefore we use a foreach loop for which
+            // we need an extra run variable.
+            foreach (CoreMarker marker in Marker)
             {
-                info.MarkerStates.Add(markierung.PopulateMarkerState());
+                info.MarkerStates.Add(marker.PopulateMarkerState());
             }
 
             return info;

@@ -19,7 +19,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
         // control has been added to the window. This way it is easier.
         private Window window;
 
-        // drawing area for the background graphic and the playground control element.
+        // Drawing area for the background graphic and the playground control element.
         private Bitmap bitmap;
         private Graphics bitmapGraphics, controlGraphics;
 
@@ -106,7 +106,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
         #endregion
 
         /// <summary>
-        /// instantiate a playground
+        /// Instantiate a playground.
         /// </summary>
         /// <param name="window">the parent window</param>
         public Playground(Window window)
@@ -153,7 +153,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
         {
             switch (e.KeyCode)
             {
-                // scaling the playground with the mouse
+                // Scaling the playground with the mouse.
                 case Keys.ShiftKey:
                     if (shiftPressed)
                     {
@@ -162,7 +162,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
                     }
                     break;
 
-                // rotating the playground with the mouse
+                // Rotating the playground with the mouse.
                 case Keys.ControlKey:
                     if (controlPressed)
                     {
@@ -177,7 +177,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
         {
             switch (e.KeyCode)
             {
-                // Scaling the playground with the mouse
+                // Scaling the playground with the mouse.
                 case Keys.ShiftKey:
                     if (!shiftPressed)
                     {
@@ -186,7 +186,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
                     }
                     break;
 
-                // rotating the playground with the mouse
+                // Rotating the playground with the mouse.
                 case Keys.ControlKey:
                     if (!controlPressed)
                     {
@@ -260,7 +260,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
                 // changing the matrix just a little bit.
                 
 
-                // scaling the playground
+                // Scaling the playground.
                 if (shiftPressed)
                 {
                     float factor = (float)Math.Pow(1.01d, deltaX);
@@ -269,11 +269,11 @@ namespace AntMe.Plugin.GdiPlusPlugin
                     transform.Translate(Width / 2f, Height / 2f, MatrixOrder.Append);
                 }
 
-                // rotate the playground
+                // Rotating the playground.
                 else if (controlPressed)
                     transform.RotateAt(deltaX, new PointF(Width / 2f, Height / 2f), MatrixOrder.Append);
 
-                // move the playground
+                // Moving the playground.
                 else
                     transform.Translate(deltaX, deltaY, MatrixOrder.Append);
 
@@ -291,14 +291,14 @@ namespace AntMe.Plugin.GdiPlusPlugin
                 selectedAnts.Clear();
                 selectedBugs.Clear();
 
-                // Create an array for the coordinates of all bugs
+                // Create an array for the coordinates of all bugs.
                 points = new PointF[window.State.BugStates.Count];
 
-                // Copy the coordinates into the array
+                // Copy the coordinates into the array.
                 for (int k = 0; k < points.Length; k++)
                     points[k] = new PointF(window.State.BugStates[k].PositionX, window.State.BugStates[k].PositionY);
 
-                // Transform the coordinates
+                // Transform the coordinates.
                 transform.TransformPoints(points);
 
                 // Add all bugs that are inside the selection rectangle to the list of selected bugs.
@@ -307,7 +307,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
                         points[k].Y <= selectionY1)
                         selectedBugs.Add(window.State.BugStates[k].Id);
 
-                // The same for the ants for all colonies
+                // The same for the ants for all colonies.
 
                 for (int v = 0; v < window.State.ColonyStates.Count; v++)
                 {
@@ -327,7 +327,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
                             selectedAnts.Add(window.State.ColonyStates[v].AntStates[a].Id);
                 }
 
-                // Pass the selection to the parent window
+                // Pass the selection to the parent window.
                 window.ShowInformation(selectedBugs, selectedAnts);
 
                 selectionX0 = -1;
@@ -393,7 +393,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
             bitmapGraphics.Clear(skyColor);
             bitmapGraphics.FillRectangle(playgroundBrush, playgroundRectangle);
 
-            // Draw the markers of all colonies
+            // Draw the markers of all colonies.
             for (v = 0; v < window.State.ColonyStates.Count; v++)
             {
                 SolidBrush brush = window.State.ColonyStates.Count == 1
@@ -410,7 +410,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
                          window.State.ColonyStates[v].MarkerStates[m].Radius * 2f);
             }
 
-            // Draw anthills for all colonies
+            // Draw ant hills for all colonies.
             for (v = 0; v < window.State.ColonyStates.Count; v++)
                 for (b = 0; b < window.State.ColonyStates[v].AnthillStates.Count; b++)
                 {
@@ -428,7 +428,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
                              window.State.ColonyStates[v].AnthillStates[b].PositionY - 20f);
                 }
 
-            // Draw all sugar piles
+            // Draw all sugar piles.
             for (z = 0; z < window.State.SugarStates.Count; z++)
                 bitmapGraphics.FillEllipse
                     (sugarBrush, window.State.SugarStates[z].PositionX - window.State.SugarStates[z].Radius,
@@ -443,7 +443,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
                             (selectionBrush, window.State.BugStates[k].PositionX - 12f,
                              window.State.BugStates[k].PositionY - 12f, 24f, 24f);
 
-            // Draw all bugs
+            // Draw all bugs.
             for (k = 0; k < window.State.BugStates.Count; k++)
                 bitmapGraphics.DrawLine
                     (bugPen, window.State.BugStates[k].PositionX - cos4[window.State.BugStates[k].Direction],
@@ -460,7 +460,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
                                 (selectionBrush, window.State.ColonyStates[v].AntStates[a].PositionX - 8f,
                                  window.State.ColonyStates[v].AntStates[a].PositionY - 8f, 16f, 16f);
 
-            // Draw ants of all colonies
+            // Draw ants for all colonies.
             for (v = 0; v < window.State.ColonyStates.Count; v++)
                 for (a = 0; a < window.State.ColonyStates[v].AntStates.Count; a++)
                 {
@@ -488,14 +488,13 @@ namespace AntMe.Plugin.GdiPlusPlugin
                              sin1[window.State.ColonyStates[v].AntStates[a].Direction]);
                 }
 
-            // Draw all fruits
+            // Draw all fruits.
             for (o = 0; o < window.State.FruitStates.Count; o++)
                 bitmapGraphics.FillEllipse
                     (fruitBrush, window.State.FruitStates[o].PositionX - window.State.FruitStates[o].Radius,
                      window.State.FruitStates[o].PositionY - window.State.FruitStates[o].Radius,
                      window.State.FruitStates[o].Radius * 2, window.State.FruitStates[o].Radius * 2);
 
-            // 
             // Set the unit matrix as the transformation matrix. With this we now draw in window coordinates again.
             bitmapGraphics.Transform = new Matrix();
 
@@ -519,10 +518,10 @@ namespace AntMe.Plugin.GdiPlusPlugin
             OnPaint(new PaintEventArgs(controlGraphics, ClientRectangle));
         }
 
-        // Draws points as table and aligns columns by text length, 18f horizontal spacing
+        // Draws points as table and aligns columns by text length, 18f horizontal spacing.
         private void DrawScore()
         {
-            // Remember the texts for output
+            // Remember the texts for output.
             string[][] renderElements = new string[window.State.ColonyStates.Count + 1][];
             renderElements[0] = new string[]
             {
@@ -534,7 +533,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
                 Resource.Points
             };
 
-            // fill the table with numbers of the colonies
+            // Fill the table with numbers for the colonies.
             for (int currentRenderElementY = 1; currentRenderElementY < renderElements.Length; currentRenderElementY++)
             {
                 renderElements[currentRenderElementY] = new string[]
@@ -563,10 +562,10 @@ namespace AntMe.Plugin.GdiPlusPlugin
                 }
             }
 
-            // Total table width
+            // Total table width.
             float totalWidth = 0;
 
-            // Calculate max length per column
+            // Calculate max length per column.
             renderSizes[renderElements.Length] = new float[renderElements[0].Length];
             for (int currentRenderSizeX = 0; currentRenderSizeX < renderElements[0].Length; currentRenderSizeX++)
             {
@@ -584,7 +583,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
                 totalWidth += maxLength + 18f;
             }
 
-            // Draw the background of the box of points.
+            // Draw the background for the score table box.
             bitmapGraphics.FillRectangle
                 (scoreBrush, 10f, 10f, totalWidth, renderElements.Length * 16f + 18f);
 
@@ -648,7 +647,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
             bitmap = new Bitmap(Width, Height);
             bitmapGraphics = Graphics.FromImage(bitmap);
 
-            // Turn anti-aliasing on or off.
+            // Turn anti aliasing on or off.
             bitmapGraphics.SmoothingMode =
                 window.UseAntiAliasing ? SmoothingMode.HighQuality : SmoothingMode.HighSpeed;
 

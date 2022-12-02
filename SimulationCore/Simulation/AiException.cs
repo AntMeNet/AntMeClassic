@@ -5,20 +5,20 @@ using System.Runtime.Serialization;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// exception for implementation problems in player AI files
+    /// Exceptions for implementation problems in player AI files.
     /// </summary>
     [Serializable]
     public sealed class AiException : AntMeException
     {
         /// <summary>
-        /// constructor of AI exception
+        /// Constructor of AI exception.
         /// </summary>
         public AiException()
         {
         }
 
         /// <summary>
-        /// constructor of AI exception corresponding to a rule violation with handover of the description
+        /// Constructor of AI exception corresponding to a rule violation with handover of the description,
         /// </summary>
         /// <param name="message">description of the rule violation</param>
         public AiException(string message)
@@ -27,7 +27,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// constructor of AI exception corresponding to a rule violation with handover of the description
+        /// Constructor of AI exception corresponding to a rule violation with handover of the description,
         /// and the corresponding exception
         /// </summary>
         /// <param name="message">description of the rule violation</param>
@@ -38,7 +38,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// constructor for serialization of the AI exception
+        /// Constructor for serialization of the AI exception,
         /// </summary>
         /// <param name="info"></param>
         /// <param name="context"></param>

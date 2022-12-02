@@ -11,7 +11,7 @@ namespace AntMe.Simulation
     internal sealed class CoreBug : CoreInsect
     {
         /// <summary>
-        /// indicates wheter bug can do movement in this simulation round
+        /// Indicates whether bug can do movement in this simulation round.
         /// </summary>
         internal bool CanMoveInThisRound = true;
 
