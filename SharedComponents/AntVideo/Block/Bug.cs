@@ -22,12 +22,12 @@ namespace AntMe.SharedComponents.AntVideo.Block
             Reset();
         }
 
-        public Bug(BugState zustand) : base(zustand.Id)
+        public Bug(BugState state) : base(state.Id)
         {
-            PositionX = zustand.PositionX;
-            PositionY = zustand.PositionY;
-            Direction = zustand.Direction;
-            Vitality = zustand.Vitality;
+            PositionX = state.PositionX;
+            PositionY = state.PositionY;
+            Direction = state.Direction;
+            Vitality = state.Vitality;
 
             Reset();
         }
@@ -62,11 +62,11 @@ namespace AntMe.SharedComponents.AntVideo.Block
             }
             if (update.HasChanged(BugFields.Direction))
             {
-                dDirection = update.dRichtung;
+                dDirection = update.dDirection;
             }
             if (update.HasChanged(BugFields.Vitality))
             {
-                aVitality = update.aEnergie;
+                aVitality = update.aEnergy;
             }
         }
 
@@ -93,14 +93,14 @@ namespace AntMe.SharedComponents.AntVideo.Block
             if (state.Direction != Angle.Interpolate(Direction, dDirection))
             {
                 update.Change(BugFields.Direction);
-                update.dRichtung = Angle.Delta(Direction, state.Direction);
+                update.dDirection = Angle.Delta(Direction, state.Direction);
                 changed = true;
             }
 
             if (state.Vitality != aVitality)
             {
                 update.Change(BugFields.Vitality);
-                update.aEnergie = state.Vitality;
+                update.aEnergy = state.Vitality;
                 changed = true;
             }
 

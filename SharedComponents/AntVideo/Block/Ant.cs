@@ -28,20 +28,20 @@ namespace AntMe.SharedComponents.AntVideo.Block
             Reset();
         }
 
-        public Ant(AntState zustand)
-            : base(zustand.ColonyId, zustand.Id)
+        public Ant(AntState state)
+            : base(state.ColonyId, state.Id)
         {
-            CasteId = zustand.CasteId;
-            ViewRange = zustand.ViewRange;
-            TargetType = zustand.TargetType;
-            PositionX = zustand.PositionX;
-            PositionY = zustand.PositionY;
-            Direction = zustand.Direction;
-            Vitality = zustand.Vitality;
-            TargetPositionX = zustand.TargetPositionX;
-            TargetPositionY = zustand.TargetPositionY;
-            Load = zustand.Load;
-            LoadType = zustand.LoadType;
+            CasteId = state.CasteId;
+            ViewRange = state.ViewRange;
+            TargetType = state.TargetType;
+            PositionX = state.PositionX;
+            PositionY = state.PositionY;
+            Direction = state.Direction;
+            Vitality = state.Vitality;
+            TargetPositionX = state.TargetPositionX;
+            TargetPositionY = state.TargetPositionY;
+            Load = state.Load;
+            LoadType = state.LoadType;
 
             Reset();
         }
