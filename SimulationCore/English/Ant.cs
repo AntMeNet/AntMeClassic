@@ -12,10 +12,7 @@ namespace AntMe.English
         /// <summary>
         /// Delivers the current load of this ant.
         /// </summary>
-        public int CurrentLoad
-        {
-            get { return ((CoreAnt)Baseitem).CurrentLoadBase; }
-        }
+        public int CurrentLoad => ((CoreAnt)Baseitem).CurrentLoadCoreInsect;
 
         /// <summary>
         /// Delivers the current carried fruit.
@@ -25,13 +22,13 @@ namespace AntMe.English
             get
             {
                 CoreAnt temp = (CoreAnt)Baseitem;
-                if (temp.CarryingFruitBase == null)
+                if (temp.CarryingFruitCoreInsect == null)
                 {
                     return null;
                 }
                 else
                 {
-                    return new Fruit(temp.CarryingFruitBase);
+                    return new Fruit(temp.CarryingFruitCoreInsect);
                 }
             }
         }
@@ -39,25 +36,16 @@ namespace AntMe.English
         /// <summary>
         /// Delivers the maximum load.
         /// </summary>
-        public int MaximumLoad
-        {
-            get { return ((CoreAnt)Baseitem).MaximumLoadBase; }
-        }
+        public int MaximumLoad => ((CoreAnt)Baseitem).MaximumLoadCoreInsect;
 
         /// <summary>
         /// Delivers the range.
         /// </summary>
-        public int Range
-        {
-            get { return ((CoreAnt)Baseitem).RangeBase; }
-        }
+        public int Range => ((CoreAnt)Baseitem).RangeCoreInsect; 
 
         /// <summary>
         /// Delivers the colony name.
         /// </summary>
-        public string Colony
-        {
-            get { return ((CoreAnt)Baseitem).colony.Player.ColonyName; }
-        }
+        public string Colony => ((CoreAnt)Baseitem).Colony.Player.ColonyName;
     }
 }

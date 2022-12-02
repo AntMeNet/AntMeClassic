@@ -32,16 +32,16 @@ namespace AntMe.Simulation
         public static void Waits(CoreAnt ant)
         {
             AreaChanged(
-                null, new AreaChangeEventArgs(ant.colony.Player, Area.Waits));
+                null, new AreaChangeEventArgs(ant.Colony.Player, Area.Waits));
             playerRights.PermitOnly();
             ant.AwaitingCommands = true;
             try
             {
-                ant.WaitingBase();
+                ant.WaitingCoreAnt();
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: AI error in WaitingBase() method", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in WaitingBase() method", ant.Colony.Player.Guid), ex);
             }
             ant.AwaitingCommands = false;
             AreaChanged(
@@ -55,16 +55,16 @@ namespace AntMe.Simulation
         public static void BecomesTired(CoreAnt ant)
         {
             AreaChanged(
-                null, new AreaChangeEventArgs(ant.colony.Player, Area.BecomesTired));
+                null, new AreaChangeEventArgs(ant.Colony.Player, Area.BecomesTired));
             playerRights.PermitOnly();
             ant.AwaitingCommands = true;
             try
             {
-                ant.IsGettingTiredBase();
+                ant.IsGettingTiredCoreAnt();
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: AI error in IsGettingTiredBase() method", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in IsGettingTiredBase() method", ant.Colony.Player.Guid), ex);
             }
             ant.AwaitingCommands = false;
             AreaChanged(
@@ -83,16 +83,16 @@ namespace AntMe.Simulation
         public static void Spots(CoreAnt ant, CoreSugar sugar)
         {
             AreaChanged(
-                null, new AreaChangeEventArgs(ant.colony.Player, Area.SpotsSugar));
+                null, new AreaChangeEventArgs(ant.Colony.Player, Area.SpotsSugar));
             playerRights.PermitOnly();
             ant.AwaitingCommands = true;
             try
             {
-                ant.SpotsBase(sugar);
+                ant.SpotsCoreAnt(sugar);
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: AI error in SpotsBase(sugar) method", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in SpotsBase(sugar) method", ant.Colony.Player.Guid), ex);
             }
 
             ant.AwaitingCommands = false;
@@ -108,16 +108,16 @@ namespace AntMe.Simulation
         public static void Spots(CoreAnt ant, CoreFruit fruit)
         {
             AreaChanged(
-                null, new AreaChangeEventArgs(ant.colony.Player, Area.SpotsFruit));
+                null, new AreaChangeEventArgs(ant.Colony.Player, Area.SpotsFruit));
             playerRights.PermitOnly();
             ant.AwaitingCommands = true;
             try
             {
-                ant.SpotsBase(fruit);
+                ant.SpotsCoreAnt(fruit);
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: AI error in SpotsBase(fruit) method", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in SpotsBase(fruit) method", ant.Colony.Player.Guid), ex);
             }
 
             ant.AwaitingCommands = false;
@@ -134,16 +134,16 @@ namespace AntMe.Simulation
         {
             AreaChanged(
                 null,
-                new AreaChangeEventArgs(ant.colony.Player, Area.ReachedSugar));
+                new AreaChangeEventArgs(ant.Colony.Player, Area.ReachedSugar));
             playerRights.PermitOnly();
             ant.AwaitingCommands = true;
             try
             {
-                ant.ArrivedAtTargetBase(sugar);
+                ant.ArrivedAtTargetCoreAnt(sugar);
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: AI error in ArrivedAtTargetBase(sugar) method", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in ArrivedAtTargetBase(sugar) method", ant.Colony.Player.Guid), ex);
             }
 
             ant.AwaitingCommands = false;
@@ -160,16 +160,16 @@ namespace AntMe.Simulation
         {
             AreaChanged(
                 null,
-                new AreaChangeEventArgs(ant.colony.Player, Area.ReachedFruit));
+                new AreaChangeEventArgs(ant.Colony.Player, Area.ReachedFruit));
             playerRights.PermitOnly();
             ant.AwaitingCommands = true;
             try
             {
-                ant.ArrivedAtTargetBase(fruit);
+                ant.ArrivedAtTargetCoreAnt(fruit);
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: AI error in ArrivedAtTargetBase(fruit) method", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in ArrivedAtTargetBase(fruit) method", ant.Colony.Player.Guid), ex);
             }
             ant.AwaitingCommands = false;
             AreaChanged(
@@ -188,16 +188,16 @@ namespace AntMe.Simulation
         public static void SmellsFriend(CoreAnt ant, CoreMarker marker)
         {
             AreaChanged(
-                null, new AreaChangeEventArgs(ant.colony.Player, Area.SmellsFriend));
+                null, new AreaChangeEventArgs(ant.Colony.Player, Area.SmellsFriend));
             playerRights.PermitOnly();
             ant.AwaitingCommands = true;
             try
             {
-                ant.SpotsFriendBase(marker);
+                ant.SpotsFriendCoreAnt(marker);
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: AI error in SpotsFriendBase(marker) method", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in SpotsFriendBase(marker) method", ant.Colony.Player.Guid), ex);
             }
 
             ant.AwaitingCommands = false;
@@ -213,16 +213,16 @@ namespace AntMe.Simulation
         public static void SpotsFriend(CoreAnt ant, CoreAnt friend)
         {
             AreaChanged(
-                null, new AreaChangeEventArgs(ant.colony.Player, Area.SpotsFriend));
+                null, new AreaChangeEventArgs(ant.Colony.Player, Area.SpotsFriend));
             playerRights.PermitOnly();
             ant.AwaitingCommands = true;
             try
             {
-                ant.SpotsFriendBase(friend);
+                ant.SpotsFriendCoreAnt(friend);
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: AI error in SpotsFriend(marker) method", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in SpotsFriend(marker) method", ant.Colony.Player.Guid), ex);
             }
 
             ant.AwaitingCommands = false;
@@ -238,16 +238,16 @@ namespace AntMe.Simulation
         public static void SpotsTeamMember(CoreAnt ant, CoreAnt friend)
         {
             AreaChanged(
-                null, new AreaChangeEventArgs(ant.colony.Player, Area.SpotsTeamMember));
+                null, new AreaChangeEventArgs(ant.Colony.Player, Area.SpotsTeamMember));
             playerRights.PermitOnly();
             ant.AwaitingCommands = true;
             try
             {
-                ant.SpotsTeamMemberBase(friend);
+                ant.SpotsTeamMemberCoreAnt(friend);
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: AI error in SpotsTeamMember(ant, ant) method", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in SpotsTeamMember(ant, ant) method", ant.Colony.Player.Guid), ex);
             }
 
             ant.AwaitingCommands = false;
@@ -267,16 +267,16 @@ namespace AntMe.Simulation
         public static void SpotsEnemy(CoreAnt ant, CoreBug bug)
         {
             AreaChanged(
-                null, new AreaChangeEventArgs(ant.colony.Player, Area.SpotsBug));
+                null, new AreaChangeEventArgs(ant.Colony.Player, Area.SpotsBug));
             playerRights.PermitOnly();
             ant.AwaitingCommands = true;
             try
             {
-                ant.SpotsEnemyBase(bug);
+                ant.SpotsEnemyCoreAnt(bug);
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: AI error in SpotsEnemy(ant, bug) method", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in SpotsEnemy(ant, bug) method", ant.Colony.Player.Guid), ex);
             }
 
             ant.AwaitingCommands = false;
@@ -292,16 +292,16 @@ namespace AntMe.Simulation
         public static void SpotsEnemy(CoreAnt ant, CoreAnt enemy)
         {
             AreaChanged(
-                null, new AreaChangeEventArgs(ant.colony.Player, Area.SpotsEnemy));
+                null, new AreaChangeEventArgs(ant.Colony.Player, Area.SpotsEnemy));
             playerRights.PermitOnly();
             ant.AwaitingCommands = true;
             try
             {
-                ant.SpotsEnemyBase(enemy);
+                ant.SpotsEnemyCoreAnt(enemy);
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: AI error in SpotsEnemy(ant, ant) method", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in SpotsEnemy(ant, ant) method", ant.Colony.Player.Guid), ex);
             }
 
             ant.AwaitingCommands = false;
@@ -318,16 +318,16 @@ namespace AntMe.Simulation
         {
             AreaChanged(
                 null,
-                new AreaChangeEventArgs(ant.colony.Player, Area.UnderAttackByAnt));
+                new AreaChangeEventArgs(ant.Colony.Player, Area.UnderAttackByAnt));
             playerRights.PermitOnly();
             ant.AwaitingCommands = true;
             try
             {
-                ant.IsUnderAttackBase(enemy);
+                ant.IsUnderAttackCoreAnt(enemy);
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: AI error in UnderAttack(ant, ant) method", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in UnderAttack(ant, ant) method", ant.Colony.Player.Guid), ex);
             }
 
             ant.AwaitingCommands = false;
@@ -345,16 +345,16 @@ namespace AntMe.Simulation
             AreaChanged(
                 null,
                 new AreaChangeEventArgs(
-                    ant.colony.Player, Area.UnderAttackByBug));
+                    ant.Colony.Player, Area.UnderAttackByBug));
             playerRights.PermitOnly();
             ant.AwaitingCommands = true;
             try
             {
-                ant.UnderAttackBase(bug);
+                ant.UnderAttackCoreAnt(bug);
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: AI error in UnderAttack(ant, bug) method", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in UnderAttack(ant, bug) method", ant.Colony.Player.Guid), ex);
             }
 
             ant.AwaitingCommands = false;
@@ -374,15 +374,15 @@ namespace AntMe.Simulation
         public static void HasDied(CoreAnt ant, CoreKindOfDeath kindOfDeath)
         {
             AreaChanged(
-                null, new AreaChangeEventArgs(ant.colony.Player, Area.HasDied));
+                null, new AreaChangeEventArgs(ant.Colony.Player, Area.HasDied));
             playerRights.PermitOnly();
             try
             {
-                ant.HasDiedBase(kindOfDeath);
+                ant.HasDiedCoreAnt(kindOfDeath);
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: AI error in HadDiedBase(kindOfDeath) method", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in HadDiedBase(kindOfDeath) method", ant.Colony.Player.Guid), ex);
             }
 
             AreaChanged(
@@ -396,16 +396,16 @@ namespace AntMe.Simulation
         public static void Tick(CoreAnt ant)
         {
             AreaChanged(
-                null, new AreaChangeEventArgs(ant.colony.Player, Area.Tick));
+                null, new AreaChangeEventArgs(ant.Colony.Player, Area.Tick));
             playerRights.PermitOnly();
             ant.AwaitingCommands = true;
             try
             {
-                ant.TickBase();
+                ant.TickCoreAnt();
             }
             catch (Exception ex)
             {
-                throw new AiException(string.Format("{0}: AI error in TickBase() method", ant.colony.Player.Guid), ex);
+                throw new AiException(string.Format("{0}: AI error in TickBase() method", ant.Colony.Player.Guid), ex);
             }
 
             ant.AwaitingCommands = false;

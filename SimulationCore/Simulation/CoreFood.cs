@@ -57,7 +57,7 @@ namespace AntMe.Simulation
         /// <summary>
         /// The position of the food on the playground.
         /// </summary>
-        public CoreCoordinate CoordinateBase
+        public CoreCoordinate CoordinateCoreInsect
         {
             get { return coordinate; }
             internal set { coordinate = value; }

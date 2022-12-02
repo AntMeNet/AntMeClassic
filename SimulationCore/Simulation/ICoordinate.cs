@@ -9,6 +9,6 @@
         /// <summary>
         /// Gets the coordinates of an object on the playground.
         /// </summary>
-        CoreCoordinate CoordinateBase { get; }
+        CoreCoordinate CoordinateCoreInsect { get; }
     }
 }

@@ -46,9 +46,9 @@ namespace AntMe.Simulation
             int load = 0;
             foreach (CoreInsect insect in InsectsCarrying)
             {
-                if (insect.colony == colony)
+                if (insect.Colony == colony)
                 {
-                    load += insect.CurrentLoadBase;
+                    load += insect.CurrentLoadCoreInsect;
                 }
             }
             return load * SimulationSettings.Custom.FruitLoadMultiplier < Amount;

@@ -192,12 +192,12 @@ namespace AntMe.Simulation
                     // the top of the list will have one energy point deducted.
                     for (int index = 0; index < SimulationSettings.Custom.BugAttack; index++)
                     {
-                        ants[index].currentEnergyBase--;
+                        ants[index].currentEnergyCoreInsect--;
                         //((Ameise)ameisen[i]).WirdAngegriffen(wanze);
                         PlayerCall.UnderAttack((CoreAnt)ants[index], bug);
-                        if (ants[index].currentEnergyBase <= 0)
+                        if (ants[index].currentEnergyCoreInsect <= 0)
                         {
-                            ants[index].colony.EatenInsects.Add(ants[index]);
+                            ants[index].Colony.EatenInsects.Add(ants[index]);
                         }
                     }
                 }
@@ -208,12 +208,12 @@ namespace AntMe.Simulation
                     int damage = SimulationSettings.Custom.BugAttack / ants.Count;
                     for (int index = 0; index < ants.Count; index++)
                     {
-                        ants[index].currentEnergyBase -= damage;
+                        ants[index].currentEnergyCoreInsect -= damage;
                         //((Ameise)ameisen[i]).WirdAngegriffen(wanze);
                         PlayerCall.UnderAttack((CoreAnt)ants[index], bug);
-                        if (ants[index].currentEnergyBase <= 0)
+                        if (ants[index].currentEnergyCoreInsect <= 0)
                         {
-                            ants[index].colony.EatenInsects.Add(ants[index]);
+                            ants[index].Colony.EatenInsects.Add(ants[index]);
                         }
                     }
                 }
@@ -226,10 +226,10 @@ namespace AntMe.Simulation
 
                 // Move the bug.
                 bug.Move();
-                if (bug.DistanceToDestinationBase == 0)
+                if (bug.DistanceToDestinationCoreInsect == 0)
                 {
-                    bug.TurnIntoDirectionBase(random.Next(360));
-                    bug.GoForwardBase(random.Next(160, 320));
+                    bug.TurnToDirectionCoreInsect(random.Next(360));
+                    bug.GoForwardCoreInsect(random.Next(160, 320));
                 }
                 bug.AwaitingCommands = false;
             }
@@ -289,7 +289,7 @@ namespace AntMe.Simulation
                         CoreAnt friend;
                         CoreAnt teammember;
                         int bugCount, enemyAntCount, colonyAntCount, casteAntCount, teamAntCount;
-                        colony.Grids[ant.CasteIndexBase].FindAndCountInsects(
+                        colony.Grids[ant.CasteIndexCoreAnt].FindAndCountInsects(
                             ant,
                             out bug,
                             out bugCount,
@@ -300,11 +300,11 @@ namespace AntMe.Simulation
                             out casteAntCount,
                             out teammember,
                             out teamAntCount);
-                        ant.BugsInViewrange = bugCount;
-                        ant.ForeignAntsInViewrange = enemyAntCount;
-                        ant.FriendlyAntsInViewrange = colonyAntCount;
-                        ant.FriendlyAntsFromSameCasteInViewrange = casteAntCount;
-                        ant.TeamAntsInViewrange = teamAntCount;
+                        ant.BugsInViewRange = bugCount;
+                        ant.EnemyAntsInViewRange = enemyAntCount;
+                        ant.ColonyAntsInViewRange = colonyAntCount;
+                        ant.CasteAntsInViewRange = casteAntCount;
+                        ant.TeamAntsInViewRange = teamAntCount;
 
                         // Move the ant.
                         ant.Move();
@@ -312,19 +312,19 @@ namespace AntMe.Simulation
                         #region Range
 
                         // Ant has exceeded its range. Ant dies.
-                        if (ant.travelledDistance > colony.RangeI[ant.CasteIndexBase])
+                        if (ant.NumberStepsWalked > colony.RangeI[ant.CasteIndexCoreAnt])
                         {
-                            ant.currentEnergyBase = 0;
+                            ant.currentEnergyCoreInsect = 0;
                             colony.StarvedInsects.Add(ant);
                             continue;
                         }
 
                         // Ant has covered a third of its range.
-                        else if (ant.travelledDistance > colony.RangeI[ant.CasteIndexBase] / 3)
+                        else if (ant.NumberStepsWalked > colony.RangeI[ant.CasteIndexCoreAnt] / 3)
                         {
-                            if (ant.IsTiredBase == false)
+                            if (ant.IsTiredCoreAnt == false)
                             {
-                                ant.IsTiredBase = true;
+                                ant.IsTiredCoreAnt = true;
                                 PlayerCall.BecomesTired(ant);
                             }
                         }
@@ -334,88 +334,88 @@ namespace AntMe.Simulation
                         #region Fight
 
                         // If the ant does not already have a corresponding target, call the events.
-                        if (bug != null && !(ant.TargetBase is CoreBug))
+                        if (bug != null && !(ant.DestinationCoreInsect is CoreBug))
                         {
                             PlayerCall.SpotsEnemy(ant, bug);
                         }
-                        if (enemy != null && !(ant.TargetBase is CoreAnt) ||
-                            (ant.TargetBase is CoreAnt && ((CoreAnt)ant.TargetBase).colony == colony))
+                        if (enemy != null && !(ant.DestinationCoreInsect is CoreAnt) ||
+                            (ant.DestinationCoreInsect is CoreAnt && ((CoreAnt)ant.DestinationCoreInsect).Colony == colony))
                         {
                             PlayerCall.SpotsEnemy(ant, enemy);
                         }
-                        if (friend != null && !(ant.TargetBase is CoreAnt) ||
-                            (ant.TargetBase is CoreAnt && ((CoreAnt)ant.TargetBase).colony != colony))
+                        if (friend != null && !(ant.DestinationCoreInsect is CoreAnt) ||
+                            (ant.DestinationCoreInsect is CoreAnt && ((CoreAnt)ant.DestinationCoreInsect).Colony != colony))
                         {
                             PlayerCall.SpotsFriend(ant, friend);
                         }
-                        if (teammember != null && !(ant.TargetBase is CoreAnt) ||
-                            (ant.TargetBase is CoreAnt && ((CoreAnt)ant.TargetBase).colony != colony))
+                        if (teammember != null && !(ant.DestinationCoreInsect is CoreAnt) ||
+                            (ant.DestinationCoreInsect is CoreAnt && ((CoreAnt)ant.DestinationCoreInsect).Colony != colony))
                         {
                             PlayerCall.SpotsTeamMember(ant, teammember);
                         }
 
                         // Fight with a bug.
-                        if (ant.TargetBase is CoreBug)
+                        if (ant.DestinationCoreInsect is CoreBug)
                         {
-                            CoreBug k = (CoreBug)ant.TargetBase;
-                            if (k.currentEnergyBase > 0)
+                            CoreBug k = (CoreBug)ant.DestinationCoreInsect;
+                            if (k.currentEnergyCoreInsect > 0)
                             {
                                 int distance =
-                                    CoreCoordinate.DetermineDistanceI(ant.CoordinateBase, ant.TargetBase.CoordinateBase);
+                                    CoreCoordinate.DetermineDistanceI(ant.CoordinateCoreInsect, ant.DestinationCoreInsect.CoordinateCoreInsect);
                                 if (distance < SimulationSettings.Custom.BattleRange * PLAYGROUND_UNIT)
                                 {
-                                    k.currentEnergyBase -= ant.AttackStrengthBase;
-                                    if (k.currentEnergyBase <= 0)
+                                    k.currentEnergyCoreInsect -= ant.AttackStrengthCoreInsect;
+                                    if (k.currentEnergyCoreInsect <= 0)
                                     {
                                         Bugs.EatenInsects.Add(k);
                                         colony.Statistic.KilledBugs++;
-                                        ant.StopMovementBase();
+                                        ant.StopMovementCoreInsect();
                                     }
                                 }
                             }
                             else
                             {
-                                ant.TargetBase = null;
+                                ant.DestinationCoreInsect = null;
                             }
                         }
 
                         // Fight with an enemy ant.
-                        else if (ant.TargetBase is CoreAnt)
+                        else if (ant.DestinationCoreInsect is CoreAnt)
                         {
-                            CoreAnt a = (CoreAnt)ant.TargetBase;
-                            if (a.colony != colony && a.currentEnergyBase > 0)
+                            CoreAnt a = (CoreAnt)ant.DestinationCoreInsect;
+                            if (a.Colony != colony && a.currentEnergyCoreInsect > 0)
                             {
                                 int distance =
-                                    CoreCoordinate.DetermineDistanceI(ant.CoordinateBase, ant.TargetBase.CoordinateBase);
+                                    CoreCoordinate.DetermineDistanceI(ant.CoordinateCoreInsect, ant.DestinationCoreInsect.CoordinateCoreInsect);
                                 if (distance < SimulationSettings.Custom.BattleRange * PLAYGROUND_UNIT)
                                 {
                                     PlayerCall.UnderAttack(a, ant);
-                                    a.currentEnergyBase -= ant.AttackStrengthBase;
-                                    if (a.currentEnergyBase <= 0)
+                                    a.currentEnergyCoreInsect -= ant.AttackStrengthCoreInsect;
+                                    if (a.currentEnergyCoreInsect <= 0)
                                     {
-                                        a.colony.BeatenInsects.Add(a);
+                                        a.Colony.BeatenInsects.Add(a);
                                         colony.Statistic.KilledAnts++;
-                                        ant.StopMovementBase();
+                                        ant.StopMovementCoreInsect();
                                     }
                                 }
                             }
                             else
                             {
-                                ant.TargetBase = null;
+                                ant.DestinationCoreInsect = null;
                             }
                         }
 
                         #endregion
 
                         // Check if the ant has reached its destination.
-                        if (ant.ArrivedBase)
+                        if (ant.ArrivedCoreInsect)
                         {
                             antAndTarget(ant);
                         }
 
                         // Check if the ant sees a pile of sugar or a fruit.
                         antAndSugar(ant);
-                        if (ant.CarryingFruitBase == null)
+                        if (ant.CarryingFruitCoreInsect == null)
                         {
                             antAndFruit(ant);
                         }
@@ -423,7 +423,7 @@ namespace AntMe.Simulation
                         // Check whether the ant notices a mark.
                         antAndMarkers(ant);
 
-                        if (ant.TargetBase == null && ant.DistanceToDestinationBase == 0)
+                        if (ant.DestinationCoreInsect == null && ant.DistanceToDestinationCoreInsect == 0)
                         {
                             PlayerCall.Waits(ant);
                         }

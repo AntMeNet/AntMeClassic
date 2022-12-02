@@ -12,7 +12,7 @@
         /// </summary>
         public override int Id
         {
-            get { return ((Simulation.CoreInsect)element).id; }
+            get { return ((Simulation.CoreInsect)element).Id; }
         }
 
         /// <summary>
@@ -20,7 +20,7 @@
         /// </summary>
         public int AktuelleEnergie
         {
-            get { return ((Simulation.CoreInsect)element).currentEnergyBase; }
+            get { return ((Simulation.CoreInsect)element).currentEnergyCoreInsect; }
         }
 
         /// <summary>
@@ -28,7 +28,7 @@
         /// </summary>
         public int AktuelleGeschwindigkeit
         {
-            get { return ((Simulation.CoreInsect)element).CurrentSpeedBase; }
+            get { return ((Simulation.CoreInsect)element).CurrentSpeedCoreInsect; }
         }
 
         /// <summary>
@@ -36,7 +36,7 @@
         /// </summary>
         public int Angriffstaerke
         {
-            get { return ((Simulation.CoreInsect)element).AttackStrengthBase; }
+            get { return ((Simulation.CoreInsect)element).AttackStrengthCoreInsect; }
         }
 
         /// <summary>
@@ -44,7 +44,7 @@
         /// </summary>
         public int Drehgeschwindigkeit
         {
-            get { return ((Simulation.CoreInsect)element).RotationSpeedBase; }
+            get { return ((Simulation.CoreInsect)element).RotationSpeedCoreInsect; }
         }
 
         /// <summary>
@@ -52,7 +52,7 @@
         /// </summary>
         public int MaximaleEnergie
         {
-            get { return ((Simulation.CoreInsect)element).MaximumEnergyBase; }
+            get { return ((Simulation.CoreInsect)element).MaximumEnergyCoreInsect; }
         }
 
         /// <summary>
@@ -60,7 +60,7 @@
         /// </summary>
         public int MaximaleGeschwindigkeit
         {
-            get { return ((Simulation.CoreInsect)element).MaximumSpeedBase; }
+            get { return ((Simulation.CoreInsect)element).MaximumSpeedCoreInsect; }
         }
 
         /// <summary>
@@ -68,7 +68,7 @@
         /// </summary>
         public int Sichtweite
         {
-            get { return ((Simulation.CoreInsect)element).ViewRangeBase; }
+            get { return ((Simulation.CoreInsect)element).ViewRangeCoreInsect; }
         }
 
         /// <summary>
@@ -84,7 +84,7 @@
         /// </summary>
         public int Richtung
         {
-            get { return ((Simulation.CoreInsect)element).DirectionBase; }
+            get { return ((Simulation.CoreInsect)element).GetDirectionCoreInsect(); }
         }
 
         /// <summary>
@@ -92,7 +92,7 @@
         /// </summary>
         public int RestStrecke
         {
-            get { return ((Simulation.CoreInsect)element).DistanceToDestinationBase; }
+            get { return ((Simulation.CoreInsect)element).DistanceToDestinationCoreInsect; }
         }
     }
 }

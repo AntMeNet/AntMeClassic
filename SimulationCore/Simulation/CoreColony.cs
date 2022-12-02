@@ -253,7 +253,7 @@ namespace AntMe.Simulation
 
             // add insect to the insects list
             InsectsList.Add(insect);
-            antsInCaste[insect.CasteIndexBase]++;
+            antsInCaste[insect.CasteIndexCoreInsect]++;
         }
 
         /// <summary>
@@ -264,7 +264,7 @@ namespace AntMe.Simulation
         {
             if (InsectsList.Remove(insect))
             {
-                antsInCaste[insect.CasteIndexBase]--;
+                antsInCaste[insect.CasteIndexCoreInsect]--;
             }
         }
 

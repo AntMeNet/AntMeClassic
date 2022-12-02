@@ -39,7 +39,7 @@ namespace AntMe.Simulation
         /// <summary>
         /// The position of the ant hill on the playground.
         /// </summary>
-        public CoreCoordinate CoordinateBase
+        public CoreCoordinate CoordinateCoreInsect
         {
             get { return coordinate; }
             internal set { coordinate = value; }

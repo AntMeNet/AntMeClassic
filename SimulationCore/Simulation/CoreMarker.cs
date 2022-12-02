@@ -85,7 +85,7 @@ namespace AntMe.Simulation
         /// <summary>
         /// The position of the marker on the playground.
         /// </summary>
-        public CoreCoordinate CoordinateBase
+        public CoreCoordinate CoordinateCoreInsect
         {
             get { return coordinate; }
         }

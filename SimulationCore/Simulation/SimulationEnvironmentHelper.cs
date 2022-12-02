@@ -182,7 +182,7 @@ namespace AntMe.Simulation
                     CoreAnthill anthill = colony.AntHills[i];
                     if (anthill != null)
                     {
-                        int distanceI = CoreCoordinate.DetermineDistanceI(fruit.CoordinateBase, anthill.CoordinateBase);
+                        int distanceI = CoreCoordinate.DetermineDistanceI(fruit.CoordinateCoreInsect, anthill.CoordinateCoreInsect);
                         if (distanceI <= PLAYGROUND_UNIT)
                         {
                             //gemerktesObst.Add(obst);
@@ -196,11 +196,11 @@ namespace AntMe.Simulation
                                 CoreInsect insect = fruit.InsectsCarrying[z];
                                 if (insect != null)
                                 {
-                                    insect.CarryingFruitBase = null;
-                                    insect.CurrentLoadBase = 0;
+                                    insect.CarryingFruitCoreInsect = null;
+                                    insect.CurrentLoadCoreInsect = 0;
                                     insect.DistanceToDestination = 0;
                                     insect.ResidualAngle = 0;
-                                    insect.GoToAnthillBase();
+                                    insect.GoToAnthillCoreInsect();
                                 }
                             }
                             fruit.InsectsCarrying.Clear();
@@ -229,25 +229,25 @@ namespace AntMe.Simulation
         private static void antAndTarget(CoreAnt ant)
         {
             // Ant hill.
-            if (ant.TargetBase is CoreAnthill)
+            if (ant.DestinationCoreInsect is CoreAnthill)
             {
-                if (ant.CarryingFruitBase == null)
+                if (ant.CarryingFruitCoreInsect == null)
                 {
-                    ant.travelledDistance = 0;
-                    ant.TargetBase = null;
+                    ant.NumberStepsWalked = 0;
+                    ant.DestinationCoreInsect = null;
                     ant.SmelledMarker.Clear();
-                    ant.colony.Statistic.CollectedFood += ant.CurrentLoadBase;
-                    ant.CurrentLoadBase = 0;
-                    ant.currentEnergyBase = ant.MaximumEnergyBase;
-                    ant.IsTiredBase = false;
+                    ant.Colony.Statistic.CollectedFood += ant.CurrentLoadCoreInsect;
+                    ant.CurrentLoadCoreInsect = 0;
+                    ant.currentEnergyCoreInsect = ant.MaximumEnergyCoreInsect;
+                    ant.IsTiredCoreAnt = false;
                 }
             }
 
             // Sugar hill.
-            else if (ant.TargetBase is CoreSugar)
+            else if (ant.DestinationCoreInsect is CoreSugar)
             {
-                CoreSugar sugar = (CoreSugar)ant.TargetBase;
-                ant.TargetBase = null;
+                CoreSugar sugar = (CoreSugar)ant.DestinationCoreInsect;
+                ant.DestinationCoreInsect = null;
                 if (sugar.Amount > 0)
                 {
                     PlayerCall.TargetReached(ant, sugar);
@@ -255,10 +255,10 @@ namespace AntMe.Simulation
             }
 
             // Fruit.
-            else if (ant.TargetBase is CoreFruit)
+            else if (ant.DestinationCoreInsect is CoreFruit)
             {
-                CoreFruit fruit = (CoreFruit)ant.TargetBase;
-                ant.TargetBase = null;
+                CoreFruit fruit = (CoreFruit)ant.DestinationCoreInsect;
+                ant.DestinationCoreInsect = null;
                 if (fruit.Amount > 0)
                 {
                     PlayerCall.TargetReached(ant, fruit);
@@ -266,12 +266,12 @@ namespace AntMe.Simulation
             }
 
             // Insect.
-            else if (ant.TargetBase is CoreInsect) { }
+            else if (ant.DestinationCoreInsect is CoreInsect) { }
 
             // Other target.
             else
             {
-                ant.TargetBase = null;
+                ant.DestinationCoreInsect = null;
             }
         }
 
@@ -284,8 +284,8 @@ namespace AntMe.Simulation
             for (int i = 0; i < Playground.SugarHillsList.Count; i++)
             {
                 CoreSugar sugar = Playground.SugarHillsList[i];
-                int distanceI = CoreCoordinate.DetermineDistanceI(ant.CoordinateBase, sugar.CoordinateBase);
-                if (ant.TargetBase != sugar && distanceI <= ant.ViewRangeI)
+                int distanceI = CoreCoordinate.DetermineDistanceI(ant.CoordinateCoreInsect, sugar.CoordinateCoreInsect);
+                if (ant.DestinationCoreInsect != sugar && distanceI <= ant.ViewRangeI)
                 {
                     PlayerCall.Spots(ant, sugar);
                 }
@@ -301,8 +301,8 @@ namespace AntMe.Simulation
             for (int i = 0; i < Playground.FruitsList.Count; i++)
             {
                 CoreFruit fruit = Playground.FruitsList[i];
-                int distanceI = CoreCoordinate.DetermineDistanceI(ant.CoordinateBase, fruit.CoordinateBase);
-                if (ant.TargetBase != fruit && distanceI <= ant.ViewRangeI)
+                int distanceI = CoreCoordinate.DetermineDistanceI(ant.CoordinateCoreInsect, fruit.CoordinateCoreInsect);
+                if (ant.DestinationCoreInsect != fruit && distanceI <= ant.ViewRangeI)
                 {
                     PlayerCall.Spots(ant, fruit);
                 }
@@ -315,7 +315,7 @@ namespace AntMe.Simulation
         /// <param name="ant">ant</param>
         private static void antAndMarkers(CoreAnt ant)
         {
-            CoreMarker marker = ant.colony.Marker.FindMarker(ant);
+            CoreMarker marker = ant.Colony.Marker.FindMarker(ant);
             if (marker != null)
             {
                 PlayerCall.SmellsFriend(ant, marker);
@@ -417,11 +417,11 @@ namespace AntMe.Simulation
 
                     fruit.InsectsCarrying.ForEach(delegate (CoreInsect insect)
                     {
-                        if (insect.TargetBase != fruit && insect.ResidualAngle == 0)
+                        if (insect.DestinationCoreInsect != fruit && insect.ResidualAngle == 0)
                         {
-                            dx += Cos[insect.currentSpeedI, insect.DirectionBase];
-                            dy += Sin[insect.currentSpeedI, insect.DirectionBase];
-                            last += insect.CurrentLoadBase;
+                            dx += Cos[insect.currentSpeedICoreInsect, insect.GetDirectionCoreInsect()];
+                            dy += Sin[insect.currentSpeedICoreInsect, insect.GetDirectionCoreInsect()];
+                            last += insect.CurrentLoadCoreInsect;
                         }
                     });
 
@@ -429,9 +429,9 @@ namespace AntMe.Simulation
                     dx = dx * last / fruit.Amount / fruit.InsectsCarrying.Count;
                     dy = dy * last / fruit.Amount / fruit.InsectsCarrying.Count;
 
-                    fruit.CoordinateBase = new CoreCoordinate(fruit.CoordinateBase, dx, dy);
+                    fruit.CoordinateCoreInsect = new CoreCoordinate(fruit.CoordinateCoreInsect, dx, dy);
                     fruit.InsectsCarrying.ForEach(
-                      delegate (CoreInsect insect) { insect.CoordinateBase = new CoreCoordinate(insect.CoordinateBase, dx, dy); });
+                      delegate (CoreInsect insect) { insect.CoordinateCoreInsect = new CoreCoordinate(insect.CoordinateCoreInsect, dx, dy); });
                 }
             });
             //foreach(CoreFruit obst in Playground.Fruits) {
@@ -509,7 +509,7 @@ namespace AntMe.Simulation
                 {
                     int distance =
                       CoreCoordinate.DetermineDistanceToCenter
-                        (marker.CoordinateBase, newMarker.CoordinateBase);
+                        (marker.CoordinateCoreInsect, newMarker.CoordinateCoreInsect);
                     if (distance < SimulationSettings.Custom.MarkerDistance * PLAYGROUND_UNIT)
                     {
                         tooNear = true;
@@ -562,9 +562,9 @@ namespace AntMe.Simulation
                     CoreBug bug = Bugs.InsectsList[i] as CoreBug;
                     if (bug != null)
                     {
-                        if (bug.currentEnergyBase < bug.MaximumEnergyBase)
+                        if (bug.currentEnergyCoreInsect < bug.MaximumEnergyCoreInsect)
                         {
-                            bug.currentEnergyBase += SimulationSettings.Custom.BugRegenerationValue;
+                            bug.currentEnergyCoreInsect += SimulationSettings.Custom.BugRegenerationValue;
                         }
                     }
                 }

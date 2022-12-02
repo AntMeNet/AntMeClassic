@@ -115,8 +115,8 @@ namespace AntMe.Simulation
         /// <summary>
         /// Direction the item is oriented to, not all items need a direction.
         /// The items needing a direction usually have methods to turn themself
-        /// to the direction. This is not part of conventional coordinate systems
-        /// but the CoreCoordinate struct is good place to store this information
+        /// to a direction. This is not part of conventional coordinate systems
+        /// but the CoreCoordinate struct is good place to store this information.
         /// </summary>
         internal int Direction
         {
@@ -143,7 +143,7 @@ namespace AntMe.Simulation
         /// <returns>Distance in steps.</returns>
         internal static int DetermineDistance(ICoordinate o1, ICoordinate o2)
         {
-            return DetermineDistanceI(o1.CoordinateBase, o2.CoordinateBase) / SimulationEnvironment.PLAYGROUND_UNIT;
+            return DetermineDistanceI(o1.CoordinateCoreInsect, o2.CoordinateCoreInsect) / SimulationEnvironment.PLAYGROUND_UNIT;
         }
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace AntMe.Simulation
         /// <returns>Direction.</returns>
         internal static int DetermineDirection(ICoordinate i1, ICoordinate i2)
         {
-            return DetermineDirection(i1.CoordinateBase, i2.CoordinateBase);
+            return DetermineDirection(i1.CoordinateCoreInsect, i2.CoordinateCoreInsect);
         }
 
         /// <summary>

@@ -18,10 +18,10 @@ namespace AntMe.Simulation
         internal override void Init(CoreColony colony, Random random, Dictionary<string, int> existingInsects)
         {
             base.Init(colony, random, existingInsects);
-            coordinate.Radius = 4;
-            currentEnergyBase = colony.EnergyI[0];
-            currentSpeedI = colony.SpeedI[0];
-            AttackStrengthBase = colony.AttackI[0];
+            Coordinate.Radius = 4;
+            currentEnergyCoreInsect = colony.EnergyI[0];
+            currentSpeedICoreInsect = colony.SpeedI[0];
+            AttackStrengthCoreInsect = colony.AttackI[0];
         }
 
         /// <summary>
@@ -30,11 +30,11 @@ namespace AntMe.Simulation
         /// <returns></returns>
         internal BugState GenerateInformation()
         {
-            BugState info = new BugState((ushort)id);
-            info.PositionX = (ushort)(CoordinateBase.X / SimulationEnvironment.PLAYGROUND_UNIT);
-            info.PositionY = (ushort)(CoordinateBase.Y / SimulationEnvironment.PLAYGROUND_UNIT);
-            info.Direction = (ushort)CoordinateBase.Direction;
-            info.Vitality = (ushort)currentEnergyBase;
+            BugState info = new BugState((ushort)Id);
+            info.PositionX = (ushort)(CoordinateCoreInsect.X / SimulationEnvironment.PLAYGROUND_UNIT);
+            info.PositionY = (ushort)(CoordinateCoreInsect.Y / SimulationEnvironment.PLAYGROUND_UNIT);
+            info.Direction = (ushort)CoordinateCoreInsect.Direction;
+            info.Vitality = (ushort)currentEnergyCoreInsect;
             return info;
         }
     }

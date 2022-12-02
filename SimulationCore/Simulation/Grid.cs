@@ -163,8 +163,8 @@ namespace AntMe.Simulation
 
         public void Add(T element)
         {
-            int c = element.CoordinateBase.X / sideLength;
-            int r = element.CoordinateBase.Y / sideLength;
+            int c = element.CoordinateCoreInsect.X / sideLength;
+            int r = element.CoordinateCoreInsect.Y / sideLength;
             if (c < 0 || c >= columns || r < 0 || r >= rows)
                 return;
 
@@ -184,8 +184,8 @@ namespace AntMe.Simulation
 
         public bool Remove(T element)
         {
-            int c = element.CoordinateBase.X / sideLength;
-            int r = element.CoordinateBase.Y / sideLength;
+            int c = element.CoordinateCoreInsect.X / sideLength;
+            int r = element.CoordinateCoreInsect.Y / sideLength;
             if (c < 0 || c >= columns || r < 0 || r >= rows)
                 return false;
 
@@ -207,8 +207,8 @@ namespace AntMe.Simulation
 
         public bool Contains(T element)
         {
-            int c = element.CoordinateBase.X / sideLength;
-            int r = element.CoordinateBase.Y / sideLength;
+            int c = element.CoordinateCoreInsect.X / sideLength;
+            int r = element.CoordinateCoreInsect.Y / sideLength;
             if (c < 0 || c >= columns || r < 0 || r >= rows)
                 return false;
             return cells[c, r].Contains(element);
@@ -271,8 +271,8 @@ namespace AntMe.Simulation
             List<Tupel> tupels = new List<Tupel>();
 
             // Determine the cell in which the given game element is located.
-            int col = coordinate.CoordinateBase.X / sideLength;
-            int row = coordinate.CoordinateBase.Y / sideLength;
+            int col = coordinate.CoordinateCoreInsect.X / sideLength;
+            int row = coordinate.CoordinateCoreInsect.Y / sideLength;
 
             // Consider the cell and the eight cells next to it.
             for (int c = -1; c <= 1; c++)
@@ -286,7 +286,7 @@ namespace AntMe.Simulation
                                 if (cell[i].Equals(coordinate))
                                     continue;
 
-                                int distance = CoreCoordinate.DetermineDistanceI(coordinate.CoordinateBase, cell[i].CoordinateBase);
+                                int distance = CoreCoordinate.DetermineDistanceI(coordinate.CoordinateCoreInsect, cell[i].CoordinateCoreInsect);
                                 if (distance <= maximumDistance)
                                     tupels.Add(new Tupel(cell[i], distance));
                             }
@@ -316,8 +316,8 @@ namespace AntMe.Simulation
             List<T> ants = new List<T>();
 
             // Determine the cell in which the given bug is located.
-            int col = bug.CoordinateBase.X / sideLength;
-            int row = bug.CoordinateBase.Y / sideLength;
+            int col = bug.CoordinateCoreInsect.X / sideLength;
+            int row = bug.CoordinateCoreInsect.Y / sideLength;
 
             // Consider the cell and the eight cells next to it.
             for (int c = -1; c <= 1; c++)
@@ -328,7 +328,7 @@ namespace AntMe.Simulation
                             List<T> cell = cells[col + c, row + r];
                             for (int i = 0; i < cell.Count; i++)
                             {
-                                int distance = CoreCoordinate.DetermineDistanceI(bug.CoordinateBase, cell[i].CoordinateBase);
+                                int distance = CoreCoordinate.DetermineDistanceI(bug.CoordinateCoreInsect, cell[i].CoordinateCoreInsect);
                                 if (distance <= sideLength)
                                     ants.Add(cell[i]);
                             }
@@ -352,8 +352,8 @@ namespace AntMe.Simulation
             int nearestMarkerDistance = int.MaxValue;
 
             // Determine the cell in which the given ant is located.
-            int col = ant.CoordinateBase.X / sideLength;
-            int row = ant.CoordinateBase.Y / sideLength;
+            int col = ant.CoordinateCoreInsect.X / sideLength;
+            int row = ant.CoordinateCoreInsect.Y / sideLength;
 
             // Consider the cell and the eight cells next to it.
             for (int c = -1; c <= 1; c++)
@@ -370,8 +370,8 @@ namespace AntMe.Simulation
                                 Debug.Assert(marker != null);
 
                                 // Determine the distance between the centers and the circles.
-                                int distance = CoreCoordinate.DetermineDistanceToCenter(ant.CoordinateBase, marker.CoordinateBase);
-                                int circleDistance = distance - ant.CoordinateBase.Radius - marker.CoordinateBase.Radius;
+                                int distance = CoreCoordinate.DetermineDistanceToCenter(ant.CoordinateCoreInsect, marker.CoordinateCoreInsect);
+                                int circleDistance = distance - ant.CoordinateCoreInsect.Radius - marker.CoordinateCoreInsect.Radius;
 
                                 // The new marker has not yet been smelled and is closer than the remembered one.
                                 if (circleDistance <= 0 && distance < nearestMarkerDistance &&
@@ -429,8 +429,8 @@ namespace AntMe.Simulation
             teamAntCount = 0;
 
             // Determine the cell in which the given ant is located.
-            int col = ant.CoordinateBase.X / sideLength;
-            int row = ant.CoordinateBase.Y / sideLength;
+            int col = ant.CoordinateCoreInsect.X / sideLength;
+            int row = ant.CoordinateCoreInsect.Y / sideLength;
 
             // Consider the cell and the eight cells next to it.
             for (int c = -1; c <= 1; c++)
@@ -451,15 +451,15 @@ namespace AntMe.Simulation
 
                                 // Compare the distance to the current insect with the ant's visibility
                                 // or the side length of the grid.
-                                int distance = CoreCoordinate.DetermineDistanceI(ant.CoordinateBase, insect.CoordinateBase);
+                                int distance = CoreCoordinate.DetermineDistanceI(ant.CoordinateCoreInsect, insect.CoordinateCoreInsect);
                                 if (distance > sideLength)
                                     continue;
 
                                 // Same colony. The query "insect is CoreAnt" is unnecessary.
-                                if (insect.colony == ant.colony)
+                                if (insect.Colony == ant.Colony)
                                 {
                                     colonyAntCount++;
-                                    if (insect.CasteIndexBase == ant.CasteIndexBase)
+                                    if (insect.CasteIndexCoreInsect == ant.CasteIndexCoreAnt)
                                         casteAntCount++;
 
                                     // The new ant is closer than the remembered one.
@@ -471,7 +471,7 @@ namespace AntMe.Simulation
                                 }
 
                                 // Same team.
-                                else if (insect.colony.Team == ant.colony.Team)
+                                else if (insect.Colony.Team == ant.Colony.Team)
                                 {
                                     teamAntCount++;
 

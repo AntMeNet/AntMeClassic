@@ -7,7 +7,7 @@ namespace AntMe.English
     /// </summary>
     public sealed class Marker : Item
     {
-        internal Marker(CoreMarker markierung) : base(markierung) { }
+        internal Marker(CoreMarker marker) : base(marker) { }
 
         /// <summary>
         /// Gives the information saved in that mark.
