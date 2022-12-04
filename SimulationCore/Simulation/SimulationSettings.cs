@@ -230,7 +230,7 @@ namespace AntMe.Simulation
         public int SugarAmountMinimum;
 
         /// <summary>
-        /// Maximum amount of food in sugar-hills.
+        /// Maximum amount of food in sugar hills.
         /// </summary>
         public int SugarAmountMaximum;
 

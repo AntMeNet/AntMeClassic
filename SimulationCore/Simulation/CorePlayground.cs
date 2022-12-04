@@ -267,7 +267,7 @@ namespace AntMe.Simulation
         public void NewSugar()
         {
             Cell cell = FindFoodSpawnCell();
-            int value = mapRandom.Next(SimulationSettings.Custom.SugarAmountMinimum, SimulationSettings.Custom.SugarAmountMaximum);
+            int value = mapRandom.Next(SimulationSettings.Default.SugarAmountMinimum, SimulationSettings.Default.SugarAmountMaximum);
             Vector2D vector2D = cell.Position + new Vector2D(mapRandom.Next(cell.Width), mapRandom.Next(cell.Height));
             CoreSugar sugar = new CoreSugar(vector2D.X, vector2D.Y, value);
             SugarHillsList.Add(sugar);
@@ -292,7 +292,7 @@ namespace AntMe.Simulation
         public void NewFruit()
         {
             Cell cell = FindFoodSpawnCell();
-            int value = mapRandom.Next(SimulationSettings.Custom.FruitAmountMinimum, SimulationSettings.Custom.FruitAmountMaximum);
+            int value = mapRandom.Next(SimulationSettings.Default.FruitAmountMinimum, SimulationSettings.Default.FruitAmountMaximum);
             Vector2D vector2D = cell.Position + new Vector2D(mapRandom.Next(cell.Width), mapRandom.Next(cell.Height));
             CoreFruit Fruit = new CoreFruit(vector2D.X, vector2D.Y, value);
             FruitsList.Add(Fruit);
