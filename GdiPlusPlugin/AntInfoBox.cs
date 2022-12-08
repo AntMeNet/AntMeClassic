@@ -24,6 +24,9 @@ namespace AntMe.Plugin.GdiPlusPlugin
         /// Constructor of new ant information box instance
         /// </summary>
         /// <param name="ant">ant</param>
+        /// <param name="colonyId">colony ID</param>
+        /// <param name="colonyName">colony name</param>
+        /// <param name="casteName">caste name</param>
         /// <param name="brush">brush</param>
         public AntInfoBox(AntState ant, int colonyId, string colonyName, string casteName, Brush brush)
         {

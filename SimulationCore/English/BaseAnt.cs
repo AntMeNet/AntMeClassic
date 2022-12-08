@@ -1,4 +1,5 @@
-﻿using AntMe.Simulation;
+﻿using System;
+using AntMe.Simulation;
 using System.Collections.Generic;
 
 namespace AntMe.English
@@ -17,12 +18,12 @@ namespace AntMe.English
         }
 
         /// <summary>
-        /// Every time that a new ant is born, its job group must be set. You can do 
+        /// Every time a new ant is born, its caste must be set. You can do 
         /// so with the help of the value returned by this method.
         /// </summary>
-        /// <param name="typeCount">Number of ants for every caste</param>
-        /// <returns>Caste-Name for the next ant</returns>
-        public virtual string ChooseCaste(Dictionary<string, int> typeCount)
+        /// <param name="number">Dictionary with caste name and corresponding number of ants in this caste</param>
+        /// <returns>Caste name for the next ant</returns>
+        public virtual string ChooseCaste(Dictionary<string, int> number)
         {
             return string.Empty;
         }
@@ -351,6 +352,7 @@ namespace AntMe.English
                         return null;
                 }
             }
+            set => throw new NotImplementedException();
         }
 
         /// <summary>
@@ -602,7 +604,21 @@ namespace AntMe.English
         /// Returns the name of the ant's caste.
         /// <see href="https://wiki.antme.net/docs/commands#misc">Read more</see>
         /// </summary>
-        public string Caste => ((CoreInsect)this).CasteCoreInsect;
+        public string Caste
+        {
+            get
+            {
+                try
+                {
+                    return ((CoreInsect)this).CasteCoreInsect;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+            }
+        }
 
         /// <summary>
         /// Returns how many steps forward the ant must go before it reaches 
