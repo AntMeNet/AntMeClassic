@@ -20,7 +20,7 @@
         /// </summary>
         public int AktuelleEnergie
         {
-            get { return ((Simulation.CoreInsect)element).currentEnergyCoreInsect; }
+            get { return ((Simulation.CoreInsect)element).CurrentEnergyCoreInsect; }
         }
 
         /// <summary>

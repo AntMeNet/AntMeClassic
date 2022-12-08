@@ -42,7 +42,7 @@ namespace AntMe.Simulation
 
             // Set ants properties depending on its caste.
             CasteIndexCoreAnt = casteIndex;
-            currentEnergyCoreInsect = colony.EnergyI[casteIndex];
+            CurrentEnergyCoreInsect = colony.EnergyI[casteIndex];
             currentSpeedICoreInsect = colony.SpeedI[casteIndex];
             AttackStrengthCoreInsect = colony.AttackI[casteIndex];
         }
@@ -91,7 +91,7 @@ namespace AntMe.Simulation
                     antState.LoadType = LoadType.Fruit;
                 else
                     antState.LoadType = LoadType.Sugar;
-            antState.Vitality = currentEnergyCoreInsect;
+            antState.Vitality = CurrentEnergyCoreInsect;
 
             if (DestinationCoreInsect is CoreAnthill)
                 antState.TargetType = TargetType.Anthill;

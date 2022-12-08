@@ -238,7 +238,7 @@ namespace AntMe.Simulation
                     ant.SmelledMarker.Clear();
                     ant.Colony.Statistic.CollectedFood += ant.CurrentLoadCoreInsect;
                     ant.CurrentLoadCoreInsect = 0;
-                    ant.currentEnergyCoreInsect = ant.MaximumEnergyCoreInsect;
+                    ant.CurrentEnergyCoreInsect = ant.MaximumEnergyCoreInsect;
                     ant.IsTiredCoreAnt = false;
                 }
             }
@@ -562,9 +562,9 @@ namespace AntMe.Simulation
                     CoreBug bug = Bugs.InsectsList[i] as CoreBug;
                     if (bug != null)
                     {
-                        if (bug.currentEnergyCoreInsect < bug.MaximumEnergyCoreInsect)
+                        if (bug.CurrentEnergyCoreInsect < bug.MaximumEnergyCoreInsect)
                         {
-                            bug.currentEnergyCoreInsect += SimulationSettings.Custom.BugRegenerationValue;
+                            bug.CurrentEnergyCoreInsect += SimulationSettings.Custom.BugRegenerationValue;
                         }
                     }
                 }

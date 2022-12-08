@@ -19,7 +19,7 @@ namespace AntMe.Simulation
         {
             base.Init(colony, random, existingInsects);
             Coordinate.Radius = 4;
-            currentEnergyCoreInsect = colony.EnergyI[0];
+            CurrentEnergyCoreInsect = colony.EnergyI[0];
             currentSpeedICoreInsect = colony.SpeedI[0];
             AttackStrengthCoreInsect = colony.AttackI[0];
         }
@@ -34,7 +34,7 @@ namespace AntMe.Simulation
             info.PositionX = (ushort)(CoordinateCoreInsect.X / SimulationEnvironment.PLAYGROUND_UNIT);
             info.PositionY = (ushort)(CoordinateCoreInsect.Y / SimulationEnvironment.PLAYGROUND_UNIT);
             info.Direction = (ushort)CoordinateCoreInsect.Direction;
-            info.Vitality = (ushort)currentEnergyCoreInsect;
+            info.Vitality = (ushort)CurrentEnergyCoreInsect;
             return info;
         }
     }

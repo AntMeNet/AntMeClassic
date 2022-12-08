@@ -17,7 +17,7 @@ namespace AntMe.English
         /// <summary>
         /// Returns the current energy of this insect.
         /// </summary>
-        public int CurrentEnergy => ((CoreInsect)Baseitem).currentEnergyCoreInsect;
+        public int CurrentEnergy => ((CoreInsect)Baseitem).CurrentEnergyCoreInsect;
 
         /// <summary>
         /// Returns the current speed of the insect.

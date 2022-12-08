@@ -526,7 +526,7 @@ namespace AntMe.Deutsch
         /// </summary>
         public int AktuelleEnergie
         {
-            get { return currentEnergyCoreInsect; }
+            get { return CurrentEnergyCoreInsect; }
         }
 
         /// <summary>

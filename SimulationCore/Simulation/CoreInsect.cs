@@ -809,15 +809,15 @@ namespace AntMe.Simulation
 
         #region Energy
 
-        private int currentEngergy;
+        private int currentEnergy;
 
         /// <summary>
         /// The insect's current energy.
         /// </summary>
-        internal int currentEnergyCoreInsect
+        internal int CurrentEnergyCoreInsect
         {
-            get => currentEngergy;
-            set => currentEngergy = value >= 0 ? value : 0;
+            get => currentEnergy;
+            set => currentEnergy = value >= 0 ? value : 0;
         }
 
         /// <summary>

@@ -323,7 +323,7 @@ namespace AntMe.English
         /// MaximumEnergy.
         /// <see href="https://wiki.antme.net/docs/commands#misc">Read more</see>
         /// </summary>
-        public int CurrentEnergy => currentEnergyCoreInsect;
+        public int CurrentEnergy => CurrentEnergyCoreInsect;
 
         /// <summary>
         /// Returns the ant's current destination. If the ant currently has no 

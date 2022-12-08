@@ -192,10 +192,10 @@ namespace AntMe.Simulation
                     // the top of the list will have one energy point deducted.
                     for (int index = 0; index < SimulationSettings.Custom.BugAttack; index++)
                     {
-                        ants[index].currentEnergyCoreInsect--;
+                        ants[index].CurrentEnergyCoreInsect--;
                         //((Ameise)ameisen[i]).WirdAngegriffen(wanze);
                         PlayerCall.UnderAttack((CoreAnt)ants[index], bug);
-                        if (ants[index].currentEnergyCoreInsect <= 0)
+                        if (ants[index].CurrentEnergyCoreInsect <= 0)
                         {
                             ants[index].Colony.EatenInsects.Add(ants[index]);
                         }
@@ -208,10 +208,10 @@ namespace AntMe.Simulation
                     int damage = SimulationSettings.Custom.BugAttack / ants.Count;
                     for (int index = 0; index < ants.Count; index++)
                     {
-                        ants[index].currentEnergyCoreInsect -= damage;
+                        ants[index].CurrentEnergyCoreInsect -= damage;
                         //((Ameise)ameisen[i]).WirdAngegriffen(wanze);
                         PlayerCall.UnderAttack((CoreAnt)ants[index], bug);
-                        if (ants[index].currentEnergyCoreInsect <= 0)
+                        if (ants[index].CurrentEnergyCoreInsect <= 0)
                         {
                             ants[index].Colony.EatenInsects.Add(ants[index]);
                         }
@@ -314,7 +314,7 @@ namespace AntMe.Simulation
                         // Ant has exceeded its range. Ant dies.
                         if (ant.NumberStepsWalked > colony.RangeI[ant.CasteIndexCoreAnt])
                         {
-                            ant.currentEnergyCoreInsect = 0;
+                            ant.CurrentEnergyCoreInsect = 0;
                             colony.StarvedInsects.Add(ant);
                             continue;
                         }
@@ -358,14 +358,14 @@ namespace AntMe.Simulation
                         if (ant.DestinationCoreInsect is CoreBug)
                         {
                             CoreBug k = (CoreBug)ant.DestinationCoreInsect;
-                            if (k.currentEnergyCoreInsect > 0)
+                            if (k.CurrentEnergyCoreInsect > 0)
                             {
                                 int distance =
                                     CoreCoordinate.DetermineDistanceI(ant.CoordinateCoreInsect, ant.DestinationCoreInsect.CoordinateCoreInsect);
                                 if (distance < SimulationSettings.Custom.BattleRange * PLAYGROUND_UNIT)
                                 {
-                                    k.currentEnergyCoreInsect -= ant.AttackStrengthCoreInsect;
-                                    if (k.currentEnergyCoreInsect <= 0)
+                                    k.CurrentEnergyCoreInsect -= ant.AttackStrengthCoreInsect;
+                                    if (k.CurrentEnergyCoreInsect <= 0)
                                     {
                                         Bugs.EatenInsects.Add(k);
                                         colony.Statistic.KilledBugs++;
@@ -383,15 +383,15 @@ namespace AntMe.Simulation
                         else if (ant.DestinationCoreInsect is CoreAnt)
                         {
                             CoreAnt a = (CoreAnt)ant.DestinationCoreInsect;
-                            if (a.Colony != colony && a.currentEnergyCoreInsect > 0)
+                            if (a.Colony != colony && a.CurrentEnergyCoreInsect > 0)
                             {
                                 int distance =
                                     CoreCoordinate.DetermineDistanceI(ant.CoordinateCoreInsect, ant.DestinationCoreInsect.CoordinateCoreInsect);
                                 if (distance < SimulationSettings.Custom.BattleRange * PLAYGROUND_UNIT)
                                 {
                                     PlayerCall.UnderAttack(a, ant);
-                                    a.currentEnergyCoreInsect -= ant.AttackStrengthCoreInsect;
-                                    if (a.currentEnergyCoreInsect <= 0)
+                                    a.CurrentEnergyCoreInsect -= ant.AttackStrengthCoreInsect;
+                                    if (a.CurrentEnergyCoreInsect <= 0)
                                     {
                                         a.Colony.BeatenInsects.Add(a);
                                         colony.Statistic.KilledAnts++;
