@@ -41,15 +41,11 @@ namespace AntMe.Simulation
             }
 
             // Set ants properties depending on its caste.
-            CasteIndexCoreAnt = casteIndex;
+            CasteIndexCoreInsect = casteIndex;
             CurrentEnergyCoreInsect = colony.EnergyI[casteIndex];
             currentSpeedICoreInsect = colony.SpeedI[casteIndex];
             AttackStrengthCoreInsect = colony.AttackI[casteIndex];
         }
-        /// <summary>
-        /// Depending on the players caste structure, index of the caste.
-        /// </summary>
-        internal int CasteIndexCoreAnt;
         
         /// <summary>
         /// Determine caste for a new ant.
@@ -68,7 +64,7 @@ namespace AntMe.Simulation
         {
             AntState antState = new AntState(Colony.Id, Id);
 
-            antState.CasteId = CasteIndexCoreAnt;
+            antState.CasteId = CasteIndexCoreInsect;
             antState.PositionX = CoordinateCoreInsect.X / SimulationEnvironment.PLAYGROUND_UNIT;
             antState.PositionY = CoordinateCoreInsect.Y / SimulationEnvironment.PLAYGROUND_UNIT;
             antState.ViewRange = ViewRangeCoreInsect;

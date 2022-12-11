@@ -459,7 +459,7 @@ namespace AntMe.Simulation
                                 if (insect.Colony == ant.Colony)
                                 {
                                     colonyAntCount++;
-                                    if (insect.CasteIndexCoreInsect == ant.CasteIndexCoreAnt)
+                                    if (insect.CasteIndexCoreInsect == ant.CasteIndexCoreInsect)
                                         casteAntCount++;
 
                                     // The new ant is closer than the remembered one.

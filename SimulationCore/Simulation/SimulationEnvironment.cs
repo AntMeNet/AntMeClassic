@@ -289,7 +289,7 @@ namespace AntMe.Simulation
                         CoreAnt friend;
                         CoreAnt teammember;
                         int bugCount, enemyAntCount, colonyAntCount, casteAntCount, teamAntCount;
-                        colony.Grids[ant.CasteIndexCoreAnt].FindAndCountInsects(
+                        colony.Grids[ant.CasteIndexCoreInsect].FindAndCountInsects(
                             ant,
                             out bug,
                             out bugCount,
@@ -312,7 +312,7 @@ namespace AntMe.Simulation
                         #region Range
 
                         // Ant has exceeded its range. Ant dies.
-                        if (ant.NumberStepsWalked > colony.RangeI[ant.CasteIndexCoreAnt])
+                        if (ant.NumberStepsWalked > colony.RangeI[ant.CasteIndexCoreInsect])
                         {
                             ant.CurrentEnergyCoreInsect = 0;
                             colony.StarvedInsects.Add(ant);
@@ -320,7 +320,7 @@ namespace AntMe.Simulation
                         }
 
                         // Ant has covered a third of its range.
-                        else if (ant.NumberStepsWalked > colony.RangeI[ant.CasteIndexCoreAnt] / 3)
+                        else if (ant.NumberStepsWalked > colony.RangeI[ant.CasteIndexCoreInsect] / 3)
                         {
                             if (ant.IsTiredCoreAnt == false)
                             {
