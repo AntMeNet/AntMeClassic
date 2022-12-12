@@ -610,7 +610,7 @@ namespace AntMe.English
             {
                 try
                 {
-                    return ((CoreInsect)this).CasteCoreInsect;
+                    return CasteCoreInsect;
                 }
                 catch (Exception e)
                 {
