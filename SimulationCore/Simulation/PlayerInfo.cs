@@ -6,12 +6,12 @@ using System.Text;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Holds all meta-information about a player.
+    /// Holds all meta information about a player and the AI.
     /// </summary>
     [Serializable]
     public class PlayerInfo : ICloneable
     {
-        #region lokale Variablen
+        #region local attributes
 
         /// <summary>
         /// List of all castes.
@@ -19,12 +19,12 @@ namespace AntMe.Simulation
         private readonly List<CasteInfo> castes;
 
         /// <summary>
-        /// Reference to the ai-assembly-file.
+        /// Reference to the assembled AI file.
         /// </summary>
         internal Assembly assembly;
 
         /// <summary>
-        /// true, if the Ai gives some debug-information.
+        /// True, if the AI gives some debug information.
         /// </summary>
         public bool HasDebugInformation;
 
@@ -39,22 +39,22 @@ namespace AntMe.Simulation
         public string ColonyName;
 
         /// <summary>
-        /// Complete Class-name of colony-class.
+        /// Complete colony class name.
         /// </summary>
         public string ClassName;
 
         /// <summary>
-        /// true, if the colony needs access to a database.
+        /// True, if the colony needs access to a database.
         /// </summary>
         public bool RequestDatabaseAccess;
 
         /// <summary>
-        /// true, if the colony needs access to files.
+        /// True, if the colony needs access to files.
         /// </summary>
         public bool RequestFileAccess;
 
         /// <summary>
-        /// true, if the colony needs access to the network.
+        /// True, if the colony needs access to the network.
         /// </summary>
         public bool RequestNetworkAccess;
 
@@ -64,22 +64,22 @@ namespace AntMe.Simulation
         public string RequestInformation;
 
         /// <summary>
-        /// true, if the colony has references to other assemblies.
+        /// True, if the colony has references to other assemblies.
         /// </summary>
         public bool RequestReferences;
 
         /// <summary>
-        /// true, if the colony needs access to user-interfaces.
+        /// True, if the colony needs access to user-interfaces.
         /// </summary>
         public bool RequestUserInterfaceAccess;
 
         /// <summary>
-        /// Last name of colony-author.
+        /// Last name of colony author.
         /// </summary>
         public string LastName;
 
         /// <summary>
-        /// First name of colony-author.
+        /// First name of colony author.
         /// </summary>
         public string FirstName;
 
@@ -89,7 +89,7 @@ namespace AntMe.Simulation
         public PlayerLanguages Language;
 
         /// <summary>
-        /// true, if the colony uses any static types.
+        /// True, if the colony uses any static types.
         /// </summary>
         public bool Static;
 
@@ -100,7 +100,7 @@ namespace AntMe.Simulation
 
         #endregion
 
-        #region Constructor and Initializaion
+        #region Constructor and initialization
 
         /// <summary>
         /// Creates a new instance of PlayerInfo.
@@ -127,9 +127,9 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Creates a new instance of PlayerInfo.
+        /// Creates a new instance of player info.
         /// </summary>
-        /// <param name="info">Base-info</param>
+        /// <param name="info">base info</param>
         public PlayerInfo(PlayerInfo info)
         {
             // Daten kopieren
@@ -188,7 +188,7 @@ namespace AntMe.Simulation
             bool requestReferences,
             string requestInformation)
         {
-            // Ameisenkasten überprüfen
+            // check caste
             if (castes == null)
             {
                 this.castes = new List<CasteInfo>();
@@ -198,7 +198,7 @@ namespace AntMe.Simulation
                 this.castes = castes;
             }
 
-            // Restliche Daten übertragen
+            // Transfer data
             Guid = guid;
             ColonyName = colonyName;
             FirstName = firstName;
@@ -218,7 +218,7 @@ namespace AntMe.Simulation
 
         #endregion
 
-        #region Hilfsmethoden
+        #region helper methods
 
         /// <summary>
         /// Checks the rules.
@@ -243,7 +243,7 @@ namespace AntMe.Simulation
 
         #endregion
 
-        #region Eigenschaften
+        #region properties
 
         /// <summary>
         /// Delivers the list of castes.

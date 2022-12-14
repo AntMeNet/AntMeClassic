@@ -6,7 +6,7 @@ using System.Security;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Class, to extract PlayerInfos from given Ai-Assembly.
+    /// Class extracting player information from given AI assembly.
     /// </summary>
     /// <author>Tom Wendel (tom@antme.net)</author>
     public static class AiAnalysis
@@ -14,10 +14,10 @@ namespace AntMe.Simulation
         #region public, static Methods
 
         /// <summary>
-        /// Analyzes a Ai-File based on filename.
+        /// Analyse AI file for given assembly filename
         /// </summary>
-        /// <param name="filename">Ai-File to analyze.</param>
-        /// <returns>List of found PlayerInfos</returns>
+        /// <param name="filename">AI file to analyse</param>
+        /// <returns>list of <see cref="PlayerInfo"/> from the given assembly file</returns>
         /// <throws><see cref="ArgumentException"/></throws>
         /// <throws><see cref="ArgumentNullException"/></throws>
         /// <throws><see cref="PathTooLongException"/></throws>
@@ -36,11 +36,11 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Analyzes a Ai-File based on filename.
+        /// Analyse AI file for given assembly filename.
         /// </summary>
-        /// <param name="filename">Ai-File to analyze.</param>
-        /// <param name="checkRules">True, if Analyser should also check player-rules.</param>
-        /// <returns>List of found PlayerInfos</returns>
+        /// <param name="filename">AI file to analyse</param>
+        /// <param name="checkRules">true to check player rules</param>
+        /// <returns>list of <see cref="PlayerInfo"/> from assembly file</returns>
         /// <throws><see cref="ArgumentException"/></throws>
         /// <throws><see cref="ArgumentNullException"/></throws>
         /// <throws><see cref="PathTooLongException"/></throws>
@@ -59,10 +59,10 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Analyzes a Ai-File based on binary file-dump.
+        /// Analyse AI file based on binary file dump.
         /// </summary>
-        /// <param name="file">Ai-File to analyze.</param>
-        /// <returns>List of found PlayerInfos</returns>
+        /// <param name="file">AI file to analyse</param>
+        /// <returns>list of <see cref="PlayerInfo"/> from binary file</returns>
         /// <throws><see cref="FileLoadException"/></throws>
         /// <throws><see cref="BadImageFormatException"/></throws>
         /// <throws><see cref="ArgumentNullException"/></throws>
@@ -74,11 +74,11 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Analyzes a Ai-File based on binary file-dump.
+        /// Analyzes a AI binary file
         /// </summary>
-        /// <param name="file">Ai-File to analyze.</param>
-        /// <param name="checkRules">True, if Analyser should also check player-rules.</param>
-        /// <returns>List of found PlayerInfos</returns>
+        /// <param name="file">AI file to analyze.</param>
+        /// <param name="checkRules">true for check player rules</param>
+        /// <returns>list of <see cref="PlayerInfo"/> from binary file</returns>
         /// <throws><see cref="FileLoadException"/></throws>
         /// <throws><see cref="BadImageFormatException"/></throws>
         /// <throws><see cref="ArgumentNullException"/></throws>
@@ -87,16 +87,15 @@ namespace AntMe.Simulation
         public static List<PlayerInfo> Analyse(byte[] file, bool checkRules)
         {
             PlayerAnalysis analysisHost = new PlayerAnalysis();
-            // analies and return list of PlayerInfo
+            // analyses and return list of <see cref="PlayerInfo"/>
             return analysisHost.Analyse(file, checkRules);
-
         }
 
         /// <summary>
         /// Find a specific Player-information in given Ai-File.
         /// </summary>
-        /// <param name="file">File as binary file-dump</param>
-        /// <param name="className">Class-name of Ai</param>
+        /// <param name="file">File as binary file dump</param>
+        /// <param name="className">className of AI</param>
         /// <returns>the right <see cref="PlayerInfo"/></returns>
         /// <throws><see cref="NotSupportedException"/></throws>
         public static PlayerInfoFiledump FindPlayerInformation(byte[] file, string className)

@@ -4,67 +4,66 @@ using System;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Eine Duft-Markierung die eine Information enthält.
+    /// Scent marking with information, age and size.
     /// </summary>
     /// <author>Wolfgang Gallo (wolfgang@antme.net)</author>
     internal sealed class CoreMarker : ICoordinate
     {
-        // Die Id der nächsten erzeugten Markierung.
-        private static int neueId = 0;
+        // ID of the next marker.
+        private static int newId = 0;
 
         /// <summary>
-        /// Die Id die die Markierung während eines Spiels eindeutig identifiziert.
+        /// ID will uniquely identify the marker throughout the simulation.
         /// </summary>
         public readonly int Id;
 
         private readonly int colonyId;
-        private CoreCoordinate koordinate;
+        private CoreCoordinate coordinate;
 
         private int age = 0;
         private int totalAge;
-        private int endgröße;
+        private int finalSize;
         private int information;
 
 
         /// <summary>
-        /// Erzeugt eine neue Instanz der Markierung-Klasse.
+        /// Constructor for new instances of marker
         /// </summary>
-        /// <param name="koordinate">Die Koordinate der Markierung.</param>
-        /// <param name="endgröße">Die Ausbreitung der Markierung in Schritten.
-        /// </param>
-        /// <param name="colonyId">ID des Volkes</param>
-        internal CoreMarker(CoreCoordinate koordinate, int endgröße, int colonyId)
+        /// <param name="coordinate">Coordinate.</param>
+        /// <param name="finalSize">Size of marker in steps.</param>
+        /// <param name="colonyId">ID of colony.</param>
+        internal CoreMarker(CoreCoordinate coordinate, int finalSize, int colonyId)
         {
             this.colonyId = colonyId;
-            Id = neueId++;
-            this.koordinate = koordinate;
+            Id = newId++;
+            this.coordinate = coordinate;
 
-            // Volumen der kleinsten Markierung (r³ * PI/2) ermitteln (Halbkugel)
+            // Calculation of the smallest possible marker volume (r-square * PI/2) for the semi-sphere.
             double baseVolume = Math.Pow(SimulationSettings.Custom.MarkerSizeMinimum, 3) * (Math.PI / 2);
 
-            // Korrektur für größere Markierungen
+            // Correction for bigger markers.
             baseVolume *= 10f;
 
-            // Gesamtvolumen über die volle Zeit ermitteln
+            // Total volume for the hole lifespan.
             double totalvolume = baseVolume * SimulationSettings.Custom.MarkerMaximumAge;
 
-            // Maximale Markergröße ermitteln
+            // Calculation of maximum size.
             int maxSize = (int)Math.Pow(4 * ((totalvolume - baseVolume) / Math.PI), 1f / 3f);
 
-            // Gewünschte Zielgröße limitieren (Min Markersize, Max MaxSize)
-            this.endgröße = Math.Max(SimulationSettings.Custom.MarkerSizeMinimum, Math.Min(maxSize, endgröße));
+            // Final size limited by minimum and maximum marker size.
+            this.finalSize = Math.Max(SimulationSettings.Custom.MarkerSizeMinimum, Math.Min(maxSize, finalSize));
 
-            // Volumen für die größte Markierung ermitteln
-            int diffRadius = this.endgröße - SimulationSettings.Custom.MarkerSizeMinimum;
+            // Calculation of volume for the maximum marker //// MarkerSizeMinimum?
+            int diffRadius = this.finalSize - SimulationSettings.Custom.MarkerSizeMinimum;
             double diffVolume = Math.Pow(diffRadius, 3) * (Math.PI / 4);
 
-            // Lebenszeit bei angestrebter Gesamtgröße ermitteln
+            // Total age of the marker depends on the size.
             totalAge = (int)Math.Floor(totalvolume / (baseVolume + diffVolume));
-            Aktualisieren();
+            Update();
         }
 
         /// <summary>
-        /// Die gespeicherte Information.
+        /// Marker information.
         /// </summary>
         public int Information
         {
@@ -73,10 +72,10 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Bestimmt ob die Markierung ihre maximales Alter noch nicht überschritten
-        /// hat.
+        /// False means that the marker is not active any more 
+        /// because the age is greater than the total age.
         /// </summary>
-        public bool IstAktiv
+        public bool IsActive
         {
             get { return age <= totalAge; }
         }
@@ -84,41 +83,40 @@ namespace AntMe.Simulation
         #region IKoordinate Members
 
         /// <summary>
-        /// Die Position der Markierung auf dem Spielfeld.
+        /// The position of the marker on the playground.
         /// </summary>
-        public CoreCoordinate CoordinateBase
+        public CoreCoordinate CoordinateCoreInsect
         {
-            get { return koordinate; }
+            get { return coordinate; }
         }
 
         #endregion
 
         /// <summary>
-        /// Erhöht das Alter der Markierung und passt ihren Radius an.
+        /// Update age and radius of the marker. 
         /// </summary>
-        internal void Aktualisieren()
+        internal void Update()
         {
             age++;
-            if (IstAktiv)
+            if (IsActive)
             {
-                koordinate.Radius = (int)(
+                coordinate.Radius = (int)(
                     SimulationSettings.Custom.MarkerSizeMinimum +
-                    endgröße * ((float)age / totalAge)) * SimulationEnvironment.PLAYGROUND_UNIT;
+                    finalSize * ((float)age / totalAge)) * SimulationEnvironment.PLAYGROUND_UNIT;
             }
         }
 
         /// <summary>
-        /// Erzeugt ein MarkierungZustand-Objekt mit den aktuellen Daten der
-        /// Markierung.
+        /// Populate marker state with current information of the marker.
         /// </summary>
-        internal MarkerState ErzeugeInfo()
+        internal MarkerState PopulateMarkerState()
         {
-            MarkerState info = new MarkerState(colonyId, Id);
-            info.PositionX = koordinate.X / SimulationEnvironment.PLAYGROUND_UNIT;
-            info.PositionY = koordinate.Y / SimulationEnvironment.PLAYGROUND_UNIT;
-            info.Radius = koordinate.Radius / SimulationEnvironment.PLAYGROUND_UNIT;
-            info.Direction = koordinate.Richtung;
-            return info;
+            MarkerState markerStateInformation = new MarkerState(colonyId, Id);
+            markerStateInformation.PositionX = coordinate.X / SimulationEnvironment.PLAYGROUND_UNIT;
+            markerStateInformation.PositionY = coordinate.Y / SimulationEnvironment.PLAYGROUND_UNIT;
+            markerStateInformation.Radius = coordinate.Radius / SimulationEnvironment.PLAYGROUND_UNIT;
+            markerStateInformation.Direction = coordinate.Direction;
+            return markerStateInformation;
         }
     }
 }

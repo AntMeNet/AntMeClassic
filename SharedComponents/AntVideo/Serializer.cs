@@ -7,7 +7,7 @@ using System.Text;
 namespace AntMe.SharedComponents.AntVideo
 {
     /// <summary>
-    /// Class, to manage all serialize-tasks.
+    /// Class, to manage all serialize tasks.
     /// </summary>
     internal sealed class Serializer : IDisposable
     {
@@ -163,7 +163,7 @@ namespace AntMe.SharedComponents.AntVideo
                 throw new NotSupportedException(Resource.AntvideoSerializerWrongHeader);
             }
 
-            // Compare version-number
+            // Compare version number
             byte[] vers = new byte[4];
             stream.Read(vers, 0, 4);
             if (vers[0] != version[0] ||
@@ -207,7 +207,7 @@ namespace AntMe.SharedComponents.AntVideo
         }
 
         /// <summary>
-        /// Reads the following byte without affect the streamposition.
+        /// Reads the following byte without affect the stream position.
         /// </summary>
         /// <returns>next byte</returns>
         public int Peek()
@@ -225,7 +225,7 @@ namespace AntMe.SharedComponents.AntVideo
         #region Sendemethoden
 
         /// <summary>
-        /// Sendet einen ushort über den Stream
+        /// Sends ushort over the stream.
         /// </summary>
         /// <param name="item">ushort</param>
         public void SendUshort(ushort item)
@@ -234,7 +234,7 @@ namespace AntMe.SharedComponents.AntVideo
         }
 
         /// <summary>
-        /// Sends a short
+        /// Sends a short.
         /// </summary>
         /// <param name="item">short</param>
         public void SendShort(short item)
@@ -243,7 +243,7 @@ namespace AntMe.SharedComponents.AntVideo
         }
 
         /// <summary>
-        /// Sendet einen sbyte über den angegebenen stream
+        /// Sends byte over the stream.
         /// </summary>
         /// <param name="item">sbyte</param>
         public void SendSByte(sbyte item)
@@ -252,7 +252,7 @@ namespace AntMe.SharedComponents.AntVideo
         }
 
         /// <summary>
-        /// Sendet einen integer über den Stream
+        /// Sends integer over the stream.
         /// </summary>
         /// <param name="item">integer</param>
         public void SendInt(int item)
@@ -266,7 +266,7 @@ namespace AntMe.SharedComponents.AntVideo
         }
 
         /// <summary>
-        /// Sendet einen string über den Stream
+        /// Sends string over the stream.
         /// </summary>
         /// <param name="item">string</param>
         public void SendString(string item)
@@ -292,12 +292,12 @@ namespace AntMe.SharedComponents.AntVideo
 
         #endregion
 
-        #region Empfangsmethoden
+        #region Receive methods
 
         /// <summary>
-        /// Liest den nächsten ushort aus dem angegebenen Stream
+        /// Reads next ushort from the specified stream.
         /// </summary>
-        /// <returns>ausgelesener ushort</returns>
+        /// <returns>read ushort</returns>
         public ushort ReadUShort()
         {
             return reader.ReadUInt16();
@@ -309,18 +309,18 @@ namespace AntMe.SharedComponents.AntVideo
         }
 
         /// <summary>
-        /// Liest das nächste sbyte aus dem angegebenen Stream
+        /// Reads next sbyte from the specified stream.
         /// </summary>
-        /// <returns>ausgelesener sbyte</returns>
+        /// <returns>read sbyte</returns>
         public sbyte ReadSByte()
         {
             return reader.ReadSByte();
         }
 
         /// <summary>
-        /// Liest einen Integer aus dem Stream
+        /// Reads next integer from the specified stream.
         /// </summary>
-        /// <returns>gelesener int</returns>
+        /// <returns>read integer</returns>
         public int ReadInt()
         {
             return reader.ReadInt32();
@@ -332,18 +332,18 @@ namespace AntMe.SharedComponents.AntVideo
         }
 
         /// <summary>
-        /// Liest einen String aus dem stream
+        /// Reads next string from the specified stream.
         /// </summary>
-        /// <returns>string</returns>
+        /// <returns>read string</returns>
         public string ReadString()
         {
             return reader.ReadString();
         }
 
         /// <summary>
-        /// Liest einen DateTime aus dem Stream aus
+        /// Reads next datetime from the specified stream.
         /// </summary>
-        /// <returns>DateTime</returns>
+        /// <returns>read DateTime</returns>
         public DateTime ReadDateTime()
         {
             return new DateTime(ReadLong());

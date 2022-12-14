@@ -20,12 +20,12 @@ namespace AntMe.SharedComponents.AntVideo.Block
             Reset();
         }
 
-        public Sugar(SugarState zustand) : base(zustand.Id)
+        public Sugar(SugarState state) : base(state.Id)
         {
-            PositionX = zustand.PositionX;
-            PositionY = zustand.PositionY;
-            Radius = zustand.Radius;
-            Amount = zustand.Amount;
+            PositionX = state.PositionX;
+            PositionY = state.PositionY;
+            Radius = state.Radius;
+            Amount = state.Amount;
 
             Reset();
         }
@@ -85,12 +85,12 @@ namespace AntMe.SharedComponents.AntVideo.Block
 
         public SugarState GenerateState()
         {
-            SugarState zustand = new SugarState(Id);
-            zustand.PositionX = PositionX;
-            zustand.PositionY = PositionY;
-            zustand.Radius = Radius;
-            zustand.Amount = Amount;
-            return zustand;
+            SugarState state = new SugarState(Id);
+            state.PositionX = PositionX;
+            state.PositionY = PositionY;
+            state.Radius = Radius;
+            state.Amount = Amount;
+            return state;
         }
 
         public bool IsAlive

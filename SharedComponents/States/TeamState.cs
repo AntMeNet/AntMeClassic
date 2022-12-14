@@ -35,7 +35,7 @@ namespace AntMe.SharedComponents.States
         #region Properties
 
         /// <summary>
-        /// gets a list of castes.
+        /// Gets a list of castes.
         /// </summary>
         public Collection<ColonyState> ColonyStates { get; set; }
 

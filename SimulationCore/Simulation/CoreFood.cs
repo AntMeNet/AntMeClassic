@@ -3,64 +3,64 @@ using System;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Die abstrakte Basisklasse für Nahrung.
+    /// The abstract base class for food.
     /// </summary>
     internal abstract class CoreFood : ICoordinate
     {
-        // Die Id der nächsten erzeugten Nahrung.
-        private static int neueId = 0;
+        // The ID of the next generated food.
+        private static int newId = 0;
 
         /// <summary>
-        /// Die Id die die Nahrung während eines Spiels eindeutig identifiziert.
+        /// The ID that uniquely identifies the food during a match.
         /// </summary>
         public readonly int Id;
 
         /// <summary>
-        /// Die Position der Nahrung auf dem Spielfeld.
+        /// The position of the food on the playground.
         /// </summary>
-        protected CoreCoordinate koordinate;
+        protected CoreCoordinate coordinate;
 
         /// <summary>
-        /// Die verbleibende Menge an Nahrungspunkten.
+        /// The remaining amount of food points.
         /// </summary>
-        protected int menge;
+        protected int amount;
 
         /// <summary>
-        /// Der abstrakte Nahrung-Basiskonstruktor.
+        /// The abstract food base constructor.
         /// </summary>
-        /// <param name="x">Die X-Position der Koordinate auf dem Spielfeld.</param>
-        /// <param name="y">Die Y-Position der Koordinate auf dem Spielfeld.</param>
-        /// <param name="menge">Die Anzahl der Nahrungspunkte.</param>
-        internal CoreFood(int x, int y, int menge)
+        /// <param name="x">X-coordinate on the playground.</param>
+        /// <param name="y">Y-coordinate on the playground.</param>
+        /// <param name="amount">amount of food points.</param>
+        internal CoreFood(int x, int y, int amount)
         {
-            Id = neueId++;
-            koordinate = new CoreCoordinate(x, y);
-            Menge = menge;
+            Id = newId++;
+            coordinate = new CoreCoordinate(x, y);
+            Amount = amount;
         }
 
         /// <summary>
-        /// Die verbleibende Menge an Nahrungspunkten.
+        /// The remaining amount of food points.
         /// </summary>
-        public virtual int Menge
+        public virtual int Amount
         {
-            get { return menge; }
+            get { return amount; }
             internal set
             {
-                menge = value;
-                koordinate.Radius = (int)
-                                    (Math.Round(Math.Sqrt(menge / Math.PI) * SimulationEnvironment.PLAYGROUND_UNIT));
+                amount = value;
+                coordinate.Radius = (int)
+                                    (Math.Round(Math.Sqrt(amount / Math.PI) * SimulationEnvironment.PLAYGROUND_UNIT));
             }
         }
 
-        #region IKoordinate Members
+        #region ICoordinate members
 
         /// <summary>
-        /// Die Position der Nahrung auf dem Spielfeld.
+        /// The position of the food on the playground.
         /// </summary>
-        public CoreCoordinate CoordinateBase
+        public CoreCoordinate CoordinateCoreInsect
         {
-            get { return koordinate; }
-            internal set { koordinate = value; }
+            get { return coordinate; }
+            internal set { coordinate = value; }
         }
 
         #endregion

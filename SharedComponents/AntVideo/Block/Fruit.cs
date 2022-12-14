@@ -22,13 +22,13 @@ namespace AntMe.SharedComponents.AntVideo.Block
             Reset();
         }
 
-        public Fruit(FruitState zustand) : base(zustand.Id)
+        public Fruit(FruitState state) : base(state.Id)
         {
-            Amount = zustand.Amount;
-            Radius = zustand.Radius;
-            PositionX = zustand.PositionX;
-            PositionY = zustand.PositionY;
-            CarryingAnts = zustand.CarryingAnts;
+            Amount = state.Amount;
+            Radius = state.Radius;
+            PositionX = state.PositionX;
+            PositionY = state.PositionY;
+            CarryingAnts = state.CarryingAnts;
 
             Reset();
         }

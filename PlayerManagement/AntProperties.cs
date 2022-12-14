@@ -20,33 +20,33 @@ namespace AntMe.PlayerManagement
             player = playerInfo;
             InitializeComponent();
 
-            // Daten einfüllen
-            kiNameLabel1.Text = player.ColonyName;
-            kiNameLabel3.Text = player.ColonyName;
-            kiNameLabel2.Text = player.ColonyName;
+            // populate with data
+            aiNameLabel1.Text = player.ColonyName;
+            aiNameLabel3.Text = player.ColonyName;
+            aiNameLabel2.Text = player.ColonyName;
             Text = string.Format(Resource.AntPropertiesTitle, player.ColonyName);
 
-            autorLabel.Text = string.Format(Resource.AntPropertiesAuthorFormat, player.FirstName, player.LastName);
+            authorLabel.Text = string.Format(Resource.AntPropertiesAuthorFormat, player.FirstName, player.LastName);
             versionLabel.Text = player.SimulationVersion.ToString();
-            spracheLabel.Text = player.Language.ToString();
-            statischLabel.Text = player.Static ? Resource.Yes : Resource.No;
+            languageLabel.Text = player.Language.ToString();
+            staticLabel.Text = player.Static ? Resource.Yes : Resource.No;
             debugLabel.Text = player.HasDebugInformation ? Resource.Yes : Resource.No;
-            klassennameTextBox.Text = player.ClassName;
+            classnameTextBox.Text = player.ClassName;
 
-            dateinameTextBox.Text = player.File;
+            filenameTextBox.Text = player.File;
             try
             {
                 FileInfo info = new FileInfo(player.File);
-                dateigrößeLabel.Text = info.Length + " Byte";
-                datumLabel.Text = info.CreationTime.ToLongDateString() + " " + info.CreationTime.ToShortTimeString();
+                fileSizeLabel.Text = info.Length + " Byte";
+                dateLabel.Text = info.CreationTime.ToLongDateString() + " " + info.CreationTime.ToShortTimeString();
             }
             catch
             {
-                dateigrößeLabel.Text = Resource.AntPropertiesUnknown;
-                datumLabel.Text = Resource.AntPropertiesUnknown;
+                fileSizeLabel.Text = Resource.AntPropertiesUnknown;
+                dateLabel.Text = Resource.AntPropertiesUnknown;
             }
 
-            // Ameisenkasten einfügen
+            // populate with ant castes
             castesListView.Items.Clear();
             foreach (CasteInfo info in player.Castes)
             {
@@ -55,38 +55,38 @@ namespace AntMe.PlayerManagement
             }
             select_caste(null, null);
 
-            // Sicherheitsliste
+            // security
             int count = 0;
             if (player.RequestFileAccess)
             {
-                rechteListView.Items.Add(Resource.AntPropertiesIoAccess, "security_closed");
+                securityListView.Items.Add(Resource.AntPropertiesIoAccess, "security_closed");
                 count++;
             }
             if (player.RequestDatabaseAccess)
             {
-                rechteListView.Items.Add(Resource.AntPropertiesDbAccess, "security_closed");
+                securityListView.Items.Add(Resource.AntPropertiesDbAccess, "security_closed");
                 count++;
             }
             if (player.RequestReferences)
             {
-                rechteListView.Items.Add(Resource.AntPropertiesRefAccess, "security_closed");
+                securityListView.Items.Add(Resource.AntPropertiesRefAccess, "security_closed");
                 count++;
             }
             if (player.RequestUserInterfaceAccess)
             {
-                rechteListView.Items.Add(Resource.AntPropertiesUiAccess, "security_closed");
+                securityListView.Items.Add(Resource.AntPropertiesUiAccess, "security_closed");
                 count++;
             }
             if (player.RequestNetworkAccess)
             {
-                rechteListView.Items.Add(Resource.AntPropertiesNetAccess, "security_closed");
+                securityListView.Items.Add(Resource.AntPropertiesNetAccess, "security_closed");
                 count++;
             }
             if (count == 0)
             {
-                rechteListView.Items.Add(Resource.AntPropertiesNoAccess, "security_closed");
+                securityListView.Items.Add(Resource.AntPropertiesNoAccess, "security_closed");
             }
-            zusatzinfosTextBox.Text = player.RequestInformation == string.Empty
+            additionalInformationTextBox.Text = player.RequestInformation == string.Empty
                                           ? Resource.AntPropertiesNoAdditionalInfos
                                           : player.RequestInformation;
 
@@ -94,7 +94,7 @@ namespace AntMe.PlayerManagement
 
         private void select_caste(object sender, System.EventArgs e)
         {
-            // TODO: Resultierende Werte aus den Settings hinzu schreiben
+            // TODO: add resulting values from the settings // Resultierende Werte aus den Settings hinzu schreiben
             if (castesListView.SelectedItems.Count > 0)
             {
                 casteGroupBox.Enabled = true;

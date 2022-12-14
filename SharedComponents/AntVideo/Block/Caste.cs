@@ -4,16 +4,16 @@ namespace AntMe.SharedComponents.AntVideo.Block
 {
     internal sealed class Caste : CasteState, ISerializable
     {
-        public Caste(CasteState zustand) : base(zustand.ColonyId, zustand.Id)
+        public Caste(CasteState state) : base(state.ColonyId, state.Id)
         {
-            Name = zustand.Name;
-            SpeedModificator = zustand.SpeedModificator;
-            RotationSpeedModificator = zustand.RotationSpeedModificator;
-            LoadModificator = zustand.LoadModificator;
-            ViewRangeModificator = zustand.ViewRangeModificator;
-            RangeModificator = zustand.RangeModificator;
-            VitalityModificator = zustand.VitalityModificator;
-            AttackModificator = zustand.AttackModificator;
+            Name = state.Name;
+            SpeedModificator = state.SpeedModificator;
+            RotationSpeedModificator = state.RotationSpeedModificator;
+            LoadModificator = state.LoadModificator;
+            ViewRangeModificator = state.ViewRangeModificator;
+            RangeModificator = state.RangeModificator;
+            VitalityModificator = state.VitalityModificator;
+            AttackModificator = state.AttackModificator;
         }
 
         public Caste(Serializer serializer)

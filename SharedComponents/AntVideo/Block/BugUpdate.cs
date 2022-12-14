@@ -13,10 +13,10 @@ namespace AntMe.SharedComponents.AntVideo.Block
 
     internal sealed class BugUpdate : UpdateBase
     {
-        public int aEnergie;
+        public int aEnergy;
         public int dPositionX;
         public int dPositionY;
-        public int dRichtung;
+        public int dDirection;
 
         public BugUpdate() { }
 
@@ -42,12 +42,12 @@ namespace AntMe.SharedComponents.AntVideo.Block
 
             if (HasChanged(BugFields.Direction))
             {
-                dRichtung = serializer.ReadShort();
+                dDirection = serializer.ReadShort();
             }
 
             if (HasChanged(BugFields.Vitality))
             {
-                aEnergie = serializer.ReadUShort();
+                aEnergy = serializer.ReadUShort();
             }
         }
 
@@ -66,12 +66,12 @@ namespace AntMe.SharedComponents.AntVideo.Block
 
             if (HasChanged(BugFields.Direction))
             {
-                serializer.SendShort((short)dRichtung);
+                serializer.SendShort((short)dDirection);
             }
 
             if (HasChanged(BugFields.Vitality))
             {
-                serializer.SendUshort((ushort)aEnergie);
+                serializer.SendUshort((ushort)aEnergy);
             }
         }
 

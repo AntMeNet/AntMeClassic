@@ -1,12 +1,14 @@
-﻿using System;
+﻿using AntMe.English;
+using System;
 using System.Configuration;
 using System.IO;
+using System.Numerics;
 using System.Xml.Serialization;
 
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Simulation-Settings from application-configuration.
+    /// Simulation settings by application configuration.
     /// </summary>
     [Serializable]
     public struct SimulationSettings
@@ -14,64 +16,64 @@ namespace AntMe.Simulation
         #region internal Varialbes
 
         /// <summary>
-        /// Sets or gets the name of this settings-set.
+        /// Name of this settings.
         /// </summary>
         public string SettingsName;
 
         /// <summary>
-        /// Gets or sets Guid of that settings-set.
+        /// Guid of that settings.
         /// </summary>
         public Guid Guid;
 
         #region Playground
 
         /// <summary>
-        /// Gets the size of the playground in SquareAntSteps.
+        /// Size of the playground in SquareAntSteps.
         /// </summary>
         public int PlayGroundBaseSize;
 
         /// <summary>
-        /// Gets the multiplier of additional playground-size per player.
+        /// Multiplier of additional playground size per player.
         /// </summary>
         public float PlayGroundSizePlayerMultiplier;
 
         /// <summary>
-        /// Gets the radius of anthills.
+        /// Radius of anthills.
         /// </summary>
         public int AntHillRadius;
 
         /// <summary>
-        /// Minimum Battle-Distance in steps between two insects.
+        /// Minimum battle distance between two insects in steps.
         /// </summary>
         public int BattleRange;
 
         /// <summary>
-        /// Displacement of the anthill form the circle point.
+        /// Random displacement circle point of anthill.
         /// </summary>
         public float AntHillRandomDisplacement;
 
         /// <summary>
-        /// Size of the spwancells.
+        /// Size of the spwancell.
         /// </summary>
         public int SpawnCellSize;
 
         /// <summary>
-        /// Radius of the restrictedzone around the anthill.
+        /// Restricted zone radius around anthill.
         /// </summary>
         public int RestrictedZoneRadius;
 
         /// <summary>
-        /// Max. distance from the farthest anthill.
+        /// Maximum distance for the farthest anthill.
         /// </summary>
         public int FarZoneRadius;
 
         /// <summary>
-        /// Decrease value for the neighbor cells if food spawns.
+        /// Decrease value for the neighbor cells if food spawning cells.
         /// </summary>
         public float DecreaseValue;
 
         /// <summary>
-        /// Value to regenerate all cells at a food spawn.
+        /// Value to regenerate all food spawning cells.
         /// </summary>
         public float RegenerationValue;
 
@@ -80,102 +82,102 @@ namespace AntMe.Simulation
         #region Livetime and Respawn
 
         /// <summary>
-        /// Gets the maximum count of ants simultaneous on playground.
+        /// Maximum count of ants simultaneous on playground.
         /// </summary>
         public int AntSimultaneousCount;
 
         /// <summary>
-        /// Gets the maximum count of bugs simultaneous on playground.
+        /// Maximum count of bugs simultaneous on playground.
         /// </summary>
         public int BugSimultaneousCount;
 
         /// <summary>
-        /// Gets the maximum count of sugar simultaneous on playground.
+        /// Maximum count of sugar simultaneous on playground.
         /// </summary>
         public int SugarSimultaneousCount;
 
         /// <summary>
-        /// Gets the maximum count of fruit simultaneous on playground.
+        /// Maximum count of fruit simultaneous on playground.
         /// </summary>
         public int FruitSimultaneousCount;
 
         /// <summary>
-        /// Gets the multiplier for maximum count of bugs simultaneous on playground per player.
+        /// Multiplier for maximum count of bugs simultaneous on playground per player.
         /// </summary>
         public float BugCountPlayerMultiplier;
 
         /// <summary>
-        /// Gets the multiplier for maximum count of sugar simultaneous on playground per player.
+        /// Multiplier for maximum count of sugar simultaneous on playground per player.
         /// </summary>
         public float SugarCountPlayerMultiplier;
 
         /// <summary>
-        /// Gets the multiplier for maximum count of fruit simultaneous on playground per player.
+        /// Multiplier for maximum count of fruits simultaneous on playground per player.
         /// </summary>
         public float FruitCountPlayerMultiplier;
 
         /// <summary>
-        /// Gets the multiplier for maximum count of ants simultaneous on playground per player.
+        /// Multiplier for maximum count of ants simultaneous on playground per player.
         /// </summary>
         public float AntCountPlayerMultiplier;
 
         /// <summary>
-        /// Gets the maximum count of ants in the whole simulation.
+        /// Maximum count of ants in the whole simulation.
         /// </summary>
         public int AntTotalCount;
 
         /// <summary>
-        /// Gets the maximum count of bugs in the whole simulation.
+        /// Maximum count of bugs in the whole simulation.
         /// </summary>
         public int BugTotalCount;
 
         /// <summary>
-        /// Gets the maximum count of sugar in the whole simulation.
+        /// Maximum count of sugar in the whole simulation.
         /// </summary>
         public int SugarTotalCount;
 
         /// <summary>
-        /// Gets the maximum count of fruit in the whole simulation.
+        /// Maximum count of fruita in the whole simulation.
         /// </summary>
         public int FruitTotalCount;
 
         /// <summary>
-        /// Gets the multiplier for maximum count of ants per player in the whole simulation.
+        /// Multiplier for maximum count of ants per player in the whole simulation.
         /// </summary>
         public float AntTotalCountPlayerMultiplier;
 
         /// <summary>
-        /// Gets the multiplier for maximum count of bugs per player in the whole simulation.
+        /// Multiplier for maximum count of bugs per player in the whole simulation.
         /// </summary>
         public float BugTotalCountPlayerMultiplier;
 
         /// <summary>
-        /// Gets the multiplier for maximum count of sugar per player in the whole simulation.
+        /// Multiplier for maximum count of sugar per player in the whole simulation.
         /// </summary>
         public float SugarTotalCountPlayerMultiplier;
 
         /// <summary>
-        /// Gets the multiplier for maximum count of fruit per player in the whole simulation.
+        /// Multiplier for maximum count of fruit per player in the whole simulation.
         /// </summary>
         public float FruitTotalCountPlayerMultiplier;
 
         /// <summary>
-        /// Gets the delay for ant before next respawn in rounds. 
+        /// Delay for ant before next respawn in rounds. 
         /// </summary>
         public int AntRespawnDelay;
 
         /// <summary>
-        /// Gets the delay for bugs before next respawn in rounds. 
+        /// Delay for bugs before next respawn in rounds. 
         /// </summary>
         public int BugRespawnDelay;
 
         /// <summary>
-        /// Gets the delay for sugar before next respawn in rounds. 
+        /// Delay for sugar before next respawn in rounds. 
         /// </summary>
         public int SugarRespawnDelay;
 
         /// <summary>
-        /// Gets the delay for fruits before next respawn in rounds. 
+        /// Delay for fruits before next respawn in rounds. 
         /// </summary>
         public int FruitRespawnDelay;
 
@@ -184,37 +186,37 @@ namespace AntMe.Simulation
         #region Bugsettings
 
         /// <summary>
-        /// Gets the attack-value of bugs.
+        /// Bugs attack value.
         /// </summary>
         public int BugAttack;
 
         /// <summary>
-        /// Gets the rotation speed of bugs.
+        /// Rotation speed of bugs.
         /// </summary>
         public int BugRotationSpeed;
 
         /// <summary>
-        /// Gets the energy of bugs.
+        /// Energy of bugs.
         /// </summary>
         public int BugEnergy;
 
         /// <summary>
-        /// Gets the speed of bugs.
+        /// Speed of bugs.
         /// </summary>
         public int BugSpeed;
 
         /// <summary>
-        /// Gets the attack-range of bugs.
+        /// Bug attack range.
         /// </summary>
         public int BugRadius;
 
         /// <summary>
-        /// Gets the regeneration-value of bugs.
+        /// Bug regeneration value.
         /// </summary>
         public int BugRegenerationValue;
 
         /// <summary>
-        /// Gets the delay in rounds between the regeneration-steps of bugs.
+        /// Delay in rounds between the bug regeneration steps.
         /// </summary>
         public int BugRegenerationDelay;
 
@@ -223,32 +225,32 @@ namespace AntMe.Simulation
         #region Foodstuff
 
         /// <summary>
-        /// Gets the minimal amount of food in sugar-hills.
+        /// Minimal amount of food in sugar-hills.
         /// </summary>
         public int SugarAmountMinimum;
 
         /// <summary>
-        /// Gets the maximum amount of food in sugar-hills.
+        /// Maximum amount of food in sugar hills.
         /// </summary>
         public int SugarAmountMaximum;
 
         /// <summary>
-        /// Gets the minimal amount of food in fruits.
+        /// Minimal amount of food in fruits.
         /// </summary>
         public int FruitAmountMinimum;
 
         /// <summary>
-        /// Gets the maximum amount of food in fruits.
+        /// Maximum amount of food in fruits.
         /// </summary>
         public int FruitAmountMaximum;
 
         /// <summary>
-        /// Gets the multiplier for fruits between load and amount of food.
+        /// Multiplier for fruits between load and amount of food.
         /// </summary>
         public float FruitLoadMultiplier;
 
         /// <summary>
-        /// Gets the multiplier for fruits between radius and amount of food.
+        /// Multiplier for fruits between radius and amount of food.
         /// </summary>
         public float FruitRadiusMultiplier;
 
@@ -257,17 +259,17 @@ namespace AntMe.Simulation
         #region Marker
 
         /// <summary>
-        /// Gets the minimal size of a marker.
+        /// Minimal size of a marker.
         /// </summary>
         public int MarkerSizeMinimum;
 
         /// <summary>
-        /// Gets the minimal allowed distance between two marker.
+        /// Minimal allowed distance between two marker.
         /// </summary>
         public int MarkerDistance;
 
         /// <summary>
-        /// Gets the maximum age in rounds of a marker.
+        /// Maximum age in rounds of a marker.
         /// </summary>
         public int MarkerMaximumAge;
 
@@ -281,32 +283,32 @@ namespace AntMe.Simulation
         public float PointsForFoodMultiplier;
 
         /// <summary>
-        /// Gets the amount of points for collected fruits.
+        /// Amount of points for collected fruits.
         /// </summary>
         public int PointsForFruits;
 
         /// <summary>
-        /// Gets the amount of points for killed bugs.
+        /// Amount of points for killed bugs.
         /// </summary>
         public int PointsForBug;
 
         /// <summary>
-        /// Gets the amount of points for killed foreign ants.
+        /// Amount of points for killed foreign ants.
         /// </summary>
         public int PointsForForeignAnt;
 
         /// <summary>
-        /// Gets the amount of points for own dead ants killed by bugs.
+        /// Amount of points for own dead ants killed by bugs.
         /// </summary>
         public int PointsForEatenAnts;
 
         /// <summary>
-        /// Gets the amount of points for own dead ants killed by foreign ants.
+        /// Amount of points for own dead ants killed by foreign ants.
         /// </summary>
         public int PointsForBeatenAnts;
 
         /// <summary>
-        /// Gets the amount of points for own dead starved ants.
+        /// Amount of points for own dead starved ants.
         /// </summary>
         public int PointsForStarvedAnts;
 
@@ -333,7 +335,7 @@ namespace AntMe.Simulation
 
 
         /// <summary>
-        /// Gets the default settings.
+        /// Default settings.
         /// </summary>
         public static SimulationSettings Default
         {
@@ -497,7 +499,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Checks the value-ranges of all properties.
+        /// Checks all properties against valid ranges of values
         /// </summary>
         public void RuleCheck()
         {
@@ -507,246 +509,245 @@ namespace AntMe.Simulation
             // Playground
             if (PlayGroundBaseSize < 100000)
             {
-                throw new ConfigurationErrorsException("Grundgröße des Spielfeldes muss größer 100.000 sein");
+                throw new ConfigurationErrorsException("Playground size must be greater than 100.000");
             }
 
             if (PlayGroundSizePlayerMultiplier < 0)
             {
-                throw new ConfigurationErrorsException("Playground Playermultiplikator darf nicht kleiner 0 sein");
+                throw new ConfigurationErrorsException("Multiplication factor for Playground may not be smaller than 0");
             }
 
             if (AntHillRadius < 0)
             {
-                throw new ConfigurationErrorsException("Ameisenbau braucht einen Radius >= 0");
+                throw new ConfigurationErrorsException("Radius of anthill must be >= 0");
             }
 
             if (BattleRange < 0)
             {
-                throw new ConfigurationErrorsException("Angriffsradius der Wanze darf nicht kleiner 0 sein");
+                throw new ConfigurationErrorsException("Battle range for bugs may not be smaller than 0");
             }
 
             if (AntHillRandomDisplacement < 0f || AntHillRandomDisplacement > 1f)
             {
-                throw new ConfigurationErrorsException("Der Wert der Zufälligen verschiebung vom Kreispunkt muss zwischen 0.0 (0%) und 1.0 (100%) liegen.");
+                throw new ConfigurationErrorsException("The random displacement factor for the anthill must be between 0.0 (0%) and 1.0 (100%).");
             }
 
             if (SpawnCellSize < 1 && SpawnCellSize != 0)
             {
-                throw new ConfigurationErrorsException("Die Größe der Spawnzelle darf nicht kleiner 1 sein.");
+                throw new ConfigurationErrorsException("The spawn cell size may not be smaller than 1.");
             }
 
-            //überprüfen ob genug Spawnzellen da sind
+            //Check quantity of spawn cells
             int cellsX = (int)Math.Ceiling((PlayGroundBaseSize * (4f / 3f)) / SpawnCellSize) - 2;
             int cellsY = (int)Math.Ceiling((PlayGroundBaseSize * (3f / 4f)) / SpawnCellSize) - 2;
 
             if (cellsX * cellsY < SugarSimultaneousCount + FruitSimultaneousCount)
             {
-                throw new ConfigurationErrorsException("Die Größe der Spawnzellen ist zu groß, so das es nicht gewährleistet ist, dass genug Spawnzellen für alle Nahrung vorhanden sind.");
+                throw new ConfigurationErrorsException("The spawn cells are to large. There might not be enough spawn cells for all the food.");
             }
 
             if (RestrictedZoneRadius < 0)
             {
-                throw new ConfigurationErrorsException("Der Radius der gesperrten Zone um den Ameisenbau darf nicht kleiner 0 sein.");
+                throw new ConfigurationErrorsException("The restricted zone radius around the anthills may not be samller than 0.");
             }
 
             if (FarZoneRadius < 0)
             {
-                throw new ConfigurationErrorsException("Der Radius der zu weit entfernten Zone darf nicht kleiner 0 sein.");
+                throw new ConfigurationErrorsException("The far zone radius may not be smaller than 0.");
             }
 
             if (DecreaseValue < 0)
             {
-                throw new ConfigurationErrorsException("Der verringerungs Wert für Nachbarzellen darf nicht kleiner 0 sein");
+                throw new ConfigurationErrorsException("The decreased value for neighboring cells may not be smaller than 0.");
             }
 
             if (RegenerationValue < 0)
             {
-                throw new ConfigurationErrorsException("Der regenerirungs Wert aller Zellen darf nicht kleiner 0 sein");
+                throw new ConfigurationErrorsException("The regeneration value of the cells may not be smaller than 0.");
             }
 
             // Livetime and Respawn
             if (AntSimultaneousCount < 0)
             {
-                throw new ConfigurationErrorsException("Weniger als 0 simultane Ameisen sind nicht möglich");
+                throw new ConfigurationErrorsException("It is not feasible to have less than 0 simultaneous ants.");
             }
 
             if (BugSimultaneousCount < 0)
             {
-                throw new ConfigurationErrorsException("Weniger als 0 simultane Wanzen sind nicht möglich");
+                throw new ConfigurationErrorsException("It is not feasible to have less than 0 simultaneous bugs.");
             }
 
             if (SugarSimultaneousCount < 0)
             {
-                throw new ConfigurationErrorsException("Weniger als 0 simultane Zuckerberge sind nicht möglich");
+                throw new ConfigurationErrorsException("It is not feasible to have less than 0 simultaneous sugarpiles.");
             }
 
             if (FruitSimultaneousCount < 0)
             {
-                throw new ConfigurationErrorsException("Weniger als 0 simultanes Obst sind nicht möglich");
+                throw new ConfigurationErrorsException("It is not feasible to have less than 0 simultaneous fruits.");
             }
 
             if (BugCountPlayerMultiplier < 0)
             {
-                throw new ConfigurationErrorsException("Negative Spielermuliplikatoren bei Wanzen ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have negative bug count player multipliers.");
             }
 
             if (SugarCountPlayerMultiplier < 0)
             {
-                throw new ConfigurationErrorsException("Negative Spielermuliplikatoren bei Zucker ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have negative sugar count player multipliers.");
             }
 
             if (FruitCountPlayerMultiplier < 0)
             {
-                throw new ConfigurationErrorsException("Negative Spielermuliplikatoren bei Obst ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have negative fruit count player multipliers.");
             }
 
             if (AntCountPlayerMultiplier < 0)
             {
-                throw new ConfigurationErrorsException("Negative Spielermuliplikatoren bei Ameisen ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have negative ant count player multipliers.");
             }
 
             if (AntTotalCount < 0)
             {
-                throw new ConfigurationErrorsException("Negative Gesamtmenge bei Ameisen ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have negative ant total count.");
             }
 
             if (BugTotalCount < 0)
             {
-                throw new ConfigurationErrorsException("Negative Gesamtmenge bei Wanzen ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have negative bug total count.");
             }
 
             if (SugarTotalCount < 0)
             {
-                throw new ConfigurationErrorsException("Negative Gesamtmenge bei Zucker ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have negative sugar total count.");
             }
 
             if (FruitTotalCount < 0)
             {
-                throw new ConfigurationErrorsException("Negative Gesamtmenge bei Obst ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have negative fruit total count.");
             }
 
             if (AntTotalCountPlayerMultiplier < 0)
             {
-                throw new ConfigurationErrorsException("Negative Spielermuliplikatoren bei Ameisen ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have negative ant total count player multipliers.");
             }
 
             if (BugTotalCountPlayerMultiplier < 0)
             {
-                throw new ConfigurationErrorsException("Negative Spielermuliplikatoren bei Wanzen ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have negative bug total count player multipliers.");
             }
 
             if (SugarTotalCountPlayerMultiplier < 0)
             {
-                throw new ConfigurationErrorsException("Negative Spielermuliplikatoren bei Zucker ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have negative sugar total count player multipliers.");
             }
 
             if (FruitTotalCountPlayerMultiplier < 0)
             {
-                throw new ConfigurationErrorsException("Negative Spielermuliplikatoren bei Obst ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have negative fruit total count player multipliers.");
             }
-
             if (AntRespawnDelay < 0)
             {
-                throw new ConfigurationErrorsException("Negative Respawnzeit bei Ameisen ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have a negative ant respawn delay.");
             }
 
             if (BugRespawnDelay < 0)
             {
-                throw new ConfigurationErrorsException("Negative Respawnzeit bei Wanzen ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have a negative bug respawn delay.");
             }
 
             if (SugarRespawnDelay < 0)
             {
-                throw new ConfigurationErrorsException("Negative Respawnzeit bei Zucker ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have a negative sugar respawn delay.");
             }
 
             if (FruitRespawnDelay < 0)
             {
-                throw new ConfigurationErrorsException("Negative Respawnzeit bei Obst ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have a negative fruit respawn delay.");
             }
 
             // Bugsettings
             if (BugAttack < 0)
             {
-                throw new ConfigurationErrorsException("Negativer Angriffswert für Wanzen ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have a negative bug attack factor.");
             }
 
             if (BugRotationSpeed < 0)
             {
-                throw new ConfigurationErrorsException("Negative Rotationsgeschwindigkeit für Wanzen ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have a negative bug rotation speed.");
             }
 
             if (BugEnergy < 0)
             {
-                throw new ConfigurationErrorsException("Negativer Energiewert für Wanzen ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have a negative bug energy amount.");
             }
 
             if (BugSpeed < 0)
             {
-                throw new ConfigurationErrorsException("Negativer Geschwindigkeitswert für Wanzen ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have a negative bug speed.");
             }
 
             if (BugRadius < 0)
             {
-                throw new ConfigurationErrorsException("Negativer Radius für Wanzen ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have a negative bug radius.");
             }
 
             if (BugRegenerationValue < 0)
             {
-                throw new ConfigurationErrorsException("Negativer Regenerationswert für Wanzen ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have a negative bug regeneration value.");
             }
 
             if (BugRegenerationDelay < 0)
             {
-                throw new ConfigurationErrorsException("Negativer Regenerationsdelay für Wanzen ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have a negative bug regeneration delay.");
             }
 
             // Foodstuff
             if (SugarAmountMinimum < 0)
             {
-                throw new ConfigurationErrorsException("Negativer Nahrungswert bei Zucker ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have a negative minimum sugar amount value.");
             }
 
             if (SugarAmountMaximum < 0)
             {
-                throw new ConfigurationErrorsException("Negativer Nahrungswert bei Zucker ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have a negative maximum sugar amount value.");
             }
 
             if (FruitAmountMinimum < 0)
             {
-                throw new ConfigurationErrorsException("Negativer Nahrungswert bei Obst ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have a negative minimum fruit amount value.");
             }
 
             if (FruitAmountMaximum < 0)
             {
-                throw new ConfigurationErrorsException("Negativer Nahrungswert bei Obst ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have a negative maximum fruit amount value.");
             }
 
             if (FruitLoadMultiplier < 0)
             {
-                throw new ConfigurationErrorsException("Negativer Loadmultiplikator bei Obst ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have a negative fruit load multiplier value.");
             }
 
             if (FruitRadiusMultiplier < 0)
             {
-                throw new ConfigurationErrorsException("Negativer Radiusmultiplikator bei Obst ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have a negative fruit radius multiplier value.");
             }
 
             // Marker
 
             if (MarkerSizeMinimum < 0)
             {
-                throw new ConfigurationErrorsException("Negative Minimalgröße bei Markierung ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have a negative minimum marker size.");
             }
 
             if (MarkerDistance < 0)
             {
-                throw new ConfigurationErrorsException("Negative Mindestdistanz bei Markierung ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have a negative marker distance value.");
             }
 
             if (MarkerMaximumAge < 0)
             {
-                throw new ConfigurationErrorsException("Negative maximallebensdauer bei Markierungen ist nicht zulässig");
+                throw new ConfigurationErrorsException("It is not feasible to have a negative maximum marker age value.");
             }
 
             // Castes
@@ -758,7 +759,7 @@ namespace AntMe.Simulation
         #region Properties
 
         /// <summary>
-        /// Gets the maximal Speed of an insect.
+        /// Maximal Speed of an insect.
         /// </summary>
         public int MaximumSpeed
         {
@@ -774,15 +775,15 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Gets the maximum size of a Marker.
+        /// Maximum size of a Marker.
         /// </summary>
         public int MaximumMarkerSize
         {
             get
             {
-                // Maximalgröße für Marker ermitteln
+                // find maximum for marker size 
                 double baseMarkerVolume = Math.Pow(SimulationSettings.Custom.MarkerSizeMinimum, 3) * (Math.PI / 2);
-                baseMarkerVolume *= 10f; // Größenkorrektur, weil die Basisparameter zu kleine maximalgröße Liefern
+                baseMarkerVolume *= 10f; // correction of size, because basic parameters delivers to small maximum size
 
                 double totalMarkerVolume = baseMarkerVolume * SimulationSettings.Custom.MarkerMaximumAge;
                 return (int)Math.Pow(4 * ((totalMarkerVolume - baseMarkerVolume) / Math.PI), 1f / 3f);

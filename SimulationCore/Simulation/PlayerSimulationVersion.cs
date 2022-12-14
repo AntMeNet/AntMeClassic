@@ -10,27 +10,27 @@ namespace AntMe.Simulation
     {
 
         /// <summary>
-        /// Version 1.1 - Singleplayer-Variante
+        /// Version 1.1 - singleplayer version
         /// </summary>
         Version_1_1 = 1,
 
         /// <summary>
-        /// Version 1.5 - war nur als Beta verfügbar und stellt die erste Multiplayer-Variante dar
+        /// Version 1.5 - first multiplayer version, beta only
         /// </summary>
         Version_1_5 = 2,
 
         /// <summary>
-        /// Version 1.6 - die Basis für die erste Online-Version
+        /// Version 1.6 - base for firs online version
         /// </summary>
         Version_1_6 = 4,
 
         /// <summary>
-        /// fx 4.0 Port of Version 1.6
+        /// fx 4.0 Port of version 1.6
         /// </summary>
         Version_1_7 = 8,
 
         /// <summary>
-        /// Version 2.0 - Bisher nicht vorhanden
+        /// Version 2.0 - not available right now
         /// </summary>
         Version_2_0 = 16
     }

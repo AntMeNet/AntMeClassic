@@ -7,6 +7,7 @@ using AntMe.SharedComponents.Tools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Color = Microsoft.Xna.Framework.Color;
 
 namespace AntMe.Plugin.Fna
 {
@@ -229,7 +230,7 @@ namespace AntMe.Plugin.Fna
             Pickray pickray = camera.Pickray;
             Point mousePosition = camera.MousePosition;
 
-            // Selektionsinfos zurücksetzen
+            // reset selected item selection type
             selectedItem.SelectionType = SelectionType.Nothing;
             selectedItem.Item = null;
             float distanceToSelectedItem = VIEWRANGE_MAX * VIEWRANGE_MAX;
@@ -385,10 +386,10 @@ namespace AntMe.Plugin.Fna
                 {
                     case SelectionType.Ant:
 
-                        AntState ameise = (AntState)selectedItem.Item;
-                        string antName = NameHelper.GetFemaleName(ameise.Id);
+                        AntState ant = (AntState)selectedItem.Item;
+                        string antName = NameHelper.GetFemaleName(ant.Id);
                         line1 = string.Format(Strings.HovertextAntLine1, antName, selectedItem.AdditionalInfo);
-                        line2 = string.Format(Strings.HovertextAntLine2, ameise.Vitality);
+                        line2 = string.Format(Strings.HovertextAntLine2, ant.Vitality);
                         break;
                     case SelectionType.Anthill:
                         line1 = Strings.HovertextAnthillLine1;
@@ -416,7 +417,7 @@ namespace AntMe.Plugin.Fna
                         break;
                 }
 
-                // Text an Mausposition ausgeben
+                // draw info tag at mouse position
                 if (line1 != String.Empty || line2 != String.Empty)
                 {
                     DrawInfoTag(mousePosition, line1, line2);

@@ -8,7 +8,7 @@ using System.Security.Permissions;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Proxy-Class to host an AppDomain für the encapsulated simulation.
+    /// Proxy class to host an AppDomain for the encapsulated simulation.
     /// </summary>
     /// <author>Tom Wendel (tom@antme.net)</author>
     internal sealed class SimulatorProxy
@@ -30,9 +30,9 @@ namespace AntMe.Simulation
         #region public Methods
 
         /// <summary>
-        /// Initialisierung der Simulation
+        /// Initialization of the simulation
         /// </summary>
-        /// <param name="configuration">Simulationskonfiguration</param>
+        /// <param name="configuration">configuration of the simulation</param>
         public void Init(SimulatorConfiguration configuration)
         {
             // unload possible appdomains.
@@ -44,7 +44,7 @@ namespace AntMe.Simulation
                 for (int i = 0; i < configuration.Teams[team].Player.Count; i++)
                 {
 
-                    // externe Guid-Info speichern
+                    // save external Guid information
                     Guid guid = configuration.Teams[team].Player[i].Guid;
 
                     if (configuration.Teams[team].Player[i] is PlayerInfoFiledump)
@@ -70,7 +70,7 @@ namespace AntMe.Simulation
                             Resource.SimulationCoreProxyWrongPlayerInfo);
                     }
 
-                    // Rückspeicherung der externen Guid
+                    // save back external Guid
                     configuration.Teams[team].Player[i].Guid = guid;
                 }
             }
@@ -87,24 +87,24 @@ namespace AntMe.Simulation
             setup.ShadowCopyFiles = "false";
             setup.PrivateBinPath = "";
 
-            // setup some access-rights für appdomain
-            PermissionSet rechte = new PermissionSet(PermissionState.None);
-            rechte.AddPermission(new SecurityPermission(SecurityPermissionFlag.Execution));
-            rechte.AddPermission(new ReflectionPermission(ReflectionPermissionFlag.RestrictedMemberAccess));
+            // setup access-rights for appdomain
+            PermissionSet permissions = new PermissionSet(PermissionState.None);
+            permissions.AddPermission(new SecurityPermission(SecurityPermissionFlag.Execution));
+            permissions.AddPermission(new ReflectionPermission(ReflectionPermissionFlag.RestrictedMemberAccess));
 
             bool IoAccess = false;
             bool UiAccess = false;
             bool DbAccess = false;
             bool NetAccess = false;
 
-            // allow access to the needed ai-files
+            // grant access to the needed ai-files
             foreach (TeamInfo team in configuration.Teams)
             {
                 foreach (PlayerInfo info in team.Player)
                 {
                     if (info is PlayerInfoFilename)
                     {
-                        rechte.AddPermission(
+                        permissions.AddPermission(
                             new FileIOPermission(
                                 FileIOPermissionAccess.Read |
                                 FileIOPermissionAccess.PathDiscovery,
@@ -117,12 +117,12 @@ namespace AntMe.Simulation
                 }
             }
 
-            // Grand special rights
+            // grant special rights
             if (IoAccess)
             {
                 if (configuration.AllowFileAccess)
                 {
-                    rechte.AddPermission(new FileIOPermission(PermissionState.Unrestricted));
+                    permissions.AddPermission(new FileIOPermission(PermissionState.Unrestricted));
                 }
                 else
                 {
@@ -134,7 +134,7 @@ namespace AntMe.Simulation
             {
                 if (configuration.AllowUserinterfaceAccess)
                 {
-                    rechte.AddPermission(new UIPermission(PermissionState.Unrestricted));
+                    permissions.AddPermission(new UIPermission(PermissionState.Unrestricted));
                 }
                 else
                 {
@@ -146,7 +146,7 @@ namespace AntMe.Simulation
             {
                 if (configuration.AllowDatabaseAccess)
                 {
-                    // TODO: Grand rights
+                    // TODO: grant rights
                 }
                 else
                 {
@@ -158,9 +158,9 @@ namespace AntMe.Simulation
             {
                 if (configuration.AllowNetworkAccess)
                 {
-                    rechte.AddPermission(new System.Net.WebPermission(PermissionState.Unrestricted));
-                    rechte.AddPermission(new System.Net.SocketPermission(PermissionState.Unrestricted));
-                    rechte.AddPermission(new System.Net.DnsPermission(PermissionState.Unrestricted));
+                    permissions.AddPermission(new System.Net.WebPermission(PermissionState.Unrestricted));
+                    permissions.AddPermission(new System.Net.SocketPermission(PermissionState.Unrestricted));
+                    permissions.AddPermission(new System.Net.DnsPermission(PermissionState.Unrestricted));
                 }
                 else
                 {
@@ -169,7 +169,7 @@ namespace AntMe.Simulation
             }
 
             // create appdomain and load simulation-host
-            appDomain = AppDomain.CreateDomain("Simulation", AppDomain.CurrentDomain.Evidence, setup, rechte);
+            appDomain = AppDomain.CreateDomain("Simulation", AppDomain.CurrentDomain.Evidence, setup, permissions);
 
             host =
                 (SimulatorHost)
@@ -187,9 +187,9 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Executes one single step in simulation and returns hostState.
+        /// Executes one single step in simulation and returns summary of the executed simulation step 
         /// </summary>
-        /// <param name="simulationState">The prefilled simulationState to put the currrent simulation-Snapshot in.</param>
+        /// <param name="simulationState">simulation state</param>
         /// <returns>Summery of the executed simulationStep.</returns>
         public SimulatorHostState Step(ref SimulationState simulationState)
         {

@@ -3,70 +3,70 @@ using System;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Klasse zur Weiterleitung von Debug-Information mit Kontextinformationen
+    /// Class for forwarding debug information with context information
     /// </summary>
     [Serializable]
     public sealed class DebugMessage
     {
-        #region interne Variablen
+        #region internal variables
 
-        private readonly int ameise;
-        private readonly string nachricht;
-        private readonly int spieler;
-        private readonly DateTime zeit;
-
-        #endregion
-
-        #region Konstruktor und Initialisierung
-
-        /// <summary>
-        /// Konstruktor einer Debugnachricht
-        /// </summary>
-        /// <param name="spieler">ID des spielers</param>
-        /// <param name="ameise">ID der Ameise</param>
-        /// <param name="nachricht">Nachricht</param>
-        public DebugMessage(int spieler, int ameise, string nachricht)
-        {
-            zeit = DateTime.Now;
-            this.spieler = spieler;
-            this.ameise = ameise;
-            this.nachricht = nachricht;
-        }
+        private readonly int ant;
+        private readonly string message;
+        private readonly int player;
+        private readonly DateTime time;
 
         #endregion
 
-        #region Eigenschaften
+        #region Construktor and Initialization
 
         /// <summary>
-        /// Zeitpunkt der Nachricht
+        /// Constructor of a debug message.
         /// </summary>
-        public DateTime Zeit
+        /// <param name="player">ID of player.</param>
+        /// <param name="ant">ID of ant.</param>
+        /// <param name="message">Message.</param>
+        public DebugMessage(int player, int ant, string message)
         {
-            get { return zeit; }
+            time = DateTime.Now;
+            this.player = player;
+            this.ant = ant;
+            this.message = message;
+        }
+
+        #endregion
+
+        #region Attributes
+
+        /// <summary>
+        /// Message time.
+        /// </summary>
+        public DateTime Time
+        {
+            get { return time; }
         }
 
         /// <summary>
-        /// Assoziierter Spieler
+        /// Associated player.
         /// </summary>
-        public int Spieler
+        public int Player
         {
-            get { return spieler; }
+            get { return player; }
         }
 
         /// <summary>
-        /// ID der betroffenen Ameise
+        /// ID of the affected ant.
         /// </summary>
-        public int Ameise
+        public int Ant
         {
-            get { return ameise; }
+            get { return ant; }
         }
 
         /// <summary>
-        /// Die Debugnachricht
+        /// The debug message.
         /// </summary>
-        public string Nachricht
+        public string Message
         {
-            get { return nachricht; }
+            get { return message; }
         }
 
         #endregion

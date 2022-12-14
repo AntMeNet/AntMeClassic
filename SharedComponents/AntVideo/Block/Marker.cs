@@ -6,7 +6,7 @@ namespace AntMe.SharedComponents.AntVideo.Block
     {
         #region Updateinformation
 
-        public int aRichtung;
+        public int aDirection;
         public int dRadius;
         private bool isAlive;
 
@@ -20,19 +20,19 @@ namespace AntMe.SharedComponents.AntVideo.Block
             Reset();
         }
 
-        public Marker(MarkerState zustand) : base(zustand.ColonyId, zustand.Id)
+        public Marker(MarkerState markerState) : base(markerState.ColonyId, markerState.Id)
         {
-            PositionX = zustand.PositionX;
-            PositionY = zustand.PositionY;
-            Radius = zustand.Radius;
-            Direction = zustand.Direction;
+            PositionX = markerState.PositionX;
+            PositionY = markerState.PositionY;
+            Radius = markerState.Radius;
+            Direction = markerState.Direction;
 
             Reset();
         }
 
         private void Reset()
         {
-            aRichtung = Direction;
+            aDirection = Direction;
             dRadius = 0;
         }
 
@@ -41,7 +41,7 @@ namespace AntMe.SharedComponents.AntVideo.Block
         public void Interpolate()
         {
             Radius += dRadius;
-            Direction = aRichtung;
+            Direction = aDirection;
         }
 
         public void Update(MarkerUpdate update)
@@ -52,7 +52,7 @@ namespace AntMe.SharedComponents.AntVideo.Block
             }
             if (update.HasChanged(MarkerFields.Direction))
             {
-                aRichtung = update.aDirection;
+                aDirection = update.aDirection;
             }
         }
 

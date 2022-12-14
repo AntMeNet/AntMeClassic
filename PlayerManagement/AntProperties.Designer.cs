@@ -34,29 +34,29 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.common = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.klassennameTextBox = new System.Windows.Forms.TextBox();
+            this.classnameTextBox = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
-            this.dateinameTextBox = new System.Windows.Forms.TextBox();
-            this.statischLabel = new System.Windows.Forms.Label();
+            this.filenameTextBox = new System.Windows.Forms.TextBox();
+            this.staticLabel = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.debugLabel = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.datumLabel = new System.Windows.Forms.Label();
-            this.dateigrößeLabel = new System.Windows.Forms.Label();
-            this.spracheLabel = new System.Windows.Forms.Label();
+            this.dateLabel = new System.Windows.Forms.Label();
+            this.fileSizeLabel = new System.Windows.Forms.Label();
+            this.languageLabel = new System.Windows.Forms.Label();
             this.versionLabel = new System.Windows.Forms.Label();
-            this.autorLabel = new System.Windows.Forms.Label();
+            this.authorLabel = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.kiNameLabel1 = new System.Windows.Forms.Label();
+            this.aiNameLabel1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.castes = new System.Windows.Forms.TabPage();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.kiNameLabel2 = new System.Windows.Forms.Label();
+            this.aiNameLabel2 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.casteGroupBox = new System.Windows.Forms.GroupBox();
             this.rangeLabel = new System.Windows.Forms.Label();
@@ -80,12 +80,12 @@
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.security = new System.Windows.Forms.TabPage();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.zusatzinfosTextBox = new System.Windows.Forms.TextBox();
-            this.kiNameLabel3 = new System.Windows.Forms.Label();
+            this.additionalInformationTextBox = new System.Windows.Forms.TextBox();
+            this.aiNameLabel3 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.rechteListView = new System.Windows.Forms.ListView();
+            this.securityListView = new System.Windows.Forms.ListView();
             this.tabControl.SuspendLayout();
             this.common.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -116,25 +116,25 @@
             // 
             resources.ApplyResources(this.common, "common");
             this.common.Controls.Add(this.pictureBox1);
-            this.common.Controls.Add(this.klassennameTextBox);
+            this.common.Controls.Add(this.classnameTextBox);
             this.common.Controls.Add(this.label28);
-            this.common.Controls.Add(this.dateinameTextBox);
-            this.common.Controls.Add(this.statischLabel);
+            this.common.Controls.Add(this.filenameTextBox);
+            this.common.Controls.Add(this.staticLabel);
             this.common.Controls.Add(this.label30);
             this.common.Controls.Add(this.debugLabel);
             this.common.Controls.Add(this.label4);
-            this.common.Controls.Add(this.datumLabel);
-            this.common.Controls.Add(this.dateigrößeLabel);
-            this.common.Controls.Add(this.spracheLabel);
+            this.common.Controls.Add(this.dateLabel);
+            this.common.Controls.Add(this.fileSizeLabel);
+            this.common.Controls.Add(this.languageLabel);
             this.common.Controls.Add(this.versionLabel);
-            this.common.Controls.Add(this.autorLabel);
+            this.common.Controls.Add(this.authorLabel);
             this.common.Controls.Add(this.label27);
             this.common.Controls.Add(this.label26);
             this.common.Controls.Add(this.label25);
             this.common.Controls.Add(this.label24);
             this.common.Controls.Add(this.label23);
             this.common.Controls.Add(this.label22);
-            this.common.Controls.Add(this.kiNameLabel1);
+            this.common.Controls.Add(this.aiNameLabel1);
             this.common.Controls.Add(this.label3);
             this.common.Name = "common";
             this.common.UseVisualStyleBackColor = true;
@@ -148,9 +148,9 @@
             // 
             // klassennameTextBox
             // 
-            resources.ApplyResources(this.klassennameTextBox, "klassennameTextBox");
-            this.klassennameTextBox.Name = "klassennameTextBox";
-            this.klassennameTextBox.ReadOnly = true;
+            resources.ApplyResources(this.classnameTextBox, "klassennameTextBox");
+            this.classnameTextBox.Name = "klassennameTextBox";
+            this.classnameTextBox.ReadOnly = true;
             // 
             // label28
             // 
@@ -159,14 +159,14 @@
             // 
             // dateinameTextBox
             // 
-            resources.ApplyResources(this.dateinameTextBox, "dateinameTextBox");
-            this.dateinameTextBox.Name = "dateinameTextBox";
-            this.dateinameTextBox.ReadOnly = true;
+            resources.ApplyResources(this.filenameTextBox, "dateinameTextBox");
+            this.filenameTextBox.Name = "dateinameTextBox";
+            this.filenameTextBox.ReadOnly = true;
             // 
             // statischLabel
             // 
-            resources.ApplyResources(this.statischLabel, "statischLabel");
-            this.statischLabel.Name = "statischLabel";
+            resources.ApplyResources(this.staticLabel, "statischLabel");
+            this.staticLabel.Name = "statischLabel";
             // 
             // label30
             // 
@@ -185,18 +185,18 @@
             // 
             // datumLabel
             // 
-            resources.ApplyResources(this.datumLabel, "datumLabel");
-            this.datumLabel.Name = "datumLabel";
+            resources.ApplyResources(this.dateLabel, "datumLabel");
+            this.dateLabel.Name = "datumLabel";
             // 
             // dateigrößeLabel
             // 
-            resources.ApplyResources(this.dateigrößeLabel, "dateigrößeLabel");
-            this.dateigrößeLabel.Name = "dateigrößeLabel";
+            resources.ApplyResources(this.fileSizeLabel, "dateigrößeLabel");
+            this.fileSizeLabel.Name = "dateigrößeLabel";
             // 
             // spracheLabel
             // 
-            resources.ApplyResources(this.spracheLabel, "spracheLabel");
-            this.spracheLabel.Name = "spracheLabel";
+            resources.ApplyResources(this.languageLabel, "spracheLabel");
+            this.languageLabel.Name = "spracheLabel";
             // 
             // versionLabel
             // 
@@ -205,8 +205,8 @@
             // 
             // autorLabel
             // 
-            resources.ApplyResources(this.autorLabel, "autorLabel");
-            this.autorLabel.Name = "autorLabel";
+            resources.ApplyResources(this.authorLabel, "autorLabel");
+            this.authorLabel.Name = "autorLabel";
             // 
             // label27
             // 
@@ -240,8 +240,8 @@
             // 
             // kiNameLabel1
             // 
-            resources.ApplyResources(this.kiNameLabel1, "kiNameLabel1");
-            this.kiNameLabel1.Name = "kiNameLabel1";
+            resources.ApplyResources(this.aiNameLabel1, "kiNameLabel1");
+            this.aiNameLabel1.Name = "kiNameLabel1";
             // 
             // label3
             // 
@@ -252,7 +252,7 @@
             // 
             resources.ApplyResources(this.castes, "castes");
             this.castes.Controls.Add(this.pictureBox2);
-            this.castes.Controls.Add(this.kiNameLabel2);
+            this.castes.Controls.Add(this.aiNameLabel2);
             this.castes.Controls.Add(this.label29);
             this.castes.Controls.Add(this.casteGroupBox);
             this.castes.Controls.Add(this.label5);
@@ -269,8 +269,8 @@
             // 
             // kiNameLabel2
             // 
-            resources.ApplyResources(this.kiNameLabel2, "kiNameLabel2");
-            this.kiNameLabel2.Name = "kiNameLabel2";
+            resources.ApplyResources(this.aiNameLabel2, "kiNameLabel2");
+            this.aiNameLabel2.Name = "kiNameLabel2";
             // 
             // label29
             // 
@@ -407,12 +407,12 @@
             // 
             resources.ApplyResources(this.security, "security");
             this.security.Controls.Add(this.pictureBox3);
-            this.security.Controls.Add(this.zusatzinfosTextBox);
-            this.security.Controls.Add(this.kiNameLabel3);
+            this.security.Controls.Add(this.additionalInformationTextBox);
+            this.security.Controls.Add(this.aiNameLabel3);
             this.security.Controls.Add(this.label31);
             this.security.Controls.Add(this.label2);
             this.security.Controls.Add(this.label1);
-            this.security.Controls.Add(this.rechteListView);
+            this.security.Controls.Add(this.securityListView);
             this.security.Name = "security";
             this.security.UseVisualStyleBackColor = true;
             // 
@@ -425,14 +425,14 @@
             // 
             // zusatzinfosTextBox
             // 
-            resources.ApplyResources(this.zusatzinfosTextBox, "zusatzinfosTextBox");
-            this.zusatzinfosTextBox.Name = "zusatzinfosTextBox";
-            this.zusatzinfosTextBox.ReadOnly = true;
+            resources.ApplyResources(this.additionalInformationTextBox, "zusatzinfosTextBox");
+            this.additionalInformationTextBox.Name = "zusatzinfosTextBox";
+            this.additionalInformationTextBox.ReadOnly = true;
             // 
             // kiNameLabel3
             // 
-            resources.ApplyResources(this.kiNameLabel3, "kiNameLabel3");
-            this.kiNameLabel3.Name = "kiNameLabel3";
+            resources.ApplyResources(this.aiNameLabel3, "kiNameLabel3");
+            this.aiNameLabel3.Name = "kiNameLabel3";
             // 
             // label31
             // 
@@ -451,15 +451,15 @@
             // 
             // rechteListView
             // 
-            resources.ApplyResources(this.rechteListView, "rechteListView");
-            this.rechteListView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.rechteListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.rechteListView.Name = "rechteListView";
-            this.rechteListView.ShowItemToolTips = true;
-            this.rechteListView.SmallImageList = this.imageList;
-            this.rechteListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.rechteListView.UseCompatibleStateImageBehavior = false;
-            this.rechteListView.View = System.Windows.Forms.View.List;
+            resources.ApplyResources(this.securityListView, "rechteListView");
+            this.securityListView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.securityListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.securityListView.Name = "rechteListView";
+            this.securityListView.ShowItemToolTips = true;
+            this.securityListView.SmallImageList = this.imageList;
+            this.securityListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.securityListView.UseCompatibleStateImageBehavior = false;
+            this.securityListView.View = System.Windows.Forms.View.List;
             // 
             // AntProperties
             // 
@@ -518,33 +518,33 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ListView castesListView;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListView rechteListView;
+        private System.Windows.Forms.ListView securityListView;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label kiNameLabel1;
+        private System.Windows.Forms.Label aiNameLabel1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label datumLabel;
-        private System.Windows.Forms.Label dateigrößeLabel;
-        private System.Windows.Forms.Label spracheLabel;
+        private System.Windows.Forms.Label dateLabel;
+        private System.Windows.Forms.Label fileSizeLabel;
+        private System.Windows.Forms.Label languageLabel;
         private System.Windows.Forms.Label versionLabel;
-        private System.Windows.Forms.Label autorLabel;
-        private System.Windows.Forms.Label kiNameLabel2;
+        private System.Windows.Forms.Label authorLabel;
+        private System.Windows.Forms.Label aiNameLabel2;
         private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.Label kiNameLabel3;
+        private System.Windows.Forms.Label aiNameLabel3;
         private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.Label statischLabel;
+        private System.Windows.Forms.Label staticLabel;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label debugLabel;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox dateinameTextBox;
-        private System.Windows.Forms.TextBox klassennameTextBox;
+        private System.Windows.Forms.TextBox filenameTextBox;
+        private System.Windows.Forms.TextBox classnameTextBox;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.TextBox zusatzinfosTextBox;
+        private System.Windows.Forms.TextBox additionalInformationTextBox;
         private System.Windows.Forms.ImageList imageList;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;

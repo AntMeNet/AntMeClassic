@@ -4,13 +4,13 @@ namespace AntMe.SharedComponents.AntVideo.Block
 {
     internal sealed class Colony : ColonyState, IUpdateable<ColonyUpdate, ColonyState>, ISerializable
     {
-        #region Basisinformation
+        #region Base information
 
         public int TeamId;
 
         #endregion
 
-        #region Updateinformation
+        #region Update information
 
         private int aBeatenAnts;
         private int aCollectedFood;
@@ -50,7 +50,7 @@ namespace AntMe.SharedComponents.AntVideo.Block
         }
 
         /// <summary>
-        /// Setzt die Updatedaten auf erwartete Werte
+        /// Sets the update data to expected values.
         /// </summary>
         private void Reset()
         {
@@ -196,7 +196,7 @@ namespace AntMe.SharedComponents.AntVideo.Block
 
         #region ISerializable Member
 
-        // Blocklayout:
+        // Block layout:
         // - ushort ID
         // - guid Guid
         // - ushort Team

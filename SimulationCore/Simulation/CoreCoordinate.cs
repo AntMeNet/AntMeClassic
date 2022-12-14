@@ -5,83 +5,85 @@ namespace AntMe.Simulation
 
 
     /// <summary>
-    /// Die Position eines Objekts auf dem Spielfeld.
+    /// Item coordinates on the playground.
     /// </summary>
     /// <author>Wolfgang Gallo (wolfgang@antme.net)</author>
     public struct CoreCoordinate
     {
         private int radius;
-        private int richtung;
+        private int direction;
         private int x;
         private int y;
 
         /// <summary>
-        /// Erzeugt eine neue Instanz der Koordinate-Struktur.
+        /// Constructor for new instances of a coordinate struct for an item.
         /// </summary>
-        /// <param name="x">Der X-Wert des Elementes.</param>
-        /// <param name="y">Der Y-Wert des Elementes.</param>
-        /// <param name="radius">Der Radius des Elementes.</param>
-        /// <param name="richtung">Die Richtung in die das Element blickt.</param>
-        internal CoreCoordinate(int x, int y, int radius, int richtung)
+        /// <param name="x">X coordinate of the item.</param>
+        /// <param name="y">Y coordinate of the item.</param>
+        /// <param name="radius">Radius of the item.</param>
+        /// <param name="direction">Direction the item is oriented to.</param>
+        internal CoreCoordinate(int x, int y, int radius, int direction)
         {
             this.x = x * SimulationEnvironment.PLAYGROUND_UNIT;
             this.y = y * SimulationEnvironment.PLAYGROUND_UNIT;
 
-            // In diesem Konstruktor müssen alle Werte der Struktur initialisiert
-            // werden, deswegen werden Radius und Richtung hier gesetzt, obwohl sie
-            // im Anschluß gleich wieder überschrieben werden.
+            // All parameters of the constructor must be initialized.
+            // That's why radius and direction are set 0 now
+            // they will be overwritten afterwards.
             this.radius = 0;
-            this.richtung = 0;
+            this.direction = 0;
 
             Radius = radius * SimulationEnvironment.PLAYGROUND_UNIT;
-            Richtung = richtung;
+            Direction = direction;
         }
 
         /// <summary>
-        /// Erzeugt eine neue Instanz der Koordinate-Struktur.
+        /// Constructor for new instances of a coordinate struct
+        /// without direction.
         /// </summary>
-        /// <param name="x">Der X-Wert des Elementes.</param>
-        /// <param name="y">Der Y-Wert des Elementes.</param>
-        /// <param name="radius">Der Radius des Elementes.</param>
+        /// <param name="x">X coordinate of the item.</param>
+        /// <param name="y">Y coordinate of the item.</param>
+        /// <param name="radius">Radius of the item.</param>
         internal CoreCoordinate(int x, int y, int radius)
         {
             this.x = x * SimulationEnvironment.PLAYGROUND_UNIT;
             this.y = y * SimulationEnvironment.PLAYGROUND_UNIT;
             this.radius = 0;
-            richtung = 0;
+            direction = 0;
             Radius = radius * SimulationEnvironment.PLAYGROUND_UNIT;
         }
 
         /// <summary>
-        /// Erzeugt eine neue Instanz der Koordinate-Struktur.
+        /// Constructor for new instances of a coordinate struct
+        /// without direction or radius.
         /// </summary>
-        /// <param name="x">Der X-Wert des Elementes.</param>
-        /// <param name="y">Der Y-Wert des Elementes.</param>
+        /// <param name="x">X coordinate of the item.</param>
+        /// <param name="y">Y coordinate of the item.</param>
         internal CoreCoordinate(int x, int y)
         {
             this.x = x * SimulationEnvironment.PLAYGROUND_UNIT;
             this.y = y * SimulationEnvironment.PLAYGROUND_UNIT;
             radius = 0;
-            richtung = 0;
+            direction = 0;
         }
 
         /// <summary>
-        /// Erzeugt eine neue Instanz der Koordinate-Struktur ausgehend von einer
-        /// bestehenden Koordinate.
+        /// Constructor for new instances of a coordinate struct
+        /// in relation to the given coordinate.
         /// </summary>
-        /// <param name="k">Die bestehende Koordinate.</param>
-        /// <param name="deltaX">Der X-Wert relativ zu der Koordinate.</param>
-        /// <param name="deltaY">Der Y-Wert relativ zu der Koordinate.</param>
-        internal CoreCoordinate(CoreCoordinate k, int deltaX, int deltaY)
+        /// <param name="c">The given coordinate.</param>
+        /// <param name="deltaX">X coordinate of the item in relation to the given coordinate.</param>
+        /// <param name="deltaY">Y coordinate of the item in relation to the given coordinate.</param>
+        internal CoreCoordinate(CoreCoordinate c, int deltaX, int deltaY)
         {
-            x = k.x + deltaX;
-            y = k.y + deltaY;
-            radius = k.radius;
-            richtung = k.richtung;
+            x = c.x + deltaX;
+            y = c.y + deltaY;
+            radius = c.radius;
+            direction = c.direction;
         }
 
         /// <summary>
-        /// Der X-Wert des Elements.
+        /// The x value of an item coordinate.
         /// </summary>
         internal int X
         {
@@ -90,7 +92,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Der Y-Wert des Elements.
+        /// The y value of an item coordinate. 
         /// </summary>
         internal int Y
         {
@@ -99,9 +101,10 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Der Radius des Elementes. Da alle Berechnungen in der Spiel (z.B.
-        /// die Bestimmung von Entfernungen) auf Punkten und Kreisen basiert, wird
-        /// auch der Radius eines Objektes in der IKoordinate Struktur gespeichert.
+        /// Radius of the item coordinate.
+        /// All calculations of the the simulation are based on coordinates 
+        /// and associated hemispheres like the distance between items
+        /// therefor the radius is part of the coordinate struct.
         /// </summary>
         internal int Radius
         {
@@ -110,100 +113,97 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Die Richtung in die das Element blickt. Eine Richtung ist zwar kein
-        /// echter Teil einer Koordinate und nicht alle Elemente die eine Koordinate
-        /// haben benötigen die Richtung, aber die IKoordinate-Struktur ist der
-        /// beste Platz um auch die Richtung eines Objektes zu speichern.
+        /// Direction the item is oriented to, not all items need a direction.
+        /// The items needing a direction usually have methods to turn themself
+        /// to a direction. This is not part of conventional coordinate systems
+        /// but the CoreCoordinate struct is good place to store this information.
         /// </summary>
-        internal int Richtung
+        internal int Direction
         {
-            get { return richtung; }
+            get { return direction; }
             set
             {
-                richtung = value;
-                while (richtung < 0)
+                direction = value;
+                while (direction < 0)
                 {
-                    richtung += 360;
+                    direction += 360;
                 }
-                while (richtung > 359)
+                while (direction > 359)
                 {
-                    richtung -= 360;
+                    direction -= 360;
                 }
             }
         }
 
         /// <summary>
-        /// Bestimmt die Entfernung zweier Objekte auf dem Spielfeld in Schritten.
+        /// Determine the distance between two items on the playground in steps.
         /// </summary>
-        /// <param name="o1">Objekt 1.</param>
-        /// <param name="o2">Objekt 2.</param>
-        /// <returns>Die Entfernung.</returns>
-        internal static int BestimmeEntfernung(ICoordinate o1, ICoordinate o2)
+        /// <param name="o1">Object 1.</param>
+        /// <param name="o2">Object 2.</param>
+        /// <returns>Distance in steps.</returns>
+        internal static int DetermineDistance(ICoordinate o1, ICoordinate o2)
         {
-            return BestimmeEntfernungI(o1.CoordinateBase, o2.CoordinateBase) / SimulationEnvironment.PLAYGROUND_UNIT;
+            return DetermineDistanceI(o1.CoordinateCoreInsect, o2.CoordinateCoreInsect) / SimulationEnvironment.PLAYGROUND_UNIT;
         }
 
         /// <summary>
-        /// Bestimmt die Richtung von einem Objekt auf dem Spielfeld zu einem
-        /// anderen.
+        /// Determine direction from one item on the playground to another.
         /// </summary>
-        /// <param name="o1">Das Start Objekt.</param>
-        /// <param name="o2">Das Ziel Objekt.</param>
-        /// <returns>Die Richtung.</returns>
-        internal static int BestimmeRichtung(ICoordinate o1, ICoordinate o2)
+        /// <param name="i1">Source item.</param>
+        /// <param name="i2">Destination item.</param>
+        /// <returns>Direction.</returns>
+        internal static int DetermineDirection(ICoordinate i1, ICoordinate i2)
         {
-            return BestimmeRichtung(o1.CoordinateBase, o2.CoordinateBase);
+            return DetermineDirection(i1.CoordinateCoreInsect, i2.CoordinateCoreInsect);
         }
 
         /// <summary>
-        /// Bestimmt die Entfernung zweier Koordinaten auf dem Spielfeld in der
-        /// internen Einheit.
+        /// Determine the distance between two item coordinates on the playground in internal unit.
         /// </summary>
-        /// <param name="k1">Koordinate 1.</param>
-        /// <param name="k2">Koordinate 2.</param>
-        /// <returns>Die Entfernung.</returns>
-        internal static int BestimmeEntfernungI(CoreCoordinate k1, CoreCoordinate k2)
+        /// <param name="c1">Coordinate 1.</param>
+        /// <param name="c2">Coordinate 2.</param>
+        /// <returns>Distance between coordinates in internal unit.</returns>
+        internal static int DetermineDistanceI(CoreCoordinate c1, CoreCoordinate c2)
         {
-            double deltaX = k1.x - k2.x;
-            double deltaY = k1.y - k2.y;
-            int entfernung = (int)Math.Round(Math.Sqrt(deltaX * deltaX + deltaY * deltaY));
-            entfernung = entfernung - k1.radius - k2.radius;
-            if (entfernung < 0)
+            double deltaX = c1.x - c2.x;
+            double deltaY = c1.y - c2.y;
+            int distance = (int)Math.Round(Math.Sqrt(deltaX * deltaX + deltaY * deltaY));
+            distance = distance - c1.radius - c2.radius;
+            if (distance < 0)
             {
                 return 0;
             }
-            return entfernung;
+            return distance;
         }
 
         /// <summary>
-        /// Bestimmt die Entfernung zweier Koordinaten auf dem Spielfeld in der 
-        /// internen Einheit ohne Beachtung der Radien.
+        /// Determine the distance between two item coordinates on the playground in internal unit
+        /// without considering the radii.
         /// </summary>
-        /// <param name="k1">Koordinate 1.</param>
-        /// <param name="k2">Koordinate 2.</param>
-        /// <returns>Die Entfernung.</returns>
-        internal static int BestimmeEntfernungDerMittelpunkteI(CoreCoordinate k1, CoreCoordinate k2)
+        /// <param name="c1">Coordinate 1.</param>
+        /// <param name="c2">Coordinate 2.</param>
+        /// <returns>Distance in internal unit.</returns>
+        internal static int DetermineDistanceToCenter(CoreCoordinate c1, CoreCoordinate c2)
         {
-            double deltaX = k1.x - k2.x;
-            double deltaY = k1.y - k2.y;
+            double deltaX = c1.x - c2.x;
+            double deltaY = c1.y - c2.y;
             return (int)Math.Round(Math.Sqrt(deltaX * deltaX + deltaY * deltaY));
         }
 
         /// <summary>
-        /// Bestimmt die Richtung von einer Koordinate auf dem Spielfeld zu einer
-        /// anderen.
+        /// Determine direction from one item coordinate on the playground to another.
         /// </summary>
-        /// <param name="k1">Die Start Koordinate.</param>
-        /// <param name="k2">Die Ziel Koordinate.</param>
-        /// <returns>Die Richtung.</returns>
-        internal static int BestimmeRichtung(CoreCoordinate k1, CoreCoordinate k2)
+        /// <param name="c1">Source coordinate.</param>
+        /// <param name="c2">Target coordinate.</param>
+        /// <returns>Direction.</returns>
+        internal static int DetermineDirection(CoreCoordinate c1, CoreCoordinate c2)
         {
-            int richtung = (int)Math.Round(Math.Atan2(k2.Y - k1.Y, k2.X - k1.X) * 180d / Math.PI);
-            if (richtung < 0)
+            int direction = (int)Math.Round(Math.Atan2(c2.Y - c1.Y, c2.X - c1.X) * 180d / Math.PI);
+            if (direction < 0)
             {
-                richtung += 360;
+                direction += 360;
             }
-            return richtung;
+            return direction;
         }
     }
 }

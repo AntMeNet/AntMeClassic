@@ -3,98 +3,65 @@
 namespace AntMe.English
 {
     /// <summary>
-    /// Its the interface for all lifeforms on playground
+    /// Its the interface for all lifeforms on playground.
     /// </summary>
     public abstract class Insect : Item
     {
-        internal Insect(CoreInsect insekt) : base(insekt) { }
+        internal Insect(CoreInsect insect) : base(insect) { }
 
         /// <summary>
-        /// Returns the unique ID of this insect
+        /// Returns the unique ID of this insect.
         /// </summary>
-        public override int Id
-        {
-            get { return ((CoreInsect)Baseitem).id; }
-        }
+        public override int Id => ((CoreInsect)Baseitem).Id;
 
         /// <summary>
-        /// Delivers the current energy of this ant
+        /// Returns the current energy of this insect.
         /// </summary>
-        public int CurrentEnergy
-        {
-            get { return ((CoreInsect)Baseitem).AktuelleEnergieBase; }
-        }
+        public int CurrentEnergy => ((CoreInsect)Baseitem).CurrentEnergyCoreInsect;
 
         /// <summary>
-        /// Delivers the current speed
+        /// Returns the current speed of the insect.
         /// </summary>
-        public int CurrentSpeed
-        {
-            get { return ((CoreInsect)Baseitem).AktuelleGeschwindigkeitBase; }
-        }
+        public int CurrentSpeed => ((CoreInsect)Baseitem).CurrentSpeedCoreInsect;
 
         /// <summary>
-        /// Delivers the strength
+        /// Returns the attack strength of the insect.
         /// </summary>
-        public int AttackStrength
-        {
-            get { return ((CoreInsect)Baseitem).AngriffBase; }
-        }
+        public int AttackStrength => ((CoreInsect)Baseitem).AttackStrengthCoreInsect;
 
         /// <summary>
-        /// Delivers the rotationspeed
+        /// Returns the rotation speed of the insect.
         /// </summary>
-        public int RotationSpeed
-        {
-            get { return ((CoreInsect)Baseitem).DrehgeschwindigkeitBase; }
-        }
+        public int RotationSpeed => ((CoreInsect)Baseitem).RotationSpeedCoreInsect;
 
         /// <summary>
-        /// delivers the maximum energy
+        /// Returns the maximum energy of the insect.
         /// </summary>
-        public int MaximumEnergy
-        {
-            get { return ((CoreInsect)Baseitem).MaximaleEnergieBase; }
-        }
+        public int MaximumEnergy => ((CoreInsect)Baseitem).MaximumEnergyCoreInsect;
 
         /// <summary>
-        /// delivers the maximum speed
+        /// Returns the maximum speed of the insect.
         /// </summary>
-        public int MaximumSpeed
-        {
-            get { return ((CoreInsect)Baseitem).MaximaleGeschwindigkeitBase; }
-        }
+        public int MaximumSpeed => ((CoreInsect)Baseitem).MaximumSpeedCoreInsect;
 
         /// <summary>
-        /// delivers the viewrange
+        /// Returns the view range of the insect.
         /// </summary>
-        public int Viewrange
-        {
-            get { return ((CoreInsect)Baseitem).SichtweiteBase; }
-        }
+        public int ViewRange => ((CoreInsect)Baseitem).ViewRangeCoreInsect;
 
         /// <summary>
-        /// delivers the degrees to rotate
+        /// Returns the residual angle of the insect.
         /// </summary>
-        public int DegreesToTarget
-        {
-            get { return ((CoreInsect)Baseitem).RestWinkelBase; }
-        }
+        public int ResidualAngle => ((CoreInsect)Baseitem).ResidualAngle;
 
         /// <summary>
-        /// delivers the direction
+        /// Returns the direction the insect is heading to.
         /// </summary>
-        public int Direction
-        {
-            get { return ((CoreInsect)Baseitem).RichtungBase; }
-        }
+        public int Direction => ((CoreInsect)Baseitem).GetDirectionCoreInsect();
 
         /// <summary>
-        /// delivers the distance to go
+        /// Returns the distance the insect has to cover.
         /// </summary>
-        public int DistanceToTarget
-        {
-            get { return ((CoreInsect)Baseitem).RestStreckeBase; }
-        }
+        public int DistanceToDestination => ((CoreInsect)Baseitem).DistanceToDestinationCoreInsect;
     }
 }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Represents a complete encapsulated simulation-core.
+    /// Represents a complete encapsulated simulation core.
     /// </summary>
     /// <author>Tom Wendel (tom@antme.net)</author>
     public sealed class Simulator : IDisposable
@@ -37,7 +37,7 @@ namespace AntMe.Simulation
         /// <param name="configuration">configuration</param>
         public Simulator(SimulatorConfiguration configuration)
         {
-            // Leere Konfiguration prüfen
+            // check configuration null
             if (configuration == null)
             {
                 throw new ArgumentNullException("configuration", Resource.SimulationCoreFactoryConfigIsNull);
@@ -78,7 +78,7 @@ namespace AntMe.Simulation
                 }
             }
 
-            // Regelprüfung der Konfig anwerfen
+            // check configuration against rule set
             configuration.Rulecheck();
 
 
@@ -218,7 +218,7 @@ namespace AntMe.Simulation
         #region Properties
 
         /// <summary>
-        /// Gets the current simulator-state.
+        /// Gets the current simulator state.
         /// </summary>
         public SimulatorState State
         {
@@ -248,7 +248,7 @@ namespace AntMe.Simulation
         {
             get
             {
-                // TODO: Deliver a bether timeformat.
+                // TODO: Deliver a better timeformat.
                 return roundTime;
             }
         }
@@ -286,7 +286,7 @@ namespace AntMe.Simulation
         /// </summary>
         public Dictionary<Guid, long> PlayerLoopTimes
         {
-            // TODO: Deliver a bether format.
+            // TODO: Deliver a better format.
             get { return totalPlayerTime; }
         }
 

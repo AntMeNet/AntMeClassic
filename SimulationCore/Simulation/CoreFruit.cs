@@ -5,67 +5,66 @@ using System.Collections.Generic;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Represents fruit.
+    /// CoreFruit represents a fruit.
     /// </summary>
     internal sealed class CoreFruit : CoreFood
     {
         /// <summary>
-        /// Liste der tragenden Ameisen.
+        /// List of carrying ants.
         /// </summary>
-        internal readonly List<CoreInsect> TragendeInsekten = new List<CoreInsect>();
+        internal readonly List<CoreInsect> InsectsCarrying = new List<CoreInsect>();
 
         /// <summary>
-        /// Erzeugt eine neue Instanz der Obst-Klasse.
+        /// Creates a new instance of the fruit class.
         /// </summary>
-        /// <param name="x">Die X-Position des Obststücks auf dem Spielfeld.</param>
-        /// <param name="y">Die Y-Position des Obststücks auf dem Spielfeld.</param>
-        /// <param name="menge">Die Anzahl an Nahrungspunkten.</param>
-        internal CoreFruit(int x, int y, int menge)
-            : base(x, y, menge) { }
+        /// <param name="x">X-position of the fruit on the playground</param>
+        /// <param name="y">Y-position of the fruit on the playground</param>
+        /// <param name="amount">amount of nutrition points</param>
+        internal CoreFruit(int x, int y, int amount)
+            : base(x, y, amount) { }
 
         /// <summary>
-        /// Die verbleibende Menge an Nahrungspunkten.
+        /// The remaining amount of nutrition points.
         /// </summary>
-        public override int Menge
+        public override int Amount
         {
             internal set
             {
-                menge = value;
-                koordinate.Radius = (int)(SimulationSettings.Custom.FruitRadiusMultiplier *
-                                           Math.Sqrt(menge / Math.PI) * SimulationEnvironment.PLAYGROUND_UNIT);
+                amount = value;
+                coordinate.Radius = (int)(SimulationSettings.Custom.FruitRadiusMultiplier *
+                                           Math.Sqrt(amount / Math.PI) * SimulationEnvironment.PLAYGROUND_UNIT);
             }
         }
 
         /// <summary>
-        /// Bestimmt, ob das Stück Obst für das angegebene Volk noch tragende
-        /// Insekten benötigt, um die maximale Geschwindigkeit beim Tragen zu
-        /// erreichen.
+        /// Determines if the piece of fruit for the specified colony still
+        /// needs carrying insects to reach the maximum speed of carrying.
         /// </summary>
-        /// <param name="colony">Das Volk.</param>
-        internal bool BrauchtNochTräger(CoreColony colony)
+        /// <param name="colony">colony</param>
+        internal bool NeedSupport(CoreColony colony)
         {
-            int last = 0;
-            foreach (CoreInsect insekt in TragendeInsekten)
+            int load = 0;
+            foreach (CoreInsect insect in InsectsCarrying)
             {
-                if (insekt.colony == colony)
+                if (insect.Colony == colony)
                 {
-                    last += insekt.AktuelleLastBase;
+                    load += insect.CurrentLoadCoreInsect;
                 }
             }
-            return last * SimulationSettings.Custom.FruitLoadMultiplier < Menge;
+            return load * SimulationSettings.Custom.FruitLoadMultiplier < Amount;
         }
 
         /// <summary>
-        /// Erzeugt ein ObstZustand-Objekt mit dem Daten Zustand des Obststücks.
+        /// Creates a fruit state object with the data from the state of the fruit.
         /// </summary>
-        internal FruitState ErzeugeInfo()
+        internal FruitState GenerateInformation()
         {
             FruitState info = new FruitState((ushort)Id);
-            info.PositionX = (ushort)(koordinate.X / SimulationEnvironment.PLAYGROUND_UNIT);
-            info.PositionY = (ushort)(koordinate.Y / SimulationEnvironment.PLAYGROUND_UNIT);
-            info.Radius = (ushort)(koordinate.Radius / SimulationEnvironment.PLAYGROUND_UNIT);
-            info.Amount = (ushort)menge;
-            info.CarryingAnts = (byte)TragendeInsekten.Count;
+            info.PositionX = (ushort)(coordinate.X / SimulationEnvironment.PLAYGROUND_UNIT);
+            info.PositionY = (ushort)(coordinate.Y / SimulationEnvironment.PLAYGROUND_UNIT);
+            info.Radius = (ushort)(coordinate.Radius / SimulationEnvironment.PLAYGROUND_UNIT);
+            info.Amount = (ushort)amount;
+            info.CarryingAnts = (byte)InsectsCarrying.Count;
             return info;
         }
     }

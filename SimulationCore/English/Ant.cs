@@ -3,7 +3,7 @@
 namespace AntMe.English
 {
     /// <summary>
-    /// Represents a foreign ant
+    /// Represents a foreign ant.
     /// </summary>
     public sealed class Ant : Insect
     {
@@ -12,26 +12,23 @@ namespace AntMe.English
         /// <summary>
         /// Delivers the current load of this ant.
         /// </summary>
-        public int CurrentLoad
-        {
-            get { return ((CoreAnt)Baseitem).AktuelleLastBase; }
-        }
+        public int CurrentLoad => ((CoreAnt)Baseitem).CurrentLoadCoreInsect;
 
         /// <summary>
-        /// delivers the current carried fruit.
+        /// Delivers the current carried fruit.
         /// </summary>
         public Fruit CarriedFruit
         {
             get
             {
                 CoreAnt temp = (CoreAnt)Baseitem;
-                if (temp.GetragenesObstBase == null)
+                if (temp.CarryingFruitCoreInsect == null)
                 {
                     return null;
                 }
                 else
                 {
-                    return new Fruit(temp.GetragenesObstBase);
+                    return new Fruit(temp.CarryingFruitCoreInsect);
                 }
             }
         }
@@ -39,25 +36,16 @@ namespace AntMe.English
         /// <summary>
         /// Delivers the maximum load.
         /// </summary>
-        public int MaximumLoad
-        {
-            get { return ((CoreAnt)Baseitem).MaximaleLastBase; }
-        }
+        public int MaximumLoad => ((CoreAnt)Baseitem).MaximumLoadCoreInsect;
 
         /// <summary>
         /// Delivers the range.
         /// </summary>
-        public int Range
-        {
-            get { return ((CoreAnt)Baseitem).ReichweiteBase; }
-        }
+        public int Range => ((CoreAnt)Baseitem).RangeCoreInsect; 
 
         /// <summary>
-        /// Delivers the Colony-Name.
+        /// Delivers the colony name.
         /// </summary>
-        public string Colony
-        {
-            get { return ((CoreAnt)Baseitem).colony.Player.ColonyName; }
-        }
+        public string Colony => ((CoreAnt)Baseitem).Colony.Player.ColonyName;
     }
 }

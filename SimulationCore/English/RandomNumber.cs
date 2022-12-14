@@ -3,7 +3,7 @@
 namespace AntMe.English
 {
     /// <summary>
-    /// Helper-class to generate some random numbers
+    /// Helper class to generate a random number.
     /// </summary>
     public class RandomNumber
     {
@@ -15,21 +15,21 @@ namespace AntMe.English
         }
 
         /// <summary>
-        /// Gives a random number between 0 and the given maximum
+        /// Gives a random number between 0 and the given maximum.
         /// </summary>
-        /// <param name="maximum">maximum</param>
-        /// <returns>random number</returns>
+        /// <param name="maximum">Maximum.</param>
+        /// <returns>Random number.</returns>
         public int Number(int maximum)
         {
             return random.Next(maximum);
         }
 
         /// <summary>
-        /// Gives a random number between the given minimum and the given maximum
+        /// Gives a random number between the given minimum and the given maximum.
         /// </summary>
-        /// <param name="minimum">minimum</param>
-        /// <param name="maximum">maximum</param>
-        /// <returns>random number</returns>
+        /// <param name="minimum">Minimum,</param>
+        /// <param name="maximum">Maximum.</param>
+        /// <returns>Random number.</returns>
         public int Number(int minimum, int maximum)
         {
             if (minimum > maximum)

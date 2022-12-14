@@ -4,24 +4,24 @@ using System.Collections.Generic;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Statusklasse zur Weitergabe des aktuellen Spielstandes aus dem Host zurück zum Simulator
+    /// class to transfer the simulation state from the host back to the simulator
     /// </summary>
     /// <author>Tom Wendel (tom@antme.net)</author>
     [Serializable]
     internal sealed class SimulatorHostState
     {
         /// <summary>
-        /// Auflistung der Debug Messages
+        /// List of debug messages
         /// </summary>
         public List<DebugMessage> DebugMessages = new List<DebugMessage>();
 
         /// <summary>
-        /// Gesamtzeit für die Runde
+        /// total time elapsed in the round
         /// </summary>
         public long ElapsedRoundTime;
 
         /// <summary>
-        /// Vergangene Zeiten für einzelne Spieler
+        /// total time elapsed per player
         /// </summary>
         public Dictionary<Guid, long> ElapsedPlayerTimes = new Dictionary<Guid, long>();
     }

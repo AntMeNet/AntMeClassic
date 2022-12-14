@@ -1,23 +1,23 @@
 ﻿namespace AntMe.Simulation
 {
     /// <summary>
-    /// Beschreibt wie eine Ameise gestorben ist.
+    /// Kind of death.
     /// </summary>
     /// <author>Wolfgang Gallo (wolfgang@antme.net)</author>
     internal enum CoreKindOfDeath
     {
         /// <summary>
-        /// Gibt an, dass die Ameise verhungert ist.
+        /// Ant has starved.
         /// </summary>
         Starved = 1,
 
         /// <summary>
-        /// Gibt an, dass die Ameise von einer Wanze gefressen wurde.
+        /// Bug has eaten the ant. 
         /// </summary>
         Eaten = 2,
 
         /// <summary>
-        /// Gibt an, dass die Ameise von einer feindlichen Ameise besiegt wurde.
+        /// Enemy ant has beaten the ant.
         /// </summary>
         Beaten = 4
     }

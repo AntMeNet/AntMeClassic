@@ -3,55 +3,55 @@
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Speichert die Statistik eines Spielers.
+    /// Saves statistics of player.
     /// </summary>
     [Serializable]
     public struct PlayerStatistics
     {
         /// <summary>
-        /// Die aktuelle Anzahl an Ameisen.
+        /// Current ant count.
         /// </summary>
         public int CurrentAntCount;
 
         private int LoopCount;
 
         /// <summary>
-        /// Die Anzahl der durch eigene Ameisen besiegten feindlichen Ameisen.
+        /// Number of killed enemy ants defeated by players ants.
         /// </summary>
         public int KilledAnts;
 
         /// <summary>
-        /// Die Anzahl der besiegten Wanzen.
+        /// Number of killed bugs defeated by players ants.
         /// </summary>
         public int KilledBugs;
 
         /// <summary>
-        /// Die Anzahl der gesammelten Nahrungspunkte.
+        /// Sum of collected food points.
         /// </summary>
         public int CollectedFood;
 
         /// <summary>
-        /// Anzahl gesammeltem Obst.
+        /// Number of collected fruits.
         /// </summary>
         public int CollectedFruits;
 
         /// <summary>
-        /// Die Anzahl der verhungerten Ameisen.
+        /// Sum of starved ants.
         /// </summary>
         public int StarvedAnts;
 
         /// <summary>
-        /// Die Anzahl der von feindlichen Ameisen besiegten eigenen Ameisen.
+        /// Number of beaten ants defeated by the enemy.
         /// </summary>
         public int BeatenAnts;
 
         /// <summary>
-        /// Die Anzahl der von Wanzen gefressenen Ameisen.
+        /// Number of ants eaten by bugs.
         /// </summary>
         public int EatenAnts;
 
         /// <summary>
-        /// Gibt die Gesamtpunktzahl zurück.
+        /// Sum of all points.
         /// </summary>
         public int Points
         {
@@ -70,10 +70,10 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Zählt zwei Statistiken zusammen.
+        /// Sums up two statistics of the same player.
         /// </summary>
-        /// <param name="s1">Statistik 1.</param>
-        /// <param name="s2">Statistik 2.</param>
+        /// <param name="s1">statistics 1</param>
+        /// <param name="s2">statistics 2</param>
         /// <returns>Statistik 1 + Statistik 2.</returns>
         public static PlayerStatistics
             operator +(PlayerStatistics s1, PlayerStatistics s2)

@@ -7,7 +7,7 @@ namespace AntMe.Simulation
 
 
     /// <summary>
-    /// Abstrakte Basisklasse für alle Ameisen.
+    /// Abstract base class for all ants.
     /// </summary>
     /// <author>Wolfgang Gallo (wolfgang@antme.net)</author>
     public abstract class CoreAnt : CoreInsect
@@ -16,14 +16,14 @@ namespace AntMe.Simulation
         {
             base.Init(colony, random, availableInsects);
 
-            koordinate.Radius = 2;
+            Coordinate.Radius = 2;
 
-            // Bestimme die Kaste der neuen Ameise.
+            // Determine caste of the new ant.
             int casteIndex = -1;
             string casteName = string.Empty;
             if (availableInsects != null)
             {
-                casteName = BestimmeKasteBase(availableInsects);
+                casteName = DetermineCasteCoreAnt(availableInsects);
                 for (int i = 0; i < colony.Player.Castes.Count; i++)
                 {
                     if (colony.Player.Castes[i].Name == casteName)
@@ -34,208 +34,201 @@ namespace AntMe.Simulation
                 }
             }
 
-            // Check, if caste is available
+            // Check, if caste is available.
             if (casteIndex == -1)
             {
                 throw new InvalidOperationException(string.Format(Resource.SimulationCoreChooseWrongCaste, casteName));
             }
 
-            // Setze die von der Kaste abhängigen Werte.
-            CasteIndexBase = casteIndex;
-            AktuelleEnergieBase = colony.Energie[casteIndex];
-            aktuelleGeschwindigkeitI = colony.GeschwindigkeitI[casteIndex];
-            AngriffBase = colony.Angriff[casteIndex];
+            // Set ants properties depending on its caste.
+            CasteIndexCoreInsect = casteIndex;
+            CurrentEnergyCoreInsect = colony.EnergyI[casteIndex];
+            currentSpeedICoreInsect = colony.SpeedI[casteIndex];
+            AttackStrengthCoreInsect = colony.AttackI[casteIndex];
         }
-
+        
         /// <summary>
-        /// Bestimmt die Kaste einer neuen Ameise.
+        /// Determine caste for a new ant.
         /// </summary>
-        /// <param name="anzahl">Die Anzahl der von jeder Klaste bereits vorhandenen Ameisen.</param>
-        /// <returns>Der Name der Kaste der Ameise.</returns>
-        internal virtual string BestimmeKasteBase(Dictionary<string, int> anzahl)
+        /// <param name="number">Ants in caste per colony.</param>
+        /// <returns>Name of the caste for the new ant.</returns>
+        internal virtual string DetermineCasteCoreAnt(Dictionary<string, int> number)
         {
             return "";
         }
 
         /// <summary>
-        /// Erzeugt ein AmeiseZustand-Objekt mit den aktuellen Daten der Ameise.
+        /// Generate ant state information
         /// </summary>
-        internal AntState ErzeugeInfo()
+        internal AntState GenerateAntStateInfo()
         {
-            AntState zustand = new AntState(colony.Id, id);
+            AntState antState = new AntState(Colony.Id, Id);
 
-            zustand.CasteId = CasteIndexBase;
-            zustand.PositionX = CoordinateBase.X / SimulationEnvironment.PLAYGROUND_UNIT;
-            zustand.PositionY = CoordinateBase.Y / SimulationEnvironment.PLAYGROUND_UNIT;
-            zustand.ViewRange = SichtweiteBase;
-            zustand.DebugMessage = debugMessage;
+            antState.CasteId = CasteIndexCoreInsect;
+            antState.PositionX = CoordinateCoreInsect.X / SimulationEnvironment.PLAYGROUND_UNIT;
+            antState.PositionY = CoordinateCoreInsect.Y / SimulationEnvironment.PLAYGROUND_UNIT;
+            antState.ViewRange = ViewRangeCoreInsect;
+            antState.DebugMessage = debugMessage;
             debugMessage = string.Empty;
-            zustand.Direction = CoordinateBase.Richtung;
-            if (ZielBase != null)
+            antState.Direction = CoordinateCoreInsect.Direction;
+            if (DestinationCoreInsect != null)
             {
-                zustand.TargetPositionX = ZielBase.CoordinateBase.X / SimulationEnvironment.PLAYGROUND_UNIT;
-                zustand.TargetPositionY = ZielBase.CoordinateBase.Y / SimulationEnvironment.PLAYGROUND_UNIT;
+                antState.TargetPositionX = DestinationCoreInsect.CoordinateCoreInsect.X / SimulationEnvironment.PLAYGROUND_UNIT;
+                antState.TargetPositionY = DestinationCoreInsect.CoordinateCoreInsect.Y / SimulationEnvironment.PLAYGROUND_UNIT;
             }
             else
             {
-                zustand.TargetPositionX = 0;
-                zustand.TargetPositionY = 0;
+                antState.TargetPositionX = 0;
+                antState.TargetPositionY = 0;
             }
-            zustand.Load = AktuelleLastBase;
-            if (AktuelleLastBase > 0)
-                if (GetragenesObstBase != null)
-                    zustand.LoadType = LoadType.Fruit;
+            antState.Load = CurrentLoadCoreInsect;
+            if (CurrentLoadCoreInsect > 0)
+                if (CarryingFruitCoreInsect != null)
+                    antState.LoadType = LoadType.Fruit;
                 else
-                    zustand.LoadType = LoadType.Sugar;
-            zustand.Vitality = AktuelleEnergieBase;
+                    antState.LoadType = LoadType.Sugar;
+            antState.Vitality = CurrentEnergyCoreInsect;
 
-            if (ZielBase is CoreAnthill)
-                zustand.TargetType = TargetType.Anthill;
-            else if (ZielBase is CoreSugar)
-                zustand.TargetType = TargetType.Sugar;
-            else if (ZielBase is CoreFruit)
-                zustand.TargetType = TargetType.Fruit;
-            else if (ZielBase is CoreBug)
-                zustand.TargetType = TargetType.Bug;
-            else if (ZielBase is CoreMarker)
-                zustand.TargetType = TargetType.Marker;
-            else if (ZielBase is CoreAnt)
-                zustand.TargetType = TargetType.Ant;
+            if (DestinationCoreInsect is CoreAnthill)
+                antState.TargetType = TargetType.Anthill;
+            else if (DestinationCoreInsect is CoreSugar)
+                antState.TargetType = TargetType.Sugar;
+            else if (DestinationCoreInsect is CoreFruit)
+                antState.TargetType = TargetType.Fruit;
+            else if (DestinationCoreInsect is CoreBug)
+                antState.TargetType = TargetType.Bug;
+            else if (DestinationCoreInsect is CoreMarker)
+                antState.TargetType = TargetType.Marker;
+            else if (DestinationCoreInsect is CoreAnt)
+                antState.TargetType = TargetType.Ant;
             else
-                zustand.TargetType = TargetType.None;
+                antState.TargetType = TargetType.None;
 
-            return zustand;
+            return antState;
         }
 
-        #region Fortbewegung
+        #region Movement
 
-        private bool istMüde;
+        private bool isTired;
 
         /// <summary>
-        /// Gibt an, ob die Ameise müde ist.
+        /// True if ant is tired.
         /// </summary>
-        internal bool IstMüdeBase
+        internal bool IsTiredCoreAnt
         {
-            get { return istMüde; }
-            set { istMüde = value; }
+            get { return isTired; }
+            set { isTired = value; }
         }
 
         /// <summary>
-        /// Wird wiederholt aufgerufen, wenn der die Ameise nicht weiss wo sie
-        /// hingehen soll.
+        /// Waiting is the standard action if the ant has no target.
         /// </summary>
-        internal virtual void WartetBase() { }
+        internal virtual void WaitingCoreAnt() { }
 
         /// <summary>
-        /// Wird einmal aufgerufen, wenn die Ameise ein Drittel ihrer maximalen 
-        /// Reichweite überschritten hat.
+        /// Evoked once when the ant has reached one third of its maximum operational range.
         /// </summary>
-        internal virtual void WirdMüdeBase() { }
+        internal virtual void IsGettingTiredCoreAnt() { }
 
         #endregion
 
-        #region Nahrung
+        #region Food
 
         /// <summary>
-        /// Wird wiederholt aufgerufen, wenn die Ameise mindestens einen
-        /// Zuckerhaufen sieht.
+        /// Evoked when ant sees a sugar hill.
         /// </summary>
-        /// <param name="zucker">Der nächstgelegene Zuckerhaufen.</param>
-        internal virtual void SiehtBase(CoreSugar zucker) { }
+        /// <param name="sugar">Spotted sugar hill.</param>
+        internal virtual void SpotsCoreAnt(CoreSugar sugar) { }
 
         /// <summary>
-        /// Wird wiederholt aufgerufen, wenn die Ameise mindstens ein
-        /// Obststück sieht.
+        /// Evoked when ant sees a fruit.
         /// </summary>
-        /// <param name="obst">Das nächstgelegene Obststück.</param>
-        internal virtual void SiehtBase(CoreFruit obst) { }
+        /// <param name="fruit">Nearest fruit.</param>
+        internal virtual void SpotsCoreAnt(CoreFruit fruit) { }
 
         /// <summary>
-        /// Wird einmal aufgerufen, wenn die Ameise einen Zuckerhaufen als Ziel
-        /// hat und bei diesem ankommt.
+        /// Evoked when ant arrived at sugar hill.
         /// </summary>
-        /// <param name="zucker">Der Zuckerhaufen.</param>
-        internal virtual void ZielErreichtBase(CoreSugar zucker) { }
+        /// <param name="sugar">Sugar hill.</param>
+        internal virtual void ArrivedAtTargetCoreAnt(CoreSugar sugar) { }
 
         /// <summary>
-        /// Wird einmal aufgerufen, wenn die Ameise ein Obststück als Ziel hat und
-        /// bei diesem ankommt.
+        /// Evoked when ant arrived at fruit.
         /// </summary>
-        /// <param name="obst">Das Obstück.</param>
-        internal virtual void ZielErreichtBase(CoreFruit obst) { }
+        /// <param name="fruit">Fruit.</param>
+        internal virtual void ArrivedAtTargetCoreAnt(CoreFruit fruit) { }
 
         #endregion
 
-        #region Kommunikation
+        #region Communication
 
         /// <summary>
-        /// Wird einmal aufgerufen, wenn die Ameise eine Markierung des selben
-        /// Volkes riecht. Einmal gerochene Markierungen werden nicht erneut
-        /// gerochen.
+        /// Evoked when ant spots marker of a friendly ant from the same colony for the first time
+        /// already seen marks will be remembered.
         /// </summary>
-        /// <param name="markierung">Die nächste neue Markierung.</param>
-        internal virtual void RiechtFreundBase(CoreMarker markierung) { }
+        /// <param name="marker">Marker of a friendly ant.</param>
+        internal virtual void SpotsFriendCoreAnt(CoreMarker marker) { }
 
         /// <summary>
-        /// Wird wiederholt aufgerufen, wenn die Ameise mindstens eine Ameise des
-        /// selben Volkes sieht.
+        /// Evoked when ant spots a friendly ant from the same colony.
+        /// Will be evoked every time.
         /// </summary>
-        /// <param name="ameise">Die nächstgelegene befreundete Ameise.</param>
-        internal virtual void SiehtFreundBase(CoreAnt ameise) { }
+        /// <param name="ant">Friendly ant from same colony.</param>
+        internal virtual void SpotsFriendCoreAnt(CoreAnt ant) { }
 
         /// <summary>
-        /// Wird wiederholt aufgerufen, wenn die Ameise mindestens eine Ameise verbündeter
-        /// Völker sieht.
+        /// Evoked when ant spots a friendly ant from a team colony.
+        /// Will be evoked every time.
         /// </summary>
-        /// <param name="ameise"></param>
-        internal virtual void SiehtVerbündetenBase(CoreAnt ameise) { }
+        /// <param name="ant">Friendly ant from a team colony.</param>
+        internal virtual void SpotsTeamMemberCoreAnt(CoreAnt ant) { }
 
         #endregion
 
-        #region Kampf
+        #region Fight
 
         /// <summary>
-        /// Wird wiederholt aufgerufen, wenn die Ameise mindestens eine Wanze
-        /// sieht.
+        /// Evoked when ant spots a bug.
+        /// Will be evoked every time.
         /// </summary>
-        /// <param name="wanze">Die nächstgelegene Wanze.</param>
-        internal virtual void SiehtFeindBase(CoreBug wanze) { }
+        /// <param name="bug">Bug.</param>
+        internal virtual void SpotsEnemyCoreAnt(CoreBug bug) { }
 
         /// <summary>
-        /// Wird wiederholt aufgerufen, wenn die Ameise mindestens eine Ameise eines
-        /// anderen Volkes sieht.
+        /// Evoked when ant spots an enemy ant.
+        /// Will be evoked every time.
         /// </summary>
-        /// <param name="ameise">Die nächstgelegen feindliche Ameise.</param>
-        internal virtual void SiehtFeindBase(CoreAnt ameise) { }
+        /// <param name="ant">Enemy ant.</param>
+        internal virtual void SpotsEnemyCoreAnt(CoreAnt ant) { }
 
         /// <summary>
-        /// Wird wiederholt aufgerufen, wenn die Ameise von einer Wanze angegriffen
-        /// wird.
+        /// Evoked when ant is attacked by a bug.
+        /// Will be evoked every time.
         /// </summary>
-        /// <param name="wanze">Die angreifende Wanze.</param>
-        internal virtual void WirdAngegriffenBase(CoreBug wanze) { }
+        /// <param name="bug">attacking Bug.</param>
+        internal virtual void UnderAttackCoreAnt(CoreBug bug) { }
 
         /// <summary>
-        /// Wird wiederholt aufgerufen in der die Ameise von einer Ameise eines
-        /// anderen Volkes Ameise angegriffen wird.
+        /// Evoked when ant is attacked by an enemy ant.
+        /// Will be evoked every time.
         /// </summary>
-        /// <param name="ameise">Die angreifende feindliche Ameise.</param>
-        internal virtual void WirdAngegriffenBase(CoreAnt ameise) { }
+        /// <param name="ant">Attacking ant.</param>
+        internal virtual void IsUnderAttackCoreAnt(CoreAnt ant) { }
 
         #endregion
 
-        #region Sonstiges
+        #region other
 
         /// <summary>
-        /// Wird einmal aufgerufen, wenn die Ameise gestorben ist.
+        /// Evoked when ant has died.
         /// </summary>
-        /// <param name="todesArt">Die Todesart der Ameise</param>
-        internal virtual void IstGestorbenBase(CoreKindOfDeath todesArt) { }
+        /// <param name="kindOfDeath">Ants kind of death.</param>
+        internal virtual void HasDiedCoreAnt(CoreKindOfDeath kindOfDeath) { }
 
         /// <summary>
-        /// Wird unabhängig von äußeren Umständen in jeder Runde aufgerufen.
+        /// Tick will be evoked in every round for every ant regardless of other circumstances.
         /// </summary>
-        internal virtual void TickBase() { }
+        internal virtual void TickCoreAnt() { }
 
         #endregion
     }

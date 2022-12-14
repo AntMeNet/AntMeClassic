@@ -34,27 +34,27 @@ namespace AntMe.SharedComponents.States
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the range-modificator.
+        /// Gets or sets the smell range modificator.
         /// </summary>
         public byte RangeModificator { get; set; }
 
         /// <summary>
-        /// Gets or sets the rotation-speed-modificator.
+        /// Gets or sets the rotation speed modificator.
         /// </summary>
         public byte RotationSpeedModificator { get; set; }
 
         /// <summary>
-        /// Gets or sets the speed-modificator.
+        /// Gets or sets the speed modificator.
         /// </summary>
         public byte SpeedModificator { get; set; }
 
         /// <summary>
-        /// Gets or sets the view-range-modificator.
+        /// Gets or sets the view range modificator.
         /// </summary>
         public byte ViewRangeModificator { get; set; }
 
         /// <summary>
-        /// Gets or sets the vitality-modificator.
+        /// Gets or sets the vitality modificator.
         /// </summary>
         public byte VitalityModificator { get; set; }
 

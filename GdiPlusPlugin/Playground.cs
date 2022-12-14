@@ -9,23 +9,22 @@ namespace AntMe.Plugin.GdiPlusPlugin
 {
 
     /// <summary>
-    /// Kontrollelement, das ein Spielfeld zeichnet.
+    /// Control element that draws a playground.
     /// </summary>
     /// <author>Wolfgang Gallo (wolfgang@antme.net)</author>
     internal class Playground : Control
     {
-        // Verweis auf das übergeordnete Fenster. Der Verweis kann auch über
-        // (Fenster)Control.Parent geholt werden, das geht aber erst wenn das
-        // Kontrollelement dem Fenster hinzugefügt wurde. So ist es einfacher.
+        // Reference to the parent window. The reference can also be fetched via
+        // (window)Control.Parent, but this is only possible after the
+        // control has been added to the window. This way it is easier.
         private Window window;
 
-        // Zeichenflächen für die Hintergrund-Grafik und das
-        // Spielfeld-Kontrollelement.
+        // Drawing area for the background graphic and the playground control element.
         private Bitmap bitmap;
         private Graphics bitmapGraphics, controlGraphics;
 
         /// <summary>
-        /// Gibt zurück oder legt fest ob die Punktetabelle angezeigt wird.
+        /// Specifies and defines whether the score chart should be displayed.
         /// </summary>
         public bool ShowScore;
 
@@ -107,14 +106,14 @@ namespace AntMe.Plugin.GdiPlusPlugin
         #endregion
 
         /// <summary>
-        /// Erzeugt eine Playground-Instanz.
+        /// Instantiate a playground.
         /// </summary>
-        /// <param name="window">Das übergeordnete Fenster</param>
+        /// <param name="window">the parent window</param>
         public Playground(Window window)
         {
             this.window = window;
 
-            // Sage Windows, daß wir das Puffern beim Zeichnen selbst übernehmen.
+            // Tell Windows that we will do the buffering ourselves when drawing.
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
             UpdateStyles();
 
@@ -127,7 +126,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
             MouseDoubleClick += playground_MouseDoubleClick;
         }
 
-        #region Ereignisbehandlung
+        #region event handling
 
         private List<int> selectedAnts = new List<int>();
         private List<int> selectedBugs = new List<int>();
@@ -154,7 +153,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
         {
             switch (e.KeyCode)
             {
-                // Skalieren des Spielfelds mit der Maus.
+                // Scaling the playground with the mouse.
                 case Keys.ShiftKey:
                     if (shiftPressed)
                     {
@@ -163,7 +162,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
                     }
                     break;
 
-                // Drehen des Spielfelds mit der Maus.
+                // Rotating the playground with the mouse.
                 case Keys.ControlKey:
                     if (controlPressed)
                     {
@@ -178,7 +177,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
         {
             switch (e.KeyCode)
             {
-                // Skalieren des Spielfelds mit der Maus.
+                // Scaling the playground with the mouse.
                 case Keys.ShiftKey:
                     if (!shiftPressed)
                     {
@@ -187,7 +186,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
                     }
                     break;
 
-                // Drehen des Spielfelds mit der Maus.
+                // Rotating the playground with the mouse.
                 case Keys.ControlKey:
                     if (!controlPressed)
                     {
@@ -217,7 +216,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
                 mouseY = e.Y;
             }
 
-            // Bestimme wie weit die Maus bewegt wurde.
+            // Determine how far the mouse has been moved.
             deltaX = e.X - mouseX;
             deltaY = e.Y - mouseY;
 
@@ -245,21 +244,23 @@ namespace AntMe.Plugin.GdiPlusPlugin
                     selectionY0 = mouseY + deltaY;
                 }
 
-                // Zeichne nur dann, wenn der letzte Zeichenvorgang lange genug zurückliegt.
+                // Draw only if the last drawing operation was long enough ago.
                 if (DateTime.Now.Ticks - timeStamp > 400000)
                     Draw();
             }
             else if (e.Button == MouseButtons.Right)
             {
-                // Stelle die gesicherte Transformationsmatrix wieder her.
+                // Restore the saved transformation matrix.
                 transform = transformOld.Clone();
 
-                // Die neue Transformationsmatrix ergibt sich aus der alten Matrix und der
-                // Bewegung seit Beginn der Transformation. Das ist genauer und numerisch
-                // stabiler (d.h. weniger Rechenfehler durch Zahlen nahe bei der Null)
-                // als die Matrix immer nur ein klein wenig zu verändern.
+                // The new transformation matrix results from the old matrix and
+                // the movement since the beginning of the transformation.
+                // This is more accurate and numerically more stable (i.e. fewer
+                // calculation errors due to numbers close to zero) than always
+                // changing the matrix just a little bit.
+                
 
-                // Skaliere das Spielfeld.
+                // Scaling the playground.
                 if (shiftPressed)
                 {
                     float factor = (float)Math.Pow(1.01d, deltaX);
@@ -268,15 +269,15 @@ namespace AntMe.Plugin.GdiPlusPlugin
                     transform.Translate(Width / 2f, Height / 2f, MatrixOrder.Append);
                 }
 
-                // Drehe das Spielfeld.
+                // Rotating the playground.
                 else if (controlPressed)
                     transform.RotateAt(deltaX, new PointF(Width / 2f, Height / 2f), MatrixOrder.Append);
 
-                // Verschiebe das Spielfeld.
+                // Moving the playground.
                 else
                     transform.Translate(deltaX, deltaY, MatrixOrder.Append);
 
-                // Zeichne nur dann, wenn der letzte Zeichenvorgang lange genug zurückliegt.
+                // Draw only if the last drawing operation was long enough ago.
                 if (DateTime.Now.Ticks - timeStamp > 400000)
                     Draw();
             }
@@ -290,24 +291,23 @@ namespace AntMe.Plugin.GdiPlusPlugin
                 selectedAnts.Clear();
                 selectedBugs.Clear();
 
-                // Erzeuge ein Array für die Koordinaten aller Käfer.
+                // Create an array for the coordinates of all bugs.
                 points = new PointF[window.State.BugStates.Count];
 
-                // Kopiere die Koordinaten in das Array.
+                // Copy the coordinates into the array.
                 for (int k = 0; k < points.Length; k++)
                     points[k] = new PointF(window.State.BugStates[k].PositionX, window.State.BugStates[k].PositionY);
 
-                // Transfomiere die Koordinaten.
+                // Transform the coordinates.
                 transform.TransformPoints(points);
 
-                // Füge alle Käfer die sich innerhalb des Auswahlrechtecks befinden
-                // der Liste der ausgewählten Käfer hinzu.
+                // Add all bugs that are inside the selection rectangle to the list of selected bugs.
                 for (int k = 0; k < points.Length; k++)
                     if (points[k].X >= selectionX0 && points[k].X <= selectionX1 && points[k].Y >= selectionY0 &&
                         points[k].Y <= selectionY1)
                         selectedBugs.Add(window.State.BugStates[k].Id);
 
-                // Das selbe für die Ameisen aller Völker.
+                // The same for the ants for all colonies.
 
                 for (int v = 0; v < window.State.ColonyStates.Count; v++)
                 {
@@ -327,7 +327,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
                             selectedAnts.Add(window.State.ColonyStates[v].AntStates[a].Id);
                 }
 
-                // Gib die Auswahl an das übergeordnete Fenster weiter.
+                // Pass the selection to the parent window.
                 window.ShowInformation(selectedBugs, selectedAnts);
 
                 selectionX0 = -1;
@@ -343,7 +343,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
             transform.Scale(factor, factor, MatrixOrder.Append);
             transform.Translate(Width / 2f, Height / 2f, MatrixOrder.Append);
 
-            // Zeichne nur dann, wenn der letzte Zeichenvorgang lange genug zurückliegt.
+            // Draw only if the last drawing operation was long enough ago.
             if (DateTime.Now.Ticks - timeStamp > 400000)
                 Draw();
         }
@@ -353,7 +353,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
             if (e.Button == MouseButtons.Left)
                 ResetSelection();
 
-            // Zeichne nur dann, wenn der letzte Zeichenvorgang lange genug zurückliegt.
+            // Draw only if the last drawing operation was long enough ago.
             Draw();
         }
 
@@ -367,34 +367,33 @@ namespace AntMe.Plugin.GdiPlusPlugin
         #endregion
 
         /// <summary>
-        /// Zeichnet das Spielfeld in die Hintergrund-Grafik und diese auf das
-        /// Kontrollelement.
+        /// Draws the playground into the background graphic and this onto the control element.
         /// </summary>
         public void Draw()
         {
 
-            // Brich ab, falls die Hintergrund-Zeichenfläche noch nicht existiert.
+            // Cancel if the background drawing area does not exist yet.
             if (bitmapGraphics == null)
                 return;
 
             int a, b, k, m, o, v, z;
 
-            // Erzeuge in der ersten Runde nötige Objekte.
+            // Create necessary objects in the first round.
             if (window.State.CurrentRound == 1)
             {
                 playgroundRectangle = new Rectangle(0, 0, window.State.PlaygroundWidth, window.State.PlaygroundHeight);
                 ResetView();
             }
 
-            // Setze die Transformationsmatrix für das Spielfeld. Dadurch können wir
-            // in Spielfeldkoordinaten zeichnen, egal wie das Fenster aussieht.
+            // Set the transformation matrix for the playground. This allows us to draw
+            // in playground coordinates no matter what the window looks like.
             bitmapGraphics.Transform = transform.Clone();
 
-            // Zeichne den Himmel und das Spielfeld.
+            // Draw the sky and the playground.
             bitmapGraphics.Clear(skyColor);
             bitmapGraphics.FillRectangle(playgroundBrush, playgroundRectangle);
 
-            // Zeichne die Markierungen aller Völker.
+            // Draw the markers of all colonies.
             for (v = 0; v < window.State.ColonyStates.Count; v++)
             {
                 SolidBrush brush = window.State.ColonyStates.Count == 1
@@ -411,7 +410,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
                          window.State.ColonyStates[v].MarkerStates[m].Radius * 2f);
             }
 
-            // Zeichne die Bauten aller Völker.
+            // Draw ant hills for all colonies.
             for (v = 0; v < window.State.ColonyStates.Count; v++)
                 for (b = 0; b < window.State.ColonyStates[v].AnthillStates.Count; b++)
                 {
@@ -429,14 +428,14 @@ namespace AntMe.Plugin.GdiPlusPlugin
                              window.State.ColonyStates[v].AnthillStates[b].PositionY - 20f);
                 }
 
-            // Zeichne alle Zuckerhaufen.
+            // Draw all sugar piles.
             for (z = 0; z < window.State.SugarStates.Count; z++)
                 bitmapGraphics.FillEllipse
                     (sugarBrush, window.State.SugarStates[z].PositionX - window.State.SugarStates[z].Radius,
                      window.State.SugarStates[z].PositionY - window.State.SugarStates[z].Radius,
                      window.State.SugarStates[z].Radius * 2f, window.State.SugarStates[z].Radius * 2f);
 
-            // Markiere die ausgewählten Wanzen.
+            // Mark the selected bugs.
             if (selectedBugs.Count > 0)
                 for (k = 0; k < window.State.BugStates.Count; k++)
                     if (selectedBugs.Contains(window.State.BugStates[k].Id))
@@ -444,7 +443,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
                             (selectionBrush, window.State.BugStates[k].PositionX - 12f,
                              window.State.BugStates[k].PositionY - 12f, 24f, 24f);
 
-            // Zeichne alle Wanzen.
+            // Draw all bugs.
             for (k = 0; k < window.State.BugStates.Count; k++)
                 bitmapGraphics.DrawLine
                     (bugPen, window.State.BugStates[k].PositionX - cos4[window.State.BugStates[k].Direction],
@@ -452,7 +451,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
                      window.State.BugStates[k].PositionX + cos4[window.State.BugStates[k].Direction],
                      window.State.BugStates[k].PositionY + sin4[window.State.BugStates[k].Direction]);
 
-            // Markiere die ausgewählten Ameisen.
+            // Mark the selected ants.
             if (selectedAnts.Count > 0)
                 for (v = 0; v < window.State.ColonyStates.Count; v++)
                     for (a = 0; a < window.State.ColonyStates[v].AntStates.Count; a++)
@@ -461,7 +460,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
                                 (selectionBrush, window.State.ColonyStates[v].AntStates[a].PositionX - 8f,
                                  window.State.ColonyStates[v].AntStates[a].PositionY - 8f, 16f, 16f);
 
-            // Zeichne die Ameisen aller Völker.
+            // Draw ants for all colonies.
             for (v = 0; v < window.State.ColonyStates.Count; v++)
                 for (a = 0; a < window.State.ColonyStates[v].AntStates.Count; a++)
                 {
@@ -489,18 +488,17 @@ namespace AntMe.Plugin.GdiPlusPlugin
                              sin1[window.State.ColonyStates[v].AntStates[a].Direction]);
                 }
 
-            // Zeichne alle Obststücke.
+            // Draw all fruits.
             for (o = 0; o < window.State.FruitStates.Count; o++)
                 bitmapGraphics.FillEllipse
                     (fruitBrush, window.State.FruitStates[o].PositionX - window.State.FruitStates[o].Radius,
                      window.State.FruitStates[o].PositionY - window.State.FruitStates[o].Radius,
                      window.State.FruitStates[o].Radius * 2, window.State.FruitStates[o].Radius * 2);
 
-            // Setze die Einheitsmatrix als Transformationsmatrix. Damit zeichnen
-            // wir jetzt wieder in Fensterkoordinaten.
+            // Set the unit matrix as the transformation matrix. With this we now draw in window coordinates again.
             bitmapGraphics.Transform = new Matrix();
 
-            // Auswahlrechteck.
+            // Rectangle of selection.
             if (selectionX0 > -1)
             {
                 bitmapGraphics.FillRectangle
@@ -516,14 +514,14 @@ namespace AntMe.Plugin.GdiPlusPlugin
 
             timeStamp = DateTime.Now.Ticks;
 
-            // Zeichne die Hintergrund-Grafik auf das Fenster.
+            // Draw the background graphic on the window.
             OnPaint(new PaintEventArgs(controlGraphics, ClientRectangle));
         }
 
-        // Zeichnet Punkte als Tabelle und richtet Spalten nach Textlaenge aus, 18f horizontaler Abstand
+        // Draws points as table and aligns columns by text length, 18f horizontal spacing.
         private void DrawScore()
         {
-            // Merke die Texte zum Ausgeben
+            // Remember the texts for output.
             string[][] renderElements = new string[window.State.ColonyStates.Count + 1][];
             renderElements[0] = new string[]
             {
@@ -535,7 +533,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
                 Resource.Points
             };
 
-            // fuelle die Tabelle mit Zahlen der Voelker
+            // Fill the table with numbers for the colonies.
             for (int currentRenderElementY = 1; currentRenderElementY < renderElements.Length; currentRenderElementY++)
             {
                 renderElements[currentRenderElementY] = new string[]
@@ -551,7 +549,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
                 };
             }
 
-            // Merke die Laenge der Texte zum Ausgeben, eine Extrazeile fuer die Max Laengen pro Spalte
+            // Note the length of the texts for output, an extra line for the max lengths per column.
             float[][] renderSizes = new float[renderElements.Length + 1][];
             for (int currentRenderSizeY = 0; currentRenderSizeY < renderSizes.Length - 1; currentRenderSizeY++)
             {
@@ -564,10 +562,10 @@ namespace AntMe.Plugin.GdiPlusPlugin
                 }
             }
 
-            // Gesamtbreite der Tabelle
+            // Total table width.
             float totalWidth = 0;
 
-            // Berechne Max-Laenge pro Spalte
+            // Calculate max length per column.
             renderSizes[renderElements.Length] = new float[renderElements[0].Length];
             for (int currentRenderSizeX = 0; currentRenderSizeX < renderElements[0].Length; currentRenderSizeX++)
             {
@@ -585,13 +583,13 @@ namespace AntMe.Plugin.GdiPlusPlugin
                 totalWidth += maxLength + 18f;
             }
 
-            // Zeichne den Hintergrund des Punktekastens.
+            // Draw the background for the score table box.
             bitmapGraphics.FillRectangle
                 (scoreBrush, 10f, 10f, totalWidth, renderElements.Length * 16f + 18f);
 
             float y = 20f;
 
-            // Zeichne alle Text-Elemente an den jeweiligen Positionen
+            // Draw all text elements at the their positions
             for (int currentRenderElementY = 0; currentRenderElementY < renderElements.Length; currentRenderElementY++)
             {
                 if (currentRenderElementY != 0)
@@ -611,21 +609,21 @@ namespace AntMe.Plugin.GdiPlusPlugin
         }
 
         /// <summary>
-        /// Zeichnet die Hintergrund-Grafik auf das Kontrollelement.
+        /// Draws the background graphic on the control element.
         /// </summary>
         /// <param name="e"></param>
         protected override void OnPaint(PaintEventArgs e)
         {
-            // Zeichne die Hintergrund-Grafik auf das Fenster.
+            // Draw the background graphic on the window.
             if (bitmap != null)
                 e.Graphics.DrawImageUnscaled(bitmap, 0, 0);
         }
 
-        // Die Hintergrund-Grafik in die das Spielfeld gezeichnet wird. Durch das
-        // Verwenden eines Puffers wird das Flimmern beim Neuzeichnen verhindert.
+        // The background graphic into which the playground is drawn.
+        // The use of a buffer prevents flickering during redrawing.
 
         /// <summary>
-        /// Erzwingt das Resize Ereignis.
+        /// Forces the resize event.
         /// </summary>
         public void DoResize()
         {
@@ -633,36 +631,36 @@ namespace AntMe.Plugin.GdiPlusPlugin
         }
 
         /// <summary>
-        /// Passt die Größe des Spielfeldes innerhalb des Kontrollelementes an.
+        /// Adjusts the size of the playground inside the control element.
         /// </summary>
         /// <param name="e"></param>
         protected override void OnResize(EventArgs e)
         {
-            // Brich ab, falls noch kein Zustand übergeben wurde.
+            // Cancel if no state has been passed yet.
             if (window.State == null)
                 return;
 
-            // Erzeuge die Zeichenfläche des Kontrollelements.
+            // Create the drawing area of the control element.
             controlGraphics = CreateGraphics();
 
-            // Erzeuge die Hintergrund-Grafik und die zugehörige Zeichenfläche.
+            // Create the background graphic and the associated drawing area
             bitmap = new Bitmap(Width, Height);
             bitmapGraphics = Graphics.FromImage(bitmap);
 
-            // Schalte das Anti-Aliasing ein bzw. aus.
+            // Turn anti aliasing on or off.
             bitmapGraphics.SmoothingMode =
                 window.UseAntiAliasing ? SmoothingMode.HighQuality : SmoothingMode.HighSpeed;
 
-            // Zeichne das Spielfeld neu.
+            // Redraw the playground.
             Draw();
         }
 
         /// <summary>
-        /// Setzt die Ansicht des Spielfeldes zurück.
+        /// Resets the view of the playground.
         /// </summary>
         public void ResetView()
         {
-            // Berechne den Skalierungsfaktor und den linken und oberen Versatz.
+            // Calculate the scale factor and the left and top offsets.
             float xScale = Width / (float)window.State.PlaygroundWidth;
             float yScale = Height / (float)window.State.PlaygroundHeight;
             float scale = Math.Min(xScale, yScale);
@@ -671,7 +669,7 @@ namespace AntMe.Plugin.GdiPlusPlugin
             float xOffset = (Width - width) / 2f;
             float yOffset = (Height - height) / 2f;
 
-            // Berechne die Transformationsmatrix für das Spielfeld.
+            // Calculate the transformation matrix for the playground.
             transform = new Matrix();
             transform.Translate(xOffset, yOffset);
             transform.Scale(scale, scale);

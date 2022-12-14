@@ -1,205 +1,195 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 
 using AntMe.SharedComponents.Properties;
 
 namespace AntMe.SharedComponents.Tools {
     /// <summary>
-    /// Stellt eine Farbe im RGB-Farbraum dar.
+    /// RGB colours.
     /// </summary>
     /// <remarks>
-    /// Diese Struktur wurde definiert um von den in Windows Forms und Managed
-    /// DirectX definierten Farben unabhängig zu sein. Zusätzlich können Farben
-    /// durch die Verwendung dieser Struktur gemischt werden.
+    /// Colours defined independent from Windows forms or managed DirectX
+    /// using this struct colours can be created and mixed.
     /// </remarks>
     /// <author>Wolfgang Gallo (wolfgang@antme.net)</author>
-    public struct Farbe {
-        private int blau;
-        private int grün;
-        private int rot;
+    public struct Color {
+        private int blue;
+        private int green;
+        private int red;
 
         /// <summary>
-        /// Der Farbe Konstruktor.
+        /// Constructor to instantiate a new RGB color.
         /// </summary>
-        /// <param name="rot">Rot-Wert</param>
-        /// <param name="grün">Grün-Wert</param>
-        /// <param name="blau">Blau-Wert</param>
-        public Farbe(int rot, int grün, int blau) {
-            this.rot = rot;
-            this.grün = grün;
-            this.blau = blau;
+        /// <param name="red">RGB value for red</param>
+        /// <param name="green">RGB value for green</param>
+        /// <param name="blue">RGB value for blue</param>
+        public Color(int red, int green, int blue) {
+            this.red = red;
+            this.green = green;
+            this.blue = blue;
         }
 
         /// <summary>
-        /// Der Rot-Wert der Farbe.
+        /// RGB red value minimum 0, maximum 255.
         /// </summary>
-        public byte Rot {
-            get { return rot < 0 ? (byte) 0 : rot > 255 ? (byte) 255 : (byte) rot; }
-            set { rot = value; }
+        public byte Red {
+            get => red < 0 ? (byte) 0 : red > 255 ? (byte) 255 : (byte) red;
+            set => red = value;
         }
 
         /// <summary>
-        /// Der Grün-Wert der Farbe.
+        /// RGB green value minimum 0, maximum 255.
         /// </summary>
-        public byte Grün {
-            get { return grün < 0 ? (byte) 0 : grün > 255 ? (byte) 255 : (byte) grün; }
-            set { grün = value; }
+        public byte Green {
+            get => green < 0 ? (byte) 0 : green > 255 ? (byte) 255 : (byte) green;
+            set => green = value;
         }
 
         /// <summary>
-        /// Der Blau-Wert der Farbe.
+        /// RGB blue value minimum 0, maximum 255.
         /// </summary>
-        public byte Blau {
-            get { return blau < 0 ? (byte) 0 : blau > 255 ? (byte) 255 : (byte) blau; }
-            set { blau = value; }
+        public byte Blue {
+            get => blue < 0 ? (byte) 0 : blue > 255 ? (byte) 255 : (byte) blue;
+            set => blue = value;
         }
 
         /// <summary>
-        /// Gibt die Farbe als Zeichenkette zurück.
+        /// RGB color to string.
         /// </summary>
-        /// <returns>(Rot,Grün,Blau)</returns>
+        /// <returns>(Red,Green,Blue)</returns>
         public override string ToString() {
-            return "(" + Rot + "," + Grün + "," + Blau + ")";
+            return "(" + Red + "," + Green + "," + Blue + ")";
         }
 
         /// <summary>
-        /// Addiert die RGB-Werte zweier Farben.
+        /// Adding up two RGB colours.
         /// </summary><remarks>
-        /// Um zwei Farben zu mischen muß zusätzlich eine Division durchgeführt
-        /// werden: (farbe1 + farbe2) / 2.
+        /// Implemented according to the original remark
+        /// to mix two RGB colours the result must be divided by two
+        /// (colour1 + colour2) / 2
         /// </remarks>
-        /// <param name="f1">Farbe 1</param>
-        /// <param name="f2">Farbe 2</param>
-        /// <returns>Farbe</returns>
-        public static Farbe operator +(Farbe f1, Farbe f2) {
-            return new Farbe(f1.rot + f2.rot, f1.grün + f2.grün, f1.blau + f2.blau);
+        /// <param name="c1">Color 1</param>
+        /// <param name="c2">Color 2</param>
+        /// <returns>Color</returns>
+        public static Color operator +(Color c1, Color c2) {
+            // Division by two for each RGB value.
+            return new Color((c1.red + c2.red)/2, (c1.green + c2.green)/2, (c1.blue + c2.blue)/2);
         }
 
         /// <summary>
-        /// Multipliziert die RGB-Werte einer Farbe mit einer Zahl.
+        /// RGB color multiplied by an integer value
+        /// all RGB values have a maximum of 255.
         /// </summary>
-        /// <param name="f">Farbe</param>
-        /// <param name="i">Zahl</param>
-        /// <returns>Farbe</returns>
-        public static Farbe operator *(Farbe f, int i) {
-            return new Farbe(f.rot*i, f.grün*i, f.blau*i);
+        /// <param name="c">Color</param>
+        /// <param name="i">Integer value</param>
+        /// <returns>Color</returns>
+        public static Color operator *(Color c, int i) {
+            return new Color(c.red*i, c.green*i, c.blue*i);
         }
 
         /// <summary>
-        /// Dividiert die RGB-Werte einer Farbe durch eine Zahl.
+        /// New RGB color by dividing all given RGB values by a given integer value.
         /// </summary>
-        /// <param name="f">Farbe</param>
-        /// <param name="i">Zahl</param>
-        /// <returns>Farbe</returns>
-        public static Farbe operator /(Farbe f, int i) {
-            return new Farbe(f.rot/i, f.grün/i, f.blau/i);
+        /// <param name="c">Color</param>
+        /// <param name="i">Integer value</param>
+        /// <returns>Color</returns>
+        public static Color operator /(Color c, int i)
+        {
+            if (i > 0)
+                return new Color(c.red / i, c.green / i, c.blue / i);
+            else 
+                return c;
         }
 
         /// <summary>
-        /// Bestimmt ein Abstand-Maß zwischen zwei Farben im RGB-Farbraum.
+        /// Distance between two colors in the range 0 - 195075.
         /// </summary><remarks>
-        /// Wird von der Farbberater-Klasse verwendet.
+        /// Used by the ColorFinder class
+        /// maximum = (maximum deltaColorX) * (maximum deltaColorX) * number of colors
+        /// 255 * 255 * 3 = 195075
         /// </remarks>
-        /// <param name="f1">Farbe 1</param>
-        /// <param name="f2">Farbe 2</param>
-        /// <returns>Abstand²</returns>
-        public static int operator -(Farbe f1, Farbe f2) {
-            int deltaRot = f1.rot - f2.rot;
-            int deltaGrün = f1.grün - f2.grün;
-            int deltaBlau = f1.blau - f2.blau;
-            return deltaRot*deltaRot + deltaGrün*deltaGrün + deltaBlau*deltaBlau;
-            //return Math.Abs(deltaRot) + Math.Abs(deltaGrün) + Math.Abs(deltaBlau);
+        /// <param name="c1">Color 1</param>
+        /// <param name="c2">Color 2</param>
+        /// <returns>Color distance as integer value.</returns>
+        public static int operator -(Color c1, Color c2) {
+            int deltaRed = c1.red - c2.red;
+            int deltaGreen = c1.green - c2.green;
+            int deltaBlue = c1.blue - c2.blue;
+            return deltaRed*deltaRed + deltaGreen*deltaGreen + deltaBlue*deltaBlue;
+            //return Math.Abs(deltaRed) + Math.Abs(deltaGreen) + Math.Abs(deltaBlue);
         }
     }
 
     /// <summary>
-    /// Liefert Farben die sie möglichst stark voneinander Unterscheiden.
+    /// Find Color with maximum difference.
     /// </summary>
     /// <author>Wolfgang Gallo (wolfgang@antme.net)</author>
     public class ColorFinder {
-        public static Color ColonyColor1 {
-            get { return Settings.Default.ColonyColor1; }
-        }
+        public static System.Drawing.Color ColonyColor1 => Settings.Default.ColonyColor1;
 
-        public static Color ColonyColor2 {
-            get { return Settings.Default.ColonyColor2; }
-        }
+        public static System.Drawing.Color ColonyColor2 => Settings.Default.ColonyColor2;
 
-        public static Color ColonyColor3 {
-            get { return Settings.Default.ColonyColor3; }
-        }
+        public static System.Drawing.Color ColonyColor3 => Settings.Default.ColonyColor3;
 
-        public static Color ColonyColor4 {
-            get { return Settings.Default.ColonyColor4; }
-        }
+        public static System.Drawing.Color ColonyColor4 => Settings.Default.ColonyColor4;
 
-        public static Color ColonyColor5 {
-            get { return Settings.Default.ColonyColor5; }
-        }
+        public static System.Drawing.Color ColonyColor5 => Settings.Default.ColonyColor5;
 
-        public static Color ColonyColor6 {
-            get { return Settings.Default.ColonyColor6; }
-        }
+        public static System.Drawing.Color ColonyColor6 => Settings.Default.ColonyColor6;
 
-        public static Color ColonyColor7 {
-            get { return Settings.Default.ColonyColor7; }
-        }
+        public static System.Drawing.Color ColonyColor7 => Settings.Default.ColonyColor7;
 
-        public static Color ColonyColor8 {
-            get { return Settings.Default.ColonyColor8; }
-        }
+        public static System.Drawing.Color ColonyColor8 => Settings.Default.ColonyColor8;
 
-        private readonly List<Farbe> farben = new List<Farbe>();
+        private readonly List<Color> colorsList = new List<Color>();
 
         /// <summary>
-        /// Markiert eine neue Farbe als bereits vorhanden.
+        /// Marks new Color as already existing.
         /// </summary>
-        /// <param name="farbe">Neue Farbe.</param>
-        public void BelegeFarbe(Farbe farbe) {
-            farben.Add(farbe);
+        /// <param name="color">New Color.</param>
+        public void AddColorToColorList(Color color) {
+            colorsList.Add(color);
         }
 
         /// <summary>
-        /// Entfernt eine vorhandene Farbe.
+        /// Remove Color from ColorList.
         /// </summary>
-        /// <param name="farbe">Vorhandene Farbe.</param>
-        public void EntferneFarbe(Farbe farbe) {
-            farben.Remove(farbe);
+        /// <param name="color">Existing Color.</param>
+        public void RemoveColorFromColorList(Color color) {
+            colorsList.Remove(color);
         }
 
-        private int bestimmeMinimalenAbstand(Farbe farbe) {
-            int besterAbstand = int.MaxValue;
-            for (int f = 0; f < farben.Count; f++) {
-                int abstand = farben[f] - farbe;
-                if (abstand < besterAbstand) {
-                    besterAbstand = abstand;
+        private int DetermineMinimumDistance(Color color) {
+            int minimumDistance = int.MaxValue;
+            for (int f = 0; f < colorsList.Count; f++) {
+                int distance = colorsList[f] - color;
+                if (distance < minimumDistance) {
+                    minimumDistance = distance;
                 }
             }
-            return besterAbstand;
+            return minimumDistance;
         }
 
         /// <summary>
-        /// Erzeugt eine neue Farbe mit möglichst großem Abstand zu den bereits
-        /// vorhandenen Farben.
+        /// Create Color with maximum distance.
         /// </summary>
-        /// <returns>Neue Farbe.</returns>
-        public Farbe ErzeugeFarbe() {
-            int besterAbstand = 0;
-            Farbe besteFarbe = new Farbe(0, 0, 0);
+        /// <returns>New Color.</returns>
+        public Color CreateNewColor() {
+            int bestDistance = 0;
+            Color bestColor = new Color(0, 0, 0);
 
             int r, g, b;
             int r0 = 0, g0 = 0, b0 = 0;
-            int abstand;
-            Farbe farbe;
+            int distance;
+            Color color;
 
             for (r = 8; r < 256; r += 16) {
                 for (g = 8; g < 256; g += 16) {
                     for (b = 8; b < 256; b += 16) {
-                        farbe = new Farbe(r, g, b);
-                        abstand = bestimmeMinimalenAbstand(farbe);
-                        if (abstand > besterAbstand) {
-                            besterAbstand = abstand;
+                        color = new Color(r, g, b);
+                        distance = DetermineMinimumDistance(color);
+                        if (distance > bestDistance) {
+                            bestDistance = distance;
                             r0 = r;
                             g0 = g;
                             b0 = b;
@@ -211,55 +201,54 @@ namespace AntMe.SharedComponents.Tools {
             for (r = -8; r < 8; r++) {
                 for (g = -8; g < 8; g++) {
                     for (b = -8; b < 8; b++) {
-                        farbe = new Farbe(r0 + r, g0 + g, b0 + b);
-                        abstand = bestimmeMinimalenAbstand(farbe);
-                        if (abstand > besterAbstand) {
-                            besterAbstand = abstand;
-                            besteFarbe = farbe;
+                        color = new Color(r0 + r, g0 + g, b0 + b);
+                        distance = DetermineMinimumDistance(color);
+                        if (distance > bestDistance) {
+                            bestDistance = distance;
+                            bestColor = color;
                         }
                     }
                 }
             }
 
-            return besteFarbe;
+            return bestColor;
         }
 
         /// <summary>
-        /// Erzeugt eine neue Farbe mit möglichst großem Abstand zu den bereits
-        /// vorhandenen Farben und verändert sie leicht.
+        /// Create new Color with maximum distance and randomize the result.
         /// </summary>
-        /// <returns>Neue Farbe.</returns>
-        public Farbe ErzeugeFarbe(int streuung) {
-            Farbe farbe = ErzeugeFarbe();
-            Random zufall = new Random();
+        /// <param name="scatter">Scatter value for the random number generator</param>
+        /// <returns>new Color.</returns>
+        public Color CreateNewColor(int scatter) {
+            Color color = CreateNewColor();
+            Random random = new Random();
             return
-                new Farbe
+                new Color
                     (
-                    (farbe.Rot*100)/(100 + zufall.Next(-streuung, streuung)),
-                    (farbe.Grün*100)/(100 + zufall.Next(-streuung, streuung)),
-                    (farbe.Blau*100)/(100 + zufall.Next(-streuung, streuung)));
+                    (color.Red*100)/(100 + random.Next(-scatter, scatter)),
+                    (color.Green*100)/(100 + random.Next(-scatter, scatter)),
+                    (color.Blue*100)/(100 + random.Next(-scatter, scatter)));
         }
 
         /// <summary>
-        /// Erzeugt eine neue Farbe mit möglichst großem Abstand zu den bereits
-        /// vorhandenen Farben und markiert sie als belegt.
+        /// Create Color and add it to the colorsList.
         /// </summary>
-        /// <returns>Neue Farbe.</returns>
-        public Farbe ErzeugeUndBelegeFarbe() {
-            Farbe farbe = ErzeugeFarbe();
-            BelegeFarbe(farbe);
-            return farbe;
+        /// <returns>New Color.</returns>
+        public Color CreateColorAndAddToColorsList() {
+            Color color = CreateNewColor();
+            AddColorToColorList(color);
+            return color;
         }
 
         /// <summary>
-        /// Erzeugt eine neue Farbe mit möglichst großem Abstand zu den bereits
-        /// vorhandenen Farben, verändert sie leicht und markiert sie als belegt.
+        /// Create Color, randomize it and add it to the colorsList.
         /// </summary>
-        /// <returns>Neue Farbe.</returns>
-        public Farbe ErzeugeUndBelegeFarbe(int streuung) {
-            Farbe farbe = ErzeugeFarbe(streuung);
-            BelegeFarbe(farbe);
-            return farbe;
+        /// <param name="scatter">Scatter value for the random number generator</param>
+        /// <returns>New Color.</returns>
+        public Color CreateColorAndAddToColorsList(int scatter) {
+            Color color = CreateNewColor(scatter);
+            AddColorToColorList(color);
+            return color;
         }
     }
 }

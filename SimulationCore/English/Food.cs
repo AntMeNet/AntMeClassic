@@ -14,7 +14,7 @@ namespace AntMe.English
         /// </summary>
         public int Amount
         {
-            get { return ((CoreFood)Baseitem).Menge; }
+            get { return ((CoreFood)Baseitem).Amount; }
         }
 
         /// <summary>

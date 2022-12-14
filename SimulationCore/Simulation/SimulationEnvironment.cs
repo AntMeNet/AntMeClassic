@@ -38,7 +38,7 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Weitergabe des Verantwortungswechsels
+        /// Change responsibility player call area
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -48,9 +48,9 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Initialisiert die Simulation um mit Runde 1 zu beginnen
+        /// simulation initialisation and preparation for round one
         /// </summary>
-        /// <param name="configuration">Konfiguration der Simulation</param>
+        /// <param name="configuration">Configuration of simulation</param>
         /// <throws><see cref="ArgumentException"/></throws>
         /// <throws><see cref="ArgumentNullException"/></throws>
         /// <throws><see cref="PathTooLongException"/></throws>
@@ -100,7 +100,7 @@ namespace AntMe.Simulation
             antLimit = (int)(SimulationSettings.Custom.AntSimultaneousCount *
                               (1 + (SimulationSettings.Custom.AntCountPlayerMultiplier * playerCount)));
 
-            // Spielfeld erzeugen
+            // create playground
             float area = SimulationSettings.Custom.PlayGroundBaseSize;
             area *= 1 + (playerCount * SimulationSettings.Custom.PlayGroundSizePlayerMultiplier);
             int playgroundWidth = (int)Math.Round(Math.Sqrt(area * 4 / 3));
@@ -114,7 +114,7 @@ namespace AntMe.Simulation
             bugLimit = (int)(SimulationSettings.Custom.BugSimultaneousCount *
                               (1 + (SimulationSettings.Custom.BugCountPlayerMultiplier * playerCount)));
 
-            // Völker erzeugen
+            // create teams
             Teams = new CoreTeam[configuration.Teams.Count];
             for (int i = 0; i < configuration.Teams.Count; i++)
             {
@@ -122,14 +122,14 @@ namespace AntMe.Simulation
                 Teams[i] = new CoreTeam(i, team.Guid, team.Name);
                 Teams[i].Colonies = new CoreColony[team.Player.Count];
 
-                // Völker erstellen
+                // create colonies
                 for (int j = 0; j < team.Player.Count; j++)
                 {
                     PlayerInfo player = team.Player[j];
                     CoreColony colony = new CoreColony(Playground, player, Teams[i]);
                     Teams[i].Colonies[j] = colony;
 
-                    colony.AntHills.Add(Playground.NeuerBau(colony.Id));
+                    colony.AntHills.Add(Playground.NewAnthill(colony.Id));
                     colony.insectCountDown = antCountDown;
                 }
             }
@@ -140,9 +140,9 @@ namespace AntMe.Simulation
         #region Public Methods
 
         /// <summary>
-        /// Berechnet einen neuen Spielschritt
+        /// calculations for new step in game
         /// </summary>
-        /// <returns>Zustandskopie des Simulationsstandes nachdem der Schritt ausgeführt wurde</returns>
+        /// <returns>state of simulation after the step</returns>
         /// <throws>RuleViolationException</throws>
         /// <throws>Exception</throws>
         public void Step(SimulationState simulationState)
@@ -164,78 +164,77 @@ namespace AntMe.Simulation
             {
                 for (int j = 0; j < Teams[i].Colonies.Length; j++)
                 {
-                    Bugs.Grids[0].Add(Teams[i].Colonies[j].Insects);
+                    Bugs.Grids[0].Add(Teams[i].Colonies[j].InsectsList);
                 }
             }
 
-            // Lasse die Wanzen von der Spiel Befehle entgegen nehmen.
-            //foreach (CoreBug wanze in Bugs.Insects) {
-            //    wanze.NimmBefehleEntgegen = true;
+            // let bugs beeing controled by the game.
+            //foreach (CoreBug bug in Bugs.Insects) {
+            //    bug.NimmBefehleEntgegen = true;
             //}
 
-            // Schleife über alle Wanzen.
-            for (int bugIndex = 0; bugIndex < Bugs.Insects.Count; bugIndex++)
+            // Loop over all the bugs.
+            for (int bugIndex = 0; bugIndex < Bugs.InsectsList.Count; bugIndex++)
             {
-                CoreBug bug = Bugs.Insects[bugIndex] as CoreBug;
+                CoreBug bug = Bugs.InsectsList[bugIndex] as CoreBug;
                 Debug.Assert(bug != null);
 
-                bug.NimmBefehleEntgegen = true;
+                bug.AwaitingCommands = true;
 
-                // Finde Ameisen in Angriffsreichweite.
+                // Find ants within attack range.
                 List<CoreInsect> ants = Bugs.Grids[0].FindAnts(bug);
 
-                // Bestimme wie der Schaden auf die Ameisen verteilt wird.
+                // Determine how the damage is distributed among the ants.
                 if (ants.Count >= SimulationSettings.Custom.BugAttack)
                 {
-                    // Es sind mehr Ameisen in der SpielUmgebung als die Wanze
-                    // Schadenpunke verteilen kann. Daher werden den Ameisen am
-                    // Anfang der Liste jeweils ein Energiepunkt abgezogen.
+                    // There are more ants in the game environment than the
+                    // bug can distribute damage points. Therefore, ants at
+                    // the top of the list will have one energy point deducted.
                     for (int index = 0; index < SimulationSettings.Custom.BugAttack; index++)
                     {
-                        ants[index].AktuelleEnergieBase--;
+                        ants[index].CurrentEnergyCoreInsect--;
                         //((Ameise)ameisen[i]).WirdAngegriffen(wanze);
                         PlayerCall.UnderAttack((CoreAnt)ants[index], bug);
-                        if (ants[index].AktuelleEnergieBase <= 0)
+                        if (ants[index].CurrentEnergyCoreInsect <= 0)
                         {
-                            ants[index].colony.EatenInsects.Add(ants[index]);
+                            ants[index].Colony.EatenInsects.Add(ants[index]);
                         }
                     }
                 }
                 else if (ants.Count > 0)
                 {
-                    // Bestimme die Energie die von jeder Ameise abgezogen wird.
-                    // Hier können natürlich Rundungsfehler auftreten, die die Wanze
-                    // abschwächen, die ignorieren wir aber.
-                    int schaden = SimulationSettings.Custom.BugAttack / ants.Count;
+                    // Determine the energy that is subtracted from each ant.
+                    // Rounding errors that weaken the bug can occur but we ignore them.
+                    int damage = SimulationSettings.Custom.BugAttack / ants.Count;
                     for (int index = 0; index < ants.Count; index++)
                     {
-                        ants[index].AktuelleEnergieBase -= schaden;
+                        ants[index].CurrentEnergyCoreInsect -= damage;
                         //((Ameise)ameisen[i]).WirdAngegriffen(wanze);
                         PlayerCall.UnderAttack((CoreAnt)ants[index], bug);
-                        if (ants[index].AktuelleEnergieBase <= 0)
+                        if (ants[index].CurrentEnergyCoreInsect <= 0)
                         {
-                            ants[index].colony.EatenInsects.Add(ants[index]);
+                            ants[index].Colony.EatenInsects.Add(ants[index]);
                         }
                     }
                 }
 
-                // Während eines Kampfes kann die Wanze sich nicht bewegen.
+                // The bug cannot move during a fight.
                 if (ants.Count > 0)
                 {
                     continue;
                 }
 
-                // Bewege die Wanze.
-                bug.Bewegen();
-                if (bug.RestStreckeBase == 0)
+                // Move the bug.
+                bug.Move();
+                if (bug.DistanceToDestinationCoreInsect == 0)
                 {
-                    bug.DreheInRichtungBase(random.Next(360));
-                    bug.GeheGeradeausBase(random.Next(160, 320));
+                    bug.TurnToDirectionCoreInsect(random.Next(360));
+                    bug.GoForwardCoreInsect(random.Next(160, 320));
                 }
-                bug.NimmBefehleEntgegen = false;
+                bug.AwaitingCommands = false;
             }
 
-            // Verhindere, daß ein Spieler einer gesichteten Wanze Befehle gibt.
+            // Prevent a player from giving orders to a sighted bug.
             //for(int i = 0; i < Bugs.Insects.Count; i++) {
             //  CoreBug wanze = Bugs.Insects[i] as CoreBug;
             //  if(wanze != null) {
@@ -255,188 +254,187 @@ namespace AntMe.Simulation
                 {
                     CoreColony colony = Teams[teamIndex].Colonies[colonyIndex];
 
-                    // Leere alle Buckets.
-                    for (int casteIndex = 0; casteIndex < colony.AnzahlKasten; casteIndex++)
+                    // Empty all buckets.
+                    for (int casteIndex = 0; casteIndex < colony.CasteCount; casteIndex++)
                     {
                         colony.Grids[casteIndex].Clear();
                     }
 
-                    // Fülle alle Buckets, aber befülle keinen Bucket doppelt.
-                    for (int casteIndex = 0; casteIndex < colony.AnzahlKasten; casteIndex++)
+                    // Fill all buckets, but do not fill any bucket twice.
+                    for (int casteIndex = 0; casteIndex < colony.CasteCount; casteIndex++)
                     {
                         if (colony.Grids[casteIndex].Count == 0)
                         {
-                            colony.Grids[casteIndex].Add(Bugs.Insects);
+                            colony.Grids[casteIndex].Add(Bugs.InsectsList);
                             for (int j = 0; j < Teams.Length; j++)
                             {
                                 for (int i = 0; i < Teams[j].Colonies.Length; i++)
                                 {
                                     CoreColony v = Teams[j].Colonies[i];
-                                    colony.Grids[casteIndex].Add(v.Insects);
+                                    colony.Grids[casteIndex].Add(v.InsectsList);
                                 }
                             }
                         }
                     }
 
-                    // Schleife über alle Ameisen.
-                    for (int antIndex = 0; antIndex < colony.Insects.Count; antIndex++)
+                    // Loop over all ants.
+                    for (int antIndex = 0; antIndex < colony.InsectsList.Count; antIndex++)
                     {
-                        CoreAnt ameise = colony.Insects[antIndex] as CoreAnt;
-                        Debug.Assert(ameise != null);
+                        CoreAnt ant = colony.InsectsList[antIndex] as CoreAnt;
+                        Debug.Assert(ant != null);
 
-                        // Finde und Zähle die Insekten im Sichtkreis der Ameise.
-                        CoreBug wanze;
-                        CoreAnt feind;
-                        CoreAnt freund;
+                        // Find and count the insects in the ant's field of vision.
+                        CoreBug bug;
+                        CoreAnt enemy;
+                        CoreAnt friend;
                         CoreAnt teammember;
                         int bugCount, enemyAntCount, colonyAntCount, casteAntCount, teamAntCount;
-                        colony.Grids[ameise.CasteIndexBase].FindAndCountInsects(
-                            ameise,
-                            out wanze,
+                        colony.Grids[ant.CasteIndexCoreInsect].FindAndCountInsects(
+                            ant,
+                            out bug,
                             out bugCount,
-                            out feind,
+                            out enemy,
                             out enemyAntCount,
-                            out freund,
+                            out friend,
                             out colonyAntCount,
                             out casteAntCount,
                             out teammember,
                             out teamAntCount);
-                        ameise.BugsInViewrange = bugCount;
-                        ameise.ForeignAntsInViewrange = enemyAntCount;
-                        ameise.FriendlyAntsInViewrange = colonyAntCount;
-                        ameise.FriendlyAntsFromSameCasteInViewrange = casteAntCount;
-                        ameise.TeamAntsInViewrange = teamAntCount;
+                        ant.BugsInViewRange = bugCount;
+                        ant.EnemyAntsInViewRange = enemyAntCount;
+                        ant.ColonyAntsInViewRange = colonyAntCount;
+                        ant.CasteAntsInViewRange = casteAntCount;
+                        ant.TeamAntsInViewRange = teamAntCount;
 
-                        // Bewege die Ameise.
-                        ameise.Bewegen();
+                        // Move the ant.
+                        ant.Move();
 
-                        #region Reichweite
+                        #region Range
 
-                        // Ameise hat ihre Reichweite überschritten.
-                        if (ameise.ZurückgelegteStreckeI > colony.ReichweiteI[ameise.CasteIndexBase])
+                        // Ant has exceeded its range. Ant dies.
+                        if (ant.NumberStepsWalked > colony.RangeI[ant.CasteIndexCoreInsect])
                         {
-                            ameise.AktuelleEnergieBase = 0;
-                            colony.VerhungerteInsekten.Add(ameise);
+                            ant.CurrentEnergyCoreInsect = 0;
+                            colony.StarvedInsects.Add(ant);
                             continue;
                         }
 
-                        // Ameise hat ein Drittel ihrer Reichweite zurückgelegt.
-                        else if (ameise.ZurückgelegteStreckeI > colony.ReichweiteI[ameise.CasteIndexBase] / 3)
+                        // Ant has covered a third of its range.
+                        else if (ant.NumberStepsWalked > colony.RangeI[ant.CasteIndexCoreInsect] / 3)
                         {
-                            if (ameise.IstMüdeBase == false)
+                            if (ant.IsTiredCoreAnt == false)
                             {
-                                ameise.IstMüdeBase = true;
-                                PlayerCall.BecomesTired(ameise);
+                                ant.IsTiredCoreAnt = true;
+                                PlayerCall.BecomesTired(ant);
                             }
                         }
 
                         #endregion
 
-                        #region Kampf
+                        #region Fight
 
-                        // Rufe die Ereignisse auf, falls die Ameise nicht schon ein 
-                        // entsprechendes Ziel hat.
-                        if (wanze != null && !(ameise.ZielBase is CoreBug))
+                        // If the ant does not already have a corresponding target, call the events.
+                        if (bug != null && !(ant.DestinationCoreInsect is CoreBug))
                         {
-                            PlayerCall.SpotsEnemy(ameise, wanze);
+                            PlayerCall.SpotsEnemy(ant, bug);
                         }
-                        if (feind != null && !(ameise.ZielBase is CoreAnt) ||
-                            (ameise.ZielBase is CoreAnt && ((CoreAnt)ameise.ZielBase).colony == colony))
+                        if (enemy != null && !(ant.DestinationCoreInsect is CoreAnt) ||
+                            (ant.DestinationCoreInsect is CoreAnt && ((CoreAnt)ant.DestinationCoreInsect).Colony == colony))
                         {
-                            PlayerCall.SpotsEnemy(ameise, feind);
+                            PlayerCall.SpotsEnemy(ant, enemy);
                         }
-                        if (freund != null && !(ameise.ZielBase is CoreAnt) ||
-                            (ameise.ZielBase is CoreAnt && ((CoreAnt)ameise.ZielBase).colony != colony))
+                        if (friend != null && !(ant.DestinationCoreInsect is CoreAnt) ||
+                            (ant.DestinationCoreInsect is CoreAnt && ((CoreAnt)ant.DestinationCoreInsect).Colony != colony))
                         {
-                            PlayerCall.SpotsFriend(ameise, freund);
+                            PlayerCall.SpotsFriend(ant, friend);
                         }
-                        if (teammember != null && !(ameise.ZielBase is CoreAnt) ||
-                            (ameise.ZielBase is CoreAnt && ((CoreAnt)ameise.ZielBase).colony != colony))
+                        if (teammember != null && !(ant.DestinationCoreInsect is CoreAnt) ||
+                            (ant.DestinationCoreInsect is CoreAnt && ((CoreAnt)ant.DestinationCoreInsect).Colony != colony))
                         {
-                            PlayerCall.SpotsTeamMember(ameise, teammember);
+                            PlayerCall.SpotsTeamMember(ant, teammember);
                         }
 
-                        // Kampf mit Wanze.
-                        if (ameise.ZielBase is CoreBug)
+                        // Fight with a bug.
+                        if (ant.DestinationCoreInsect is CoreBug)
                         {
-                            CoreBug k = (CoreBug)ameise.ZielBase;
-                            if (k.AktuelleEnergieBase > 0)
+                            CoreBug k = (CoreBug)ant.DestinationCoreInsect;
+                            if (k.CurrentEnergyCoreInsect > 0)
                             {
-                                int entfernung =
-                                    CoreCoordinate.BestimmeEntfernungI(ameise.CoordinateBase, ameise.ZielBase.CoordinateBase);
-                                if (entfernung < SimulationSettings.Custom.BattleRange * PLAYGROUND_UNIT)
+                                int distance =
+                                    CoreCoordinate.DetermineDistanceI(ant.CoordinateCoreInsect, ant.DestinationCoreInsect.CoordinateCoreInsect);
+                                if (distance < SimulationSettings.Custom.BattleRange * PLAYGROUND_UNIT)
                                 {
-                                    k.AktuelleEnergieBase -= ameise.AngriffBase;
-                                    if (k.AktuelleEnergieBase <= 0)
+                                    k.CurrentEnergyCoreInsect -= ant.AttackStrengthCoreInsect;
+                                    if (k.CurrentEnergyCoreInsect <= 0)
                                     {
                                         Bugs.EatenInsects.Add(k);
-                                        colony.Statistik.KilledBugs++;
-                                        ameise.BleibStehenBase();
+                                        colony.Statistic.KilledBugs++;
+                                        ant.StopMovementCoreInsect();
                                     }
                                 }
                             }
                             else
                             {
-                                ameise.ZielBase = null;
+                                ant.DestinationCoreInsect = null;
                             }
                         }
 
-                        // Kampf mit feindlicher Ameise.
-                        else if (ameise.ZielBase is CoreAnt)
+                        // Fight with an enemy ant.
+                        else if (ant.DestinationCoreInsect is CoreAnt)
                         {
-                            CoreAnt a = (CoreAnt)ameise.ZielBase;
-                            if (a.colony != colony && a.AktuelleEnergieBase > 0)
+                            CoreAnt a = (CoreAnt)ant.DestinationCoreInsect;
+                            if (a.Colony != colony && a.CurrentEnergyCoreInsect > 0)
                             {
-                                int entfernung =
-                                    CoreCoordinate.BestimmeEntfernungI(ameise.CoordinateBase, ameise.ZielBase.CoordinateBase);
-                                if (entfernung < SimulationSettings.Custom.BattleRange * PLAYGROUND_UNIT)
+                                int distance =
+                                    CoreCoordinate.DetermineDistanceI(ant.CoordinateCoreInsect, ant.DestinationCoreInsect.CoordinateCoreInsect);
+                                if (distance < SimulationSettings.Custom.BattleRange * PLAYGROUND_UNIT)
                                 {
-                                    PlayerCall.UnderAttack(a, ameise);
-                                    a.AktuelleEnergieBase -= ameise.AngriffBase;
-                                    if (a.AktuelleEnergieBase <= 0)
+                                    PlayerCall.UnderAttack(a, ant);
+                                    a.CurrentEnergyCoreInsect -= ant.AttackStrengthCoreInsect;
+                                    if (a.CurrentEnergyCoreInsect <= 0)
                                     {
-                                        a.colony.BeatenInsects.Add(a);
-                                        colony.Statistik.KilledAnts++;
-                                        ameise.BleibStehenBase();
+                                        a.Colony.BeatenInsects.Add(a);
+                                        colony.Statistic.KilledAnts++;
+                                        ant.StopMovementCoreInsect();
                                     }
                                 }
                             }
                             else
                             {
-                                ameise.ZielBase = null;
+                                ant.DestinationCoreInsect = null;
                             }
                         }
 
                         #endregion
 
-                        // Prüfe ob die Ameise an ihrem Ziel angekommen ist.
-                        if (ameise.AngekommenBase)
+                        // Check if the ant has reached its destination.
+                        if (ant.ArrivedCoreInsect)
                         {
-                            ameiseUndZiel(ameise);
+                            antAndTarget(ant);
                         }
 
-                        // Prüfe ob die Ameise einen Zuckerhaufen oder ein Obststück sieht.
-                        ameiseUndZucker(ameise);
-                        if (ameise.GetragenesObstBase == null)
+                        // Check if the ant sees a pile of sugar or a fruit.
+                        antAndSugar(ant);
+                        if (ant.CarryingFruitCoreInsect == null)
                         {
-                            ameiseUndObst(ameise);
+                            antAndFruit(ant);
                         }
 
-                        // Prüfe ob die Ameise eine Markierung bemerkt.
-                        ameiseUndMarkierungen(ameise);
+                        // Check whether the ant notices a mark.
+                        antAndMarkers(ant);
 
-                        if (ameise.ZielBase == null && ameise.RestStreckeBase == 0)
+                        if (ant.DestinationCoreInsect == null && ant.DistanceToDestinationCoreInsect == 0)
                         {
-                            PlayerCall.Waits(ameise);
+                            PlayerCall.Waits(ant);
                         }
 
-                        PlayerCall.Tick(ameise);
+                        PlayerCall.Tick(ant);
                     }
 
                     removeAnt(colony);
                     spawnAnt(colony);
 
-                    aktualisiereMarkierungen(colony);
+                    updateMarkers(colony);
                     removeFruit(colony);
                 }
             }
@@ -451,9 +449,9 @@ namespace AntMe.Simulation
 
             #endregion
 
-            bewegeObstUndInsekten();
+            MoveFruitsAndInsects();
 
-            erzeugeZustand(simulationState);
+            GenerateState(simulationState);
         }
 
         #endregion
@@ -461,33 +459,33 @@ namespace AntMe.Simulation
         #region Helpermethods
 
         /// <summary>
-        /// Erzeugt einen Zustand aus dem aktuellen Spielumstand
+        /// Creates a state from the current game state
         /// </summary>
-        /// <returns>aktueller Spielstand</returns>
-        private void erzeugeZustand(SimulationState zustand)
+        /// <returns>current game state</returns>
+        private void GenerateState(SimulationState simulationState)
         {
-            zustand.PlaygroundWidth = Playground.Width;
-            zustand.PlaygroundHeight = Playground.Height;
-            zustand.CurrentRound = currentRound;
+            simulationState.PlaygroundWidth = Playground.Width;
+            simulationState.PlaygroundHeight = Playground.Height;
+            simulationState.CurrentRound = currentRound;
 
             for (int i = 0; i < Teams.Length; i++)
             {
-                zustand.TeamStates.Add(Teams[i].CreateState());
+                simulationState.TeamStates.Add(Teams[i].CreateState());
             }
 
-            for (int i = 0; i < Bugs.Insects.Count; i++)
+            for (int i = 0; i < Bugs.InsectsList.Count; i++)
             {
-                zustand.BugStates.Add(((CoreBug)Bugs.Insects[i]).ErzeugeInfo());
+                simulationState.BugStates.Add(((CoreBug)Bugs.InsectsList[i]).GenerateInformation());
             }
 
-            for (int i = 0; i < Playground.SugarHills.Count; i++)
+            for (int i = 0; i < Playground.SugarHillsList.Count; i++)
             {
-                zustand.SugarStates.Add(Playground.SugarHills[i].CreateState());
+                simulationState.SugarStates.Add(Playground.SugarHillsList[i].CreateState());
             }
 
-            for (int i = 0; i < Playground.Fruits.Count; i++)
+            for (int i = 0; i < Playground.FruitsList.Count; i++)
             {
-                zustand.FruitStates.Add(Playground.Fruits[i].ErzeugeInfo());
+                simulationState.FruitStates.Add(Playground.FruitsList[i].GenerateInformation());
             }
         }
 

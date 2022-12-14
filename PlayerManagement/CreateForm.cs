@@ -63,7 +63,7 @@ namespace AntMe.PlayerManagement
             if (DialogResult != System.Windows.Forms.DialogResult.OK)
                 return;
 
-            // Check den Namen (muss den Namenskonventionen von Klassennamen entsprechen)
+            // Check the name (must conform to the naming conventions of class names)
             if (!Regex.IsMatch(nameTextBox.Text, @"^[a-zA-Z][a-zA-Z0-9]{1,19}$"))
             {
                 MessageBox.Show(Resource.AntColonyNameNotValid);
@@ -71,7 +71,7 @@ namespace AntMe.PlayerManagement
                 return;
             }
 
-            // Finde Generator
+            // Find generator
             var generator = generators.Where(g => g.Language.Equals(languageComboBox.Text) && g.ProgrammingLanguage.Equals(codeComboBox.Text)).FirstOrDefault();
             if (generator == null)
             {
@@ -80,7 +80,7 @@ namespace AntMe.PlayerManagement
                 return;
             }
 
-            // Prüfen, ob das Ausgabeverzeichnis existiert
+            // Check whether the output directory exists
             DirectoryInfo root = new DirectoryInfo(folderTextBox.Text);
             if (!root.Exists)
             {

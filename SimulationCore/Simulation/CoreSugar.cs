@@ -3,7 +3,7 @@
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Represents a sugar-Hill.
+    /// Represents a sugar pile.
     /// </summary>
     internal sealed class CoreSugar : CoreFood
     {
@@ -17,16 +17,16 @@ namespace AntMe.Simulation
             : base(x, y, amount) { }
 
         /// <summary>
-        /// Creates a sugar-state of this sugar-hill.
+        /// Creates a sugar state of this sugar hill.
         /// </summary>
-        /// <returns>current state of that sugar-hill.</returns>
+        /// <returns>current state of that sugar hill.</returns>
         internal SugarState CreateState()
         {
             SugarState state = new SugarState((ushort)Id);
-            state.PositionX = (ushort)(koordinate.X / SimulationEnvironment.PLAYGROUND_UNIT);
-            state.PositionY = (ushort)(koordinate.Y / SimulationEnvironment.PLAYGROUND_UNIT);
-            state.Radius = (ushort)(koordinate.Radius / SimulationEnvironment.PLAYGROUND_UNIT);
-            state.Amount = (ushort)menge;
+            state.PositionX = (ushort)(coordinate.X / SimulationEnvironment.PLAYGROUND_UNIT);
+            state.PositionY = (ushort)(coordinate.Y / SimulationEnvironment.PLAYGROUND_UNIT);
+            state.Radius = (ushort)(coordinate.Radius / SimulationEnvironment.PLAYGROUND_UNIT);
+            state.Amount = (ushort)amount;
             return state;
         }
     }

@@ -12,7 +12,7 @@
         /// </summary>
         public int AktuelleLast
         {
-            get { return ((Simulation.CoreAnt)element).AktuelleLastBase; }
+            get { return ((Simulation.CoreAnt)element).CurrentLoadCoreInsect; }
         }
 
         /// <summary>
@@ -23,13 +23,13 @@
             get
             {
                 Simulation.CoreAnt temp = (Simulation.CoreAnt)element;
-                if (temp.GetragenesObstBase == null)
+                if (temp.CarryingFruitCoreInsect == null)
                 {
                     return null;
                 }
                 else
                 {
-                    return new Obst(temp.GetragenesObstBase);
+                    return new Obst(temp.CarryingFruitCoreInsect);
                 }
             }
         }
@@ -39,7 +39,7 @@
         /// </summary>
         public int MaximaleLast
         {
-            get { return ((Simulation.CoreAnt)element).MaximaleLastBase; }
+            get { return ((Simulation.CoreAnt)element).MaximumLoadCoreInsect; }
         }
 
         /// <summary>
@@ -47,7 +47,7 @@
         /// </summary>
         public int Reichweite
         {
-            get { return ((Simulation.CoreAnt)element).ReichweiteBase; }
+            get { return ((Simulation.CoreAnt)element).RangeCoreInsect; }
         }
 
         /// <summary>
@@ -55,7 +55,7 @@
         /// </summary>
         public string Volk
         {
-            get { return ((Simulation.CoreAnt)element).colony.Player.ColonyName; }
+            get { return ((Simulation.CoreAnt)element).Colony.Player.ColonyName; }
         }
     }
 }

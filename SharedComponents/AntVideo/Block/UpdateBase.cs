@@ -3,7 +3,7 @@
 namespace AntMe.SharedComponents.AntVideo.Block
 {
     /// <summary>
-    /// Basisklasse für alle Updateblocks für ein einheitliches Speichern der veränderten Felder
+    /// Base class for all update blocks for consistent saving of changed fields
     /// </summary>
     internal abstract class UpdateBase : ISerializable
     {

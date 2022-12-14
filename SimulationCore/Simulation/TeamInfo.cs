@@ -4,31 +4,31 @@ using System.Collections.Generic;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Repräsentiert ein Team innerhalb der Simulationskonfiguration
+    /// Team of colonies.
     /// </summary>
     [Serializable]
     public sealed class TeamInfo : ICloneable
     {
 
         /// <summary>
-        /// Guid des Teams
+        /// Guid of Teams.
         /// </summary>
         public Guid Guid;
 
         /// <summary>
-        /// Name des Teams
+        /// Name of Teams.
         /// </summary>
         public string Name;
 
         /// <summary>
-        /// Liste der enthaltenen Spieler
+        /// List of team member players.
         /// </summary>
         private List<PlayerInfo> player;
 
-        #region Initialisierung und Konstruktor
+        #region Constructor and Initialization
 
         /// <summary>
-        /// Konstruktor des Teams
+        /// Team Constructor.
         /// </summary>
         public TeamInfo()
         {
@@ -37,9 +37,9 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Konstruktor des Teams
+        /// Team Constructor.
         /// </summary>
-        /// <param name="player">Liste der Spieler</param>
+        /// <param name="player">List of players.</param>
         public TeamInfo(List<PlayerInfo> player)
             : this()
         {
@@ -47,10 +47,10 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Konstruktor des Teams
+        /// Team Constructor.
         /// </summary>
-        /// <param name="guid">Guid des Teams</param>
-        /// <param name="player">Liste der Spieler</param>
+        /// <param name="guid">Guid.</param>
+        /// <param name="player">List of players.</param>
         public TeamInfo(Guid guid, List<PlayerInfo> player)
             : this(player)
         {
@@ -58,10 +58,10 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Konstruktor des Teams
+        /// Team Constructor.
         /// </summary>
-        /// <param name="name">Name des Teams</param>
-        /// <param name="player">Liste der Spieler</param>
+        /// <param name="name">Name of team.</param>
+        /// <param name="player">List of players.</param>
         public TeamInfo(string name, List<PlayerInfo> player)
             : this(player)
         {
@@ -69,11 +69,11 @@ namespace AntMe.Simulation
         }
 
         /// <summary>
-        /// Konstruktor des Teams
+        /// Team Constructor.
         /// </summary>
-        /// <param name="guid">Guid des Teams</param>
-        /// <param name="name">Name des Teams</param>
-        /// <param name="player">Liste der Spieler</param>
+        /// <param name="guid">Guid of team.</param>
+        /// <param name="name">Name of team.</param>
+        /// <param name="player">List of players.</param>
         public TeamInfo(Guid guid, string name, List<PlayerInfo> player)
             : this(player)
         {
@@ -83,10 +83,10 @@ namespace AntMe.Simulation
 
         #endregion
 
-        #region Eigenschaften
+        #region properties
 
         /// <summary>
-        /// Liste der spieler dieses Teams
+        /// List of team members.
         /// </summary>
         public List<PlayerInfo> Player
         {
@@ -95,21 +95,21 @@ namespace AntMe.Simulation
 
         #endregion
 
-        #region öffentliche Methoden
+        #region public methods
 
         /// <summary>
-        /// Prüft, ob das Team regelkonform aufgebaut ist
+        /// Check team against rule set.
         /// </summary>
         public void Rulecheck()
         {
-            // Menge der Spieler prüfen
+            // Number of players in team.
             if (player == null || player.Count < 1)
             {
-                // TODO: Name der Resource ist Mist
+                // TODO: resource needs better name
                 throw new InvalidOperationException(Resource.SimulationCoreTeamInfoNoName);
             }
 
-            // Regelcheck bei den enthaltenen Spielern
+            // Check team members against rule set.
             foreach (PlayerInfo info in player)
             {
                 info.RuleCheck();
@@ -121,9 +121,9 @@ namespace AntMe.Simulation
         #region ICloneable Member
 
         /// <summary>
-        /// Erstellt eine Kopie des Teams
+        /// Clones team.
         /// </summary>
-        /// <returns>Kopie des Teams</returns>
+        /// <returns>Copy of the team.</returns>
         public object Clone()
         {
             TeamInfo output = (TeamInfo)MemberwiseClone();

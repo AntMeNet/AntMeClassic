@@ -35,7 +35,7 @@ namespace AntMe.Gui
             InitializeComponent();
             CreateHandle();
 
-            // check Language-buttons
+            // Check language buttons
             switch (Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName)
             {
                 case "de":
@@ -69,7 +69,7 @@ namespace AntMe.Gui
                 problems.ShowDialog(this);
             }
 
-            // Set Window-Position
+            // Set window position
             WindowState = Settings.Default.windowState;
             Location = Settings.Default.windowPosition;
             Size = Settings.Default.windowSize;
@@ -77,7 +77,7 @@ namespace AntMe.Gui
             manager.SearchForPlugins();
             timer.Enabled = true;
 
-            // Forward startparameter
+            // Forward start parameter
             foreach (PluginItem plugin in manager.ProducerPlugins)
             {
                 plugin.Producer.StartupParameter(parameter);
@@ -100,10 +100,10 @@ namespace AntMe.Gui
 
         #endregion
 
-        #region Frontend- und Interaktionshandling
+        #region Frontend and interaction handling
 
         /// <summary>
-        /// Make updates based on manager-settings
+        /// Make updates based on manager settings.
         /// </summary>
         private void updatePanel()
         {
@@ -115,7 +115,7 @@ namespace AntMe.Gui
 
             ignoreTimerEvents = true;
 
-            // Controlling-Buttons
+            // Controlling buttons
             startMenuItem.Enabled = manager.CanStart;
             startToolItem.Enabled = manager.CanStart;
             pauseToolItem.Enabled = manager.CanPause;
@@ -151,7 +151,7 @@ namespace AntMe.Gui
                 speedDropDownToolItem.Text = Resource.MainSpeedMaximal;
             }
 
-            // Producer List (Button-Based)
+            // Producer list (button based)
             List<ToolStripItem> remove = new List<ToolStripItem>();
             foreach (ToolStripItem item in producerButton.DropDownItems)
             {
@@ -180,7 +180,7 @@ namespace AntMe.Gui
                 }
             }
 
-            // manage tabs
+            // Manage tabs
             if (activeProducer != manager.ActiveProducerPlugin)
             {
                 bool isSelected = tabControl.SelectedIndex == 1;
@@ -188,7 +188,7 @@ namespace AntMe.Gui
                 // Update Mode Display
                 producerButton.Text = (manager.ActiveProducerPlugin == null ? Resource.MainNoModeSelected : manager.ActiveProducerPlugin.Name);
 
-                // remove old tab
+                // Remove old tab
                 if (activeProducer != null)
                 {
                     if (activeProducer.Producer.Control != null)
@@ -198,7 +198,7 @@ namespace AntMe.Gui
                     activeProducer = null;
                 }
 
-                // add new tab
+                // Add new tab
                 if (manager.ActiveProducerPlugin != null)
                 {
                     if (manager.ActiveProducerPlugin.Producer.Control != null)
@@ -217,7 +217,7 @@ namespace AntMe.Gui
                 }
             }
 
-            // synchronize Consumer
+            // Synchronize consumer
             List<PluginItem> newActiveConsumers = new List<PluginItem>(manager.ActiveConsumerPlugins);
             for (int i = activeConsumers.Count - 1; i >= 0; i--)
             {
@@ -236,7 +236,7 @@ namespace AntMe.Gui
                 //Create new, if needed
                 if (!activeConsumers.Contains(plugin))
                 {
-                    // Create Tab and place control
+                    // Create tab and place control
                     if (plugin.Consumer.Control != null)
                     {
                         tabControl.TabPages.Add(plugin.Guid.ToString(), plugin.Name);
@@ -255,7 +255,7 @@ namespace AntMe.Gui
                 manager.Exceptions.Clear();
             }
 
-            // StatusBar-information
+            // Status bar information
             stateLabelBarItem.Text = string.Empty;
             switch (manager.State)
             {
@@ -302,7 +302,7 @@ namespace AntMe.Gui
 
         #endregion
 
-        #region Formularfunktionen
+        #region form functions
 
         #region form
 
@@ -317,7 +317,7 @@ namespace AntMe.Gui
                 manager.Exceptions.Clear();
             }
 
-            // force a direkt start, if manager is ready
+            // force a direkt start, if manager is ready.
             if (manager.CanStart && directstart)
             {
                 start(sender, e);
@@ -331,11 +331,11 @@ namespace AntMe.Gui
                 manager.Stop();
             }
 
-            // Alle Plugin-Einstellungen absichern
+            // Save all plugin settings.
             Settings.Default.Save();
             manager.SaveSettings();
 
-            // show possible problems
+            // Show possible problems.
             if (manager.Exceptions != null && manager.Exceptions.Count > 0)
             {
                 ExceptionViewer form = new ExceptionViewer(manager.Exceptions);
@@ -529,7 +529,7 @@ namespace AntMe.Gui
 
         #endregion
 
-        #region Managersteuerung
+        #region manager control
 
         private void start(object sender, EventArgs e)
         {

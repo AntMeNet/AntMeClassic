@@ -3,10 +3,10 @@
 namespace AntMe.English
 {
     /// <summary>
-    /// Represents a sugarhill
+    /// Represents a sugar pile
     /// </summary>
     public sealed class Sugar : Food
     {
-        internal Sugar(CoreSugar zucker) : base(zucker) { }
+        internal Sugar(CoreSugar sugar) : base(sugar) { }
     }
 }

@@ -5,36 +5,36 @@ using System.Collections.Generic;
 namespace AntMe.Simulation
 {
     /// <summary>
-    /// Eine Wanze
+    /// Bug
     /// </summary>
     /// <author>Wolfgang Gallo (wolfgang@antme.net)</author>
     internal sealed class CoreBug : CoreInsect
     {
         /// <summary>
-        /// Gibt an, ob die Wanze sich in der aktuellen Runde noch bewegen kann.
+        /// Indicates whether bug can do movement in this simulation round.
         /// </summary>
-        internal bool KannSichNochBewegen = true;
+        internal bool CanMoveInThisRound = true;
 
-        internal override void Init(CoreColony colony, Random random, Dictionary<string, int> vorhandeneInsekten)
+        internal override void Init(CoreColony colony, Random random, Dictionary<string, int> existingInsects)
         {
-            base.Init(colony, random, vorhandeneInsekten);
-            koordinate.Radius = 4;
-            AktuelleEnergieBase = colony.Energie[0];
-            aktuelleGeschwindigkeitI = colony.GeschwindigkeitI[0];
-            AngriffBase = colony.Angriff[0];
+            base.Init(colony, random, existingInsects);
+            Coordinate.Radius = 4;
+            CurrentEnergyCoreInsect = colony.EnergyI[0];
+            currentSpeedICoreInsect = colony.SpeedI[0];
+            AttackStrengthCoreInsect = colony.AttackI[0];
         }
 
         /// <summary>
-        /// Erzeugt ein BugState-Objekt mit dem aktuellen Daten der Wanzen.
+        /// Bug state object with all current data of bug is created.
         /// </summary>
         /// <returns></returns>
-        internal BugState ErzeugeInfo()
+        internal BugState GenerateInformation()
         {
-            BugState info = new BugState((ushort)id);
-            info.PositionX = (ushort)(CoordinateBase.X / SimulationEnvironment.PLAYGROUND_UNIT);
-            info.PositionY = (ushort)(CoordinateBase.Y / SimulationEnvironment.PLAYGROUND_UNIT);
-            info.Direction = (ushort)CoordinateBase.Richtung;
-            info.Vitality = (ushort)AktuelleEnergieBase;
+            BugState info = new BugState((ushort)Id);
+            info.PositionX = (ushort)(CoordinateCoreInsect.X / SimulationEnvironment.PLAYGROUND_UNIT);
+            info.PositionY = (ushort)(CoordinateCoreInsect.Y / SimulationEnvironment.PLAYGROUND_UNIT);
+            info.Direction = (ushort)CoordinateCoreInsect.Direction;
+            info.Vitality = (ushort)CurrentEnergyCoreInsect;
             return info;
         }
     }
