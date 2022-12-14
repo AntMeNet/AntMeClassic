@@ -14,9 +14,19 @@ namespace AntMe.English
         public int AttackModifier = 0;
 
         /// <summary>
+        /// Rotation speed modifier.
+        /// </summary>
+        public int RotationSpeedModifier = 0;
+
+        /// <summary>
         /// Energy or hit points modifier.
         /// </summary>
         public int EnergyModifier = 0;
+
+        /// <summary>
+        /// Speed modifier.
+        /// </summary>
+        public int SpeedModifier = 0;
 
         /// <summary>
         /// Load modifier.
@@ -32,16 +42,6 @@ namespace AntMe.English
         /// Range modifier.
         /// </summary>
         public int RangeModifier = 0;
-
-        /// <summary>
-        /// Rotation speed modifier.
-        /// </summary>
-        public int RotationSpeedModifier = 0;
-
-        /// <summary>
-        /// Speed modifier.
-        /// </summary>
-        public int SpeedModifier = 0;
 
         /// <summary>
         /// View range modifier.
