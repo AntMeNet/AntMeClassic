@@ -168,7 +168,7 @@
     <comment>Url zur Website, die im Welcome Tab angezeigt werden soll</comment>
   </data>
   <data name="MainWikiLink" xml:space="preserve">
-    <value>http://wiki.antme.net/en</value>
+    <value>http://wiki.antme.net/en/</value>
   </data>
   <data name="PluginItemConstructorPluginHasNoName" xml:space="preserve">
     <value>The name of the plugin is empty.</value>
